@@ -8,6 +8,57 @@
    3. Component  — Component-specific (references semantics)
    ============================================ */
 
+/* ============================================
+   Bilingual Font Stack
+   unicode-range + size-adjust for per-script sizing.
+   Latin glyphs are scaled up 8% so that Inter's
+   x-height visually balances Noto Sans JP / Hiragino
+   CJK ideographs at the same declared font-size.
+
+   Consumer apps that bundle web-font files can add
+   their own @font-face with url() sources using
+   the same font-family name "Ground Sans".
+   ============================================ */
+
+/* Latin (Basic Latin, Latin Extended, General Punctuation, Superscripts, Currency, Letterlike) */
+@font-face {
+  font-family: "Ground Sans";
+  src: local("Inter"), local("Inter Regular");
+  unicode-range: U+0000-024F, U+0300-036F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F;
+  size-adjust: 108%;
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+/* Japanese — Hiragana, Katakana, CJK Ideographs, CJK Punctuation, Fullwidth Forms, CJK Compatibility */
+@font-face {
+  font-family: "Ground Sans";
+  src: local("Noto Sans JP"),
+       local("Noto Sans CJK JP"),
+       local("Hiragino Sans"),
+       local("Hiragino Kaku Gothic Pro"),
+       local("Yu Gothic"),
+       local("Meiryo");
+  unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FFF,
+                 U+F900-FAFF, U+FF00-FFEF, U+FE30-FE4F;
+  size-adjust: 100%;
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+/* Half-width Katakana (U+FF65-FF9F) — uses CJK font at CJK scale */
+@font-face {
+  font-family: "Ground Sans";
+  src: local("Noto Sans JP"),
+       local("Noto Sans CJK JP"),
+       local("Hiragino Sans"),
+       local("Hiragino Kaku Gothic Pro");
+  unicode-range: U+FF65-FF9F;
+  size-adjust: 100%;
+  font-display: swap;
+  font-weight: 100 900;
+}
+
 :root {
   /* ==========================================
      1. PRIMITIVE TOKENS
@@ -201,7 +252,7 @@
   --radius-full: 9999px;
 
   /* --- Typography --- */
-  --font-family: var(--font-inter), var(--font-noto-sans-jp), 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family: "Ground Sans", 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
   --text-xs: 10px;
   --text-sm: 12px;
@@ -364,6 +415,24 @@
 :root[data-theme="light"] .card-elevated,
 :root[data-theme="light"] .card-interactive {
   box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   Language-Specific Typography
+   :lang() adjustments for line-height and
+   letter-spacing. Font sizing is handled by
+   the @font-face unicode-range + size-adjust
+   declarations above.
+   ============================================ */
+
+:lang(ja) {
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+:lang(en) {
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
