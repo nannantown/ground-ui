@@ -33,7 +33,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "catalog": "vite dev catalog --port 6100",
-    "catalog:build": "vite build catalog"
+    "catalog:build": "vite build catalog",
+    "generate-tokens": "tsx scripts/generate-tokens.ts --ts --dart --css"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
