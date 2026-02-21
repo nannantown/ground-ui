@@ -110,14 +110,14 @@ class GroundTokens {
   final double radiusFull = 9999;
 
   // ── Typography ──────────────────────────────
-  final double fontSizeXs = 10;
-  final double fontSizeSm = 12;
-  final double fontSizeBase = 13;
-  final double fontSizeMd = 14;
-  final double fontSizeLg = 16;
-  final double fontSizeXl = 20;
-  final double fontSize2xl = 24;
-  final double fontSize3xl = 32;
+  final double fontSizeXs = 12;
+  final double fontSizeSm = 13;
+  final double fontSizeBase = 14;
+  final double fontSizeMd = 15;
+  final double fontSizeLg = 18;
+  final double fontSizeXl = 22;
+  final double fontSize2xl = 28;
+  final double fontSize3xl = 36;
   final FontWeight fontWeightNormal = FontWeight.w400;
   final FontWeight fontWeightMedium = FontWeight.w500;
   final FontWeight fontWeightSemibold = FontWeight.w600;

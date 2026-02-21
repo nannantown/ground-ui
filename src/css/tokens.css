@@ -254,14 +254,14 @@
   /* --- Typography --- */
   --font-family: "Ground Sans", 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
-  --text-xs: 10px;
-  --text-sm: 12px;
-  --text-base: 13px;
-  --text-md: 14px;
-  --text-lg: 16px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  --text-3xl: 32px;
+  --text-xs: clamp(11px, 0.6875rem + 0.1vw, 12px);
+  --text-sm: clamp(12px, 0.75rem + 0.1vw, 13px);
+  --text-base: clamp(13px, 0.8125rem + 0.1vw, 14px);
+  --text-md: clamp(14px, 0.875rem + 0.1vw, 15px);
+  --text-lg: clamp(16px, 1rem + 0.15vw, 18px);
+  --text-xl: clamp(20px, 1.25rem + 0.2vw, 22px);
+  --text-2xl: clamp(24px, 1.5rem + 0.3vw, 28px);
+  --text-3xl: clamp(30px, 1.875rem + 0.5vw, 36px);
   --letter-spacing-tight: 0.02em;
   --letter-spacing-normal: 0.04em;
   --letter-spacing-wide: 0.1em;
