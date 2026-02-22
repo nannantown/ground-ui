@@ -14,6 +14,7 @@ Published as a private package on **GitHub Packages** (`npm.pkg.github.com`).
 npm run dev              # Watch mode (tsup)
 npm run build            # Production build (tsup)
 npm run typecheck        # TypeScript type check
+npm run lint             # ESLint (includes no-emoji rule)
 npm run catalog          # Vite dev server for component catalog (port 6100)
 npm run catalog:build    # Build component catalog
 npm run generate-tokens  # Generate TS / Dart / CSS from tokens.json
@@ -73,6 +74,9 @@ ground-ui/
 │   ├── theme/
 │   │   └── index.ts                 # Theme engine: presets, color math, runtime CSS application
 │   ├── interactions/                # Interactive demo components (motion, gestures, physics)
+│   ├── eslint/                      # ESLint plugin (no-emoji rule)
+│   │   ├── no-emoji.ts              # Rule: disallow emoji characters
+│   │   └── index.ts                 # Plugin entry + recommended config
 │   ├── cn.ts                        # Utility: className merger (zero-dep)
 │   └── index.ts                     # Main entry point
 ├── scripts/
@@ -103,6 +107,7 @@ ground-ui/
 | `@nannantown/ground-ui/tokens/flutter` | Flutter Dart tokens (`out/flutter/ground_tokens.dart`) |
 | `@nannantown/ground-ui/theme` | Theme system (presets, color math, runtime application) |
 | `@nannantown/ground-ui/interactions` | Interactive demo components |
+| `@nannantown/ground-ui/eslint` | ESLint plugin (`no-emoji` rule) |
 
 ### Token Architecture (3 Layers)
 
