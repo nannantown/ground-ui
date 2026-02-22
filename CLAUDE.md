@@ -138,7 +138,7 @@ src/tokens/tokens.json          (Single Source of Truth)
 | Half-width Katakana | U+FF65-FF9F | Noto Sans JP / Hiragino Sans (local only) | 100% |
 
 Latin (Inter) includes `url()` fallback to Google Fonts CDN, so it works on all devices without extra setup.
-Japanese fonts use `local()` only. For web deployment where visitors may not have CJK fonts installed, consumers should add a Google Fonts `<link>` for Noto Sans JP.
+Japanese fonts use `local()` first for zero-latency, with Google Fonts CDN as automatic fallback via `@import` at the top of `tokens.css`. No extra `<link>` tag needed by consumers.
 
 The `--font-family` fallback chain includes cross-platform sans-serif fonts:
 `"Ground Sans", 'Inter', 'Noto Sans JP', 'Noto Sans CJK JP', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', -apple-system, BlinkMacSystemFont, sans-serif`
