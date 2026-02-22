@@ -348,6 +348,21 @@
   --btn-primary-hover: var(--p-gray-100);
   --btn-primary-active: var(--p-gray-200);
 
+  /* --- Checkbox --- */
+  --checkbox-size: 18px;
+  --checkbox-radius: var(--radius-sm);
+  --checkbox-border: var(--border-default);
+  --checkbox-border-hover: var(--border-strong);
+  --checkbox-bg: transparent;
+  --checkbox-checked-bg: var(--selected-bg);
+  --checkbox-checked-border: var(--selected-bg);
+  --checkbox-check-color: var(--selected-text);
+
+  /* --- Opacity --- */
+  --opacity-subtle: 0.5;
+  --opacity-muted: 0.6;
+  --opacity-soft: 0.7;
+
   /* --- Shadows --- */
   --shadow-sm: none;
   --shadow-md: none;
@@ -428,6 +443,13 @@
   --card-border: rgba(0, 0, 0, 0.08);
   --card-border-hover: rgba(0, 0, 0, 0.15);
   --stat-bg: rgba(0, 0, 0, 0.03);
+
+  /* --- Checkbox --- */
+  --checkbox-border: rgba(0, 0, 0, 0.20);
+  --checkbox-border-hover: rgba(0, 0, 0, 0.35);
+  --checkbox-checked-bg: var(--selected-bg);
+  --checkbox-checked-border: var(--selected-bg);
+  --checkbox-check-color: var(--selected-text);
 
   /* --- Button Primary --- */
   --btn-primary-hover: #222222;
@@ -835,6 +857,57 @@
 .pill-filter:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+/* --- Checkbox --- */
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  background: var(--checkbox-bg);
+  border: 1.5px solid var(--checkbox-border);
+  border-radius: var(--checkbox-radius);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  color: transparent;
+}
+
+.checkbox:hover:not(:disabled):not(.checkbox-checked) {
+  border-color: var(--checkbox-border-hover);
+}
+
+.checkbox-checked {
+  background: var(--checkbox-checked-bg);
+  border-color: var(--checkbox-checked-border);
+  color: var(--checkbox-check-color);
+}
+
+.checkbox-checked:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.checkbox:disabled,
+.checkbox[aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* SVG icon inside checkbox inherits color via currentColor */
+.checkbox svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 3;
 }
 
 /* --- Toggle Switch --- */
