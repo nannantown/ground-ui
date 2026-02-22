@@ -16,6 +16,8 @@
       "import": "./dist/tokens/index.js",
       "types": "./dist/tokens/index.d.ts"
     },
+    "./tokens/css": "./out/css/tokens.generated.css",
+    "./tokens/flutter": "./out/flutter/ground_tokens.dart",
     "./theme": {
       "import": "./dist/theme/index.js",
       "types": "./dist/theme/index.d.ts"
@@ -26,7 +28,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src/css",
+    "out"
   ],
   "scripts": {
     "dev": "tsup --watch",
@@ -34,7 +38,8 @@
     "typecheck": "tsc --noEmit",
     "catalog": "vite dev catalog --port 6100",
     "catalog:build": "vite build catalog",
-    "generate-tokens": "tsx scripts/generate-tokens.ts --ts --dart --css"
+    "generate-tokens": "tsx scripts/generate-tokens.ts --ts --dart --css",
+    "prepublishOnly": "npm run generate-tokens && npm run build && npm run typecheck"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
