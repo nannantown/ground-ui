@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-GroundUI (`@ground/ui`) is a minimal, dark-first React design system with cross-platform token support. It provides CSS design tokens (3-layer architecture), React components, a dynamic theming system, and a code generation pipeline that outputs tokens for Flutter (Dart) and raw CSS from a single JSON source of truth.
+GroundUI (`@nannantown/ground-ui`) is a minimal, dark-first React design system with cross-platform token support. It provides CSS design tokens (3-layer architecture), React components, a dynamic theming system, and a code generation pipeline that outputs tokens for Flutter (Dart) and raw CSS from a single JSON source of truth.
+
+Published as a private package on **GitHub Packages** (`npm.pkg.github.com`).
 
 ## Commands
 
@@ -94,11 +96,13 @@ ground-ui/
 
 | Import Path | Content |
 |---|---|
-| `@ground/ui` | React components + `cn` utility |
-| `@ground/ui/css` | CSS tokens file (`src/css/tokens.css`) |
-| `@ground/ui/tokens` | TypeScript token values |
-| `@ground/ui/theme` | Theme system (presets, color math, runtime application) |
-| `@ground/ui/interactions` | Interactive demo components |
+| `@nannantown/ground-ui` | React components + `cn` utility |
+| `@nannantown/ground-ui/css` | CSS tokens file (`src/css/tokens.css`) |
+| `@nannantown/ground-ui/tokens` | TypeScript token values |
+| `@nannantown/ground-ui/tokens/css` | Generated CSS custom properties (`out/css/tokens.generated.css`) |
+| `@nannantown/ground-ui/tokens/flutter` | Flutter Dart tokens (`out/flutter/ground_tokens.dart`) |
+| `@nannantown/ground-ui/theme` | Theme system (presets, color math, runtime application) |
+| `@nannantown/ground-ui/interactions` | Interactive demo components |
 
 ### Token Architecture (3 Layers)
 
@@ -193,27 +197,94 @@ All component classes are defined in `tokens.css` alongside the tokens:
 - `tokens.json` is the canonical token source — edit it, then run `npm run generate-tokens`
 - Hand-written token files (`colors.ts`, `spacing.ts`, etc.) are kept for backward compatibility but `tokens.json` is the intended source of truth going forward
 
-## Cross-Platform Usage
+## Package Distribution (GitHub Packages)
 
-### React
+This package is distributed via GitHub Packages as `@nannantown/ground-ui`.
 
+### Publishing (from this repository)
+
+```bash
+npm version patch          # Bump version (0.1.0 → 0.1.1)
+npm publish                # Runs prepublishOnly (generate-tokens → build → typecheck), then publishes
+git push --tags            # Push version tag to remote
+```
+
+Requires `.npmrc` in project root (gitignored):
+```
+@nannantown:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=<GITHUB_PAT>
+```
+
+The PAT needs `write:packages` and `read:packages` scopes. Generate at: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic).
+
+### Consuming in Other Projects
+
+#### 1. Setup (one-time per project)
+
+Create `.npmrc` in the consuming project root:
+```
+@nannantown:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=<GITHUB_PAT>
+```
+
+The PAT needs `read:packages` scope. Add `.npmrc` to `.gitignore` to avoid committing the token.
+
+#### 2. Install
+
+```bash
+npm install @nannantown/ground-ui
+```
+
+#### 3. Usage by Platform
+
+**React / Next.js:**
 ```tsx
-import '@ground/ui/css'
-import { Button, Modal } from '@ground/ui'
-import { applyAccentTheme } from '@ground/ui/theme'
+import '@nannantown/ground-ui/css'                            // CSS tokens + component classes
+import { Button, Modal, Input } from '@nannantown/ground-ui'  // React components
+import { applyAccentTheme } from '@nannantown/ground-ui/theme' // Theme engine
 ```
 
-### Flutter
+**Non-React Web (CSS only):**
+```css
+@import '@nannantown/ground-ui/css';          /* Full tokens + component classes */
+@import '@nannantown/ground-ui/tokens/css';   /* Generated primitives only */
+```
+```html
+<button class="btn btn-primary">Submit</button>
+```
 
-Copy `out/flutter/ground_tokens.dart` into your Flutter project:
+**TypeScript token references:**
+```ts
+import { spacing, typography } from '@nannantown/ground-ui/tokens'
+// spacing.md → '12px'
+// typography['fontSize.base'] → '14px'
+```
 
+**Flutter:**
+```bash
+cp node_modules/@nannantown/ground-ui/out/flutter/ground_tokens.dart lib/theme/
+```
 ```dart
-import 'ground_tokens.dart';
-
-// Use ThemeData directly
-MaterialApp(theme: GroundTheme.dark())
-
-// Or reference individual tokens
-final tokens = GroundTokens();
-TextStyle(fontSize: tokens.fontSizeMd, color: tokens.semanticTextPrimary)
+import 'theme/ground_tokens.dart';
+MaterialApp(theme: GroundTheme.dark());
 ```
+
+#### 4. Updating
+
+```bash
+npm update @nannantown/ground-ui
+```
+
+### Responsive Typography
+
+Font size tokens use `clamp()` for viewport-responsive scaling with CJK-safe minimums:
+
+| Token | Value | Range |
+|---|---|---|
+| `--text-xs` | `clamp(11px, 0.6875rem + 0.1vw, 12px)` | 11px → 12px |
+| `--text-sm` | `clamp(12px, 0.75rem + 0.1vw, 13px)` | 12px → 13px |
+| `--text-base` | `clamp(13px, 0.8125rem + 0.1vw, 14px)` | 13px → 14px |
+| `--text-md` | `clamp(14px, 0.875rem + 0.1vw, 15px)` | 14px → 15px |
+| `--text-lg` | `clamp(16px, 1rem + 0.15vw, 18px)` | 16px → 18px |
+
+The `tokens.json` static values reflect the desktop-max (clamp upper bound) for Dart/TS consumers.
