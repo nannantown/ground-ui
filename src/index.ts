@@ -31,6 +31,6 @@ export { ToolbarButton } from './components/ToolbarButton'
 // Tokens (JS)
 export * from './tokens'
 
-// Note: For CSS tokens, import '@ground/ui/css'
-// Note: For theme utilities, import '@ground/ui/theme'
-// Note: For interaction demos, import '@ground/ui/interactions'
+// Note: For CSS tokens, import '@nannantown/ground-ui/css'
+// Note: For theme utilities, import '@nannantown/ground-ui/theme'
+// Note: For interaction demos, import '@nannantown/ground-ui/interactions'
