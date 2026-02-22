@@ -133,9 +133,15 @@ src/tokens/tokens.json          (Single Source of Truth)
 
 | Script | Unicode Range | Font Source | `size-adjust` |
 |---|---|---|---|
-| Latin | U+0000-024F, U+0300-036F, U+2000-214F | Inter | **108%** (scaled up) |
-| Japanese (Hiragana, Katakana, Kanji, Fullwidth) | U+3000-9FFF, U+F900-FFEF, U+FE30-FE4F | Noto Sans JP / Hiragino Sans | 100% |
-| Half-width Katakana | U+FF65-FF9F | Noto Sans JP / Hiragino Sans | 100% |
+| Latin | U+0000-024F, U+0300-036F, U+2000-214F | Inter (local → Google Fonts CDN) | **108%** (scaled up) |
+| Japanese (Hiragana, Katakana, Kanji, Fullwidth) | U+3000-9FFF, U+F900-FFEF, U+FE30-FE4F | Noto Sans JP / Hiragino Sans (local only) | 100% |
+| Half-width Katakana | U+FF65-FF9F | Noto Sans JP / Hiragino Sans (local only) | 100% |
+
+Latin (Inter) includes `url()` fallback to Google Fonts CDN, so it works on all devices without extra setup.
+Japanese fonts use `local()` only. For web deployment where visitors may not have CJK fonts installed, consumers should add a Google Fonts `<link>` for Noto Sans JP.
+
+The `--font-family` fallback chain includes cross-platform sans-serif fonts:
+`"Ground Sans", 'Inter', 'Noto Sans JP', 'Noto Sans CJK JP', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', -apple-system, BlinkMacSystemFont, sans-serif`
 
 This means at `font-size: 14px`, Latin renders at effectively 15.1px while CJK renders at 14px — no HTML markup changes needed for mixed-language text.
 

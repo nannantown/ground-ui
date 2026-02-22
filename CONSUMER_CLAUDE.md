@@ -29,7 +29,22 @@ import { spacing, typography } from '@nannantown/ground-ui/tokens' // TS token v
 - Dark mode is the default. Light mode activates via `data-theme="light"` on `<html>`
 - For accent theming, use `applyAccentTheme()` from `@nannantown/ground-ui/theme`
 - The font family "Ground Sans" handles Japanese/English mixed text automatically — no special markup needed
+- **Static HTML / GitHub Pages**: Latin (Inter) is loaded via CDN automatically. For Japanese web fonts, add Google Fonts `<link>` to `<head>` (see below)
 - To update: `npm update @nannantown/ground-ui`
+
+### Web Font Loading (Static HTML / GitHub Pages)
+
+Inter is embedded in `tokens.css` via Google Fonts CDN and loads automatically.
+For Japanese (Noto Sans JP), add this to your `<head>`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+```
+
+This is NOT needed if your visitors have Noto Sans JP / Hiragino Sans installed locally (macOS, most desktop environments).
+The `--font-family` fallback chain covers: Inter, Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, system sans-serif.
 
 ---
 
