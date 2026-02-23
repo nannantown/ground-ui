@@ -6,6 +6,7 @@ export default defineConfig({
     'tokens/index': 'src/tokens/index.ts',
     'theme/index': 'src/theme/index.ts',
     'interactions/index': 'src/interactions/index.ts',
+    'eslint/index': 'src/eslint/index.ts',
   },
   format: ['esm'],
   dts: true,

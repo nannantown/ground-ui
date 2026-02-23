@@ -3,7 +3,7 @@
  */
 
 export const fontFamily = {
-  sans: "'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif",
+  sans: "'Ground Sans', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', -apple-system, BlinkMacSystemFont, sans-serif",
   mono: "'SF Mono', 'Fira Code', monospace",
 } as const
 
