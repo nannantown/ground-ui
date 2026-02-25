@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
 
-/* Global reset */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+@import "./reset.css";
+@import "./utilities.css";
 
 /* ============================================
    Centra Design System
@@ -131,8 +129,15 @@
   --p-white-25: rgba(255, 255, 255, 0.25);
   --p-white-30: rgba(255, 255, 255, 0.30);
   --p-white-35: rgba(255, 255, 255, 0.35);
+  --p-white-4: rgba(255, 255, 255, 0.04);
+  --p-white-40: rgba(255, 255, 255, 0.40);
+  --p-white-45: rgba(255, 255, 255, 0.45);
   --p-white-50: rgba(255, 255, 255, 0.50);
+  --p-white-55: rgba(255, 255, 255, 0.55);
+  --p-white-60: rgba(255, 255, 255, 0.60);
   --p-white-70: rgba(255, 255, 255, 0.70);
+  --p-white-80: rgba(255, 255, 255, 0.80);
+  --p-white-90: rgba(255, 255, 255, 0.90);
 
   /* --- Black Alpha Scale --- */
   --p-black-40: rgba(0, 0, 0, 0.40);
@@ -195,6 +200,8 @@
   --text-inverse: #000000;
 
   /* --- Borders --- */
+  --border-hairline: var(--p-white-3);
+  --border-faint: var(--p-white-6);
   --border-subtle: var(--p-white-12);
   --border-default: var(--p-white-20);
   --border-strong: var(--p-white-35);
@@ -277,8 +284,16 @@
   --space-2xl: 32px;
   --space-3xl: 48px;
   --space-4xl: 64px;
+  --space-5xl: 80px;
+  --space-6xl: 96px;
+  --space-7xl: 112px;
+  --space-8xl: 144px;
+  --container-xs: 400px;
+  --container-sm: 600px;
+  --container-md: 800px;
   --container-max: 640px;
   --container-wide: 960px;
+  --container-lg: 1280px;
   --header-height: 56px;
 
   /* --- Border Radius --- */
@@ -301,9 +316,16 @@
   --text-xl: clamp(20px, 1.25rem + 0.2vw, 22px);
   --text-2xl: clamp(24px, 1.5rem + 0.3vw, 28px);
   --text-3xl: clamp(30px, 1.875rem + 0.5vw, 36px);
+  --text-4xl: clamp(40px, 2.5rem + 1vw, 48px);
+  --text-5xl: clamp(48px, 3rem + 2vw, 64px);
+  --text-display: clamp(80px, 5rem + 5vw, 120px);
+  --text-display-lg: clamp(120px, 7.5rem + 5vw, 180px);
+  --letter-spacing-tighter: 0.01em;
   --letter-spacing-tight: 0.02em;
   --letter-spacing-normal: 0.04em;
   --letter-spacing-wide: 0.1em;
+  --letter-spacing-wider: 0.15em;
+  --letter-spacing-widest: 0.25em;
 
   /* --- Transitions --- */
   --transition-fast: 150ms ease;
@@ -396,8 +418,15 @@
   --p-white-25: rgba(0, 0, 0, 0.25);
   --p-white-30: rgba(0, 0, 0, 0.30);
   --p-white-35: rgba(0, 0, 0, 0.35);
+  --p-white-4: rgba(0, 0, 0, 0.04);
+  --p-white-40: rgba(0, 0, 0, 0.40);
+  --p-white-45: rgba(0, 0, 0, 0.45);
   --p-white-50: rgba(0, 0, 0, 0.50);
+  --p-white-55: rgba(0, 0, 0, 0.55);
+  --p-white-60: rgba(0, 0, 0, 0.60);
   --p-white-70: rgba(0, 0, 0, 0.70);
+  --p-white-80: rgba(0, 0, 0, 0.80);
+  --p-white-90: rgba(0, 0, 0, 0.90);
 
   /* --- Backgrounds --- */
   --bg-primary: #ffffff;
