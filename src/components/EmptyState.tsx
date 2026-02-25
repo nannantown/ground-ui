@@ -17,21 +17,30 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
       )}
       <div>
         <p
-          className="text-sm font-medium mb-1"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{
+            fontSize: 14,
+            fontWeight: 500,
+            marginBottom: 4,
+            color: 'var(--text-secondary)',
+            margin: 0,
+            marginBlockEnd: 4,
+          }}
         >
           {title}
         </p>
         {description && (
           <p
-            className="text-xs"
-            style={{ color: 'var(--text-muted)' }}
+            style={{
+              fontSize: 12,
+              color: 'var(--text-muted)',
+              margin: 0,
+            }}
           >
             {description}
           </p>
         )}
       </div>
-      {action && <div className="mt-2">{action}</div>}
+      {action && <div style={{ marginTop: 8 }}>{action}</div>}
     </div>
   )
 }

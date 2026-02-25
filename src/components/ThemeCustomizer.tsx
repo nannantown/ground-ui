@@ -217,14 +217,13 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
           <SectionLabel style={{ marginBottom: 0 }}>{ds.presets}</SectionLabel>
           {isCustomized && (
             <span
-              className="text-[9px] px-1.5 py-0.5 rounded-full"
-              style={{ color: 'var(--text-muted)', background: 'var(--bg-surface)' }}
+              style={{ fontSize: 10, padding: '2px 6px', borderRadius: 'var(--radius-full)', color: 'var(--text-muted)', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}
             >
               {ds.customized}
             </span>
           )}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
           {THEME_PAIRINGS.map((pairing, index) => {
             const isActive = config.pairingId === pairing.id
             const preview = previewColors[index]
@@ -232,9 +231,18 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
               <button
                 key={pairing.id}
                 onClick={() => selectPairing(pairing)}
-                className="relative flex flex-col gap-1.5 p-2.5 rounded-lg border transition-all duration-150 cursor-pointer gui-preset-card"
                 style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 6,
+                  padding: 10,
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid',
+                  transition: 'all 150ms ease',
+                  cursor: 'pointer',
                   textAlign: 'left',
+                  fontFamily: 'inherit',
                   borderColor: isActive ? 'var(--accent-border)' : 'var(--border-subtle)',
                   background: isActive ? 'var(--accent-bg)' : 'var(--bg-surface)',
                 }}
@@ -253,8 +261,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
               >
                 {/* Mini app mockup showing surface + accent in context */}
                 <div
-                  className="rounded overflow-hidden flex"
-                  style={{ height: 40, background: preview.bg }}
+                  style={{ height: 40, background: preview.bg, borderRadius: 'var(--radius-sm)', overflow: 'hidden', display: 'flex' }}
                 >
                   {/* Sidebar */}
                   <div style={{
@@ -291,11 +298,11 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                   </div>
                 </div>
                 {/* Name */}
-                <span className="text-[11px] font-medium" style={{ color: 'var(--text-primary)' }}>
+                <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-primary)' }}>
                   {language === 'ja' ? pairing.nameJa : pairing.name}
                 </span>
                 {/* Mood */}
-                <span className="text-[9px] leading-tight" style={{ color: 'var(--text-muted)' }}>
+                <span style={{ fontSize: 10, lineHeight: 1.3, color: 'var(--text-muted)' }}>
                   {language === 'ja' ? pairing.moodJa : pairing.mood}
                 </span>
               </button>
@@ -322,6 +329,8 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
             padding: '10px 0',
             background: 'none',
             border: 'none',
+            outline: 'none',
+            fontFamily: 'inherit',
             borderTop: '1px solid var(--border-subtle)',
             cursor: 'pointer',
             color: 'var(--text-muted)',
@@ -403,6 +412,8 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                         padding: 0,
                         background: 'none',
                         border: 'none',
+                        outline: 'none',
+                        fontFamily: 'inherit',
                         cursor: 'pointer',
                         transition: 'all 150ms ease',
                         opacity: isActive ? 1 : 0.7,
@@ -416,12 +427,12 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                         borderRadius: '50%',
                         background: preset.color,
                         boxShadow: isActive
-                          ? `0 0 0 2px var(--bg-primary), 0 0 0 3px ${preset.color}`
+                          ? `0 0 0 2px var(--bg-primary), 0 0 0 4px ${preset.color}`
                           : 'none',
                         transition: 'box-shadow 150ms ease',
                       }} />
                       <span style={{
-                        fontSize: 9,
+                        fontSize: 10,
                         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                         fontWeight: isActive ? 500 : 400,
                         whiteSpace: 'nowrap',
@@ -454,10 +465,11 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                           ? '2px solid var(--bg-primary)'
                           : '1.5px dashed var(--border-default)',
                         boxShadow: config.accentId === 'custom' && config.customColor
-                          ? `0 0 0 3px ${config.customColor}`
+                          ? `0 0 0 4px ${config.customColor}`
                           : 'none',
                         cursor: 'pointer',
                         padding: 0,
+                        outline: 'none',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -488,7 +500,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                     />
                   </div>
                   <span style={{
-                    fontSize: 9,
+                    fontSize: 10,
                     color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-muted)',
                     fontWeight: config.accentId === 'custom' ? 500 : 400,
                     whiteSpace: 'nowrap',
@@ -516,6 +528,8 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
             padding: '10px 0',
             background: 'none',
             border: 'none',
+            outline: 'none',
+            fontFamily: 'inherit',
             borderTop: '1px solid var(--border-subtle)',
             cursor: 'pointer',
             color: 'var(--text-muted)',
@@ -745,6 +759,8 @@ function SurfaceCard({
         }`,
         borderRadius: 10,
         cursor: 'pointer',
+        outline: 'none',
+        fontFamily: 'inherit',
         transition: 'all 150ms ease',
         minWidth: 72,
       }}
@@ -1235,6 +1251,7 @@ function ContrastRow({ label, color, ratio }: { label?: string; color: string; r
         height: 24,
         borderRadius: '50%',
         background: color,
+        border: '1px solid var(--border-subtle)',
         flexShrink: 0,
       }} />
       <div style={{ flex: 1 }}>

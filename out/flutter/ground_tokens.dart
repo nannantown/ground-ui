@@ -91,6 +91,7 @@ class GroundTokens {
   final Color semanticAccentLight = const Color(0xFF38BDF8);
 
   // ── Spacing ─────────────────────────────────
+  final double spacing2xs = 2;
   final double spacingXs = 4;
   final double spacingSm = 8;
   final double spacingMd = 12;

@@ -27,35 +27,56 @@ export function StatCard({ label, value, trend, icon, className = '' }: StatCard
 
   return (
     <div className={`card-stat ${className}`}>
-      <div className="flex items-start justify-between">
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
           <p
-            className="text-xs font-medium uppercase tracking-wider mb-1"
-            style={{ color: 'var(--stat-label)' }}
+            style={{
+              fontSize: 12,
+              fontWeight: 500,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: 4,
+              color: 'var(--stat-label)',
+              margin: 0,
+              marginBlockEnd: 4,
+            }}
           >
             {label}
           </p>
           <p
-            className="text-2xl font-bold tracking-tight"
-            style={{ color: 'var(--stat-value)' }}
+            style={{
+              fontSize: 24,
+              fontWeight: 700,
+              letterSpacing: '-0.025em',
+              color: 'var(--stat-value)',
+              margin: 0,
+            }}
           >
             {value}
           </p>
         </div>
         {icon && (
           <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ background: 'var(--bg-surface)', color: 'var(--text-muted)' }}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              background: 'var(--bg-surface)',
+              color: 'var(--text-muted)',
+            }}
           >
             {icon}
           </div>
         )}
       </div>
       {trend && (
-        <div className="flex items-center gap-1 mt-2">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
           <svg
-            className="w-3 h-3"
-            style={{ color: trendColor[trend.direction] }}
+            style={{ width: 12, height: 12, color: trendColor[trend.direction] }}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -63,8 +84,11 @@ export function StatCard({ label, value, trend, icon, className = '' }: StatCard
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={trendIcon[trend.direction]} />
           </svg>
           <span
-            className="text-xs font-medium"
-            style={{ color: trendColor[trend.direction] }}
+            style={{
+              fontSize: 12,
+              fontWeight: 500,
+              color: trendColor[trend.direction],
+            }}
           >
             {trend.value}
           </span>

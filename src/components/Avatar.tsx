@@ -54,9 +54,12 @@ export function Avatar({ src, name, size = 'md', className }: AvatarProps) {
 
   return (
     <div
-      className={cn('flex items-center justify-center', className)}
+      className={className}
       style={{
         ...baseStyle,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         background: 'var(--bg-surface)',
         color: 'var(--text-secondary)',
         fontSize: s.fontSize,

@@ -222,6 +222,66 @@ export function generateSecondaryAccent(primaryHex: string): string {
   return hslToHex((h + 60) % 360, s * 0.65, l)
 }
 
+// --- Surface Tint Helpers ---
+
+/**
+ * Generate an off-white tinted with the surface hue.
+ * When tint=0, returns pure white (#ffffff).
+ * Saturation is very subtle (3-8% range) — imperceptible individually
+ * but creates cohesive warmth/coolness across the entire theme.
+ */
+function tintedWhite(hue: number, tint: number): string {
+  if (tint === 0) return '#ffffff'
+  const saturation = tint * 8  // 0-8% range
+  const lightness = 98 - tint * 1  // 97-98% — nearly white
+  return hslToHex(hue, saturation, lightness)
+}
+
+/**
+ * Generate an off-black tinted with the surface hue.
+ * When tint=0, returns pure black (#000000).
+ * Same subtle saturation approach for dark inverse text.
+ */
+function tintedBlack(hue: number, tint: number): string {
+  if (tint === 0) return '#000000'
+  const saturation = tint * 10  // 0-10% range (slightly more than white for visibility)
+  const lightness = 4 + tint * 2  // 4-6% — nearly black
+  return hslToHex(hue, saturation, lightness)
+}
+
+/**
+ * Generate a tinted hover shade (for selected-hover, btn-primary-hover).
+ * Based on the off-white but slightly darker for visual feedback.
+ */
+function tintedHover(hue: number, tint: number): string {
+  if (tint === 0) return '#e8e8e8'
+  const saturation = tint * 6
+  const lightness = 90 - tint * 2  // 88-90%
+  return hslToHex(hue, saturation, lightness)
+}
+
+/**
+ * Generate a tinted active shade (for btn-primary-active).
+ * Darker than hover for pressed state feedback.
+ */
+function tintedActive(hue: number, tint: number): string {
+  if (tint === 0) return '#d0d0d0'
+  const saturation = tint * 5
+  const lightness = 82 - tint * 2  // 80-82%
+  return hslToHex(hue, saturation, lightness)
+}
+
+/**
+ * Generate a tinted selected-hover shade for dark mode.
+ * Slightly darker than the tinted white for hover feedback.
+ */
+function tintedSelectedHover(hue: number, tint: number): string {
+  if (tint === 0) return '#e0e0e0'
+  const saturation = tint * 6
+  const lightness = 87 - tint * 2  // 85-87%
+  return hslToHex(hue, saturation, lightness)
+}
+
 // --- Surface Token Generation ---
 
 export function generateLightSurface(hue: number, tint: number, lBase: number): Record<string, string> {
@@ -248,6 +308,10 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
   const { h: tpH, s: tpS, l: tpL } = hexToHsl(textPrimary)
   const lightenedPrimary = hslToHex(tpH, tpS, Math.min(tpL + 15, 50))
 
+  // Surface-hue-tinted inverse colors (Apple-style off-white for light mode)
+  const textInverse = tintedWhite(hue, tint)
+  const selectedText = ensureContrast(tintedWhite(hue, tint), textPrimary, WCAG_AA_NORMAL)
+
   return {
     // Background hierarchy
     '--bg-primary': bgPrimary,
@@ -268,7 +332,7 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
     '--text-secondary': textSecondary,
     '--text-muted': textMuted,
     '--text-disabled': textDisabled,
-    '--text-inverse': '#FFFFFF',
+    '--text-inverse': textInverse,
 
     // Primitives — flip to black-alpha for light surfaces
     '--p-white-2': 'rgba(0, 0, 0, 0.02)',
@@ -290,7 +354,7 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
     '--hover-bg': 'rgba(0, 0, 0, 0.03)',
     '--active-bg': 'rgba(0, 0, 0, 0.06)',
     '--selected-bg': textPrimary,
-    '--selected-text': '#FFFFFF',
+    '--selected-text': selectedText,
     '--selected-hover-bg': lightenedPrimary,
     '--focus-ring': textPrimary,
 
@@ -351,6 +415,16 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     hslToHex(hue, darkSat * 1.0, 33), bgPrimary, WCAG_AA_LARGE
   )
 
+  // Surface-hue-tinted primary colors (Apple-style off-white/off-black)
+  const textPrimary = ensureContrast(tintedWhite(hue, tint), bgPrimary, WCAG_AA_NORMAL)
+  const textInverse = tintedBlack(hue, tint)
+  const selectedBg = tintedWhite(hue, tint)
+  const selectedText = tintedBlack(hue, tint)
+  const selectedHoverBg = tintedSelectedHover(hue, tint)
+  const focusRing = tintedWhite(hue, tint)
+  const btnPrimaryHover = tintedHover(hue, tint)
+  const btnPrimaryActive = tintedActive(hue, tint)
+
   return {
     // Backgrounds
     '--bg-primary': bgPrimary,
@@ -365,11 +439,11 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     '--bg-surface-active': 'rgba(255, 255, 255, 0.08)',
 
     // Text
-    '--text-primary': '#ffffff',
+    '--text-primary': textPrimary,
     '--text-secondary': textSecondary,
     '--text-muted': textMuted,
     '--text-disabled': textDisabled,
-    '--text-inverse': '#000000',
+    '--text-inverse': textInverse,
 
     // Primitives — white-alpha
     '--p-white-2': 'rgba(255, 255, 255, 0.02)',
@@ -390,10 +464,10 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     // Interactive
     '--hover-bg': 'rgba(255, 255, 255, 0.04)',
     '--active-bg': 'rgba(255, 255, 255, 0.07)',
-    '--selected-bg': '#ffffff',
-    '--selected-text': '#000000',
-    '--selected-hover-bg': '#e0e0e0',
-    '--focus-ring': '#ffffff',
+    '--selected-bg': selectedBg,
+    '--selected-text': selectedText,
+    '--selected-hover-bg': selectedHoverBg,
+    '--focus-ring': focusRing,
 
     // Borders
     '--border-subtle': 'rgba(255, 255, 255, 0.12)',
@@ -417,8 +491,8 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     '--modal-border': 'rgba(255, 255, 255, 0.10)',
     '--stat-bg': 'rgba(255, 255, 255, 0.04)',
     '--stat-border': 'rgba(255, 255, 255, 0.15)',
-    '--btn-primary-hover': '#e8e8e8',
-    '--btn-primary-active': '#d0d0d0',
+    '--btn-primary-hover': btnPrimaryHover,
+    '--btn-primary-active': btnPrimaryActive,
 
     // Semantic bg
     '--success-bg': 'rgba(34, 197, 94, 0.08)',
@@ -486,6 +560,58 @@ export function saveThemeConfig(config: ThemeConfig): void {
   } catch { /* ignore */ }
 }
 
+// --- Custom Presets ---
+
+const CUSTOM_PRESETS_KEY = 'ground-ui-custom-presets'
+const MAX_CUSTOM_PRESETS = 20
+
+export interface CustomPreset {
+  id: string
+  name: string
+  surfaceId: string
+  accentId: string
+  customColor?: string
+  primaryStyle: 'mono' | 'accent'
+  createdAt: number
+}
+
+export function loadCustomPresets(): CustomPreset[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const stored = localStorage.getItem(CUSTOM_PRESETS_KEY)
+    if (stored) {
+      const presets: CustomPreset[] = JSON.parse(stored)
+      return Array.isArray(presets) ? presets.slice(0, MAX_CUSTOM_PRESETS) : []
+    }
+  } catch { /* ignore */ }
+  return []
+}
+
+export function saveCustomPresets(presets: CustomPreset[]): void {
+  if (typeof window === 'undefined') return
+  try {
+    localStorage.setItem(CUSTOM_PRESETS_KEY, JSON.stringify(presets.slice(0, MAX_CUSTOM_PRESETS)))
+  } catch { /* ignore */ }
+}
+
+export function addCustomPreset(preset: Omit<CustomPreset, 'id' | 'createdAt'>): CustomPreset | null {
+  const presets = loadCustomPresets()
+  if (presets.length >= MAX_CUSTOM_PRESETS) return null
+  const newPreset: CustomPreset = {
+    ...preset,
+    id: `custom-${Date.now()}`,
+    createdAt: Date.now(),
+  }
+  presets.push(newPreset)
+  saveCustomPresets(presets)
+  return newPreset
+}
+
+export function deleteCustomPreset(id: string): void {
+  const presets = loadCustomPresets()
+  saveCustomPresets(presets.filter(p => p.id !== id))
+}
+
 export function getAccentColor(config: ThemeConfig): string {
   if (config.accentId === 'custom' && config.customColor && isValidHex(config.customColor)) {
     return config.customColor
@@ -536,6 +662,9 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
 
   let bgHex: string
 
+  // Collect ALL override keys set in this call for cleanup on next call
+  const overrideKeys: string[] = []
+
   if (hasSurface) {
     // --- Surface mode: generate surface tokens algorithmically ---
     const surfaceTokens = darkMode
@@ -543,7 +672,6 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
       : generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
 
     // Apply all surface overrides
-    const overrideKeys: string[] = []
     Object.entries(surfaceTokens).forEach(([k, v]) => {
       root.style.setProperty(k, v)
       overrideKeys.push(k)
@@ -585,8 +713,6 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     TERTIARY_VARS.forEach(v => root.style.removeProperty(v))
     SURFACE_TINT_VARS.forEach(v => root.style.removeProperty(v))
 
-    lastOverrideKeys = overrideKeys
-
   } else {
     // --- Default surface: single-accent mode (identical to original behavior) ---
     bgHex = getCurrentBgHex(darkMode)
@@ -595,18 +721,26 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     const tokens = generateAccentTokens(accentColor, bgHex)
     Object.entries(tokens).forEach(([key, value]) => {
       root.style.setProperty(key, value)
+      overrideKeys.push(key)
     })
 
     // Generate secondary accent even in default surface mode
     const secondaryColor = generateSecondaryAccent(accentColor)
     const secondaryTokens = generateColorTokens(secondaryColor, bgHex, '--accent-secondary')
-    Object.entries(secondaryTokens).forEach(([k, v]) => root.style.setProperty(k, v))
+    Object.entries(secondaryTokens).forEach(([k, v]) => {
+      root.style.setProperty(k, v)
+      overrideKeys.push(k)
+    })
 
     TERTIARY_VARS.forEach(v => root.style.removeProperty(v))
     SURFACE_TINT_VARS.forEach(v => root.style.removeProperty(v))
   }
 
   // Apply primary button style
+  const BUTTON_OVERRIDE_KEYS = [
+    '--selected-bg', '--selected-text', '--selected-hover-bg',
+    '--btn-primary-hover', '--btn-primary-active',
+  ]
   if (config.primaryStyle === 'accent') {
     const accentHex = getAccentColor(config)
     const accessibleAccent = ensureContrast(accentHex, bgHex, WCAG_AA_NORMAL)
@@ -620,13 +754,12 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     root.style.setProperty('--selected-hover-bg', hoverColor)
     root.style.setProperty('--btn-primary-hover', hoverColor)
     root.style.setProperty('--btn-primary-active', activeColor)
+    overrideKeys.push(...BUTTON_OVERRIDE_KEYS)
   } else if (!hasSurface) {
-    // Only remove button overrides when NOT in surface mode
-    // (surface mode sets its own --selected-bg / --btn-primary-* in overrides)
-    root.style.removeProperty('--selected-bg')
-    root.style.removeProperty('--selected-text')
-    root.style.removeProperty('--selected-hover-bg')
-    root.style.removeProperty('--btn-primary-hover')
-    root.style.removeProperty('--btn-primary-active')
+    // In default surface mode with mono style, explicitly remove button overrides
+    // so the CSS cascade reverts to stylesheet defaults
+    BUTTON_OVERRIDE_KEYS.forEach(k => root.style.removeProperty(k))
   }
+
+  lastOverrideKeys = overrideKeys
 }

@@ -17,13 +17,14 @@ export function Skeleton({
     text: 'skeleton skeleton-text',
     title: 'skeleton skeleton-title',
     card: 'skeleton skeleton-card',
-    circle: 'skeleton rounded-full',
+    circle: 'skeleton',
     custom: 'skeleton',
   }[variant]
 
   const style = {
     ...(width ? { width: typeof width === 'number' ? `${width}px` : width } : {}),
     ...(height ? { height: typeof height === 'number' ? `${height}px` : height } : {}),
+    ...(variant === 'circle' ? { borderRadius: 'var(--radius-full)' } : {}),
   }
 
   if (count > 1) {

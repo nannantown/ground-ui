@@ -5,17 +5,17 @@ interface ModalProps {
   open: boolean
   onClose: () => void
   children: ReactNode
-  /** Max width class. Default: 'max-w-md' */
+  /** Max width. Default: 'md' */
   size?: 'sm' | 'md' | 'lg' | 'xl'
   /** Show close button in top-right corner */
   showClose?: boolean
 }
 
-const sizeMap = {
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-xl',
+const sizeMap: Record<string, number> = {
+  sm: 384,
+  md: 448,
+  lg: 512,
+  xl: 576,
 }
 
 export function Modal({
@@ -49,18 +49,39 @@ export function Modal({
     <>
       {/* Scrim */}
       <div
-        className="fixed inset-0 backdrop-blur-sm"
-        style={{ zIndex: 'var(--z-overlay)', background: 'var(--modal-scrim)' }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 'var(--z-overlay)',
+          background: 'var(--modal-scrim)',
+          backdropFilter: 'blur(4px)',
+        }}
         onClick={onClose}
       />
       {/* Container */}
       <div
-        className="fixed inset-0 flex items-center justify-center p-4"
-        style={{ zIndex: 'var(--z-modal)' }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 16,
+          zIndex: 'var(--z-modal)',
+        }}
       >
         <div
-          className={`relative w-full ${sizeMap[size]} animate-scale-in`}
+          className="animate-scale-in"
           style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: sizeMap[size],
             background: 'var(--modal-bg)',
             border: '1px solid var(--modal-border)',
             borderRadius: 'var(--modal-radius)',
@@ -70,10 +91,25 @@ export function Modal({
           {showClose && (
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 w-7 h-7 rounded-md flex items-center justify-center transition-colors"
-              style={{ color: 'var(--text-muted)' }}
+              style={{
+                position: 'absolute',
+                top: 12,
+                right: 12,
+                width: 28,
+                height: 28,
+                borderRadius: 6,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'color 0.15s ease, background-color 0.15s ease',
+                color: 'var(--text-muted)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+              }}
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -90,8 +126,13 @@ export function Modal({
 export function ModalHeader({ children }: { children: ReactNode }) {
   return (
     <div
-      className="px-6 py-4"
-      style={{ borderBottom: '1px solid var(--border-subtle)' }}
+      style={{
+        paddingLeft: 24,
+        paddingRight: 24,
+        paddingTop: 16,
+        paddingBottom: 16,
+        borderBottom: '1px solid var(--border-subtle)',
+      }}
     >
       {children}
     </div>
@@ -99,14 +140,26 @@ export function ModalHeader({ children }: { children: ReactNode }) {
 }
 
 export function ModalBody({ children }: { children: ReactNode }) {
-  return <div className="px-6 py-4">{children}</div>
+  return (
+    <div style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 16, paddingBottom: 16 }}>
+      {children}
+    </div>
+  )
 }
 
 export function ModalFooter({ children }: { children: ReactNode }) {
   return (
     <div
-      className="px-6 py-4 flex justify-end gap-3"
-      style={{ borderTop: '1px solid var(--border-subtle)' }}
+      style={{
+        paddingLeft: 24,
+        paddingRight: 24,
+        paddingTop: 16,
+        paddingBottom: 16,
+        display: 'flex',
+        justifyContent: 'flex-end',
+        gap: 12,
+        borderTop: '1px solid var(--border-subtle)',
+      }}
     >
       {children}
     </div>

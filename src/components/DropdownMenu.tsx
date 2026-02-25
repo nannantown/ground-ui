@@ -43,8 +43,9 @@ export function DropdownMenu({ trigger, children, align = 'right' }: DropdownMen
       </div>
       {open && createPortal(
         <div
-          className="fixed animate-slide-down"
+          className="animate-slide-down"
           style={{
+            position: 'fixed',
             top: position.top,
             ...(align === 'right'
               ? { right: window.innerWidth - position.left }
@@ -55,8 +56,11 @@ export function DropdownMenu({ trigger, children, align = 'right' }: DropdownMen
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className="rounded-lg overflow-hidden py-1"
             style={{
+              borderRadius: 8,
+              overflow: 'hidden',
+              paddingTop: 4,
+              paddingBottom: 4,
               background: 'var(--bg-overlay)',
               border: '1px solid var(--border-default)',
               backdropFilter: 'blur(20px)',
@@ -83,12 +87,24 @@ export function DropdownItem({ onClick, children, variant = 'default', disabled 
     <button
       onClick={onClick}
       disabled={disabled}
-      className="w-full px-3 py-2 text-left text-sm flex items-center gap-2 transition-colors"
       style={{
+        width: '100%',
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 8,
+        paddingBottom: 8,
+        textAlign: 'left',
+        fontSize: 14,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        transition: 'color 0.15s ease, background-color 0.15s ease',
         color: variant === 'danger' ? 'var(--error)' : 'var(--text-secondary)',
         opacity: disabled ? 'var(--disabled-opacity)' : 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
         background: 'transparent',
+        border: 'none',
+        font: 'inherit',
       }}
       onMouseEnter={(e) => {
         if (!disabled) e.currentTarget.style.background = 'var(--hover-bg)'
@@ -103,5 +119,5 @@ export function DropdownItem({ onClick, children, variant = 'default', disabled 
 }
 
 export function DropdownDivider() {
-  return <div className="my-1" style={{ borderTop: '1px solid var(--border-subtle)' }} />
+  return <div style={{ marginTop: 4, marginBottom: 4, borderTop: '1px solid var(--border-subtle)' }} />
 }

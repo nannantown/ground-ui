@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from 'react'
+import { useState, useEffect, useRef, type ReactNode } from 'react'
+import { useLocale } from '../locale'
 import { Button } from '../../src/components/Button'
 import { Input } from '../../src/components/Input'
 import { Textarea } from '../../src/components/Textarea'
@@ -17,6 +18,8 @@ import { Skeleton } from '../../src/components/Skeleton'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../../src/components/Modal'
 import { ConfirmDialog } from '../../src/components/ConfirmDialog'
 import { ToolbarButton } from '../../src/components/ToolbarButton'
+import { DropdownMenu, DropdownItem, DropdownDivider } from '../../src/components/DropdownMenu'
+import { useToast } from '../../src/components/Toast'
 import {
   SURFACE_PRESETS,
   ACCENT_PRESETS,
@@ -36,127 +39,32 @@ const NAV_IDS = [
   'buttons', 'inputs', 'data', 'feedback', 'overlays', 'layout',
 ] as const
 
+const NAV_LABELS: Record<string, { en: string; ja: string }> = {
+  overview: { en: 'Overview', ja: '概要' },
+  colors: { en: 'Colors', ja: 'カラー' },
+  surfaces: { en: 'Surfaces', ja: 'サーフェス' },
+  typography: { en: 'Typography', ja: 'タイポグラフィ' },
+  spacing: { en: 'Spacing', ja: 'スペーシング' },
+  buttons: { en: 'Buttons', ja: 'ボタン' },
+  inputs: { en: 'Inputs', ja: '入力' },
+  data: { en: 'Data', ja: 'データ' },
+  feedback: { en: 'Feedback', ja: 'フィードバック' },
+  overlays: { en: 'Overlays', ja: 'オーバーレイ' },
+  layout: { en: 'Layout', ja: 'レイアウト' },
+}
+
 export function ComponentsPage() {
   const [active, setActive] = useState('overview')
+  const { locale } = useLocale()
 
   const navItems = NAV_IDS.map(id => ({
     id,
-    label: id.charAt(0).toUpperCase() + id.slice(1),
+    label: NAV_LABELS[id]?.[locale] ?? id.charAt(0).toUpperCase() + id.slice(1),
   }))
 
   return (
     <div className="ds-root">
       <style>{`
-        .ds-root {
-          min-height: 100dvh;
-          background: var(--bg-primary);
-          display: flex;
-        }
-
-        /* --- Sidebar --- */
-        .ds-sidebar {
-          width: 220px;
-          flex-shrink: 0;
-          border-right: 1px solid var(--border-subtle);
-          position: sticky;
-          top: 0;
-          height: 100dvh;
-          overflow-y: auto;
-          display: flex;
-          flex-direction: column;
-          padding: 32px 0;
-        }
-        .ds-sidebar-header {
-          padding: 0 24px 24px;
-          border-bottom: 1px solid var(--border-subtle);
-          margin-bottom: 16px;
-        }
-        .ds-sidebar-title {
-          font-size: 18px;
-          font-weight: 700;
-          color: var(--text-primary);
-          letter-spacing: -0.02em;
-          margin: 0;
-        }
-        .ds-sidebar-sub {
-          font-size: 12px;
-          color: var(--text-muted);
-          margin: 4px 0 0;
-          letter-spacing: 0.02em;
-        }
-        .ds-nav-item {
-          display: block;
-          width: 100%;
-          padding: 7px 24px;
-          font-size: 13px;
-          color: var(--text-muted);
-          background: none;
-          border: none;
-          text-align: left;
-          cursor: pointer;
-          transition: color 150ms ease;
-          position: relative;
-        }
-        .ds-nav-item:hover {
-          color: var(--text-secondary);
-        }
-        .ds-nav-item[data-active="true"] {
-          color: var(--text-primary);
-          font-weight: 500;
-        }
-        .ds-nav-item[data-active="true"]::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 6px;
-          bottom: 6px;
-          width: 2px;
-          background: var(--text-primary);
-          border-radius: 1px;
-        }
-
-        /* --- Main --- */
-        .ds-main {
-          flex: 1;
-          min-width: 0;
-          overflow-y: auto;
-          height: 100dvh;
-        }
-        .ds-content {
-          max-width: 880px;
-          margin: 0 auto;
-          padding: 48px 48px 96px;
-        }
-
-        /* --- Section --- */
-        .ds-section-title {
-          font-size: 24px;
-          font-weight: 600;
-          color: var(--text-primary);
-          letter-spacing: -0.02em;
-          margin: 0 0 4px;
-        }
-        .ds-section-desc {
-          font-size: 14px;
-          color: var(--text-muted);
-          margin: 0 0 40px;
-          line-height: 1.6;
-        }
-        .ds-group {
-          margin-bottom: 48px;
-        }
-        .ds-group:last-child {
-          margin-bottom: 0;
-        }
-        .ds-group-label {
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--text-muted);
-          margin: 0 0 16px;
-        }
-
         /* --- Stage (component demo area) --- */
         .ds-stage {
           background: var(--bg-secondary);
@@ -221,8 +129,6 @@ export function ComponentsPage() {
 
         /* --- Responsive --- */
         @media (max-width: 768px) {
-          .ds-sidebar { display: none; }
-          .ds-content { padding: 24px 16px 64px; }
           .ds-stage { padding: 20px; }
           .ds-stage-grid { padding: 20px; }
           .ds-swatch-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
@@ -234,7 +140,6 @@ export function ComponentsPage() {
       <nav className="ds-sidebar">
         <div className="ds-sidebar-header">
           <h1 className="ds-sidebar-title">GroundUI</h1>
-          <p className="ds-sidebar-sub">Design System</p>
         </div>
         {navItems.map((item) => (
           <button
@@ -275,11 +180,12 @@ export function ComponentsPage() {
    Helpers
    ============================================ */
 
-function SectionHeader({ title, desc }: { title: string; desc: string }) {
+function SectionHeader({ title, titleJa, desc, descJa }: { title: string; titleJa?: string; desc: string; descJa?: string }) {
+  const { locale } = useLocale()
   return (
     <>
-      <h2 className="ds-section-title">{title}</h2>
-      <p className="ds-section-desc">{desc}</p>
+      <h2 className="ds-section-title">{locale === 'ja' && titleJa ? titleJa : title}</h2>
+      <p className="ds-section-desc">{locale === 'ja' && descJa ? descJa : desc}</p>
     </>
   )
 }
@@ -301,12 +207,85 @@ function Stage({ children, col, style }: { children: ReactNode; col?: boolean; s
   )
 }
 
+function rgbToHex(rgb: string): string {
+  const match = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/)
+  if (!match) return rgb
+  const r = parseInt(match[1]), g = parseInt(match[2]), b = parseInt(match[3])
+  const a = match[4] !== undefined ? parseFloat(match[4]) : 1
+  const hex = '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('')
+  if (a < 1) return `${hex} / ${Math.round(a * 100)}%`
+  return hex.toUpperCase()
+}
+
+function useResolvedColor(cssVar: string) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [hex, setHex] = useState('')
+  useEffect(() => {
+    if (!ref.current) return
+    const raw = getComputedStyle(ref.current).getPropertyValue(cssVar).trim()
+    // Create a temp element to resolve the value to rgb
+    const tmp = document.createElement('div')
+    tmp.style.color = raw || `var(${cssVar})`
+    document.body.appendChild(tmp)
+    const resolved = getComputedStyle(tmp).color
+    document.body.removeChild(tmp)
+    setHex(rgbToHex(resolved))
+  }, [cssVar])
+  return { ref, hex }
+}
+
 function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
+  const { ref, hex } = useResolvedColor(cssVar)
   return (
-    <div className="ds-swatch">
+    <div className="ds-swatch" ref={ref}>
       <div className="ds-swatch-color" style={{ background: `var(${cssVar})` }} />
       <span className="ds-swatch-name">{name}</span>
       <span className="ds-swatch-value">{cssVar}</span>
+      {hex && <span className="ds-swatch-value">{hex}</span>}
+    </div>
+  )
+}
+
+function InlineColorSwatch({ name, cssVar }: { name: string; cssVar: string }) {
+  const { ref, hex } = useResolvedColor(cssVar)
+  return (
+    <div ref={ref} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: 8,
+          background: `var(${cssVar})`,
+          border: '1px solid var(--border-subtle)',
+          flexShrink: 0,
+        }}
+      />
+      <div>
+        <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
+        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
+        {hex && <div style={{ fontSize: 10, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
+      </div>
+    </div>
+  )
+}
+
+function BorderSwatch({ name, cssVar }: { name: string; cssVar: string }) {
+  const { ref, hex } = useResolvedColor(cssVar)
+  return (
+    <div ref={ref} style={{ textAlign: 'center' }}>
+      <div
+        style={{
+          width: 80,
+          height: 48,
+          borderRadius: 10,
+          background: 'var(--bg-secondary)',
+          border: `2px solid var(${cssVar})`,
+          marginBottom: 8,
+        }}
+      />
+      <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
+      <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
+      {hex && <div style={{ fontSize: 10, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
     </div>
   )
 }
@@ -318,7 +297,7 @@ function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
 function OverviewSection() {
   return (
     <>
-      <SectionHeader title="Overview" desc="Core principles and token architecture for GroundUI." />
+      <SectionHeader title="Overview" titleJa="概要" desc="Core principles and token architecture for GroundUI." descJa="GroundUIの設計原則とトークンアーキテクチャ。" />
 
       <Group label="Principles">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
@@ -392,7 +371,7 @@ function OverviewSection() {
 function ColorsSection() {
   return (
     <>
-      <SectionHeader title="Colors" desc="Semantic color tokens for backgrounds, text, borders, and status." />
+      <SectionHeader title="Colors" titleJa="カラー" desc="Semantic color tokens for backgrounds, text, borders, and status." descJa="背景、テキスト、ボーダー、ステータス用のセマンティックカラートークン。" />
 
       <Group label="Backgrounds">
         <div className="ds-swatch-grid">
@@ -406,29 +385,14 @@ function ColorsSection() {
       </Group>
 
       <Group label="Text">
-        <div className="ds-swatch-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
+        <div className="ds-swatch-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))' }}>
           {[
             { name: 'Primary', cssVar: '--text-primary' },
             { name: 'Secondary', cssVar: '--text-secondary' },
             { name: 'Muted', cssVar: '--text-muted' },
             { name: 'Disabled', cssVar: '--text-disabled' },
           ].map((c) => (
-            <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  background: `var(${c.cssVar})`,
-                  border: '1px solid var(--border-subtle)',
-                  flexShrink: 0,
-                }}
-              />
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 500 }}>{c.name}</div>
-                <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{c.cssVar}</div>
-              </div>
-            </div>
+            <InlineColorSwatch key={c.name} name={c.name} cssVar={c.cssVar} />
           ))}
         </div>
       </Group>
@@ -440,20 +404,7 @@ function ColorsSection() {
             { name: 'Default', cssVar: '--border-default' },
             { name: 'Strong', cssVar: '--border-strong' },
           ].map((b) => (
-            <div key={b.name} style={{ textAlign: 'center' }}>
-              <div
-                style={{
-                  width: 80,
-                  height: 48,
-                  borderRadius: 10,
-                  background: 'var(--bg-secondary)',
-                  border: `2px solid var(${b.cssVar})`,
-                  marginBottom: 8,
-                }}
-              />
-              <div style={{ fontSize: 12, fontWeight: 500 }}>{b.name}</div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{b.cssVar}</div>
-            </div>
+            <BorderSwatch key={b.name} name={b.name} cssVar={b.cssVar} />
           ))}
         </div>
       </Group>
@@ -511,7 +462,7 @@ function SurfacesSection() {
 
   return (
     <>
-      <SectionHeader title="Surfaces" desc="Tinted surface presets for light and dark modes, with accent pairing matrix." />
+      <SectionHeader title="Surfaces" titleJa="サーフェス" desc="Tinted surface presets for light and dark modes, with accent pairing matrix." descJa="ライト・ダークモード用のティントサーフェスプリセットとアクセントペアリングマトリクス。" />
 
       <Group label="Surface Presets">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -754,7 +705,7 @@ function SurfacesSection() {
 function TypographySection() {
   return (
     <>
-      <SectionHeader title="Typography" desc="Type scale, weights, and font families." />
+      <SectionHeader title="Typography" titleJa="タイポグラフィ" desc="Type scale, weights, and font families." descJa="タイプスケール、ウェイト、フォントファミリー。" />
 
       <Group label="Type Scale">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -845,7 +796,7 @@ function TypographySection() {
 function SpacingSection() {
   return (
     <>
-      <SectionHeader title="Spacing & Radius" desc="Consistent spacing scale and border radius tokens." />
+      <SectionHeader title="Spacing & Radius" titleJa="スペーシング & 角丸" desc="Consistent spacing scale and border radius tokens." descJa="一貫したスペーシングスケールとボーダーラディウストークン。" />
 
       <Group label="Spacing Scale">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -932,7 +883,7 @@ function SpacingSection() {
 function ButtonsSection() {
   return (
     <>
-      <SectionHeader title="Buttons" desc="Button variants, sizes, states, and icon combinations." />
+      <SectionHeader title="Buttons" titleJa="ボタン" desc="Button variants, sizes, states, and icon combinations." descJa="ボタンのバリアント、サイズ、状態、アイコンの組み合わせ。" />
 
       <Group label="Variants">
         <Stage>
@@ -998,7 +949,7 @@ function InputsSection() {
 
   return (
     <>
-      <SectionHeader title="Inputs" desc="Form controls: text, textarea, select, toggle, and composed form fields." />
+      <SectionHeader title="Inputs" titleJa="入力" desc="Form controls: text, textarea, select, toggle, and composed form fields." descJa="フォームコントロール: テキスト、テキストエリア、セレクト、トグル、フォームフィールド。" />
 
       <Group label="Text Input">
         <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
@@ -1083,7 +1034,7 @@ function DataDisplaySection() {
 
   return (
     <>
-      <SectionHeader title="Data Display" desc="Components for presenting information: badges, stats, avatars, tabs." />
+      <SectionHeader title="Data Display" titleJa="データ表示" desc="Components for presenting information: badges, stats, avatars, tabs." descJa="情報表示用コンポーネント: バッジ、統計カード、アバター、タブ。" />
 
       <Group label="Badge">
         <Stage>
@@ -1106,7 +1057,7 @@ function DataDisplaySection() {
       </Group>
 
       <Group label="Avatar">
-        <Stage style={{ alignItems: 'center' }}>
+        <Stage>
           <Avatar name="John Doe" size="sm" />
           <Avatar name="Jane Smith" size="md" />
           <Avatar name="Bob" size="lg" />
@@ -1164,7 +1115,7 @@ function DataDisplaySection() {
 function FeedbackSection() {
   return (
     <>
-      <SectionHeader title="Feedback" desc="Loading, progress, empty states, and skeleton placeholders." />
+      <SectionHeader title="Feedback" titleJa="フィードバック" desc="Loading, progress, empty states, and skeleton placeholders." descJa="ローディング、プログレス、空状態、スケルトンプレースホルダー。" />
 
       <Group label="Spinner">
         <Stage style={{ alignItems: 'center' }}>
@@ -1216,10 +1167,11 @@ function FeedbackSection() {
 function OverlaysSection() {
   const [modalOpen, setModalOpen] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const { toast } = useToast()
 
   return (
     <>
-      <SectionHeader title="Overlays" desc="Modal dialogs, confirm dialogs, and toast notifications." />
+      <SectionHeader title="Overlays" titleJa="オーバーレイ" desc="Modal dialogs, confirm dialogs, dropdown menus, and toast notifications." descJa="モーダル、確認ダイアログ、ドロップダウンメニュー、トースト通知。" />
 
       <Group label="Modal">
         <Stage>
@@ -1263,11 +1215,81 @@ function OverlaysSection() {
         />
       </Group>
 
+      <Group label="Dropdown Menu">
+        <Stage>
+          <DropdownMenu
+            trigger={
+              <Button variant="secondary">
+                Actions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 4 }}>
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </Button>
+            }
+            align="left"
+          >
+            <DropdownItem onClick={() => toast('Item edited', 'info')}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
+              Edit
+            </DropdownItem>
+            <DropdownItem onClick={() => toast('Link copied', 'success')}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" /></svg>
+              Duplicate
+            </DropdownItem>
+            <DropdownDivider />
+            <DropdownItem variant="danger" onClick={() => toast('Item deleted', 'error')}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" /></svg>
+              Delete
+            </DropdownItem>
+          </DropdownMenu>
+
+          <DropdownMenu
+            trigger={
+              <ToolbarButton aria-label="More options">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="5" r="1" /><circle cx="12" cy="12" r="1" /><circle cx="12" cy="19" r="1" />
+                </svg>
+              </ToolbarButton>
+            }
+            align="right"
+          >
+            <DropdownItem onClick={() => toast('Shared', 'success')}>Share</DropdownItem>
+            <DropdownItem onClick={() => toast('Exported', 'info')}>Export</DropdownItem>
+            <DropdownItem disabled>Archive</DropdownItem>
+          </DropdownMenu>
+        </Stage>
+      </Group>
+
       <Group label="Toast">
-        <Stage col>
-          <p style={{ fontSize: 13, color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>
-            Toast notifications are triggered programmatically via the toast utility.
-          </p>
+        <Stage>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => toast('Operation completed successfully', 'success')}
+          >
+            Success
+          </Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => toast('Something went wrong', 'error')}
+          >
+            Error
+          </Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => toast('Please check your input', 'warning')}
+          >
+            Warning
+          </Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => toast('New update available', 'info')}
+          >
+            Info
+          </Button>
         </Stage>
       </Group>
     </>
@@ -1277,7 +1299,7 @@ function OverlaysSection() {
 function LayoutSection() {
   return (
     <>
-      <SectionHeader title="Layout" desc="Stacking, grid patterns, and spacing compositions." />
+      <SectionHeader title="Layout" titleJa="レイアウト" desc="Stacking, grid patterns, and spacing compositions." descJa="スタック、グリッドパターン、スペーシングの構成。" />
 
       <Group label="Stack (Vertical)">
         <Stage col>

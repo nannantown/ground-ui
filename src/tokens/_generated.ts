@@ -83,6 +83,7 @@ export const semantic = {
 } as const
 
 export const spacing = {
+  '2xs': '2px',
   'xs': '4px',
   'sm': '8px',
   'md': '12px',

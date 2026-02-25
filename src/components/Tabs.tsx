@@ -1,3 +1,5 @@
+import { cn } from '../cn'
+
 export interface TabItem {
   value: string
   label: string
@@ -15,8 +17,11 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
   if (variant === 'underline') {
     return (
       <div
-        className="flex gap-0"
-        style={{ borderBottom: '1px solid var(--border-subtle)' }}
+        style={{
+          display: 'flex',
+          gap: 0,
+          borderBottom: '1px solid var(--border-subtle)',
+        }}
       >
         {items.map((tab) => {
           const isActive = tab.value === value
@@ -24,18 +29,36 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
             <button
               key={tab.value}
               onClick={() => onChange(tab.value)}
-              className="px-4 py-2.5 text-sm font-medium transition-colors relative"
               style={{
+                paddingLeft: 16,
+                paddingRight: 16,
+                paddingTop: 10,
+                paddingBottom: 10,
+                fontSize: 14,
+                fontWeight: 500,
+                transition: 'color 0.15s ease',
+                position: 'relative',
                 color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                 background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
               }}
             >
-              <span className="flex items-center gap-1.5">
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+              >
                 {tab.label}
                 {tab.count !== undefined && (
                   <span
-                    className="text-xs px-1.5 rounded-full"
                     style={{
+                      fontSize: 12,
+                      paddingLeft: 6,
+                      paddingRight: 6,
+                      borderRadius: 9999,
                       background: isActive ? 'var(--p-white-12)' : 'var(--p-white-6)',
                       color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                     }}
@@ -46,8 +69,14 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
               </span>
               {isActive && (
                 <div
-                  className="absolute bottom-0 left-0 right-0 h-0.5"
-                  style={{ background: 'var(--text-primary)' }}
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: 2,
+                    background: 'var(--text-primary)',
+                  }}
                 />
               )}
             </button>
@@ -59,19 +88,36 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
 
   // Pill variant
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div
+      style={{
+        display: 'flex',
+        gap: 8,
+        flexWrap: 'wrap',
+      }}
+    >
       {items.map((tab) => {
         const isActive = tab.value === value
         return (
           <button
             key={tab.value}
             onClick={() => onChange(tab.value)}
-            className={`pill-filter ${isActive ? 'pill-filter-active' : ''}`}
+            className={cn('pill-filter', isActive && 'pill-filter-active')}
           >
-            <span className="flex items-center gap-1.5">
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
               {tab.label}
               {tab.count !== undefined && (
-                <span className="text-xs opacity-70">
+                <span
+                  style={{
+                    fontSize: 12,
+                    opacity: 0.7,
+                  }}
+                >
                   {tab.count}
                 </span>
               )}
