@@ -29,6 +29,15 @@ import { Popover } from '../../src/components/Popover'
 import { RadioGroup, RadioGroupItem } from '../../src/components/RadioGroup'
 import { Tooltip } from '../../src/components/Tooltip'
 import { DatePicker } from '../../src/components/DatePicker'
+import { Stack } from '../../src/components/layout/Stack'
+import { Grid } from '../../src/components/layout/Grid'
+import { Container } from '../../src/components/layout/Container'
+import { Center } from '../../src/components/layout/Center'
+import { AspectRatio } from '../../src/components/layout/AspectRatio'
+import { Spacer } from '../../src/components/layout/Spacer'
+import { ScrollArea } from '../../src/components/layout/ScrollArea'
+import { SplitView } from '../../src/components/layout/SplitView'
+import { VisuallyHidden } from '../../src/components/layout/VisuallyHidden'
 import {
   SURFACE_PRESETS,
   ACCENT_PRESETS,
@@ -2049,85 +2058,223 @@ function NavigationSection() {
   )
 }
 
+function LayoutBox({ children, label }: { children?: ReactNode; label?: string }) {
+  return (
+    <div style={{
+      padding: '12px 16px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
+      borderRadius: 8, fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
+      textAlign: 'center', minHeight: 40, display: 'flex', alignItems: 'center', justifyContent: 'center',
+    }}>
+      {label || children}
+    </div>
+  )
+}
+
 function LayoutSection() {
-  const { t } = useT()
+  const { locale } = useLocale()
+  const ja = locale === 'ja'
+
   return (
     <>
-      <SectionHeader title="Layout" titleJa="レイアウト" desc="Stacking, grid patterns, and spacing compositions." descJa="スタック、グリッドパターン、スペーシングの構成。" />
+      <SectionHeader
+        title="Layout"
+        titleJa="レイアウト"
+        desc="Layout components for building any web application: Stack, Grid, Container, Center, SplitView, ScrollArea, and more."
+        descJa="Webアプリ構築のためのレイアウトコンポーネント: Stack, Grid, Container, Center, SplitView, ScrollAreaなど。"
+      />
 
-      <Group label="Stack (Vertical)" labelJa="スタック（垂直）">
-        <Stage col>
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              style={{
-                padding: '12px 16px',
-                background: 'var(--bg-surface)',
-                borderRadius: 8,
-                fontSize: 13,
-                color: 'var(--text-secondary)',
-              }}
-            >
-              {t.stackItem} {i}
+      {/* Stack */}
+      <Group label="Stack (Vertical / Horizontal)" labelJa="Stack（垂直・水平）">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? '垂直 (gap=md)' : 'Vertical (gap=md)'}
             </div>
-          ))}
-        </Stage>
+            <Stack gap="md">
+              <LayoutBox label="1" />
+              <LayoutBox label="2" />
+              <LayoutBox label="3" />
+            </Stack>
+          </div>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? '水平 (gap=sm)' : 'Horizontal (gap=sm)'}
+            </div>
+            <Stack direction="horizontal" gap="sm">
+              <LayoutBox label="A" />
+              <LayoutBox label="B" />
+              <LayoutBox label="C" />
+              <LayoutBox label="D" />
+            </Stack>
+          </div>
+        </div>
       </Group>
 
-      <Group label="Stack (Horizontal)" labelJa="スタック（水平）">
-        <Stage>
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              style={{
-                padding: '8px 20px',
-                background: 'var(--bg-surface)',
-                borderRadius: 8,
-                fontSize: 13,
-                color: 'var(--text-secondary)',
-              }}
-            >
-              {t.item} {i}
+      {/* Grid */}
+      <Group label="Grid (Fixed / Auto-fill / Responsive)" labelJa="Grid（固定・自動・レスポンシブ）">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? '3カラム固定' : '3 Columns Fixed'}
             </div>
-          ))}
-        </Stage>
+            <Grid columns={3} gap="sm">
+              {[1,2,3,4,5,6].map(i => <LayoutBox key={i} label={`${i}`} />)}
+            </Grid>
+          </div>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? 'Auto-fill (最小120px)' : 'Auto-fill (min 120px)'}
+            </div>
+            <Grid autoFill="120px" gap="sm">
+              {[1,2,3,4,5,6,7,8].map(i => <LayoutBox key={i} label={`${i}`} />)}
+            </Grid>
+          </div>
+        </div>
       </Group>
 
-      <Group label="Grid (3 Columns)" labelJa="グリッド（3カラム）">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              style={{
-                padding: 16,
-                background: 'var(--bg-surface)',
-                borderRadius: 8,
-                textAlign: 'center',
-                fontSize: 13,
-                color: 'var(--text-secondary)',
-              }}
-            >
-              {t.cell} {i}
+      {/* Container */}
+      <Group label="Container (Size Presets)" labelJa="Container（サイズプリセット）">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {(['xs', 'sm', 'md', 'article', 'default', 'wide'] as const).map(size => (
+            <div key={size} style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: '4px 0' }}>
+              <Container size={size}>
+                <div style={{
+                  padding: '8px 12px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
+                  borderRadius: 6, fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
+                }}>
+                  {size}
+                </div>
+              </Container>
             </div>
           ))}
         </div>
       </Group>
 
-      <Group label="Grid (Auto-fit)" labelJa="グリッド（自動調整）">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))' }}>
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              style={{
-                padding: 16,
-                background: 'var(--bg-surface)',
-                borderRadius: 8,
-                textAlign: 'center',
-                fontSize: 13,
-                color: 'var(--text-secondary)',
-              }}
-            >
-              {t.auto} {i}
+      {/* Center */}
+      <Group label="Center" labelJa="Center（中央揃え）">
+        <Center style={{ height: 120, background: 'var(--bg-secondary)', borderRadius: 8 }}>
+          <div style={{ padding: '12px 24px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 8, fontSize: 13, color: 'var(--accent-light)' }}>
+            {ja ? '縦横中央' : 'Centered'}
+          </div>
+        </Center>
+      </Group>
+
+      {/* SplitView */}
+      <Group label="SplitView (Resizable)" labelJa="SplitView（リサイズ可能）">
+        <div style={{ height: 200, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+          <SplitView
+            resizable
+            defaultSize={240}
+            minSize={120}
+            maxSize={500}
+            primary={
+              <div style={{ padding: 16, background: 'var(--bg-secondary)', height: '100%' }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                  {ja ? 'プライマリ' : 'Primary'}
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                  {ja ? 'ドラッグでリサイズ' : 'Drag divider to resize'}
+                </div>
+              </div>
+            }
+            secondary={
+              <div style={{ padding: 16, background: 'var(--bg-primary)', height: '100%' }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                  {ja ? 'セカンダリ' : 'Secondary'}
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                  {ja ? '残りのスペースを使用' : 'Takes remaining space'}
+                </div>
+              </div>
+            }
+          />
+        </div>
+      </Group>
+
+      {/* AspectRatio */}
+      <Group label="AspectRatio" labelJa="AspectRatio（アスペクト比）">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+          {(['1:1', '16:9', '4:3', '3:2'] as const).map(ratio => (
+            <div key={ratio}>
+              <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 4, fontFamily: 'var(--font-mono)' }}>{ratio}</div>
+              <AspectRatio ratio={ratio}>
+                <div style={{ width: '100%', height: '100%', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--accent-light)' }}>
+                  {ratio}
+                </div>
+              </AspectRatio>
+            </div>
+          ))}
+        </div>
+      </Group>
+
+      {/* ScrollArea */}
+      <Group label="ScrollArea" labelJa="ScrollArea（スクロール領域）">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? '垂直スクロール' : 'Vertical Scroll'}
+            </div>
+            <ScrollArea maxHeight="160px" style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: 12 }}>
+              {Array.from({ length: 20 }, (_, i) => (
+                <div key={i} style={{ padding: '6px 0', fontSize: 12, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+                  {ja ? `アイテム ${i + 1}` : `Item ${i + 1}`}
+                </div>
+              ))}
+            </ScrollArea>
+          </div>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+              {ja ? '水平スクロール' : 'Horizontal Scroll'}
+            </div>
+            <ScrollArea direction="horizontal" style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: 12 }}>
+              <div style={{ display: 'flex', gap: 8 }}>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <div key={i} style={{ padding: '8px 20px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 6, fontSize: 12, color: 'var(--accent-light)', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                    {ja ? `カード ${i + 1}` : `Card ${i + 1}`}
+                  </div>
+                ))}
+              </div>
+            </ScrollArea>
+          </div>
+        </div>
+      </Group>
+
+      {/* Spacer */}
+      <Group label="Spacer" labelJa="Spacer（スペーサー）">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 0, background: 'var(--bg-secondary)', borderRadius: 8, padding: 12, height: 60 }}>
+          <LayoutBox label={ja ? '左' : 'Left'} />
+          <Spacer />
+          <LayoutBox label={ja ? '右' : 'Right'} />
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 8 }}>
+          {ja ? 'Spacer は flex: 1 で要素を両端に押しやります' : 'Spacer uses flex: 1 to push items to opposite ends'}
+        </div>
+      </Group>
+
+      {/* CSS Layout Classes */}
+      <Group label="CSS Layout Classes" labelJa="CSSレイアウトクラス">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
+          {[
+            { name: '.app-shell', desc: ja ? 'アプリ全体のシェル' : 'Full app shell' },
+            { name: '.split-equal', desc: ja ? '均等2分割' : 'Equal split' },
+            { name: '.split-golden', desc: ja ? '黄金比分割' : 'Golden ratio split' },
+            { name: '.split-content-aside', desc: ja ? 'コンテンツ+サイド' : 'Content + aside' },
+            { name: '.master-detail', desc: ja ? 'リスト+詳細' : 'List + detail' },
+            { name: '.three-column', desc: ja ? '3カラム' : 'Three column' },
+            { name: '.responsive-stack', desc: ja ? 'レスポンシブスタック' : 'Responsive stack' },
+            { name: '.section', desc: ja ? 'セクション間隔' : 'Section spacing' },
+            { name: '.center', desc: ja ? '中央揃え' : 'Center content' },
+            { name: '.scroll-area', desc: ja ? 'スクロール領域' : 'Scroll area' },
+            { name: '.drawer', desc: ja ? 'ドロワー' : 'Drawer panel' },
+            { name: '.masonry-3', desc: ja ? 'メイソンリー' : 'Masonry layout' },
+            { name: '.bento-grid', desc: ja ? 'ベントグリッド' : 'Bento grid' },
+            { name: '.horizontal-scroll', desc: ja ? '横スクロール' : 'Horizontal scroll' },
+            { name: '.bottom-nav', desc: ja ? 'ボトムナビ' : 'Bottom nav (mobile)' },
+            { name: '.sr-only', desc: ja ? 'SR専用' : 'Screen reader only' },
+          ].map(item => (
+            <div key={item.name} style={{ padding: '8px 12px', background: 'var(--bg-secondary)', borderRadius: 6, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <code style={{ fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)' }}>{item.name}</code>
+              <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{item.desc}</span>
             </div>
           ))}
         </div>
