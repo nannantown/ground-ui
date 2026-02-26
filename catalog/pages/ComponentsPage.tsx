@@ -28,6 +28,7 @@ import { Pagination } from '../../src/components/Pagination'
 import { Popover } from '../../src/components/Popover'
 import { RadioGroup, RadioGroupItem } from '../../src/components/RadioGroup'
 import { Tooltip } from '../../src/components/Tooltip'
+import { DatePicker } from '../../src/components/DatePicker'
 import {
   SURFACE_PRESETS,
   ACCENT_PRESETS,
@@ -165,6 +166,11 @@ const T = {
     bioPlaceholder: 'Tell us about yourself',
     role: 'Role',
     selectRole: 'Select role...',
+    datePicker: 'Date Picker',
+    monthPicker: 'Month Picker',
+    datePickerDate: 'Date',
+    datePickerMonth: 'Month',
+    datePickerWithMinMax: 'With constraints',
     // Data Display
     badge: 'Badge',
     statCard: 'Stat Card',
@@ -389,6 +395,11 @@ const T = {
     bioPlaceholder: '自己紹介を入力してください',
     role: '役割',
     selectRole: '役割を選択...',
+    datePicker: '日付ピッカー',
+    monthPicker: '月ピッカー',
+    datePickerDate: '日付',
+    datePickerMonth: '月',
+    datePickerWithMinMax: '制約付き',
     // Data Display
     badge: 'バッジ',
     statCard: '統計カード',
@@ -1545,6 +1556,33 @@ function ButtonsSection() {
   )
 }
 
+function DatePickerDemo() {
+  const [date, setDate] = useState('')
+  const [month, setMonth] = useState('')
+  const [constrained, setConstrained] = useState('')
+  const { t } = useT()
+
+  return (
+    <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+      <FormField label={t.datePickerDate} htmlFor="dp-date">
+        <DatePicker value={date} onChange={setDate} mode="date" />
+      </FormField>
+      <FormField label={t.datePickerMonth} htmlFor="dp-month">
+        <DatePicker value={month} onChange={setMonth} mode="month" />
+      </FormField>
+      <FormField label={t.datePickerWithMinMax} htmlFor="dp-minmax">
+        <DatePicker
+          value={constrained}
+          onChange={setConstrained}
+          mode="date"
+          min="2025-01-01"
+          max="2026-12-31"
+        />
+      </FormField>
+    </div>
+  )
+}
+
 function InputsSection() {
   const [toggle1, setToggle1] = useState(false)
   const [toggle2, setToggle2] = useState(true)
@@ -1602,6 +1640,10 @@ function InputsSection() {
             <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t.disabled}</span>
           </div>
         </Stage>
+      </Group>
+
+      <Group label="Date Picker" labelJa="日付ピッカー">
+        <DatePickerDemo />
       </Group>
 
       <Group label="Form Field" labelJa="フォームフィールド">

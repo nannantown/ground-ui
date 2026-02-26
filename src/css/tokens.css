@@ -427,6 +427,21 @@
   --checkbox-checked-border: var(--selected-bg);
   --checkbox-check-color: var(--selected-text);
 
+  /* --- Calendar / DatePicker --- */
+  --calendar-bg: var(--bg-elevated);
+  --calendar-border: var(--border-default);
+  --calendar-radius: var(--radius-lg);
+  --calendar-cell-size: 36px;
+  --calendar-cell-radius: var(--radius-sm);
+  --calendar-cell-hover: var(--hover-bg);
+  --calendar-cell-selected-bg: var(--selected-bg);
+  --calendar-cell-selected-text: var(--selected-text);
+  --calendar-cell-today-border: var(--text-muted);
+  --calendar-cell-outside: var(--text-disabled);
+  --calendar-header-text: var(--text-primary);
+  --calendar-nav-hover: var(--hover-bg);
+  --calendar-weekday-text: var(--text-muted);
+
   /* --- Opacity --- */
   --opacity-subtle: 0.5;
   --opacity-muted: 0.6;
@@ -554,6 +569,13 @@
   --card-border: rgba(0, 0, 0, 0.08);
   --card-border-hover: rgba(0, 0, 0, 0.15);
   --stat-bg: rgba(0, 0, 0, 0.03);
+
+  /* --- Calendar / DatePicker --- */
+  --calendar-bg: #ffffff;
+  --calendar-border: rgba(0, 0, 0, 0.12);
+  --calendar-cell-today-border: rgba(0, 0, 0, 0.40);
+  --calendar-cell-outside: rgba(0, 0, 0, 0.30);
+  --calendar-weekday-text: rgba(0, 0, 0, 0.50);
 
   /* --- Checkbox --- */
   --checkbox-border: rgba(0, 0, 0, 0.20);
@@ -1880,6 +1902,213 @@
   padding: var(--space-lg);
   font-size: var(--text-sm);
   color: var(--text-secondary);
+}
+
+/* --- Calendar / DatePicker --- */
+.calendar {
+  background: var(--calendar-bg);
+  border: 1px solid var(--calendar-border);
+  border-radius: var(--calendar-radius);
+  padding: var(--space-md);
+  min-width: 280px;
+  box-shadow: var(--shadow-lg);
+  animation: scale-in 0.15s ease-out forwards;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.calendar-header-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--calendar-header-text);
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--calendar-cell-radius);
+  transition: background var(--transition-fast);
+  border: none;
+  background: transparent;
+  font: inherit;
+}
+
+.calendar-header-title:hover {
+  background: var(--calendar-nav-hover);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--calendar-cell-radius);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+  font: inherit;
+}
+
+.calendar-nav:hover:not(:disabled) {
+  background: var(--calendar-nav-hover);
+  color: var(--text-primary);
+}
+
+.calendar-nav:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin-bottom: var(--space-2xs);
+}
+
+.calendar-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--calendar-cell-size);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--calendar-weekday-text);
+  user-select: none;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+}
+
+.calendar-grid-months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+}
+
+.calendar-grid-years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+}
+
+.calendar-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--calendar-cell-size);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  border-radius: var(--calendar-cell-radius);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  user-select: none;
+}
+
+.calendar-cell:hover:not(:disabled):not(.calendar-cell-selected) {
+  background: var(--calendar-cell-hover);
+}
+
+.calendar-cell-today:not(.calendar-cell-selected) {
+  border-color: var(--calendar-cell-today-border);
+}
+
+.calendar-cell-selected {
+  background: var(--calendar-cell-selected-bg);
+  color: var(--calendar-cell-selected-text);
+  font-weight: 600;
+}
+
+.calendar-cell-selected:hover {
+  opacity: 0.9;
+}
+
+.calendar-cell-outside {
+  color: var(--calendar-cell-outside);
+}
+
+.calendar-cell:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.calendar-cell-month {
+  height: 40px;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+}
+
+.calendar-cell-year {
+  height: 40px;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+}
+
+.calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  margin-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calendar-footer-btn {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent, var(--info));
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--calendar-cell-radius);
+  transition: background var(--transition-fast);
+  font: inherit;
+}
+
+.calendar-footer-btn:hover {
+  background: var(--calendar-nav-hover);
+}
+
+.calendar-footer-btn-danger {
+  color: var(--error);
+}
+
+/* DatePicker input wrapper */
+.datepicker-trigger {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+}
+
+.datepicker-trigger .input {
+  cursor: pointer;
+  padding-right: 36px;
+}
+
+.datepicker-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 /* --- Empty State --- */
