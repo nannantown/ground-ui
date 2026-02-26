@@ -604,6 +604,8 @@
 :lang(ja) {
   line-height: 1.8;
   letter-spacing: 0.04em;
+  /* CJK minimum: 12px (kanji readability) */
+  --text-xs: clamp(12px, 0.75rem + 0.1vw, 13px);
 }
 
 :lang(en) {

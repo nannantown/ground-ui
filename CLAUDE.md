@@ -196,7 +196,7 @@ All component classes are defined in `tokens.css` alongside the tokens:
 - **High contrast** — Important elements clearly stand out
 - **Refined** — Subtle borders and shadows for depth
 - **5-state rule** — All interactive elements must define: default, hover, active/selected, disabled, focus
-- **Minimum font size** — `--text-xs` (11px) is the absolute minimum. Never use font-size below 11px anywhere (components, catalog, utilities). Hardcoded values of 8px, 9px, 10px are prohibited.
+- **Minimum font size** — `--text-xs` is the absolute minimum. English: 11px, Japanese: 12px (CJK readability). `:lang(ja)` overrides `--text-xs` to `clamp(12px, ...)`. Never use hardcoded font-size below 11px anywhere.
 - **Bilingual-ready** — Japanese/English mixed text handled at the font level, not markup level
 
 ## Key Patterns
