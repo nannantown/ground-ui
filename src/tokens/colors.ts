@@ -20,6 +20,7 @@ export const primitiveColors = {
     400: '#a0a0a0',
     300: '#cccccc',
     200: '#e0e0e0',
+    150: '#ededed',
     100: '#f0f0f0',
     50: '#fafafa',
   },
@@ -104,7 +105,7 @@ export const semanticColors = {
   },
 
   text: {
-    primary: '#ffffff',
+    primary: primitiveColors.gray[150],
     secondary: primitiveColors.gray[400],
     muted: primitiveColors.gray[600],
     disabled: primitiveColors.gray[700],

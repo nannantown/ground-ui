@@ -16,6 +16,7 @@ class GroundTokens {
   // ── Colors ──────────────────────────────────
   final Color primitiveGray50 = const Color(0xFFFAFAFA);
   final Color primitiveGray100 = const Color(0xFFF0F0F0);
+  final Color primitiveGray150 = const Color(0xFFEDEDED);
   final Color primitiveGray200 = const Color(0xFFE0E0E0);
   final Color primitiveGray300 = const Color(0xFFCCCCCC);
   final Color primitiveGray400 = const Color(0xFFA0A0A0);
@@ -66,7 +67,7 @@ class GroundTokens {
   final Color semanticBgSecondary = const Color(0xFF111111);
   final Color semanticBgCard = const Color(0xFF141414);
   final Color semanticBgElevated = const Color(0xFF1A1A1A);
-  final Color semanticTextPrimary = const Color(0xFFFFFFFF);
+  final Color semanticTextPrimary = const Color(0xFFEDEDED);
   final Color semanticTextSecondary = const Color(0xFFA0A0A0);
   final Color semanticTextMuted = const Color(0xFF888888);
   final Color semanticTextDisabled = const Color(0xFF666666);

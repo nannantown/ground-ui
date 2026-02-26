@@ -4,6 +4,7 @@
 export const primitive = {
   'gray.50': '#fafafa',
   'gray.100': '#f0f0f0',
+  'gray.150': '#ededed',
   'gray.200': '#e0e0e0',
   'gray.300': '#cccccc',
   'gray.400': '#a0a0a0',
@@ -57,7 +58,7 @@ export const semantic = {
   'bg.secondary': '#111111',
   'bg.card': '#141414',
   'bg.elevated': '#1a1a1a',
-  'text.primary': '#ffffff',
+  'text.primary': '#ededed',
   'text.secondary': '#a0a0a0',
   'text.muted': '#888888',
   'text.disabled': '#666666',

@@ -113,6 +113,7 @@
   --p-gray-400: #a0a0a0;
   --p-gray-300: #cccccc;
   --p-gray-200: #e0e0e0;
+  --p-gray-150: #ededed;
   --p-gray-100: #f0f0f0;
   --p-gray-50: #fafafa;
 
@@ -209,7 +210,7 @@
   --bg-surface-active: var(--p-white-10);
 
   /* --- Text --- */
-  --text-primary: #ffffff;
+  --text-primary: var(--p-gray-150);
   --text-secondary: var(--p-gray-400);
   --text-muted: var(--p-gray-500);
   --text-disabled: var(--p-gray-600);
