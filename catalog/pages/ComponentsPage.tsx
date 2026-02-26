@@ -742,7 +742,7 @@ function InlineColorSwatch({ name, cssVar }: { name: string; cssVar: string }) {
       <div>
         <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
         <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
-        {hex && <div style={{ fontSize: 10, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
+        {hex && <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
       </div>
     </div>
   )
@@ -764,7 +764,7 @@ function BorderSwatch({ name, cssVar }: { name: string; cssVar: string }) {
       />
       <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
       <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
-      {hex && <div style={{ fontSize: 10, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
+      {hex && <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
     </div>
   )
 }
@@ -1002,25 +1002,25 @@ function SurfacesSection() {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
                   <div>
-                    <div style={{ fontSize: 10, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.light}</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.light}</div>
                     <div style={{ display: 'flex', gap: 6 }}>
                       {lightBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
                           <div style={{ height: 40, borderRadius: 8, background: bg.hex, border: '1px solid var(--border-subtle)', marginBottom: 4 }} />
-                          <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 9, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: 10, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.dark}</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.dark}</div>
                     <div style={{ display: 'flex', gap: 6 }}>
                       {darkBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
                           <div style={{ height: 40, borderRadius: 8, background: bg.hex, border: '1px solid rgba(255,255,255,0.1)', marginBottom: 4 }} />
-                          <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 9, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
                     </div>
@@ -1036,8 +1036,8 @@ function SurfacesSection() {
                       <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6 }}>
                         <div style={{ width: 16, height: 16, borderRadius: 4, background: tx.hex, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 9, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
                     ))}
@@ -1047,8 +1047,8 @@ function SurfacesSection() {
                       <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6 }}>
                         <div style={{ width: 16, height: 16, borderRadius: 4, background: tx.hex, border: '1px solid rgba(255,255,255,0.1)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 9, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
                     ))}
@@ -1161,19 +1161,19 @@ function SurfacesSection() {
                 <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ height: 32, borderRadius: 6, background: accent.color, marginBottom: 4 }} />
-                    <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{t.primary}</div>
-                    <div style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{accent.color}</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{t.primary}</div>
+                    <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{accent.color}</div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-disabled)', fontSize: 14 }}>
                     &rarr;
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ height: 32, borderRadius: 6, background: secondary, marginBottom: 4 }} />
-                    <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{t.secondary}</div>
-                    <div style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{secondary}</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{t.secondary}</div>
+                    <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{secondary}</div>
                   </div>
                 </div>
-                <div style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>
+                <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>
                   Hue shift: {Math.round(primaryHsl.h)} &rarr; {Math.round(secondaryHsl.h)} (+60)
                 </div>
               </div>
@@ -2102,7 +2102,7 @@ const demoBox: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   minWidth: 48, minHeight: 36, padding: '6px 10px',
   background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
-  borderRadius: 4, fontSize: 10, fontWeight: 600, fontFamily: 'var(--font-mono)',
+  borderRadius: 4, fontSize: 11, fontWeight: 600, fontFamily: 'var(--font-mono)',
   color: 'var(--accent-light)', whiteSpace: 'nowrap',
 }
 
@@ -2112,7 +2112,7 @@ const demoStage: React.CSSProperties = {
 }
 
 const demoLabel: React.CSSProperties = {
-  fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)',
+  fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)',
   marginBottom: 8,
 }
 
@@ -2124,7 +2124,7 @@ function UtilVisual({ label, labelJa, code, children }: { label: string; labelJa
         <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>
           {locale === 'ja' && labelJa ? labelJa : label}
         </span>
-        <code style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)', background: 'var(--accent-bg)', padding: '2px 6px', borderRadius: 4 }}>
+        <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)', background: 'var(--accent-bg)', padding: '2px 6px', borderRadius: 4 }}>
           {code}
         </code>
       </div>
@@ -2228,19 +2228,19 @@ function UtilitiesSection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
           <UtilVisual label="relative + absolute" labelJa="relative + absolute" code=".relative .absolute">
             <div style={{ position: 'relative', height: 80, background: 'var(--p-white-3)', borderRadius: 4 }}>
-              <div style={{ ...demoBox, position: 'absolute', top: 4, right: 4, fontSize: 9 }}>absolute</div>
-              <div style={{ ...demoBox, position: 'absolute', bottom: 4, left: 4, fontSize: 9, background: 'var(--warning-bg)', borderColor: 'var(--warning-border)', color: 'var(--warning-light)' }}>bottom-left</div>
+              <div style={{ ...demoBox, position: 'absolute', top: 4, right: 4, fontSize: 11 }}>absolute</div>
+              <div style={{ ...demoBox, position: 'absolute', bottom: 4, left: 4, fontSize: 11, background: 'var(--warning-bg)', borderColor: 'var(--warning-border)', color: 'var(--warning-light)' }}>bottom-left</div>
             </div>
           </UtilVisual>
           <UtilVisual label="sticky" labelJa="sticky" code=".sticky .top-0">
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ ...demoBox, background: 'var(--info-bg)', borderColor: 'var(--info-border)', color: 'var(--info-light)' }}>sticky</div>
-              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
+              <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
             </div>
           </UtilVisual>
           <UtilVisual label="inset-0" labelJa="inset-0" code=".inset-0">
             <div style={{ position: 'relative', height: 60, background: 'var(--p-white-3)', borderRadius: 4 }}>
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--error-bg)', borderRadius: 4, fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--error-light)' }}>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--error-bg)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--error-light)' }}>
                 inset: 0
               </div>
             </div>
@@ -2259,9 +2259,9 @@ function UtilitiesSection() {
             { cls: '.w-1/4', w: '25%' },
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <code style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 56, flexShrink: 0 }}>{item.cls}</code>
+              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 56, flexShrink: 0 }}>{item.cls}</code>
               <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 6 }}>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
               </div>
             </div>
           ))}
@@ -2280,7 +2280,7 @@ function UtilitiesSection() {
           ].map(item => (
             <UtilVisual key={item.cls} label={item.val} labelJa={item.val} code={item.cls}>
               <div style={{ background: 'var(--warning-bg)', borderRadius: 4, padding: parseInt(item.val) }}>
-                <div style={{ background: 'var(--bg-card)', borderRadius: 2, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                <div style={{ background: 'var(--bg-card)', borderRadius: 2, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   content
                 </div>
               </div>
@@ -2301,7 +2301,7 @@ function UtilitiesSection() {
             <div style={{ background: 'var(--p-white-3)', borderRadius: 4, padding: 4 }}>
               <div style={demoBox}>A</div>
               <div style={{ height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: 9, color: 'var(--warning-light)', fontFamily: 'var(--font-mono)' }}>16px</span>
+                <span style={{ fontSize: 11, color: 'var(--warning-light)', fontFamily: 'var(--font-mono)' }}>16px</span>
               </div>
               <div style={demoBox}>B</div>
             </div>
@@ -2354,7 +2354,7 @@ function UtilitiesSection() {
             { cls: '.text-2xl', size: 'var(--text-2xl)', label: 'text-2xl' },
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-              <code style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 64, flexShrink: 0 }}>{item.label}</code>
+              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 64, flexShrink: 0 }}>{item.label}</code>
               <span style={{ fontSize: item.size, color: 'var(--text-primary)' }}>
                 {locale === 'ja' ? 'テキストサンプル' : 'The quick brown fox'}
               </span>
@@ -2372,7 +2372,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <span style={{ fontSize: 16, fontWeight: item.weight, color: 'var(--text-primary)' }}>Aa</span>
-                  <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
@@ -2383,15 +2383,15 @@ function UtilitiesSection() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <span style={{ fontSize: 13, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>UPPERCASE</span>
-                <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.uppercase</code>
+                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.uppercase</code>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <span style={{ fontSize: 13, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: 100 }}>Very long text that truncates</span>
-                <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.truncate</code>
+                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.truncate</code>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <span style={{ fontSize: 13, color: 'var(--text-primary)', textDecoration: 'line-through' }}>line-through</span>
-                <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.line-through</code>
+                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.line-through</code>
               </div>
             </div>
           </div>
@@ -2415,7 +2415,7 @@ function UtilitiesSection() {
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 12, height: 12, borderRadius: '50%', background: item.color, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
-              <code style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: item.color }}>{item.cls}</code>
+              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: item.color }}>{item.cls}</code>
             </div>
           ))}
         </div>
@@ -2437,7 +2437,7 @@ function UtilitiesSection() {
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 32, height: 24, borderRadius: 4, background: item.bg, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
-              <code style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
+              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
             </div>
           ))}
         </div>
@@ -2448,9 +2448,9 @@ function UtilitiesSection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
           <UtilVisual label="Border styles" labelJa="ボーダースタイル" code=".border .border-t">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <div style={{ padding: 8, border: '1px solid var(--border-default)', borderRadius: 4, fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border</div>
-              <div style={{ padding: 8, borderTop: '1px solid var(--border-default)', fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-t</div>
-              <div style={{ padding: 8, border: '1px dashed var(--border-default)', borderRadius: 4, fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-dashed</div>
+              <div style={{ padding: 8, border: '1px solid var(--border-default)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border</div>
+              <div style={{ padding: 8, borderTop: '1px solid var(--border-default)', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-t</div>
+              <div style={{ padding: 8, border: '1px dashed var(--border-default)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-dashed</div>
             </div>
           </UtilVisual>
           <UtilVisual label="Border radius" labelJa="角丸" code=".rounded-*">
@@ -2464,7 +2464,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <div style={{ width: 40, height: 40, background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: item.r }} />
-                  <code style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
@@ -2472,7 +2472,7 @@ function UtilitiesSection() {
           <UtilVisual label="Border colors" labelJa="ボーダーカラー" code=".border-white/*">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               {[10, 20, 30].map(a => (
-                <div key={a} style={{ padding: 6, border: `1px solid var(--p-white-${a})`, borderRadius: 4, fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                <div key={a} style={{ padding: 6, border: `1px solid var(--p-white-${a})`, borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   .border-white/{a}
                 </div>
               ))}
@@ -2489,7 +2489,7 @@ function UtilitiesSection() {
               {[100, 75, 50, 25].map(o => (
                 <div key={o} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <div style={{ ...demoBox, opacity: o / 100 }}>Aa</div>
-                  <code style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{o}%</code>
+                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{o}%</code>
                 </div>
               ))}
             </div>
@@ -2503,7 +2503,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.dur} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <div style={{ ...demoBox, transition: `all var(--transition-${item.dur})` }}>{item.label}</div>
-                  <code style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.dur}</code>
+                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.dur}</code>
                 </div>
               ))}
             </div>
@@ -2511,7 +2511,7 @@ function UtilitiesSection() {
           <UtilVisual label="Animations" labelJa="アニメーション" code=".animate-*">
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
-              <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>pulse</code>
+              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>pulse</code>
             </div>
           </UtilVisual>
         </div>
@@ -2580,7 +2580,7 @@ function UtilitiesSection() {
                 <div style={{
                   position: 'absolute', left: `${(item.px / 1280) * 100}%`, top: -2,
                   background: item.color, border: `1px solid ${item.borderColor}`, borderRadius: 4,
-                  padding: '1px 6px', fontSize: 9, fontFamily: 'var(--font-mono)', color: item.textColor,
+                  padding: '1px 6px', fontSize: 11, fontFamily: 'var(--font-mono)', color: item.textColor,
                   transform: 'translateX(-50%)',
                 }}>
                   {item.px}px
@@ -2598,7 +2598,7 @@ function UtilitiesSection() {
                 { label: 'lg (1024px+)', code: 'lg:grid-cols-4', cols: 4, color: 'var(--warning-bg)' },
               ].map(item => (
                 <div key={item.code} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <code style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 100, flexShrink: 0 }}>{item.code}</code>
+                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 100, flexShrink: 0 }}>{item.code}</code>
                   <div style={{ flex: 1, display: 'grid', gridTemplateColumns: `repeat(${item.cols}, 1fr)`, gap: 4 }}>
                     {Array.from({ length: item.cols }, (_, i) => (
                       <div key={i} style={{ height: 20, background: item.color, borderRadius: 3, border: '1px solid var(--border-subtle)' }} />

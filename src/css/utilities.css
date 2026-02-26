@@ -352,8 +352,7 @@
 .text-2xl { font-size: var(--text-2xl); }
 .text-3xl { font-size: var(--text-3xl); }
 /* Arbitrary sizes used in EC */
-.text-\[9px\] { font-size: 9px; }
-.text-\[10px\] { font-size: 10px; }
+/* .text-[9px] and .text-[10px] removed: minimum font size is --text-xs (11px) */
 .text-\[11px\] { font-size: 11px; }
 .text-\[12px\] { font-size: 12px; }
 .text-\[13px\] { font-size: 13px; }
