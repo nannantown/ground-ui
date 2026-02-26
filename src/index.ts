@@ -36,6 +36,8 @@ export { ThemeToggle } from './components/ThemeToggle'
 export { ToastProvider, useToast } from './components/Toast'
 export { Toggle } from './components/Toggle'
 export { ToolbarButton } from './components/ToolbarButton'
+export { Timeline } from './components/Timeline'
+export type { TimelineItem } from './components/Timeline'
 export { Tooltip } from './components/Tooltip'
 
 // Layout

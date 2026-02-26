@@ -29,6 +29,7 @@ import { Popover } from '../../src/components/Popover'
 import { RadioGroup, RadioGroupItem } from '../../src/components/RadioGroup'
 import { Tooltip } from '../../src/components/Tooltip'
 import { DatePicker } from '../../src/components/DatePicker'
+import { Timeline } from '../../src/components/Timeline'
 import { Stack } from '../../src/components/layout/Stack'
 import { Grid } from '../../src/components/layout/Grid'
 import { Container } from '../../src/components/layout/Container'
@@ -1746,6 +1747,33 @@ function DataDisplaySection() {
               { value: 'tab1', label: t.tabOverview },
               { value: 'tab2', label: t.tabDetails, count: 5 },
               { value: 'tab3', label: t.tabSettings },
+            ]}
+          />
+        </Stage>
+      </Group>
+
+      <Group label="Timeline" labelJa="タイムライン">
+        <Stage col style={{ maxWidth: 420 }}>
+          <Timeline
+            items={[
+              { id: '1', title: 'Senior Engineer', subtitle: 'Company A', date: '2024 - Present', status: 'current', description: 'Leading frontend architecture and design system development.' },
+              { id: '2', title: 'Engineer', subtitle: 'Company B', date: '2021 - 2024', status: 'completed', description: 'Built core product features and improved CI/CD pipeline.' },
+              { id: '3', title: 'Junior Engineer', subtitle: 'Company C', date: '2019 - 2021', status: 'completed' },
+              { id: '4', title: 'Intern', subtitle: 'Company D', date: '2019', status: 'upcoming' },
+            ]}
+          />
+        </Stage>
+      </Group>
+
+      <Group label="Timeline (Compact)" labelJa="タイムライン（コンパクト）">
+        <Stage col style={{ maxWidth: 420 }}>
+          <Timeline
+            variant="compact"
+            items={[
+              { id: '1', title: 'v2.0 Released', date: '2024-12-01', status: 'current' },
+              { id: '2', title: 'Beta Testing', date: '2024-10-15', status: 'completed' },
+              { id: '3', title: 'Alpha Build', date: '2024-08-01', status: 'completed' },
+              { id: '4', title: 'Planning Phase', date: '2024-06-01', status: 'completed' },
             ]}
           />
         </Stage>
