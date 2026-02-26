@@ -1,6 +1,7 @@
 /* ============================================
    Shared catalog layout classes
    Used by ComponentsPage, ThemePage, etc.
+   All values reference Ground UI tokens.
    ============================================ */
 
 .ds-root {
@@ -11,44 +12,44 @@
 
 /* --- Sidebar --- */
 .ds-sidebar {
-  width: 220px;
+  width: var(--sidebar-width);
   flex-shrink: 0;
-  border-right: 1px solid var(--border-subtle);
+  border-right: var(--border-width-thin) solid var(--border-subtle);
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 32px 0;
+  padding: var(--space-2xl) 0;
 }
 .ds-sidebar-header {
-  padding: 0 24px 24px;
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 16px;
+  padding: 0 var(--space-xl) var(--space-xl);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
+  margin-bottom: var(--space-lg);
 }
 .ds-sidebar-title {
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   margin: 0;
 }
 .ds-sidebar-sub {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-muted);
-  margin: 4px 0 0;
+  margin: var(--space-xs) 0 0;
   letter-spacing: 0.02em;
 }
 .ds-nav-item {
   display: block;
   width: 100%;
-  padding: 7px 24px;
-  font-size: 13px;
+  padding: var(--space-sm) var(--space-xl);
+  font-size: var(--text-base);
   color: var(--text-muted);
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: color 150ms ease;
+  transition: color var(--duration-fast) var(--ease-out);
   position: relative;
   font-family: inherit;
 }
@@ -63,11 +64,11 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
+  top: var(--space-sm);
+  bottom: var(--space-sm);
+  width: var(--border-width-medium);
   background: var(--text-primary);
-  border-radius: 1px;
+  border-radius: var(--radius-xs);
 }
 
 /* --- Main --- */
@@ -78,49 +79,239 @@
   height: 100%;
 }
 .ds-content {
-  max-width: 880px;
+  max-width: var(--container-wide);
   margin: 0 auto;
-  padding: 48px 48px 96px;
+  padding: var(--space-3xl) var(--space-3xl) var(--space-6xl);
 }
 
 /* --- Section --- */
 .ds-section-title {
-  font-size: 24px;
+  font-size: var(--text-2xl);
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.02em;
-  margin: 0 0 4px;
+  margin: 0 0 var(--space-xs);
 }
 .ds-section-desc {
-  font-size: 14px;
+  font-size: var(--text-md);
   color: var(--text-muted);
-  margin: 0 0 40px;
-  line-height: 1.6;
+  margin: 0 0 var(--space-2xl);
+  line-height: var(--leading-relaxed);
 }
 .ds-group {
-  margin-bottom: 48px;
+  margin-bottom: var(--space-3xl);
 }
 .ds-group:last-child {
   margin-bottom: 0;
 }
 .ds-group-label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-lg);
+}
+
+/* --- Stage (demo area) --- */
+.ds-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--bg-secondary);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+.ds-stage-col {
+  flex-direction: column;
+  align-items: stretch;
+}
+.ds-stage-center {
+  align-items: center;
+}
+.ds-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  background: var(--bg-secondary);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+}
+
+/* --- Swatch Grid --- */
+.ds-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-md);
+}
+.ds-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.ds-swatch-color {
+  height: var(--space-4xl);
+  border-radius: var(--radius-md);
+  border: var(--border-width-thin) solid var(--border-subtle);
+}
+.ds-swatch-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.ds-swatch-value {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+/* --- Inline Row --- */
+.ds-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+/* --- Demo card --- */
+.ds-demo-card {
+  background: var(--bg-secondary);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+/* --- Code label --- */
+.ds-code {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* --- Inline color swatch --- */
+.ds-inline-swatch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.ds-inline-swatch-dot {
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  border-radius: var(--radius-md);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.ds-inline-swatch-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.ds-inline-swatch-var {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+.ds-inline-swatch-hex {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  font-family: var(--font-mono);
+}
+
+/* --- Border swatch --- */
+.ds-border-swatch {
+  text-align: center;
+}
+.ds-border-swatch-box {
+  width: var(--space-5xl);
+  height: var(--space-3xl);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  margin-bottom: var(--space-sm);
+}
+.ds-border-swatch-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.ds-border-swatch-var {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+.ds-border-swatch-hex {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  font-family: var(--font-mono);
+}
+
+/* --- Token row (type scale, spacing, etc.) --- */
+.ds-token-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-width-thin) solid var(--border-default);
+}
+.ds-token-label {
+  flex-shrink: 0;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* --- Card (used in overview, surfaces, etc.) --- */
+.ds-card {
+  background: var(--bg-secondary);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+}
+.ds-card-title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+.ds-card-desc {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* --- Code tag (inline) --- */
+.ds-code-tag {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--accent-light);
+  background: var(--p-white-5);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* --- Meta label (small uppercase) --- */
+.ds-meta {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 /* --- Section Divider --- */
 .ds-section-divider {
-  height: 1px;
+  height: var(--border-width-thin);
   background: var(--border-subtle);
-  margin: 56px 0;
+  margin: var(--space-4xl) 0;
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .ds-sidebar { display: none; }
-  .ds-content { padding: 24px 16px 64px; }
+  .ds-content { padding: var(--space-xl) var(--space-lg) var(--space-4xl); }
+  .ds-stage-grid { padding: var(--space-lg); }
+  .ds-swatch-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+  .ds-swatch-color { height: var(--space-3xl); }
 }

@@ -560,78 +560,6 @@ export function ComponentsPage() {
 
   return (
     <div className="ds-root">
-      <style>{`
-        /* --- Stage (component demo area) --- */
-        .ds-stage {
-          background: var(--bg-secondary);
-          border: 1px solid var(--border-subtle);
-          border-radius: 12px;
-          padding: 32px;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 12px;
-        }
-        .ds-stage-col {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .ds-stage-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 16px;
-          background: var(--bg-secondary);
-          border: 1px solid var(--border-subtle);
-          border-radius: 12px;
-          padding: 32px;
-        }
-
-        /* --- Swatch Grid --- */
-        .ds-swatch-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-          gap: 12px;
-        }
-        .ds-swatch {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        .ds-swatch-color {
-          height: 64px;
-          border-radius: 10px;
-          border: 1px solid var(--border-subtle);
-        }
-        .ds-swatch-name {
-          font-size: 12px;
-          font-weight: 500;
-          color: var(--text-primary);
-          line-height: 1;
-        }
-        .ds-swatch-value {
-          font-size: 11px;
-          color: var(--text-muted);
-          font-family: var(--font-mono);
-          line-height: 1;
-        }
-
-        /* --- Inline Row --- */
-        .ds-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-          .ds-stage { padding: 20px; }
-          .ds-stage-grid { padding: 20px; }
-          .ds-swatch-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
-          .ds-swatch-color { height: 48px; }
-        }
-      `}</style>
-
       {/* Sidebar */}
       <nav className="ds-sidebar">
         <div className="ds-sidebar-header">
@@ -749,21 +677,15 @@ function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
 function InlineColorSwatch({ name, cssVar }: { name: string; cssVar: string }) {
   const { ref, hex } = useResolvedColor(cssVar)
   return (
-    <div ref={ref} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <div ref={ref} className="ds-inline-swatch">
       <div
-        style={{
-          width: 32,
-          height: 32,
-          borderRadius: 8,
-          background: `var(${cssVar})`,
-          border: '1px solid var(--border-subtle)',
-          flexShrink: 0,
-        }}
+        className="ds-inline-swatch-dot"
+        style={{ background: `var(${cssVar})` }}
       />
       <div>
-        <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
-        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
-        {hex && <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
+        <div className="ds-inline-swatch-name">{name}</div>
+        <div className="ds-inline-swatch-var">{cssVar}</div>
+        {hex && <div className="ds-inline-swatch-hex">{hex}</div>}
       </div>
     </div>
   )
@@ -772,20 +694,14 @@ function InlineColorSwatch({ name, cssVar }: { name: string; cssVar: string }) {
 function BorderSwatch({ name, cssVar }: { name: string; cssVar: string }) {
   const { ref, hex } = useResolvedColor(cssVar)
   return (
-    <div ref={ref} style={{ textAlign: 'center' }}>
+    <div ref={ref} className="ds-border-swatch">
       <div
-        style={{
-          width: 80,
-          height: 48,
-          borderRadius: 10,
-          background: 'var(--bg-secondary)',
-          border: `2px solid var(${cssVar})`,
-          marginBottom: 8,
-        }}
+        className="ds-border-swatch-box"
+        style={{ border: `2px solid var(${cssVar})` }}
       />
-      <div style={{ fontSize: 12, fontWeight: 500 }}>{name}</div>
-      <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{cssVar}</div>
-      {hex && <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{hex}</div>}
+      <div className="ds-border-swatch-name">{name}</div>
+      <div className="ds-border-swatch-var">{cssVar}</div>
+      {hex && <div className="ds-border-swatch-hex">{hex}</div>}
     </div>
   )
 }
@@ -801,7 +717,7 @@ function OverviewSection() {
       <SectionHeader title="Overview" titleJa="概要" desc="Core principles and token architecture for GroundUI." descJa="GroundUIの設計原則とトークンアーキテクチャ。" />
 
       <Group label="Principles" labelJa="設計原則">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-md)' }}>
           {[
             { title: t.principleMinimal, desc: t.principleMinimalDesc },
             { title: t.principleDark, desc: t.principleDarkDesc },
@@ -810,22 +726,17 @@ function OverviewSection() {
           ].map((p) => (
             <div
               key={p.title}
-              style={{
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 10,
-                padding: '20px 24px',
-              }}
+              className="ds-card"
             >
-              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>{p.title}</div>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>{p.desc}</div>
+              <div className="ds-card-title">{p.title}</div>
+              <div className="ds-card-desc">{p.desc}</div>
             </div>
           ))}
         </div>
       </Group>
 
       <Group label="Token Architecture" labelJa="トークンアーキテクチャ">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           {[
             { layer: t.layerPrimitive, desc: t.layerPrimitiveDesc, example: '--p-gray-800: #1a1a1a' },
             { layer: t.layerSemantic, desc: t.layerSemanticDesc, example: '--bg-elevated: var(--p-gray-800)' },
@@ -833,32 +744,18 @@ function OverviewSection() {
           ].map((item, i) => (
             <div
               key={i}
+              className="ds-card"
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: 16,
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 10,
-                padding: '16px 20px',
+                gap: 'var(--space-lg)',
               }}
             >
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>{item.layer}</div>
-                <div style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5 }}>{item.desc}</div>
+                <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, marginBottom: 'var(--space-2xs)' }}>{item.layer}</div>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.5 }}>{item.desc}</div>
               </div>
-              <code
-                style={{
-                  fontSize: 11,
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--accent-light)',
-                  background: 'var(--p-white-5)',
-                  padding: '4px 8px',
-                  borderRadius: 6,
-                  flexShrink: 0,
-                  whiteSpace: 'nowrap',
-                }}
-              >
+              <code className="ds-code-tag">
                 {item.example}
               </code>
             </div>
@@ -899,7 +796,7 @@ function ColorsSection() {
       </Group>
 
       <Group label="Borders" labelJa="ボーダー">
-        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-xl)', flexWrap: 'wrap' }}>
           {[
             { name: 'Hairline', cssVar: '--border-hairline' },
             { name: 'Faint', cssVar: '--border-faint' },
@@ -924,29 +821,29 @@ function ColorsSection() {
       </Group>
 
       <Group label="Semantic Extended" labelJa="セマンティック（拡張）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)' }}>
           {['success', 'warning', 'error', 'info'].map((name) => (
             <div
               key={name}
               style={{
-                borderRadius: 10,
+                borderRadius: 'var(--radius-md)',
                 overflow: 'hidden',
-                border: '1px solid var(--border-subtle)',
+                border: 'var(--border-width-thin) solid var(--border-subtle)',
               }}
             >
-              <div style={{ height: 6, background: `var(--${name})` }} />
+              <div style={{ height: 'var(--space-xs)', background: `var(--${name})` }} />
               <div
                 style={{
-                  padding: '12px 14px',
+                  padding: 'var(--space-md) var(--space-md)',
                   background: `var(--${name}-bg)`,
-                  fontSize: 12,
+                  fontSize: 'var(--text-sm)',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 4,
+                  gap: 'var(--space-xs)',
                 }}
               >
                 <span style={{ fontWeight: 600, color: `var(--${name})`, textTransform: 'capitalize' }}>{name}</span>
-                <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                   bg / border / glow
                 </span>
               </div>
@@ -969,7 +866,7 @@ function SurfacesSection() {
       <SectionHeader title="Surfaces" titleJa="サーフェス" desc="Tinted surface presets for light and dark modes, with accent pairing matrix." descJa="ライト・ダークモード用のティントサーフェスプリセットとアクセントペアリングマトリクス。" />
 
       <Group label="Surface Presets" labelJa="サーフェスプリセット">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
           {SURFACE_PRESETS.map((preset) => {
             const light = generateLightSurface(preset.hue, preset.tintStrength, preset.lightnessBase)
             const dark = generateDarkSurface(preset.hue, preset.tintStrength)
@@ -1005,71 +902,71 @@ function SurfacesSection() {
                 key={preset.id}
                 style={{
                   background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 12,
-                  padding: 24,
+                  border: 'var(--border-width-thin) solid var(--border-subtle)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 'var(--space-xl)',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 4 }}>
-                  <span style={{ fontSize: 15, fontWeight: 600 }}>{locale === 'ja' ? preset.nameJa : preset.name}</span>
-                  {locale === 'en' && <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{preset.nameJa}</span>}
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-md)', marginBottom: 'var(--space-xs)' }}>
+                  <span style={{ fontSize: 'var(--text-md)', fontWeight: 600 }}>{locale === 'ja' ? preset.nameJa : preset.name}</span>
+                  {locale === 'en' && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{preset.nameJa}</span>}
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)', marginBottom: 20 }}>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)', marginBottom: 'var(--space-lg)' }}>
                   Hue: {preset.hue} &middot; Tint: {preset.tintStrength} &middot; Lightness base: {preset.lightnessBase}
                 </div>
 
-                <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 10 }}>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
                   {t.bgHierarchy}
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)', marginBottom: 'var(--space-lg)' }}>
                   <div>
-                    <div style={{ fontSize: 11, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.light}</div>
-                    <div style={{ display: 'flex', gap: 6 }}>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.light}</div>
+                    <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
                       {lightBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
-                          <div style={{ height: 40, borderRadius: 8, background: bg.hex, border: '1px solid var(--border-subtle)', marginBottom: 4 }} />
-                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
+                          <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', marginBottom: 'var(--space-xs)' }} />
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: 11, color: 'var(--text-disabled)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.dark}</div>
-                    <div style={{ display: 'flex', gap: 6 }}>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.dark}</div>
+                    <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
                       {darkBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
-                          <div style={{ height: 40, borderRadius: 8, background: bg.hex, border: '1px solid rgba(255,255,255,0.1)', marginBottom: 4 }} />
-                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
+                          <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', marginBottom: 'var(--space-xs)' }} />
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 10 }}>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
                   {t.textHierarchy}
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                  <div style={{ display: 'flex', gap: 8 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
                     {lightTexts.map((tx) => (
-                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <div style={{ width: 16, height: 16, borderRadius: 4, background: tx.hex, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
+                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                        <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div style={{ display: 'flex', gap: 8 }}>
+                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
                     {darkTexts.map((tx) => (
-                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <div style={{ width: 16, height: 16, borderRadius: 4, background: tx.hex, border: '1px solid rgba(255,255,255,0.1)', flexShrink: 0 }} />
+                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                        <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 11, color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
                     ))}
@@ -1082,26 +979,26 @@ function SurfacesSection() {
       </Group>
 
       <Group label="Surface x Accent Matrix" labelJa="サーフェス x アクセント マトリクス">
-        <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '0 0 16px', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
           {t.surfaceAccentMatrixDesc}
         </p>
         <div
           style={{
             background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 12,
-            padding: 24,
+            border: 'var(--border-width-thin) solid var(--border-subtle)',
+            borderRadius: 'var(--radius-lg)',
+            padding: 'var(--space-xl)',
             overflowX: 'auto',
           }}
         >
           <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
               <tr>
-                <th style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textAlign: 'left', padding: '0 12px 12px 0', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <th style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'left', padding: '0 var(--space-md) var(--space-md) 0', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {t.surface}
                 </th>
                 {matrixAccents.map((a) => (
-                  <th key={a.id} style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textAlign: 'center', padding: '0 8px 12px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  <th key={a.id} style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'center', padding: '0 var(--space-sm) var(--space-md)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     {locale === 'ja' ? a.nameJa : a.name}
                   </th>
                 ))}
@@ -1113,19 +1010,19 @@ function SurfacesSection() {
                 const light = generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
                 return (
                   <tr key={surface.id}>
-                    <td style={{ fontSize: 12, fontWeight: 500, padding: '8px 12px 8px 0', color: 'var(--text-secondary)' }}>
+                    <td style={{ fontSize: 'var(--text-sm)', fontWeight: 500, padding: 'var(--space-sm) var(--space-md) var(--space-sm) 0', color: 'var(--text-secondary)' }}>
                       {locale === 'ja' ? surface.nameJa : surface.name}
                     </td>
                     {matrixAccents.map((accent) => (
-                      <td key={accent.id} style={{ padding: '6px 8px', textAlign: 'center' }}>
-                        <div style={{ display: 'flex', gap: 4, justifyContent: 'center' }}>
+                      <td key={accent.id} style={{ padding: 'var(--space-xs) var(--space-sm)', textAlign: 'center' }}>
+                        <div style={{ display: 'flex', gap: 'var(--space-xs)', justifyContent: 'center' }}>
                           <div
                             style={{
                               width: 36,
                               height: 28,
-                              borderRadius: 6,
+                              borderRadius: 'var(--radius-sm)',
                               background: dark['--bg-primary'],
-                              border: '1px solid rgba(255,255,255,0.08)',
+                              border: 'var(--border-width-thin) solid rgba(255,255,255,0.08)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
@@ -1137,9 +1034,9 @@ function SurfacesSection() {
                             style={{
                               width: 36,
                               height: 28,
-                              borderRadius: 6,
+                              borderRadius: 'var(--radius-sm)',
                               background: light['--bg-primary'],
-                              border: '1px solid rgba(0,0,0,0.08)',
+                              border: 'var(--border-width-thin) solid rgba(0,0,0,0.08)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
@@ -1159,10 +1056,10 @@ function SurfacesSection() {
       </Group>
 
       <Group label="Secondary Accent Generation" labelJa="セカンダリアクセント生成">
-        <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '0 0 16px', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
           {t.secondaryAccentGenDesc}
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           {ACCENT_PRESETS.slice(0, 6).map((accent) => {
             const secondary = generateSecondaryAccent(accent.color)
             const primaryHsl = hexToHsl(accent.color)
@@ -1173,28 +1070,28 @@ function SurfacesSection() {
                 key={accent.id}
                 style={{
                   background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 10,
-                  padding: 16,
+                  border: 'var(--border-width-thin) solid var(--border-subtle)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: 'var(--space-lg)',
                 }}
               >
-                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 12 }}>{locale === 'ja' ? accent.nameJa : accent.name}</div>
-                <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+                <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, marginBottom: 'var(--space-md)' }}>{locale === 'ja' ? accent.nameJa : accent.name}</div>
+                <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ height: 32, borderRadius: 6, background: accent.color, marginBottom: 4 }} />
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{t.primary}</div>
-                    <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{accent.color}</div>
+                    <div style={{ height: 'var(--space-2xl)', borderRadius: 'var(--radius-sm)', background: accent.color, marginBottom: 'var(--space-xs)' }} />
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{t.primary}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{accent.color}</div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-disabled)', fontSize: 14 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-disabled)', fontSize: 'var(--text-md)' }}>
                     &rarr;
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ height: 32, borderRadius: 6, background: secondary, marginBottom: 4 }} />
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{t.secondary}</div>
-                    <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{secondary}</div>
+                    <div style={{ height: 'var(--space-2xl)', borderRadius: 'var(--radius-sm)', background: secondary, marginBottom: 'var(--space-xs)' }} />
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{t.secondary}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{secondary}</div>
                   </div>
                 </div>
-                <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>
+                <div style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>
                   Hue shift: {Math.round(primaryHsl.h)} &rarr; {Math.round(secondaryHsl.h)} (+60)
                 </div>
               </div>
@@ -1215,45 +1112,41 @@ function TypographySection() {
       <Group label="Type Scale" labelJa="タイプスケール">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
           {[
-            { token: '--text-display-lg', size: '180px', weight: 800, text: t.displayHero, clampDisplay: true },
-            { token: '--text-display', size: '120px', weight: 800, text: t.displayMain, clampDisplay: true },
-            { token: '--text-5xl', size: '64px', weight: 700, text: t.displayXl },
-            { token: '--text-4xl', size: '48px', weight: 700, text: t.displayLg },
-            { token: '--text-3xl', size: '32px', weight: 700, text: t.displayHeading },
-            { token: '--text-2xl', size: '24px', weight: 700, text: t.pageHeading },
-            { token: '--text-xl', size: '20px', weight: 600, text: t.sectionTitle },
-            { token: '--text-lg', size: '16px', weight: 600, text: t.cardHeading },
-            { token: '--text-md', size: '14px', weight: 500, text: t.bodyEmphasis },
-            { token: '--text-base', size: '13px', weight: 400, text: t.defaultBody },
-            { token: '--text-sm', size: '12px', weight: 400, text: t.secondaryText },
-            { token: '--text-xs', size: '10px', weight: 500, text: t.labelsCaptions, transform: 'uppercase' as const },
+            { token: '--text-3xl', weight: 700, text: t.displayHeading },
+            { token: '--text-2xl', weight: 700, text: t.pageHeading },
+            { token: '--text-xl', weight: 600, text: t.sectionTitle },
+            { token: '--text-lg', weight: 600, text: t.cardHeading },
+            { token: '--text-md', weight: 500, text: t.bodyEmphasis },
+            { token: '--text-base', weight: 400, text: t.defaultBody },
+            { token: '--text-sm', weight: 400, text: t.secondaryText },
+            { token: '--text-xs', weight: 500, text: t.labelsCaptions, transform: 'uppercase' as const },
           ].map((item) => (
             <div
               key={item.token}
               style={{
                 display: 'flex',
                 alignItems: 'baseline',
-                gap: 24,
-                padding: '14px 0',
-                borderBottom: '1px solid var(--border-default)',
+                gap: 'var(--space-xl)',
+                padding: 'var(--space-md) 0',
+                borderBottom: 'var(--border-width-thin) solid var(--border-default)',
               }}
             >
               <code
                 style={{
                   width: 100,
                   flexShrink: 0,
-                  fontSize: 11,
+                  fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-muted)',
                 }}
               >
-                {item.size}
+                {item.token}
               </code>
               <span
                 style={{
-                  fontSize: item.clampDisplay ? `min(${item.size}, 8vw)` : item.size,
+                  fontSize: `var(${item.token})`,
                   fontWeight: item.weight,
-                  letterSpacing: item.token.includes('display') || item.token.includes('5xl') || item.token.includes('4xl') || item.token.includes('3xl') || item.token.includes('2xl') ? '-0.02em' : undefined,
+                  letterSpacing: item.token.includes('3xl') || item.token.includes('2xl') ? '-0.02em' : undefined,
                   textTransform: item.transform,
                   color: item.token === '--text-sm' || item.token === '--text-xs' ? 'var(--text-secondary)' : undefined,
                   lineHeight: 1.1,
@@ -1281,16 +1174,16 @@ function TypographySection() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 24,
-                padding: '12px 0',
-                borderBottom: '1px solid var(--border-default)',
+                gap: 'var(--space-xl)',
+                padding: 'var(--space-md) 0',
+                borderBottom: 'var(--border-width-thin) solid var(--border-default)',
               }}
             >
               <code
                 style={{
                   width: 220,
                   flexShrink: 0,
-                  fontSize: 11,
+                  fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-muted)',
                 }}
@@ -1301,7 +1194,7 @@ function TypographySection() {
                 style={{
                   width: 60,
                   flexShrink: 0,
-                  fontSize: 11,
+                  fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-disabled)',
                 }}
@@ -1310,7 +1203,7 @@ function TypographySection() {
               </code>
               <span
                 style={{
-                  fontSize: 14,
+                  fontSize: 'var(--text-md)',
                   fontWeight: 500,
                   letterSpacing: item.value,
                   textTransform: 'uppercase',
@@ -1324,34 +1217,34 @@ function TypographySection() {
       </Group>
 
       <Group label="Font Families" labelJa="フォントファミリー">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <div
             style={{
               background: 'var(--bg-secondary)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 10,
-              padding: '16px 20px',
+              border: 'var(--border-width-thin) solid var(--border-subtle)',
+              borderRadius: 'var(--radius-md)',
+              padding: 'var(--space-lg) var(--space-lg)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
             }}
           >
-            <span style={{ fontSize: 14 }}>Noto Sans JP / System</span>
-            <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-family</code>
+            <span style={{ fontSize: 'var(--text-md)' }}>Noto Sans JP / System</span>
+            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-family</code>
           </div>
           <div
             style={{
               background: 'var(--bg-secondary)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 10,
-              padding: '16px 20px',
+              border: 'var(--border-width-thin) solid var(--border-subtle)',
+              borderRadius: 'var(--radius-md)',
+              padding: 'var(--space-lg) var(--space-lg)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
             }}
           >
-            <span style={{ fontSize: 14, fontFamily: 'var(--font-mono)' }}>SF Mono / Fira Code</span>
-            <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-mono</code>
+            <span style={{ fontSize: 'var(--text-md)', fontFamily: 'var(--font-mono)' }}>SF Mono / Fira Code</span>
+            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-mono</code>
           </div>
         </div>
       </Group>
@@ -1386,16 +1279,16 @@ function SpacingSection() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 16,
-                padding: '10px 0',
-                borderBottom: '1px solid var(--border-default)',
+                gap: 'var(--space-lg)',
+                padding: 'var(--space-sm) 0',
+                borderBottom: 'var(--border-width-thin) solid var(--border-default)',
               }}
             >
               <code
                 style={{
                   width: 60,
                   flexShrink: 0,
-                  fontSize: 12,
+                  fontSize: 'var(--text-sm)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-muted)',
                 }}
@@ -1404,14 +1297,14 @@ function SpacingSection() {
               </code>
               <div
                 style={{
-                  height: 8,
+                  height: 'var(--space-sm)',
                   width: s.value,
                   background: 'var(--accent)',
-                  borderRadius: 4,
+                  borderRadius: 'var(--radius-sm)',
                   flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: 12, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                 {s.value}
               </span>
             </div>
@@ -1434,16 +1327,16 @@ function SpacingSection() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 16,
-                padding: '10px 0',
-                borderBottom: '1px solid var(--border-default)',
+                gap: 'var(--space-lg)',
+                padding: 'var(--space-sm) 0',
+                borderBottom: 'var(--border-width-thin) solid var(--border-default)',
               }}
             >
               <code
                 style={{
                   width: 140,
                   flexShrink: 0,
-                  fontSize: 12,
+                  fontSize: 'var(--text-sm)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-muted)',
                 }}
@@ -1452,17 +1345,17 @@ function SpacingSection() {
               </code>
               <div
                 style={{
-                  height: 8,
+                  height: 'var(--space-sm)',
                   width: `min(${c.value}, 100%)`,
                   maxWidth: '100%',
                   background: 'var(--accent)',
-                  borderRadius: 4,
+                  borderRadius: 'var(--radius-sm)',
                   flexShrink: 1,
                   flex: 1,
                   opacity: 0.6,
                 }}
               />
-              <span style={{ fontSize: 12, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', flexShrink: 0 }}>
+              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', flexShrink: 0 }}>
                 {c.value}
               </span>
             </div>
@@ -1471,7 +1364,7 @@ function SpacingSection() {
       </Group>
 
       <Group label="Border Radius" labelJa="ボーダーラディウス">
-        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-lg)', flexWrap: 'wrap' }}>
           {[
             { token: 'none', value: '0', px: '0px' },
             { token: 'xs', value: '2px', px: '2px' },
@@ -1487,13 +1380,13 @@ function SpacingSection() {
                   width: 56,
                   height: 56,
                   background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-default)',
+                  border: 'var(--border-width-thin) solid var(--border-default)',
                   borderRadius: r.px,
-                  marginBottom: 8,
+                  marginBottom: 'var(--space-sm)',
                 }}
               />
-              <div style={{ fontSize: 12, fontWeight: 500 }}>{r.token}</div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{r.value}</div>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 500 }}>{r.token}</div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{r.value}</div>
             </div>
           ))}
         </div>
@@ -1639,15 +1532,15 @@ function InputsSection() {
         <Stage>
           <div className="ds-row">
             <Toggle checked={toggle1} onChange={setToggle1} label={t.toggleOff} />
-            <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{t.off}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>{t.off}</span>
           </div>
           <div className="ds-row">
             <Toggle checked={toggle2} onChange={setToggle2} label={t.toggleOn} />
-            <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{t.on}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>{t.on}</span>
           </div>
           <div className="ds-row">
             <Toggle checked={false} onChange={() => {}} disabled label={t.disabled} />
-            <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t.disabled}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{t.disabled}</span>
           </div>
         </Stage>
       </Group>
@@ -1705,7 +1598,7 @@ function DataDisplaySection() {
       </Group>
 
       <Group label="Stat Card" labelJa="統計カード">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-md)' }}>
           <StatCard label={t.totalItems} value="1,234" />
           <StatCard label={t.growth} value="+12%" trend={{ value: "+12%", direction: "up" }} />
           <StatCard label={t.errors} value="3" trend={{ value: "-2", direction: "down" }} />
@@ -1780,14 +1673,14 @@ function DataDisplaySection() {
       </Group>
 
       <Group label="Divider" labelJa="ディバイダー">
-        <Stage col style={{ gap: 16 }}>
-          <p style={{ fontSize: 13, color: 'var(--text-secondary)', margin: 0 }}>{t.contentAbove}</p>
+        <Stage col style={{ gap: 'var(--space-lg)' }}>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>{t.contentAbove}</p>
           <Divider />
-          <p style={{ fontSize: 13, color: 'var(--text-secondary)', margin: 0 }}>{t.contentBelow}</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, height: 32 }}>
-            <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{t.leftLabel}</span>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>{t.contentBelow}</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', height: 'var(--space-2xl)' }}>
+            <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>{t.leftLabel}</span>
             <Divider direction="vertical" />
-            <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{t.rightLabel}</span>
+            <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>{t.rightLabel}</span>
           </div>
         </Stage>
       </Group>
@@ -1811,7 +1704,7 @@ function FeedbackSection() {
       </Group>
 
       <Group label="Progress Ring" labelJa="プログレスリング">
-        <Stage style={{ alignItems: 'center', gap: 24 }}>
+        <Stage style={{ alignItems: 'center', gap: 'var(--space-xl)' }}>
           <ProgressRing value={0} showLabel />
           <ProgressRing value={25} showLabel color="var(--info)" />
           <ProgressRing value={50} showLabel color="var(--warning)" />
@@ -1824,7 +1717,7 @@ function FeedbackSection() {
         <Stage col style={{ maxWidth: 400 }}>
           <Skeleton variant="title" />
           <Skeleton variant="text" count={3} />
-          <div style={{ marginTop: 12 }}>
+          <div style={{ marginTop: 'var(--space-md)' }}>
             <Skeleton variant="card" />
           </div>
         </Stage>
@@ -1866,10 +1759,10 @@ function OverlaysSection() {
         </Stage>
         <Modal open={modalOpen} onClose={() => setModalOpen(false)} showClose>
           <ModalHeader>
-            <h3 style={{ fontSize: 16, fontWeight: 600, margin: 0 }}>{t.modalTitle}</h3>
+            <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 600, margin: 0 }}>{t.modalTitle}</h3>
           </ModalHeader>
           <ModalBody>
-            <p style={{ fontSize: 13, color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
+            <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
               {t.modalBody}
             </p>
           </ModalBody>
@@ -1906,7 +1799,7 @@ function OverlaysSection() {
             trigger={
               <Button variant="secondary">
                 {t.actions}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 4 }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 'var(--space-xs)' }}>
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
               </Button>
@@ -1994,7 +1887,7 @@ function NavigationSection() {
       <SectionHeader title="Navigation" titleJa="ナビゲーション" desc={t.navigationDesc} descJa="パンくず、ページネーション、アコーディオンなどのナビゲーション・コンテンツ整理コンポーネント。" />
 
       <Group label={t.alert} labelJa="アラート">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <Alert variant="info">{t.alertInfoMsg}</Alert>
           <Alert variant="success">{t.alertSuccessMsg}</Alert>
           <Alert variant="warning">{t.alertWarningMsg}</Alert>
@@ -2089,8 +1982,8 @@ function NavigationSection() {
 function LayoutBox({ children, label }: { children?: ReactNode; label?: string }) {
   return (
     <div style={{
-      padding: '12px 16px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
-      borderRadius: 8, fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
+      padding: 'var(--space-md) var(--space-lg)', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)',
+      borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
       textAlign: 'center', minHeight: 40, display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
       {label || children}
@@ -2113,9 +2006,9 @@ function LayoutSection() {
 
       {/* Stack */}
       <Group label="Stack (Vertical / Horizontal)" labelJa="Stack（垂直・水平）">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直 (gap=md)' : 'Vertical (gap=md)'}
             </div>
             <Stack gap="md">
@@ -2125,7 +2018,7 @@ function LayoutSection() {
             </Stack>
           </div>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '水平 (gap=sm)' : 'Horizontal (gap=sm)'}
             </div>
             <Stack direction="horizontal" gap="sm">
@@ -2140,9 +2033,9 @@ function LayoutSection() {
 
       {/* Grid */}
       <Group label="Grid (Fixed / Auto-fill / Responsive)" labelJa="Grid（固定・自動・レスポンシブ）">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '3カラム固定' : '3 Columns Fixed'}
             </div>
             <Grid columns={3} gap="sm">
@@ -2150,7 +2043,7 @@ function LayoutSection() {
             </Grid>
           </div>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? 'Auto-fill (最小120px)' : 'Auto-fill (min 120px)'}
             </div>
             <Grid autoFill="120px" gap="sm">
@@ -2162,13 +2055,13 @@ function LayoutSection() {
 
       {/* Container */}
       <Group label="Container (Size Presets)" labelJa="Container（サイズプリセット）">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           {(['xs', 'sm', 'md', 'article', 'default', 'wide'] as const).map(size => (
-            <div key={size} style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: '4px 0' }}>
+            <div key={size} style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-xs) 0' }}>
               <Container size={size}>
                 <div style={{
-                  padding: '8px 12px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
-                  borderRadius: 6, fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
+                  padding: 'var(--space-sm) var(--space-md)', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)',
+                  borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-sm)', color: 'var(--accent-light)', fontFamily: 'var(--font-mono)',
                 }}>
                   {size}
                 </div>
@@ -2180,8 +2073,8 @@ function LayoutSection() {
 
       {/* Center */}
       <Group label="Center" labelJa="Center（中央揃え）">
-        <Center style={{ height: 120, background: 'var(--bg-secondary)', borderRadius: 8 }}>
-          <div style={{ padding: '12px 24px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 8, fontSize: 13, color: 'var(--accent-light)' }}>
+        <Center style={{ height: 120, background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)' }}>
+          <div style={{ padding: 'var(--space-md) var(--space-xl)', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-base)', color: 'var(--accent-light)' }}>
             {ja ? '縦横中央' : 'Centered'}
           </div>
         </Center>
@@ -2189,28 +2082,28 @@ function LayoutSection() {
 
       {/* SplitView */}
       <Group label="SplitView (Resizable)" labelJa="SplitView（リサイズ可能）">
-        <div style={{ height: 200, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+        <div style={{ height: 200, borderRadius: 'var(--radius-md)', overflow: 'hidden', border: 'var(--border-width-thin) solid var(--border-subtle)' }}>
           <SplitView
             resizable
             defaultSize={240}
             minSize={120}
             maxSize={500}
             primary={
-              <div style={{ padding: 16, background: 'var(--bg-secondary)', height: '100%' }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+              <div style={{ padding: 'var(--space-lg)', background: 'var(--bg-secondary)', height: '100%' }}>
+                <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-sm)' }}>
                   {ja ? 'プライマリ' : 'Primary'}
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>
                   {ja ? 'ドラッグでリサイズ' : 'Drag divider to resize'}
                 </div>
               </div>
             }
             secondary={
-              <div style={{ padding: 16, background: 'var(--bg-primary)', height: '100%' }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+              <div style={{ padding: 'var(--space-lg)', background: 'var(--bg-primary)', height: '100%' }}>
+                <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-sm)' }}>
                   {ja ? 'セカンダリ' : 'Secondary'}
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>
                   {ja ? '残りのスペースを使用' : 'Takes remaining space'}
                 </div>
               </div>
@@ -2221,12 +2114,12 @@ function LayoutSection() {
 
       {/* AspectRatio */}
       <Group label="AspectRatio" labelJa="AspectRatio（アスペクト比）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)' }}>
           {(['1:1', '16:9', '4:3', '3:2'] as const).map(ratio => (
             <div key={ratio}>
-              <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 4, fontFamily: 'var(--font-mono)' }}>{ratio}</div>
+              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-mono)' }}>{ratio}</div>
               <AspectRatio ratio={ratio}>
-                <div style={{ width: '100%', height: '100%', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--accent-light)' }}>
+                <div style={{ width: '100%', height: '100%', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--text-sm)', color: 'var(--accent-light)' }}>
                   {ratio}
                 </div>
               </AspectRatio>
@@ -2237,27 +2130,27 @@ function LayoutSection() {
 
       {/* ScrollArea */}
       <Group label="ScrollArea" labelJa="ScrollArea（スクロール領域）">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直スクロール' : 'Vertical Scroll'}
             </div>
-            <ScrollArea maxHeight="160px" style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: 12 }}>
+            <ScrollArea maxHeight="160px" style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)' }}>
               {Array.from({ length: 20 }, (_, i) => (
-                <div key={i} style={{ padding: '6px 0', fontSize: 12, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+                <div key={i} style={{ padding: 'var(--space-xs) 0', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', borderBottom: 'var(--border-width-thin) solid var(--border-subtle)' }}>
                   {ja ? `アイテム ${i + 1}` : `Item ${i + 1}`}
                 </div>
               ))}
             </ScrollArea>
           </div>
           <div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '水平スクロール' : 'Horizontal Scroll'}
             </div>
-            <ScrollArea direction="horizontal" style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: 12 }}>
-              <div style={{ display: 'flex', gap: 8 }}>
+            <ScrollArea direction="horizontal" style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)' }}>
+              <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
                 {Array.from({ length: 12 }, (_, i) => (
-                  <div key={i} style={{ padding: '8px 20px', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 6, fontSize: 12, color: 'var(--accent-light)', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  <div key={i} style={{ padding: 'var(--space-sm) var(--space-lg)', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-sm)', color: 'var(--accent-light)', whiteSpace: 'nowrap', flexShrink: 0 }}>
                     {ja ? `カード ${i + 1}` : `Card ${i + 1}`}
                   </div>
                 ))}
@@ -2269,19 +2162,19 @@ function LayoutSection() {
 
       {/* Spacer */}
       <Group label="Spacer" labelJa="Spacer（スペーサー）">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 0, background: 'var(--bg-secondary)', borderRadius: 8, padding: 12, height: 60 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 0, background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)', height: 60 }}>
           <LayoutBox label={ja ? '左' : 'Left'} />
           <Spacer />
           <LayoutBox label={ja ? '右' : 'Right'} />
         </div>
-        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 8 }}>
+        <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginTop: 'var(--space-sm)' }}>
           {ja ? 'Spacer は flex: 1 で要素を両端に押しやります' : 'Spacer uses flex: 1 to push items to opposite ends'}
         </div>
       </Group>
 
       {/* CSS Layout Classes */}
       <Group label="CSS Layout Classes" labelJa="CSSレイアウトクラス">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-sm)' }}>
           {[
             { name: '.app-shell', desc: ja ? 'アプリ全体のシェル' : 'Full app shell' },
             { name: '.split-equal', desc: ja ? '均等2分割' : 'Equal split' },
@@ -2300,9 +2193,9 @@ function LayoutSection() {
             { name: '.bottom-nav', desc: ja ? 'ボトムナビ' : 'Bottom nav (mobile)' },
             { name: '.sr-only', desc: ja ? 'SR専用' : 'Screen reader only' },
           ].map(item => (
-            <div key={item.name} style={{ padding: '8px 12px', background: 'var(--bg-secondary)', borderRadius: 6, display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <code style={{ fontSize: 12, color: 'var(--accent-light)', fontFamily: 'var(--font-mono)' }}>{item.name}</code>
-              <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{item.desc}</span>
+            <div key={item.name} style={{ padding: 'var(--space-sm) var(--space-md)', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
+              <code style={{ fontSize: 'var(--text-sm)', color: 'var(--accent-light)', fontFamily: 'var(--font-mono)' }}>{item.name}</code>
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{item.desc}</span>
             </div>
           ))}
         </div>
@@ -2317,31 +2210,31 @@ function LayoutSection() {
 
 const demoBox: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center',
-  minWidth: 48, minHeight: 36, padding: '6px 10px',
-  background: 'var(--accent-bg)', border: '1px solid var(--accent-border)',
-  borderRadius: 4, fontSize: 11, fontWeight: 600, fontFamily: 'var(--font-mono)',
+  minWidth: 48, minHeight: 36, padding: 'var(--space-xs) var(--space-sm)',
+  background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)',
+  borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontWeight: 600, fontFamily: 'var(--font-mono)',
   color: 'var(--accent-light)', whiteSpace: 'nowrap',
 }
 
 const demoStage: React.CSSProperties = {
-  background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)',
-  borderRadius: 10, padding: 20,
+  background: 'var(--bg-secondary)', border: 'var(--border-width-thin) solid var(--border-subtle)',
+  borderRadius: 'var(--radius-md)', padding: 'var(--space-lg)',
 }
 
 const demoLabel: React.CSSProperties = {
-  fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)',
-  marginBottom: 8,
+  fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)',
+  marginBottom: 'var(--space-sm)',
 }
 
 function UtilVisual({ label, labelJa, code, children }: { label: string; labelJa: string; code: string; children: ReactNode }) {
   const { locale } = useLocale()
   return (
-    <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
-        <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>
+    <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
+        <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)' }}>
           {locale === 'ja' && labelJa ? labelJa : label}
         </span>
-        <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)', background: 'var(--accent-bg)', padding: '2px 6px', borderRadius: 4 }}>
+        <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-light)', background: 'var(--accent-bg)', padding: 'var(--space-2xs) var(--space-xs)', borderRadius: 'var(--radius-sm)' }}>
           {code}
         </code>
       </div>
@@ -2360,7 +2253,7 @@ function UtilitiesSection() {
 
       {/* Display */}
       <Group label={t.utilDisplay} labelJa="ディスプレイ">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="flex" labelJa="flex" code=".flex">
             <div style={{ display: 'flex', gap: 6 }}>
               <div style={demoBox}>A</div><div style={demoBox}>B</div><div style={demoBox}>C</div>
@@ -2379,14 +2272,14 @@ function UtilitiesSection() {
           </UtilVisual>
           <UtilVisual label="inline-flex" labelJa="inline-flex" code=".inline-flex">
             <span style={{ ...demoBox, display: 'inline-flex' }}>inline</span>
-            <span style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 6 }}>{locale === 'ja' ? '← テキストと同じ行に' : '← sits inline with text'}</span>
+            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginLeft: 6 }}>{locale === 'ja' ? '← テキストと同じ行に' : '← sits inline with text'}</span>
           </UtilVisual>
         </div>
       </Group>
 
       {/* Flex */}
       <Group label={t.utilFlex} labelJa="フレックス">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="items-center" labelJa="items-center" code=".items-center">
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, minHeight: 60 }}>
               <div style={{ ...demoBox, height: 24 }}>A</div>
@@ -2420,7 +2313,7 @@ function UtilitiesSection() {
 
       {/* Grid */}
       <Group label={t.utilGrid} labelJa="グリッド">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           {([2, 3, 4] as const).map(cols => (
             <UtilVisual key={cols} label={`${cols} columns`} labelJa={`${cols}カラム`} code={`.grid-cols-${cols}`}>
               <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap: 6 }}>
@@ -2442,22 +2335,22 @@ function UtilitiesSection() {
 
       {/* Position */}
       <Group label={t.utilPosition} labelJa="ポジション">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="relative + absolute" labelJa="relative + absolute" code=".relative .absolute">
-            <div style={{ position: 'relative', height: 80, background: 'var(--p-white-3)', borderRadius: 4 }}>
-              <div style={{ ...demoBox, position: 'absolute', top: 4, right: 4, fontSize: 11 }}>absolute</div>
-              <div style={{ ...demoBox, position: 'absolute', bottom: 4, left: 4, fontSize: 11, background: 'var(--warning-bg)', borderColor: 'var(--warning-border)', color: 'var(--warning-light)' }}>bottom-left</div>
+            <div style={{ position: 'relative', height: 80, background: 'var(--p-white-3)', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ ...demoBox, position: 'absolute', top: 'var(--space-xs)', right: 'var(--space-xs)' }}>absolute</div>
+              <div style={{ ...demoBox, position: 'absolute', bottom: 'var(--space-xs)', left: 'var(--space-xs)', background: 'var(--warning-bg)', borderColor: 'var(--warning-border)', color: 'var(--warning-light)' }}>bottom-left</div>
             </div>
           </UtilVisual>
           <UtilVisual label="sticky" labelJa="sticky" code=".sticky .top-0">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <div style={{ ...demoBox, background: 'var(--info-bg)', borderColor: 'var(--info-border)', color: 'var(--info-light)' }}>sticky</div>
-              <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
             </div>
           </UtilVisual>
           <UtilVisual label="inset-0" labelJa="inset-0" code=".inset-0">
-            <div style={{ position: 'relative', height: 60, background: 'var(--p-white-3)', borderRadius: 4 }}>
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--error-bg)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--error-light)' }}>
+            <div style={{ position: 'relative', height: 60, background: 'var(--p-white-3)', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--error-bg)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--error-light)' }}>
                 inset: 0
               </div>
             </div>
@@ -2467,7 +2360,7 @@ function UtilitiesSection() {
 
       {/* Sizing */}
       <Group label={t.utilSizing} labelJa="サイジング">
-        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           {[
             { cls: '.w-full', w: '100%' },
             { cls: '.w-3/4', w: '75%' },
@@ -2475,10 +2368,10 @@ function UtilitiesSection() {
             { cls: '.w-1/3', w: '33.3%' },
             { cls: '.w-1/4', w: '25%' },
           ].map(item => (
-            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 56, flexShrink: 0 }}>{item.cls}</code>
-              <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 6 }}>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
+            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 56, flexShrink: 0 }}>{item.cls}</code>
+              <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 'var(--space-xs)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
               </div>
             </div>
           ))}
@@ -2487,7 +2380,7 @@ function UtilitiesSection() {
 
       {/* Padding */}
       <Group label={t.utilPadding} labelJa="スペーシング（パディング）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 'var(--space-md)' }}>
           {[
             { cls: '.p-1', val: '4px' },
             { cls: '.p-2', val: '8px' },
@@ -2496,8 +2389,8 @@ function UtilitiesSection() {
             { cls: '.p-8', val: '32px' },
           ].map(item => (
             <UtilVisual key={item.cls} label={item.val} labelJa={item.val} code={item.cls}>
-              <div style={{ background: 'var(--warning-bg)', borderRadius: 4, padding: parseInt(item.val) }}>
-                <div style={{ background: 'var(--bg-card)', borderRadius: 2, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+              <div style={{ background: 'var(--warning-bg)', borderRadius: 'var(--radius-sm)', padding: parseInt(item.val) }}>
+                <div style={{ background: 'var(--bg-card)', borderRadius: 'var(--radius-xs)', height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   content
                 </div>
               </div>
@@ -2508,25 +2401,25 @@ function UtilitiesSection() {
 
       {/* Margin */}
       <Group label={t.utilMargin} labelJa="スペーシング（マージン）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="mx-auto" labelJa="mx-auto" code=".mx-auto">
-            <div style={{ background: 'var(--p-white-3)', borderRadius: 4, padding: 4 }}>
+            <div style={{ background: 'var(--p-white-3)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-xs)' }}>
               <div style={{ ...demoBox, width: 80, margin: '0 auto' }}>center</div>
             </div>
           </UtilVisual>
           <UtilVisual label="mt-4 (16px)" labelJa="mt-4 (16px)" code=".mt-4">
-            <div style={{ background: 'var(--p-white-3)', borderRadius: 4, padding: 4 }}>
+            <div style={{ background: 'var(--p-white-3)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-xs)' }}>
               <div style={demoBox}>A</div>
               <div style={{ height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: 11, color: 'var(--warning-light)', fontFamily: 'var(--font-mono)' }}>16px</span>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--warning-light)', fontFamily: 'var(--font-mono)' }}>16px</span>
               </div>
               <div style={demoBox}>B</div>
             </div>
           </UtilVisual>
           <UtilVisual label="ml-2 (8px)" labelJa="ml-2 (8px)" code=".ml-2">
-            <div style={{ display: 'flex', alignItems: 'center', background: 'var(--p-white-3)', borderRadius: 4, padding: 4 }}>
+            <div style={{ display: 'flex', alignItems: 'center', background: 'var(--p-white-3)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-xs)' }}>
               <div style={demoBox}>A</div>
-              <div style={{ width: 8, minHeight: 24, background: 'var(--warning-bg)', borderRadius: 2 }} />
+              <div style={{ width: 8, minHeight: 24, background: 'var(--warning-bg)', borderRadius: 'var(--radius-xs)' }} />
               <div style={demoBox}>B</div>
             </div>
           </UtilVisual>
@@ -2535,7 +2428,7 @@ function UtilitiesSection() {
 
       {/* Gap & Space */}
       <Group label={t.utilGap} labelJa="ギャップ & スペース">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           {[
             { cls: '.gap-1', val: 4 },
             { cls: '.gap-2', val: 8 },
@@ -2560,7 +2453,7 @@ function UtilitiesSection() {
 
       {/* Typography */}
       <Group label={t.utilTypography} labelJa="タイポグラフィ">
-        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <div style={demoLabel}>{locale === 'ja' ? 'フォントサイズ' : 'Font Size'}</div>
           {[
             { cls: '.text-xs', size: 'var(--text-xs)', label: 'text-xs' },
@@ -2570,45 +2463,45 @@ function UtilitiesSection() {
             { cls: '.text-xl', size: 'var(--text-xl)', label: 'text-xl' },
             { cls: '.text-2xl', size: 'var(--text-2xl)', label: 'text-2xl' },
           ].map(item => (
-            <div key={item.cls} style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 64, flexShrink: 0 }}>{item.label}</code>
+            <div key={item.cls} style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-md)' }}>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 64, flexShrink: 0 }}>{item.label}</code>
               <span style={{ fontSize: item.size, color: 'var(--text-primary)' }}>
                 {locale === 'ja' ? 'テキストサンプル' : 'The quick brown fox'}
               </span>
             </div>
           ))}
 
-          <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 16 }}>
+          <div style={{ borderTop: 'var(--border-width-thin) solid var(--border-subtle)', paddingTop: 'var(--space-lg)' }}>
             <div style={demoLabel}>{locale === 'ja' ? 'フォントウェイト' : 'Font Weight'}</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 8 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
               {[
                 { cls: '.font-normal', weight: 400 },
                 { cls: '.font-medium', weight: 500 },
                 { cls: '.font-semibold', weight: 600 },
                 { cls: '.font-bold', weight: 700 },
               ].map(item => (
-                <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                  <span style={{ fontSize: 16, fontWeight: item.weight, color: 'var(--text-primary)' }}>Aa</span>
-                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                  <span style={{ fontSize: 'var(--text-lg)', fontWeight: item.weight, color: 'var(--text-primary)' }}>Aa</span>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
           </div>
 
-          <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 16 }}>
+          <div style={{ borderTop: 'var(--border-width-thin) solid var(--border-subtle)', paddingTop: 'var(--space-lg)' }}>
             <div style={demoLabel}>{locale === 'ja' ? 'テキスト装飾' : 'Text Decoration'}</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <span style={{ fontSize: 13, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>UPPERCASE</span>
-                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.uppercase</code>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginTop: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
+                <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>UPPERCASE</span>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.uppercase</code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <span style={{ fontSize: 13, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: 100 }}>Very long text that truncates</span>
-                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.truncate</code>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
+                <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: 100 }}>Very long text that truncates</span>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.truncate</code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <span style={{ fontSize: 13, color: 'var(--text-primary)', textDecoration: 'line-through' }}>line-through</span>
-                <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.line-through</code>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
+                <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', textDecoration: 'line-through' }}>line-through</span>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.line-through</code>
               </div>
             </div>
           </div>
@@ -2617,7 +2510,7 @@ function UtilitiesSection() {
 
       {/* Text Colors */}
       <Group label={t.utilTextColors} labelJa="テキストカラー">
-        <div style={{ ...demoStage, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 8 }}>
+        <div style={{ ...demoStage, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 'var(--space-sm)' }}>
           {[
             { cls: '.text-white', color: '#ffffff' },
             { cls: '.text-white/80', color: 'var(--p-white-80)' },
@@ -2630,9 +2523,9 @@ function UtilitiesSection() {
             { cls: '.text-amber-400', color: 'var(--p-amber-400)' },
             { cls: '.text-purple-400', color: '#c084fc' },
           ].map(item => (
-            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: item.color, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: item.color }}>{item.cls}</code>
+            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div style={{ width: 12, height: 12, borderRadius: '50%', background: item.color, border: 'var(--border-width-thin) solid var(--border-subtle)', flexShrink: 0 }} />
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: item.color }}>{item.cls}</code>
             </div>
           ))}
         </div>
@@ -2640,7 +2533,7 @@ function UtilitiesSection() {
 
       {/* Background Colors */}
       <Group label={t.utilBgColors} labelJa="背景カラー">
-        <div style={{ ...demoStage, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 8 }}>
+        <div style={{ ...demoStage, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 'var(--space-sm)' }}>
           {[
             { cls: '.bg-background', bg: 'var(--bg-primary)' },
             { cls: '.bg-secondary', bg: 'var(--bg-secondary)' },
@@ -2652,9 +2545,9 @@ function UtilitiesSection() {
             { cls: '.bg-black/60', bg: 'var(--p-black-60)' },
             { cls: '.bg-black/80', bg: 'var(--p-black-80)' },
           ].map(item => (
-            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 32, height: 24, borderRadius: 4, background: item.bg, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
+            <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div style={{ width: 32, height: 24, borderRadius: 'var(--radius-sm)', background: item.bg, border: 'var(--border-width-thin) solid var(--border-subtle)', flexShrink: 0 }} />
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
             </div>
           ))}
         </div>
@@ -2662,16 +2555,16 @@ function UtilitiesSection() {
 
       {/* Borders & Radius */}
       <Group label={t.utilBorders} labelJa="ボーダー & ラディウス">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="Border styles" labelJa="ボーダースタイル" code=".border .border-t">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <div style={{ padding: 8, border: '1px solid var(--border-default)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border</div>
-              <div style={{ padding: 8, borderTop: '1px solid var(--border-default)', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-t</div>
-              <div style={{ padding: 8, border: '1px dashed var(--border-default)', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-dashed</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) solid var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border</div>
+              <div style={{ padding: 'var(--space-sm)', borderTop: 'var(--border-width-thin) solid var(--border-default)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-t</div>
+              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) dashed var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-dashed</div>
             </div>
           </UtilVisual>
           <UtilVisual label="Border radius" labelJa="角丸" code=".rounded-*">
-            <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
               {[
                 { cls: 'none', r: 0 },
                 { cls: 'sm', r: 4 },
@@ -2679,17 +2572,17 @@ function UtilitiesSection() {
                 { cls: 'lg', r: 12 },
                 { cls: 'full', r: 9999 },
               ].map(item => (
-                <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                  <div style={{ width: 40, height: 40, background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', borderRadius: item.r }} />
-                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                  <div style={{ width: 40, height: 40, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: item.r }} />
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
           </UtilVisual>
           <UtilVisual label="Border colors" labelJa="ボーダーカラー" code=".border-white/*">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
               {[10, 20, 30].map(a => (
-                <div key={a} style={{ padding: 6, border: `1px solid var(--p-white-${a})`, borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                <div key={a} style={{ padding: 'var(--space-xs)', border: `var(--border-width-thin) solid var(--p-white-${a})`, borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   .border-white/{a}
                 </div>
               ))}
@@ -2700,35 +2593,35 @@ function UtilitiesSection() {
 
       {/* Effects & Animations */}
       <Group label={t.utilEffects} labelJa="エフェクト & アニメーション">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="Opacity" labelJa="透明度" code=".opacity-*">
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
               {[100, 75, 50, 25].map(o => (
-                <div key={o} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <div key={o} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <div style={{ ...demoBox, opacity: o / 100 }}>Aa</div>
-                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{o}%</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{o}%</code>
                 </div>
               ))}
             </div>
           </UtilVisual>
           <UtilVisual label="Transitions" labelJa="トランジション" code=".transition-all .duration-*">
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
               {[
                 { label: '150ms', dur: 'fast' },
                 { label: '200ms', dur: 'base' },
                 { label: '300ms', dur: 'slow' },
               ].map(item => (
-                <div key={item.dur} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <div key={item.dur} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <div style={{ ...demoBox, transition: `all var(--transition-${item.dur})` }}>{item.label}</div>
-                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.dur}</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.dur}</code>
                 </div>
               ))}
             </div>
           </UtilVisual>
           <UtilVisual label="Animations" labelJa="アニメーション" code=".animate-*">
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--accent-bg)', border: '1px solid var(--accent-border)', animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>pulse</code>
+            <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
+              <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>pulse</code>
             </div>
           </UtilVisual>
         </div>
@@ -2736,7 +2629,7 @@ function UtilitiesSection() {
 
       {/* State Variants */}
       <Group label={t.utilStates} labelJa="ステートバリアント">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="hover" labelJa="ホバー" code="hover:bg-white/5">
             <div
               onMouseEnter={() => setHoverActive(true)}
@@ -2769,7 +2662,7 @@ function UtilitiesSection() {
             </button>
           </UtilVisual>
           <UtilVisual label="disabled" labelJa="無効" code="disabled:opacity-50">
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
               <div style={{ ...demoBox, opacity: 1 }}>{locale === 'ja' ? '通常' : 'Normal'}</div>
               <div style={{ ...demoBox, opacity: 0.4, cursor: 'not-allowed' }}>{locale === 'ja' ? '無効' : 'Disabled'}</div>
             </div>
@@ -2779,15 +2672,15 @@ function UtilitiesSection() {
 
       {/* Responsive */}
       <Group label={t.utilResponsive} labelJa="レスポンシブ">
-        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ ...demoStage, display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <div style={demoLabel}>{locale === 'ja' ? 'ブレークポイント' : 'Breakpoints'}</div>
           {[
             { bp: 'sm', px: 640, color: 'var(--info-bg)', borderColor: 'var(--info-border)', textColor: 'var(--info-light)' },
             { bp: 'md', px: 768, color: 'var(--success-bg)', borderColor: 'var(--success-border)', textColor: 'var(--success-light)' },
             { bp: 'lg', px: 1024, color: 'var(--warning-bg)', borderColor: 'var(--warning-border)', textColor: 'var(--warning-light)' },
           ].map(item => (
-            <div key={item.bp} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', fontWeight: 600, color: item.textColor, width: 24 }}>{item.bp}</code>
+            <div key={item.bp} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', fontWeight: 600, color: item.textColor, width: 24 }}>{item.bp}</code>
               <div style={{ flex: 1, position: 'relative', height: 20 }}>
                 <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: 1, background: 'var(--border-subtle)' }} />
                 <div style={{
@@ -2796,8 +2689,8 @@ function UtilitiesSection() {
                 }} />
                 <div style={{
                   position: 'absolute', left: `${(item.px / 1280) * 100}%`, top: -2,
-                  background: item.color, border: `1px solid ${item.borderColor}`, borderRadius: 4,
-                  padding: '1px 6px', fontSize: 11, fontFamily: 'var(--font-mono)', color: item.textColor,
+                  background: item.color, border: `var(--border-width-thin) solid ${item.borderColor}`, borderRadius: 'var(--radius-sm)',
+                  padding: '1px var(--space-xs)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: item.textColor,
                   transform: 'translateX(-50%)',
                 }}>
                   {item.px}px
@@ -2805,20 +2698,20 @@ function UtilitiesSection() {
               </div>
             </div>
           ))}
-          <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 16 }}>
+          <div style={{ borderTop: 'var(--border-width-thin) solid var(--border-subtle)', paddingTop: 'var(--space-lg)' }}>
             <div style={demoLabel}>{locale === 'ja' ? '使用例: レスポンシブグリッド' : 'Example: Responsive grid'}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', marginTop: 'var(--space-sm)' }}>
               {[
                 { label: '< 640px', code: '.grid-cols-1', cols: 1, color: 'var(--p-white-6)' },
                 { label: 'sm (640px+)', code: 'sm:grid-cols-2', cols: 2, color: 'var(--info-bg)' },
                 { label: 'md (768px+)', code: 'md:grid-cols-3', cols: 3, color: 'var(--success-bg)' },
                 { label: 'lg (1024px+)', code: 'lg:grid-cols-4', cols: 4, color: 'var(--warning-bg)' },
               ].map(item => (
-                <div key={item.code} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <code style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 100, flexShrink: 0 }}>{item.code}</code>
+                <div key={item.code} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 100, flexShrink: 0 }}>{item.code}</code>
                   <div style={{ flex: 1, display: 'grid', gridTemplateColumns: `repeat(${item.cols}, 1fr)`, gap: 4 }}>
                     {Array.from({ length: item.cols }, (_, i) => (
-                      <div key={i} style={{ height: 20, background: item.color, borderRadius: 3, border: '1px solid var(--border-subtle)' }} />
+                      <div key={i} style={{ height: 20, background: item.color, borderRadius: 'var(--radius-xs)', border: 'var(--border-width-thin) solid var(--border-subtle)' }} />
                     ))}
                   </div>
                 </div>
@@ -2845,7 +2738,7 @@ function CSSComponentsSection() {
       <SectionHeader title="CSS Components" titleJa="CSSコンポーネント" desc={t.cssComponentsDesc} descJa="一般的なUI要素向けのCSSコンポーネントパターン。" />
 
       <Group label={t.containerPatterns} labelJa="コンテナパターン">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           {[
             { cls: '.container-page', desc: 'max-width: var(--container-max) (640px)', maxW: '640px' },
             { cls: '.container-wide', desc: 'max-width: var(--container-wide) (960px)', maxW: '960px' },
@@ -2856,16 +2749,16 @@ function CSSComponentsSection() {
               key={item.cls}
               style={{
                 background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 10,
-                padding: 16,
+                border: 'var(--border-width-thin) solid var(--border-subtle)',
+                borderRadius: 'var(--radius-md)',
+                padding: 'var(--space-lg)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                <code style={{ fontSize: 12, fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--text-primary)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-sm)' }}>
+                <code style={{ fontSize: 'var(--text-sm)', fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--text-primary)' }}>
                   {item.cls}
                 </code>
-                <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                   {item.desc}
                 </span>
               </div>
@@ -2874,7 +2767,7 @@ function CSSComponentsSection() {
                   style={{
                     height: 6,
                     background: 'var(--accent)',
-                    borderRadius: 3,
+                    borderRadius: 'var(--radius-xs)',
                     opacity: 0.5,
                     maxWidth: '100%',
                     width: item.maxW,
@@ -2890,9 +2783,9 @@ function CSSComponentsSection() {
         <div
           style={{
             background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 10,
-            padding: 20,
+            border: 'var(--border-width-thin) solid var(--border-subtle)',
+            borderRadius: 'var(--radius-md)',
+            padding: 'var(--space-lg)',
             overflow: 'auto',
           }}
         >
@@ -2923,7 +2816,7 @@ function CSSComponentsSection() {
 
       <Group label={t.navTabCss} labelJa="ナビタブ">
         <Stage>
-          <div style={{ display: 'flex', gap: 4 }}>
+          <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
             {navTabLabels.map((label, i) => (
               <button
                 key={label}
