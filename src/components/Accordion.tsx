@@ -45,6 +45,8 @@ function normalizeDefaultValue(
   return [defaultValue]
 }
 
+const DURATION = 250
+
 function AccordionContent({
   isOpen,
   id,
@@ -56,37 +58,43 @@ function AccordionContent({
 }) {
   const contentRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
-  const [maxHeight, setMaxHeight] = useState<string>(isOpen ? 'none' : '0px')
-  const isInitialRender = useRef(true)
+  const prevOpen = useRef(isOpen)
+
+  // Set initial state without animation
+  useEffect(() => {
+    const el = contentRef.current
+    if (el && isOpen) {
+      el.style.maxHeight = 'none'
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false
-      // On initial render, set height without transition
-      if (isOpen && innerRef.current) {
-        setMaxHeight('none')
-      }
-      return
-    }
+    if (prevOpen.current === isOpen) return
+    prevOpen.current = isOpen
 
-    if (!innerRef.current) return
+    const el = contentRef.current
+    const inner = innerRef.current
+    if (!el || !inner) return
 
     if (isOpen) {
-      const height = innerRef.current.scrollHeight
-      setMaxHeight(`${height}px`)
-      // After the transition, switch to 'none' so dynamic content can resize
-      const timer = setTimeout(() => setMaxHeight('none'), 200)
+      // Opening: animate from 0 to scrollHeight, then unlock
+      const height = inner.scrollHeight
+      el.style.maxHeight = `${height}px`
+      const timer = setTimeout(() => {
+        el.style.maxHeight = 'none'
+      }, DURATION)
       return () => clearTimeout(timer)
     } else {
-      // When closing, first set the explicit height so the transition works
-      const height = innerRef.current.scrollHeight
-      setMaxHeight(`${height}px`)
-      // Force a reflow, then transition to 0
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      contentRef.current?.offsetHeight
-      requestAnimationFrame(() => {
-        setMaxHeight('0px')
-      })
+      // Closing: snap to explicit height, then animate to 0
+      const height = inner.scrollHeight
+      el.style.transition = 'none'
+      el.style.maxHeight = `${height}px`
+      // Force reflow so browser registers the explicit height
+      void el.offsetHeight
+      // Re-enable CSS transition, animate to 0
+      el.style.transition = ''
+      el.style.maxHeight = '0px'
     }
   }, [isOpen])
 
@@ -96,11 +104,6 @@ function AccordionContent({
       id={id}
       role="region"
       className="accordion-content"
-      style={{
-        maxHeight,
-        overflow: 'hidden',
-        transition: maxHeight === 'none' ? undefined : 'max-height 0.2s ease',
-      }}
     >
       <div ref={innerRef} className="accordion-content-inner">
         {children}

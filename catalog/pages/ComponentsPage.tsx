@@ -309,6 +309,7 @@ const T = {
     containerPatterns: 'Container Patterns',
     tableCss: 'Table',
     navTabCss: 'Nav Tab',
+    segmentedControl: 'Segmented Control',
   },
   ja: {
     // Overview
@@ -538,6 +539,7 @@ const T = {
     containerPatterns: 'コンテナパターン',
     tableCss: 'テーブル',
     navTabCss: 'ナビタブ',
+    segmentedControl: 'セグメントコントロール',
   },
 } as const
 
@@ -1896,10 +1898,11 @@ function NavigationSection() {
       <Group label={t.accordion} labelJa="アコーディオン">
         <div style={{ maxWidth: 600 }}>
           <Accordion
+            type="multiple"
             items={[
-              { id: '1', title: t.faqQ1, content: t.faqA1 },
-              { id: '2', title: t.faqQ2, content: t.faqA2 },
-              { id: '3', title: t.faqQ3, content: t.faqA3 },
+              { value: '1', title: t.faqQ1, content: t.faqA1 },
+              { value: '2', title: t.faqQ2, content: t.faqA2 },
+              { value: '3', title: t.faqQ3, content: t.faqA3 },
             ]}
           />
         </div>
@@ -2725,6 +2728,23 @@ function UtilitiesSection() {
    CSS Components
    ============================================ */
 
+function SegmentedControlDemo({ items, defaultIndex = 0 }: { items: string[]; defaultIndex?: number }) {
+  const [active, setActive] = useState(defaultIndex)
+  return (
+    <div className="segmented-control">
+      {items.map((label, i) => (
+        <button
+          key={label}
+          className={`segmented-control-item${i === active ? ' segmented-control-active' : ''}`}
+          onClick={() => setActive(i)}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 function CSSComponentsSection() {
   const { t, locale } = useT()
   const [activeNavTab, setActiveNavTab] = useState(0)
@@ -2828,6 +2848,35 @@ function CSSComponentsSection() {
             </button>
           </div>
         </Stage>
+      </Group>
+
+      <Group label={t.segmentedControl} labelJa="セグメントコントロール">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+          <Stage>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', alignItems: 'flex-start' }}>
+              <SegmentedControlDemo
+                items={['EC', 'MGT']}
+                defaultIndex={0}
+              />
+              <SegmentedControlDemo
+                items={locale === 'ja' ? ['日', '週', '月'] : ['Day', 'Week', 'Month']}
+                defaultIndex={1}
+              />
+              <SegmentedControlDemo
+                items={locale === 'ja' ? ['全て', 'アクティブ', 'アーカイブ', '下書き'] : ['All', 'Active', 'Archived', 'Draft']}
+                defaultIndex={0}
+              />
+              <div className="segmented-control">
+                <button className="segmented-control-item segmented-control-active" disabled>
+                  {locale === 'ja' ? '無効' : 'Disabled'}
+                </button>
+                <button className="segmented-control-item" disabled>
+                  {locale === 'ja' ? '無効' : 'Disabled'}
+                </button>
+              </div>
+            </div>
+          </Stage>
+        </div>
       </Group>
     </>
   )
