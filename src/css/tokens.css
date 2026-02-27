@@ -405,7 +405,7 @@
   --input-border: var(--border-default);
   --input-border-hover: var(--border-strong);
   --input-border-focus: var(--text-secondary);
-  --input-radius: var(--radius-md);
+  --input-radius: 0;
   --input-text: var(--text-primary);
   --input-placeholder: var(--text-muted);
 
