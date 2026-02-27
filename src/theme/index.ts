@@ -753,7 +753,7 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     '--selected-bg', '--selected-text', '--selected-hover-bg',
     '--btn-primary-hover', '--btn-primary-active',
   ]
-  if (config.primaryStyle === 'accent') {
+  if (config.primaryStyle === 'accent' && !isNeutral) {
     const accentHex = getAccentColor(config)
     const accessibleAccent = ensureContrast(accentHex, bgHex, WCAG_AA_NORMAL)
     const buttonBg = ensureContrast(accessibleAccent, '#ffffff', WCAG_AA_NORMAL)
@@ -767,9 +767,8 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     root.style.setProperty('--btn-primary-hover', hoverColor)
     root.style.setProperty('--btn-primary-active', activeColor)
     overrideKeys.push(...BUTTON_OVERRIDE_KEYS)
-  } else if (!hasSurface) {
-    // In default surface mode with mono style, explicitly remove button overrides
-    // so the CSS cascade reverts to stylesheet defaults
+  } else {
+    // Neutral or mono style: remove button overrides to use CSS defaults
     BUTTON_OVERRIDE_KEYS.forEach(k => root.style.removeProperty(k))
   }
 
