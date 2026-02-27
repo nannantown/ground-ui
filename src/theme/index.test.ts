@@ -459,8 +459,10 @@ describe('applyAccentTheme', () => {
       }
       expect(() => applyAccentTheme(config, true)).not.toThrow()
       expect(() => applyAccentTheme(config, false)).not.toThrow()
-      // Accent token should always be set
-      expect(root.style.getPropertyValue('--accent')).toBeTruthy()
+      // Accent token should be set for non-neutral presets
+      if (pairing.accentId !== 'neutral') {
+        expect(root.style.getPropertyValue('--accent')).toBeTruthy()
+      }
     })
   })
 
@@ -476,8 +478,10 @@ describe('applyAccentTheme', () => {
       }
       applyAccentTheme(config, true)
 
-      // Verify accent is set
-      expect(root.style.getPropertyValue('--accent')).toBeTruthy()
+      // Verify accent is set for non-neutral presets
+      if (pairing.accentId !== 'neutral') {
+        expect(root.style.getPropertyValue('--accent')).toBeTruthy()
+      }
 
       // If surface is non-default, bg should be set
       if (pairing.surfaceId !== 'default') {
@@ -492,7 +496,7 @@ describe('applyAccentTheme', () => {
   })
 
   it('all accent presets produce accessible contrast on dark bg', () => {
-    ACCENT_PRESETS.forEach(preset => {
+    ACCENT_PRESETS.filter(p => p.id !== 'neutral').forEach(preset => {
       const config: ThemeConfig = { accentId: preset.id, primaryStyle: 'mono' }
       applyAccentTheme(config, true)
       const accent = root.style.getPropertyValue('--accent')
@@ -502,7 +506,7 @@ describe('applyAccentTheme', () => {
   })
 
   it('all accent presets produce accessible contrast on light bg', () => {
-    ACCENT_PRESETS.forEach(preset => {
+    ACCENT_PRESETS.filter(p => p.id !== 'neutral').forEach(preset => {
       const config: ThemeConfig = { accentId: preset.id, primaryStyle: 'mono' }
       applyAccentTheme(config, false)
       const accent = root.style.getPropertyValue('--accent')

@@ -667,6 +667,8 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
   // Collect ALL override keys set in this call for cleanup on next call
   const overrideKeys: string[] = []
 
+  const isNeutral = config.accentId === 'neutral'
+
   if (hasSurface) {
     // --- Surface mode: generate surface tokens algorithmically ---
     const surfaceTokens = darkMode
@@ -697,25 +699,27 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
       }
     }
 
-    // Get accent color
-    const accentColor = getAccentColor(config)
+    if (!isNeutral) {
+      // Get accent color
+      const accentColor = getAccentColor(config)
 
-    // Generate primary accent tokens against the surface bg
-    const primaryTokens = generateColorTokens(accentColor, bgHex, '--accent')
-    Object.entries(primaryTokens).forEach(([k, v]) => root.style.setProperty(k, v))
-    overrideKeys.push(...Object.keys(primaryTokens))
+      // Generate primary accent tokens against the surface bg
+      const primaryTokens = generateColorTokens(accentColor, bgHex, '--accent')
+      Object.entries(primaryTokens).forEach(([k, v]) => root.style.setProperty(k, v))
+      overrideKeys.push(...Object.keys(primaryTokens))
 
-    // Generate secondary accent via hue rotation
-    const secondaryColor = generateSecondaryAccent(accentColor)
-    const secondaryTokens = generateColorTokens(secondaryColor, bgHex, '--accent-secondary')
-    Object.entries(secondaryTokens).forEach(([k, v]) => root.style.setProperty(k, v))
-    overrideKeys.push(...Object.keys(secondaryTokens))
+      // Generate secondary accent via hue rotation
+      const secondaryColor = generateSecondaryAccent(accentColor)
+      const secondaryTokens = generateColorTokens(secondaryColor, bgHex, '--accent-secondary')
+      Object.entries(secondaryTokens).forEach(([k, v]) => root.style.setProperty(k, v))
+      overrideKeys.push(...Object.keys(secondaryTokens))
+    }
 
     // Clean up tertiary and surface tint (not used in new system)
     TERTIARY_VARS.forEach(v => root.style.removeProperty(v))
     SURFACE_TINT_VARS.forEach(v => root.style.removeProperty(v))
 
-  } else {
+  } else if (!isNeutral) {
     // --- Default surface: single-accent mode (identical to original behavior) ---
     bgHex = getCurrentBgHex(darkMode)
 
@@ -733,6 +737,12 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
       root.style.setProperty(k, v)
       overrideKeys.push(k)
     })
+
+    TERTIARY_VARS.forEach(v => root.style.removeProperty(v))
+    SURFACE_TINT_VARS.forEach(v => root.style.removeProperty(v))
+  } else {
+    // --- Neutral + default surface: no accent overrides, use CSS defaults ---
+    bgHex = getCurrentBgHex(darkMode)
 
     TERTIARY_VARS.forEach(v => root.style.removeProperty(v))
     SURFACE_TINT_VARS.forEach(v => root.style.removeProperty(v))
