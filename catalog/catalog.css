@@ -224,10 +224,12 @@
 /* --- Border swatch --- */
 .ds-border-swatch {
   text-align: center;
+  flex: 1 1 0;
+  min-width: 120px;
 }
 .ds-border-swatch-box {
-  width: var(--space-5xl);
-  height: var(--space-3xl);
+  aspect-ratio: 4 / 3;
+  width: 100%;
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
   margin-bottom: var(--space-sm);
