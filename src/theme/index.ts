@@ -60,10 +60,10 @@ export const ACCENT_PRESETS: AccentPreset[] = [
 
 export const SURFACE_PRESETS: SurfacePreset[] = [
   { id: 'default', name: 'Default', nameJa: 'デフォルト', hue: 0, tintStrength: 0.0, lightnessBase: 100 },
-  { id: 'warm',    name: 'Warm',    nameJa: 'ウォーム',   hue: 30, tintStrength: 0.50, lightnessBase: 92 },
-  { id: 'cream',   name: 'Cream',   nameJa: 'クリーム',   hue: 36, tintStrength: 0.85, lightnessBase: 94 },
-  { id: 'cool',    name: 'Cool',    nameJa: 'クール',     hue: 215, tintStrength: 0.45, lightnessBase: 94 },
-  { id: 'mono',    name: 'Mono',    nameJa: 'モノ',       hue: 0, tintStrength: 0.05, lightnessBase: 96 },
+  { id: 'warm',    name: 'Warm',    nameJa: 'ウォーム',   hue: 28, tintStrength: 0.80, lightnessBase: 90 },
+  { id: 'cream',   name: 'Cream',   nameJa: 'クリーム',   hue: 40, tintStrength: 1.0, lightnessBase: 92 },
+  { id: 'cool',    name: 'Cool',    nameJa: 'クール',     hue: 220, tintStrength: 0.75, lightnessBase: 92 },
+  { id: 'mono',    name: 'Mono',    nameJa: 'モノ',       hue: 0, tintStrength: 0.08, lightnessBase: 96 },
 ]
 
 export const THEME_PAIRINGS: ThemePairing[] = [
@@ -398,7 +398,7 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
 }
 
 export function generateDarkSurface(hue: number, tint: number): Record<string, string> {
-  const darkSat = tint * 14
+  const darkSat = tint * 22
 
   const bgPrimary = hslToHex(hue, darkSat, 4)
   const bgSecondary = hslToHex(hue, darkSat, 7)
