@@ -110,6 +110,7 @@
   --p-gray-700: #333333;
   --p-gray-600: #666666;
   --p-gray-500: #888888;
+  --p-gray-450: #949494;
   --p-gray-400: #a0a0a0;
   --p-gray-300: #cccccc;
   --p-gray-200: #e0e0e0;
@@ -212,7 +213,7 @@
   /* --- Text --- */
   --text-primary: var(--p-gray-150);
   --text-secondary: var(--p-gray-400);
-  --text-muted: var(--p-gray-500);
+  --text-muted: var(--p-gray-450);
   --text-disabled: var(--p-gray-600);
   --text-inverse: #000000;
 
