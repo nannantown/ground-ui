@@ -227,7 +227,7 @@
   /* --- Interactive States --- */
   --hover-bg: var(--p-white-3);
   --active-bg: var(--p-white-6);
-  --selected-bg: #ffffff;
+  --selected-bg: var(--text-primary);
   --selected-text: #000000;
   --selected-hover-bg: var(--p-gray-200);
   --disabled-opacity: 0.4;
