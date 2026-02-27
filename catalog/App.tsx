@@ -30,18 +30,18 @@ export function App() {
       <nav style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 8,
-        padding: '12px 24px',
-        borderBottom: '1px solid var(--border-subtle)',
+        gap: 'var(--space-sm)',
+        padding: 'var(--space-md) var(--space-xl)',
+        borderBottom: 'var(--border-width-thin) solid var(--border-subtle)',
         background: 'var(--bg-primary)',
-        zIndex: 100,
+        zIndex: 'var(--z-sticky)',
         flexShrink: 0,
       }}>
         <span style={{
-          fontSize: 15,
+          fontSize: 'var(--text-md)',
           fontWeight: 700,
           color: 'var(--text-primary)',
-          marginRight: 8,
+          marginRight: 'var(--space-sm)',
           letterSpacing: '-0.02em',
         }}>GroundUI</span>
 
@@ -50,11 +50,11 @@ export function App() {
             key={id}
             onClick={() => setPage(id)}
             style={{
-              padding: '6px 16px',
-              borderRadius: 20,
+              padding: 'var(--space-xs) var(--space-lg)',
+              borderRadius: 'var(--radius-full)',
               border: 'none',
               cursor: 'pointer',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               fontWeight: 500,
               background: page === id ? 'var(--selected-bg)' : 'transparent',
               color: page === id ? 'var(--selected-text)' : 'var(--text-muted)',
@@ -75,13 +75,13 @@ export function App() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 4,
-            padding: '4px 10px',
-            borderRadius: 6,
-            border: '1px solid var(--border-subtle)',
+            gap: 'var(--space-xs)',
+            padding: 'var(--space-xs) var(--space-sm)',
+            borderRadius: 'var(--radius-sm)',
+            border: 'var(--border-width-thin) solid var(--border-subtle)',
             background: 'none',
             cursor: 'pointer',
-            fontSize: 12,
+            fontSize: 'var(--text-xs)',
             fontWeight: 600,
             color: 'var(--text-secondary)',
             transition: 'all 0.15s ease',
@@ -91,7 +91,7 @@ export function App() {
           title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
         >
           <span style={{ color: locale === 'en' ? 'var(--text-primary)' : 'var(--text-muted)' }}>EN</span>
-          <span style={{ color: 'var(--text-disabled)', fontSize: 10 }}>/</span>
+          <span style={{ color: 'var(--text-disabled)', fontSize: 'var(--text-xs)' }}>/</span>
           <span style={{ color: locale === 'ja' ? 'var(--text-primary)' : 'var(--text-muted)' }}>JA</span>
         </button>
 

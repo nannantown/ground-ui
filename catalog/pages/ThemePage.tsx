@@ -308,11 +308,11 @@ export function ThemePage() {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 10,
-              marginBottom: 24,
+              gap: 'var(--space-md)',
+              marginBottom: 'var(--space-xl)',
             }}>
               <span style={{
-                fontSize: 12,
+                fontSize: 'var(--text-xs)',
                 fontWeight: 500,
                 color: config.primaryStyle === 'mono' ? 'var(--text-primary)' : 'var(--text-muted)',
                 transition: 'color 0.15s ease',
@@ -325,7 +325,7 @@ export function ThemePage() {
                 label={t.buttonStyle}
               />
               <span style={{
-                fontSize: 12,
+                fontSize: 'var(--text-xs)',
                 fontWeight: 500,
                 color: config.primaryStyle === 'accent' ? 'var(--text-primary)' : 'var(--text-muted)',
                 transition: 'color 0.15s ease',
@@ -338,7 +338,7 @@ export function ThemePage() {
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-              gap: 12,
+              gap: 'var(--space-md)',
             }}>
               {/* Built-in presets */}
               {THEME_PAIRINGS.map((pairing, index) => (
@@ -455,10 +455,10 @@ function AddPresetCard({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 10,
-        padding: 14,
-        borderRadius: 12,
-        border: `1.5px dashed ${
+        gap: 'var(--space-md)',
+        padding: 'var(--space-lg)',
+        borderRadius: 'var(--radius-lg)',
+        border: `var(--border-width-thin) dashed ${
           isOpen
             ? 'var(--accent-border)'
             : hovered && canAdd ? 'var(--border-default)' : 'var(--border-subtle)'
@@ -475,13 +475,13 @@ function AddPresetCard({
     >
       {/* Plus icon area */}
       <div style={{
-        height: 56,
-        borderRadius: 8,
+        height: 'var(--space-4xl)',
+        borderRadius: 'var(--radius-md)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         background: 'var(--bg-secondary)',
-        border: '1px solid var(--border-subtle)',
+        border: 'var(--border-width-thin) solid var(--border-subtle)',
       }}>
         <svg
           width="24"
@@ -501,13 +501,13 @@ function AddPresetCard({
       {/* Label */}
       <div>
         <div style={{
-          fontSize: 13,
+          fontSize: 'var(--text-sm)',
           fontWeight: 600,
           color: isOpen ? 'var(--text-primary)' : 'var(--text-secondary)',
-          marginBottom: 2,
+          marginBottom: 'var(--space-2xs)',
           display: 'flex',
           alignItems: 'center',
-          gap: 6,
+          gap: 'var(--space-sm)',
         }}>
           {t.newPreset}
           {isOpen && (
@@ -517,7 +517,7 @@ function AddPresetCard({
           )}
         </div>
         <div style={{
-          fontSize: 11,
+          fontSize: 'var(--text-xs)',
           color: 'var(--text-muted)',
           lineHeight: 1.4,
         }}>
@@ -560,10 +560,10 @@ function PresetCard({
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 10,
-          padding: 14,
-          borderRadius: 12,
-          border: `1px solid ${isActive ? 'var(--accent-border)' : hovered ? 'var(--border-default)' : 'var(--border-subtle)'}`,
+          gap: 'var(--space-md)',
+          padding: 'var(--space-lg)',
+          borderRadius: 'var(--radius-lg)',
+          border: `var(--border-width-thin) solid ${isActive ? 'var(--accent-border)' : hovered ? 'var(--border-default)' : 'var(--border-subtle)'}`,
           background: isActive ? 'var(--accent-bg)' : hovered ? 'var(--bg-surface-hover)' : 'var(--bg-surface)',
           cursor: 'pointer',
           textAlign: 'left',
@@ -574,12 +574,12 @@ function PresetCard({
       >
         {/* Mini mockup */}
         <div style={{
-          height: 56,
-          borderRadius: 8,
+          height: 'var(--space-4xl)',
+          borderRadius: 'var(--radius-md)',
           overflow: 'hidden',
           display: 'flex',
           background: preview.bg,
-          border: '1px solid var(--border-subtle)',
+          border: 'var(--border-width-thin) solid var(--border-subtle)',
         }}>
           <div style={{
             width: 20,
@@ -587,28 +587,28 @@ function PresetCard({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            paddingTop: 8,
-            gap: 4,
+            paddingTop: 'var(--space-sm)',
+            gap: 'var(--space-xs)',
           }}>
-            <div style={{ width: 8, height: 8, borderRadius: 3, background: preview.accent, opacity: 0.9 }} />
-            <div style={{ width: 8, height: 2, borderRadius: 1, background: preview.textMut, opacity: 0.3 }} />
-            <div style={{ width: 8, height: 2, borderRadius: 1, background: preview.textMut, opacity: 0.3 }} />
+            <div style={{ width: 'var(--space-sm)', height: 'var(--space-sm)', borderRadius: 3, background: preview.accent, opacity: 0.9 }} />
+            <div style={{ width: 'var(--space-sm)', height: 2, borderRadius: 1, background: preview.textMut, opacity: 0.3 }} />
+            <div style={{ width: 'var(--space-sm)', height: 2, borderRadius: 1, background: preview.textMut, opacity: 0.3 }} />
           </div>
-          <div style={{ flex: 1, padding: '6px 8px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div style={{ flex: 1, padding: 'var(--space-sm)', display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
             <div style={{ height: 3, width: '55%', borderRadius: 1.5, background: preview.text, opacity: 0.5 }} />
             <div style={{
               flex: 1,
               background: preview.bgCrd,
-              borderRadius: 4,
-              padding: '4px 6px',
+              borderRadius: 'var(--radius-sm)',
+              padding: 'var(--space-xs) var(--space-sm)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}>
               <div style={{ height: 2, width: '70%', borderRadius: 1, background: preview.textMut, opacity: 0.3 }} />
               <div style={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-                <div style={{ height: 4, width: '40%', borderRadius: 2, background: preview.accent }} />
-                <div style={{ height: 4, width: '25%', borderRadius: 2, background: preview.accentSec, opacity: 0.7 }} />
+                <div style={{ height: 'var(--space-xs)', width: '40%', borderRadius: 'var(--radius-xs)', background: preview.accent }} />
+                <div style={{ height: 'var(--space-xs)', width: '25%', borderRadius: 'var(--radius-xs)', background: preview.accentSec, opacity: 0.7 }} />
               </div>
             </div>
           </div>
@@ -616,8 +616,8 @@ function PresetCard({
 
         {/* Name */}
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 2 }}>{name}</div>
-          <div style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.4 }}>{mood}</div>
+          <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-2xs)' }}>{name}</div>
+          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', lineHeight: 1.4 }}>{mood}</div>
         </div>
       </button>
 
@@ -627,11 +627,11 @@ function PresetCard({
           onClick={(e) => { e.stopPropagation(); onDelete() }}
           style={{
             position: 'absolute',
-            top: 8,
-            right: 8,
+            top: 'var(--space-sm)',
+            right: 'var(--space-sm)',
             width: 22,
             height: 22,
-            borderRadius: 6,
+            borderRadius: 'var(--radius-sm)',
             border: 'none',
             background: 'var(--bg-primary)',
             cursor: 'pointer',
@@ -717,17 +717,17 @@ function CustomizePanel({
       <div
         ref={contentRef}
         style={{
-          marginTop: 16,
-          padding: 24,
+          marginTop: 'var(--space-lg)',
+          padding: 'var(--space-xl)',
           background: 'var(--bg-secondary)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 12,
+          border: 'var(--border-width-thin) solid var(--border-subtle)',
+          borderRadius: 'var(--radius-lg)',
         }}
       >
         {/* Preset name input */}
-        <div style={{ marginBottom: 28 }}>
-          <h3 className="ds-group-label" style={{ marginBottom: 8 }}>{t.presetName}</h3>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <div style={{ marginBottom: 'var(--space-xl)' }}>
+          <h3 className="ds-group-label" style={{ marginBottom: 'var(--space-sm)' }}>{t.presetName}</h3>
+          <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
             <input
               type="text"
               value={presetName}
@@ -745,9 +745,9 @@ function CustomizePanel({
         </div>
 
         {/* Surface */}
-        <div style={{ marginBottom: 28 }}>
-          <h3 className="ds-group-label" style={{ marginBottom: 12 }}>{t.surface}</h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ marginBottom: 'var(--space-xl)' }}>
+          <h3 className="ds-group-label" style={{ marginBottom: 'var(--space-md)' }}>{t.surface}</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
             {SURFACE_PRESETS.map(preset => (
               <SurfaceChip
                 key={preset.id}
@@ -762,12 +762,12 @@ function CustomizePanel({
         </div>
 
         {/* Accent */}
-        <div style={{ marginBottom: 28 }}>
-          <h3 className="ds-group-label" style={{ marginBottom: 12 }}>{t.accentColor}</h3>
+        <div style={{ marginBottom: 'var(--space-xl)' }}>
+          <h3 className="ds-group-label" style={{ marginBottom: 'var(--space-md)' }}>{t.accentColor}</h3>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(72px, 1fr))',
-            gap: 8,
+            gap: 'var(--space-sm)',
           }}>
             {ACCENT_PRESETS.map(preset => (
               <AccentButton
@@ -784,22 +784,22 @@ function CustomizePanel({
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: 6,
-              padding: '8px 4px',
+              gap: 'var(--space-sm)',
+              padding: 'var(--space-sm) var(--space-xs)',
             }}>
               <div style={{ position: 'relative' }}>
                 <button
                   onClick={() => colorInputRef.current?.click()}
                   style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
+                    width: 'var(--space-2xl)',
+                    height: 'var(--space-2xl)',
+                    borderRadius: 'var(--radius-full)',
                     background: config.accentId === 'custom' && config.customColor
                       ? config.customColor
                       : 'var(--bg-surface)',
                     border: config.accentId === 'custom'
-                      ? '2px solid var(--bg-primary)'
-                      : '1.5px dashed var(--border-default)',
+                      ? 'var(--border-width-medium) solid var(--bg-primary)'
+                      : 'var(--border-width-thin) dashed var(--border-default)',
                     boxShadow: config.accentId === 'custom' && config.customColor
                       ? `0 0 0 2px var(--bg-primary), 0 0 0 4px ${config.customColor}`
                       : 'none',
@@ -835,7 +835,7 @@ function CustomizePanel({
                 />
               </div>
               <span style={{
-                fontSize: 11,
+                fontSize: 'var(--text-xs)',
                 color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontWeight: config.accentId === 'custom' ? 500 : 400,
                 whiteSpace: 'nowrap',
@@ -849,7 +849,7 @@ function CustomizePanel({
         </div>
 
         {/* Action buttons */}
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-sm)', justifyContent: 'flex-end' }}>
           <button
             className="btn btn-ghost btn-sm"
             onClick={onCancel}
@@ -914,17 +914,17 @@ function SurfaceChip({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 8,
-        padding: '10px 16px',
+        gap: 'var(--space-sm)',
+        padding: 'var(--space-md) var(--space-lg)',
         background: isActive
           ? 'var(--accent-bg)'
           : hovered ? 'var(--bg-surface-hover)' : 'var(--bg-surface)',
-        border: `1px solid ${
+        border: `var(--border-width-thin) solid ${
           isActive
             ? 'var(--accent-border)'
             : hovered ? 'var(--border-default)' : 'var(--border-subtle)'
         }`,
-        borderRadius: 10,
+        borderRadius: 'var(--radius-lg)',
         cursor: 'pointer',
         transition: 'all 0.15s ease',
         fontFamily: 'inherit',
@@ -935,9 +935,9 @@ function SurfaceChip({
         display: 'flex',
         width: 56,
         height: 36,
-        borderRadius: 5,
+        borderRadius: 'var(--radius-sm)',
         overflow: 'hidden',
-        border: '1px solid var(--border-subtle)',
+        border: 'var(--border-width-thin) solid var(--border-subtle)',
       }}>
         <div style={{ width: 16, background: previewColors[0], flexShrink: 0 }} />
         <div style={{
@@ -946,14 +946,14 @@ function SurfaceChip({
           padding: 3,
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
+          gap: 'var(--space-2xs)',
         }}>
-          <div style={{ flex: 1, background: previewColors[2], borderRadius: 2 }} />
-          <div style={{ height: 7, background: previewColors[3], borderRadius: 2 }} />
+          <div style={{ flex: 1, background: previewColors[2], borderRadius: 'var(--radius-xs)' }} />
+          <div style={{ height: 7, background: previewColors[3], borderRadius: 'var(--radius-xs)' }} />
         </div>
       </div>
       <span style={{
-        fontSize: 11,
+        fontSize: 'var(--text-xs)',
         fontWeight: isActive ? 600 : 500,
         color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
         whiteSpace: 'nowrap',
@@ -982,8 +982,8 @@ function AccentButton({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 6,
-        padding: '8px 4px',
+        gap: 'var(--space-sm)',
+        padding: 'var(--space-sm) var(--space-xs)',
         background: 'none',
         border: 'none',
         cursor: 'pointer',
@@ -993,9 +993,9 @@ function AccentButton({
       title={`${preset.name} (${preset.nameJa})`}
     >
       <div style={{
-        width: 32,
-        height: 32,
-        borderRadius: '50%',
+        width: 'var(--space-2xl)',
+        height: 'var(--space-2xl)',
+        borderRadius: 'var(--radius-full)',
         background: preset.color,
         boxShadow: isActive
           ? `0 0 0 2px var(--bg-primary), 0 0 0 4px ${preset.color}`
@@ -1003,7 +1003,7 @@ function AccentButton({
         transition: 'box-shadow 0.15s ease',
       }} />
       <span style={{
-        fontSize: 11,
+        fontSize: 'var(--text-xs)',
         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
         fontWeight: isActive ? 500 : 400,
         whiteSpace: 'nowrap',
@@ -1042,12 +1042,12 @@ function DetailsSection({
         <h3 className="ds-group-label">{t.wcagContrast}</h3>
         <div style={{
           background: 'var(--bg-secondary)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 12,
-          padding: 24,
+          border: 'var(--border-width-thin) solid var(--border-subtle)',
+          borderRadius: 'var(--radius-lg)',
+          padding: 'var(--space-xl)',
           display: 'flex',
           flexDirection: 'column',
-          gap: 16,
+          gap: 'var(--space-lg)',
         }}>
           <ContrastRow label={t.primary} color={adjustedPrimary} ratio={primaryRatio} />
           <ContrastRow label={t.secondaryAuto} color={adjustedSecondary} ratio={secondaryRatio} />
@@ -1058,16 +1058,16 @@ function DetailsSection({
         <h3 className="ds-group-label">{t.colorDist}</h3>
         <div style={{
           background: 'var(--bg-secondary)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 12,
-          padding: 24,
+          border: 'var(--border-width-thin) solid var(--border-subtle)',
+          borderRadius: 'var(--radius-lg)',
+          padding: 'var(--space-xl)',
         }}>
           <div style={{
             display: 'flex',
             height: 28,
-            borderRadius: 8,
+            borderRadius: 'var(--radius-md)',
             overflow: 'hidden',
-            border: '1px solid var(--border-subtle)',
+            border: 'var(--border-width-thin) solid var(--border-subtle)',
           }}>
             {colorSegments.map((s, i) => (
               <div
@@ -1075,7 +1075,7 @@ function DetailsSection({
                 style={{
                   flex: s.pct,
                   background: `var(${s.cssVar})`,
-                  borderRight: i < colorSegments.length - 1 ? '1px solid var(--border-subtle)' : 'none',
+                  borderRight: i < colorSegments.length - 1 ? 'var(--border-width-thin) solid var(--border-subtle)' : 'none',
                 }}
               />
             ))}
@@ -1083,20 +1083,20 @@ function DetailsSection({
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '8px 16px',
-            marginTop: 12,
+            gap: 'var(--space-sm) var(--space-lg)',
+            marginTop: 'var(--space-md)',
           }}>
             {colorSegments.map(s => (
-              <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <div style={{
                   width: 10,
                   height: 10,
                   borderRadius: 3,
                   background: `var(${s.cssVar})`,
-                  border: '1px solid var(--border-subtle)',
+                  border: 'var(--border-width-thin) solid var(--border-subtle)',
                   flexShrink: 0,
                 }} />
-                <span style={{ fontSize: 12, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
                   {s.label} {s.pct}%
                 </span>
               </div>
@@ -1125,21 +1125,21 @@ function getColorSegments(t: Translations) {
 
 function ContrastRow({ label, color, ratio }: { label: string; color: string; ratio: number }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-lg)' }}>
       <div style={{
         width: 28,
         height: 28,
-        borderRadius: '50%',
+        borderRadius: 'var(--radius-full)',
         background: color,
-        border: '1px solid var(--border-subtle)',
+        border: 'var(--border-width-thin) solid var(--border-subtle)',
         flexShrink: 0,
       }} />
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500, minWidth: 100 }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+        <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontWeight: 500, minWidth: 100 }}>
           {label}
         </span>
         <span style={{
-          fontSize: 14,
+          fontSize: 'var(--text-base)',
           fontWeight: 600,
           fontFamily: 'var(--font-mono)',
           color: ratio >= 4.5 ? 'var(--success)' : 'var(--warning)',
@@ -1147,9 +1147,9 @@ function ContrastRow({ label, color, ratio }: { label: string; color: string; ra
           {ratio.toFixed(1)}:1
         </span>
         <span style={{
-          fontSize: 11,
-          padding: '2px 8px',
-          borderRadius: 4,
+          fontSize: 'var(--text-xs)',
+          padding: 'var(--space-2xs) var(--space-sm)',
+          borderRadius: 'var(--radius-sm)',
           background: ratio >= 4.5 ? 'var(--success-bg)' : 'var(--warning-bg)',
           color: ratio >= 4.5 ? 'var(--success)' : 'var(--warning)',
           fontWeight: 500,
