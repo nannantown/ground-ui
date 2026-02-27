@@ -1,6 +1,6 @@
 {
   "name": "@nannantown/ground-ui",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "GroundUI - A minimal, dark-first React design system",
   "type": "module",
   "main": "./dist/index.js",
