@@ -836,10 +836,11 @@
 /* --- Inputs --- */
 .input {
   width: 100%;
-  padding: 10px 12px;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--input-radius);
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
   transition: all var(--transition-fast);
@@ -847,11 +848,11 @@
 }
 
 .input:hover:not(:disabled) {
-  border-color: var(--input-border-hover);
+  border-bottom-color: var(--input-border-hover);
 }
 
 .input:focus {
-  border-color: var(--input-border-focus);
+  border-bottom-color: var(--input-border-focus);
 }
 
 .input::placeholder {
@@ -864,20 +865,21 @@
 }
 
 .input-error {
-  border-color: var(--error);
+  border-bottom-color: var(--error);
 }
 
 .input-error:focus {
-  border-color: var(--error);
+  border-bottom-color: var(--error);
 }
 
 /* Textarea */
 .textarea {
   width: 100%;
-  padding: 10px 12px;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--input-radius);
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
   transition: all var(--transition-fast);
@@ -887,11 +889,11 @@
 }
 
 .textarea:hover:not(:disabled) {
-  border-color: var(--input-border-hover);
+  border-bottom-color: var(--input-border-hover);
 }
 
 .textarea:focus {
-  border-color: var(--input-border-focus);
+  border-bottom-color: var(--input-border-focus);
 }
 
 .textarea::placeholder {
@@ -901,10 +903,11 @@
 /* Select */
 .select {
   width: 100%;
-  padding: 10px 12px;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--input-radius);
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
   transition: all var(--transition-fast);
@@ -912,16 +915,16 @@
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 32px;
+  background-position: right 0 center;
+  padding-right: 20px;
 }
 
 .select:hover:not(:disabled) {
-  border-color: var(--input-border-hover);
+  border-bottom-color: var(--input-border-hover);
 }
 
 .select:focus {
-  border-color: var(--input-border-focus);
+  border-bottom-color: var(--input-border-focus);
 }
 
 /* --- Labels --- */
