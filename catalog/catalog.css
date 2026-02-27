@@ -39,6 +39,14 @@
   margin: var(--space-xs) 0 0;
   letter-spacing: 0.02em;
 }
+.ds-nav-category {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--text-muted);
+  padding: 20px 20px 8px;
+}
 .ds-nav-item {
   display: block;
   width: 100%;

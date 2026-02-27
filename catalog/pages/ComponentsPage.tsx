@@ -56,10 +56,17 @@ import {
    GroundUI — Minimal / Dark-first / High contrast
    ============================================ */
 
-const NAV_IDS = [
-  'overview', 'colors', 'surfaces', 'typography', 'spacing',
-  'buttons', 'inputs', 'data', 'feedback', 'overlays', 'navigation',
-  'layout', 'utilities', 'cssComponents',
+const NAV_CATEGORIES = [
+  {
+    id: 'tokens',
+    label: { en: 'Tokens & Classes', ja: 'トークン & クラス' },
+    items: ['overview', 'colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents'],
+  },
+  {
+    id: 'components',
+    label: { en: 'Components', ja: 'コンポーネント' },
+    items: ['buttons', 'inputs', 'data', 'feedback', 'overlays', 'navigation', 'layout'],
+  },
 ] as const
 
 const NAV_LABELS: Record<string, { en: string; ja: string }> = {
@@ -70,13 +77,13 @@ const NAV_LABELS: Record<string, { en: string; ja: string }> = {
   spacing: { en: 'Spacing', ja: 'スペーシング' },
   buttons: { en: 'Buttons', ja: 'ボタン' },
   inputs: { en: 'Inputs', ja: '入力' },
-  data: { en: 'Data', ja: 'データ' },
+  data: { en: 'Data Display', ja: 'データ表示' },
   feedback: { en: 'Feedback', ja: 'フィードバック' },
   overlays: { en: 'Overlays', ja: 'オーバーレイ' },
   navigation: { en: 'Navigation', ja: 'ナビゲーション' },
   layout: { en: 'Layout', ja: 'レイアウト' },
   utilities: { en: 'Utilities', ja: 'ユーティリティ' },
-  cssComponents: { en: 'CSS Components', ja: 'CSSコンポーネント' },
+  cssComponents: { en: 'CSS Classes', ja: 'CSSクラス' },
 }
 
 /* ============================================
@@ -558,27 +565,27 @@ export function ComponentsPage() {
   const [active, setActive] = useState('overview')
   const { locale } = useLocale()
 
-  const navItems = NAV_IDS.map(id => ({
-    id,
-    label: NAV_LABELS[id]?.[locale] ?? id.charAt(0).toUpperCase() + id.slice(1),
-  }))
-
   return (
     <div className="ds-root">
       {/* Sidebar */}
       <nav className="ds-sidebar">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            className="ds-nav-item"
-            data-active={active === item.id}
-            onClick={() => {
-              setActive(item.id)
-              document.querySelector('.ds-main')?.scrollTo({ top: 0 })
-            }}
-          >
-            {item.label}
-          </button>
+        {NAV_CATEGORIES.map(cat => (
+          <div key={cat.id}>
+            <div className="ds-nav-category">{cat.label[locale]}</div>
+            {cat.items.map(id => (
+              <button
+                key={id}
+                className="ds-nav-item"
+                data-active={active === id}
+                onClick={() => {
+                  setActive(id)
+                  document.querySelector('.ds-main')?.scrollTo({ top: 0 })
+                }}
+              >
+                {NAV_LABELS[id]?.[locale] ?? id}
+              </button>
+            ))}
+          </div>
         ))}
       </nav>
 
