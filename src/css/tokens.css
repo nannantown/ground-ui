@@ -840,14 +840,14 @@
 /* --- Inputs --- */
 .input {
   width: 100%;
-  padding: 10px 0;
+  padding: 6px 0 4px;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--input-border);
   border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast);
   outline: none;
 }
 
@@ -855,8 +855,10 @@
   border-bottom-color: var(--input-border-hover);
 }
 
-.input:focus {
+.input:focus,
+.input:focus-visible {
   border-bottom-color: var(--input-border-focus);
+  outline: none;
 }
 
 .input::placeholder {
@@ -879,14 +881,14 @@
 /* Textarea */
 .textarea {
   width: 100%;
-  padding: 10px 0;
+  padding: 6px 0 4px;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--input-border);
   border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast);
   outline: none;
   resize: vertical;
   min-height: 80px;
@@ -896,8 +898,10 @@
   border-bottom-color: var(--input-border-hover);
 }
 
-.textarea:focus {
+.textarea:focus,
+.textarea:focus-visible {
   border-bottom-color: var(--input-border-focus);
+  outline: none;
 }
 
 .textarea::placeholder {
@@ -911,14 +915,14 @@
 
 .select {
   width: 100%;
-  padding: 10px 0;
+  padding: 6px 0 4px;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--input-border);
   border-radius: 0;
   color: var(--input-text);
   font-size: var(--text-base);
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast);
   outline: none;
   cursor: pointer;
   display: flex;
@@ -931,8 +935,10 @@
   border-bottom-color: var(--input-border-hover);
 }
 
+.select:focus,
 .select:focus-visible {
   border-bottom-color: var(--input-border-focus);
+  outline: none;
 }
 
 .select-disabled {
