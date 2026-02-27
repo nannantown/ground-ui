@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useTheme } from 'next-themes'
 import {
   ACCENT_PRESETS,
@@ -30,8 +30,6 @@ import { useLocale } from '../locale'
 
 const T = {
   en: {
-    navTheme: 'Theme',
-    navDetails: 'Details',
     themeTitle: 'Theme',
     themeDesc: 'Pick a curated preset, select a saved custom, or create your own.',
     newPreset: 'New Preset',
@@ -67,8 +65,6 @@ const T = {
     secondLabel: '2nd',
   },
   ja: {
-    navTheme: 'テーマ',
-    navDetails: '詳細',
     themeTitle: 'テーマ',
     themeDesc: 'プリセットを選ぶか、保存済みのカスタムを選ぶか、新しく作成できます。',
     newPreset: '新規プリセット',
@@ -109,7 +105,6 @@ type Translations = typeof T['en']
 
 type PreviewColors = { bg: string; bgSec: string; bgCrd: string; text: string; textMut: string; accent: string; accentSec: string }
 
-const NAV_IDS = ['theme', 'details'] as const
 
 /** Compute preview colors for a given surface + accent */
 function computePreview(surfaceId: string, accentColor: string, isDark: boolean): PreviewColors {
@@ -136,7 +131,6 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
 }
 
 export function ThemePage() {
-  const [active, setActive] = useState<string>('theme')
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
   const { locale } = useLocale()
@@ -151,41 +145,6 @@ export function ThemePage() {
   const [customInput, setCustomInput] = useState('')
   const colorInputRef = useRef<HTMLInputElement>(null)
   const mainRef = useRef<HTMLElement>(null)
-  const isScrollingRef = useRef(false)
-
-  // --- Scroll-to-section on sidebar click ---
-  const scrollToSection = useCallback((id: string) => {
-    const el = document.getElementById(`theme-${id}`)
-    if (!el || !mainRef.current) return
-    isScrollingRef.current = true
-    setActive(id)
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setTimeout(() => { isScrollingRef.current = false }, 800)
-  }, [])
-
-  // --- Track active section via IntersectionObserver ---
-  useEffect(() => {
-    const main = mainRef.current
-    if (!main) return
-    const sections = NAV_IDS.map(id => document.getElementById(`theme-${id}`)).filter(Boolean) as HTMLElement[]
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isScrollingRef.current) return
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.id.replace('theme-', '')
-            setActive(id)
-            break
-          }
-        }
-      },
-      { root: main, rootMargin: '-10% 0px -70% 0px', threshold: 0 }
-    )
-    sections.forEach(s => observer.observe(s))
-    return () => observer.disconnect()
-  }, [config])
 
   useEffect(() => {
     const loaded = loadThemeConfig()
@@ -334,34 +293,12 @@ export function ThemePage() {
     setConfig(prev => prev ? { ...prev, primaryStyle: style } : prev)
   }
 
-  const navLabels: Record<string, string> = {
-    theme: t.navTheme,
-    details: t.navDetails,
-  }
-
   const canAddMore = customPresets.length < 20
 
   return (
     <div className="ds-root">
-      {/* Sidebar */}
-      <nav className="ds-sidebar">
-        <div className="ds-sidebar-header">
-          <h1 className="ds-sidebar-title">GroundUI</h1>
-        </div>
-        {NAV_IDS.map((id) => (
-          <button
-            key={id}
-            className="ds-nav-item"
-            data-active={active === id}
-            onClick={() => scrollToSection(id)}
-          >
-            {navLabels[id]}
-          </button>
-        ))}
-      </nav>
-
       {/* Main */}
-      <main className="ds-main" ref={mainRef}>
+      <main className="ds-main" ref={mainRef} style={{ marginLeft: 0 }}>
         <div className="ds-content">
           <section id="theme-theme">
             <h2 className="ds-section-title">{t.themeTitle}</h2>
