@@ -37,6 +37,14 @@ export function App() {
         zIndex: 100,
         flexShrink: 0,
       }}>
+        <span style={{
+          fontSize: 15,
+          fontWeight: 700,
+          color: 'var(--text-primary)',
+          marginRight: 8,
+          letterSpacing: '-0.02em',
+        }}>GroundUI</span>
+
         {(['components', 'theme'] as const).map(id => (
           <button
             key={id}

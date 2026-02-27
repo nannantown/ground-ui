@@ -562,9 +562,6 @@ export function ComponentsPage() {
     <div className="ds-root">
       {/* Sidebar */}
       <nav className="ds-sidebar">
-        <div className="ds-sidebar-header">
-          <h1 className="ds-sidebar-title">GroundUI</h1>
-        </div>
         {navItems.map((item) => (
           <button
             key={item.id}
