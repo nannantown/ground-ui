@@ -130,10 +130,6 @@
   flex-wrap: wrap;
   align-items: flex-start;
   gap: var(--space-sm);
-  padding: var(--space-xl);
-  background: var(--bg-secondary);
-  border: var(--border-width-thin) solid var(--border-subtle);
-  border-radius: var(--radius-lg);
 }
 .ds-stage-col {
   flex-direction: column;
@@ -146,10 +142,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-lg);
-  background: var(--bg-secondary);
-  border: var(--border-width-thin) solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
 }
 
 /* --- Swatch Grid --- */
@@ -324,7 +316,6 @@
 @media (max-width: 768px) {
   .ds-sidebar { display: none; }
   .ds-content { padding: var(--space-xl) var(--space-lg) var(--space-4xl); }
-  .ds-stage-grid { padding: var(--space-lg); }
   .ds-swatch-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
   .ds-swatch-color { height: var(--space-3xl); }
 }
