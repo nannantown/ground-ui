@@ -39,16 +39,16 @@
   margin: var(--space-xs) 0 0;
   letter-spacing: 0.02em;
 }
+.ds-nav-group + .ds-nav-group {
+  margin-top: var(--sidebar-group-gap);
+}
 .ds-nav-category {
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-disabled);
-  padding: 24px 20px 6px;
-}
-.ds-nav-category:first-child {
-  padding-top: 0;
+  padding: 0 20px 6px;
 }
 .ds-nav-item {
   display: block;

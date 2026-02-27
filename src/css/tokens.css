@@ -430,6 +430,7 @@
   --sidebar-item-active: var(--p-white-8);
   --sidebar-indicator: var(--text-primary);
   --sidebar-section-color: var(--text-muted);
+  --sidebar-group-gap: var(--space-xl);
 
   /* --- Button Primary (overridable for accent mode) --- */
   --btn-primary-hover: var(--p-gray-100);

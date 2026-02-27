@@ -570,7 +570,7 @@ export function ComponentsPage() {
       {/* Sidebar */}
       <nav className="ds-sidebar">
         {NAV_CATEGORIES.map(cat => (
-          <div key={cat.id}>
+          <div key={cat.id} className="ds-nav-group">
             <div className="ds-nav-category">{cat.label[locale]}</div>
             {cat.items.map(id => (
               <button
