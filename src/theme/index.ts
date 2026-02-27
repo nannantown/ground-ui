@@ -18,7 +18,6 @@ export interface SurfacePreset {
   id: string
   name: string
   nameJa: string
-  hue: number           // 0-360
   tintStrength: number  // 0-1
   lightnessBase: number // 85-100
 }
@@ -59,23 +58,22 @@ export const ACCENT_PRESETS: AccentPreset[] = [
 ]
 
 export const SURFACE_PRESETS: SurfacePreset[] = [
-  { id: 'default', name: 'Default', nameJa: 'デフォルト', hue: 0, tintStrength: 0.0, lightnessBase: 100 },
-  { id: 'warm',    name: 'Warm',    nameJa: 'ウォーム',   hue: 28, tintStrength: 0.80, lightnessBase: 90 },
-  { id: 'cream',   name: 'Cream',   nameJa: 'クリーム',   hue: 40, tintStrength: 1.0, lightnessBase: 92 },
-  { id: 'cool',    name: 'Cool',    nameJa: 'クール',     hue: 220, tintStrength: 0.75, lightnessBase: 92 },
-  { id: 'mono',    name: 'Mono',    nameJa: 'モノ',       hue: 0, tintStrength: 0.08, lightnessBase: 96 },
+  { id: 'default', name: 'Default', nameJa: 'デフォルト', tintStrength: 0.0, lightnessBase: 100 },
+  { id: 'subtle',  name: 'Subtle',  nameJa: 'サトル',     tintStrength: 0.35, lightnessBase: 96 },
+  { id: 'tinted',  name: 'Tinted',  nameJa: 'ティンテッド', tintStrength: 0.6, lightnessBase: 93 },
+  { id: 'rich',    name: 'Rich',    nameJa: 'リッチ',     tintStrength: 0.85, lightnessBase: 90 },
 ]
 
 export const THEME_PAIRINGS: ThemePairing[] = [
   { id: 'default', name: 'Default', nameJa: 'デフォルト', mood: 'Pure and neutral', moodJa: '純粋でニュートラル', surfaceId: 'default', accentId: 'neutral' },
   { id: 'midnight', name: 'Midnight', nameJa: 'ミッドナイト', mood: 'Clean and focused', moodJa: 'クリーンで集中できる', surfaceId: 'default', accentId: 'sky' },
-  { id: 'monochrome', name: 'Monochrome', nameJa: 'モノクローム', mood: 'Minimal and precise', moodJa: 'ミニマルで精密', surfaceId: 'mono', accentId: 'indigo' },
-  { id: 'arctic', name: 'Arctic', nameJa: 'アークティック', mood: 'Crisp and expansive', moodJa: '澄んで広がりのある', surfaceId: 'cool', accentId: 'ocean' },
-  { id: 'aurora', name: 'Aurora', nameJa: 'オーロラ', mood: 'Deep and vivid', moodJa: '深くて鮮やかな', surfaceId: 'cool', accentId: 'emerald' },
-  { id: 'ember', name: 'Ember', nameJa: 'エンバー', mood: 'Bold and energetic', moodJa: '力強くエネルギッシュ', surfaceId: 'warm', accentId: 'ember' },
-  { id: 'sandstone', name: 'Sandstone', nameJa: 'サンドストーン', mood: 'Warm and grounded', moodJa: '温かく落ち着いた', surfaceId: 'cream', accentId: 'amber' },
-  { id: 'rosewood', name: 'Rosewood', nameJa: 'ローズウッド', mood: 'Rich and refined', moodJa: '豊かで洗練された', surfaceId: 'warm', accentId: 'rose' },
-  { id: 'twilight', name: 'Twilight', nameJa: 'トワイライト', mood: 'Warm glow, cool edge', moodJa: '温かい光と冷たい輝き', surfaceId: 'cream', accentId: 'violet' },
+  { id: 'monochrome', name: 'Monochrome', nameJa: 'モノクローム', mood: 'Minimal and precise', moodJa: 'ミニマルで精密', surfaceId: 'subtle', accentId: 'indigo' },
+  { id: 'arctic', name: 'Arctic', nameJa: 'アークティック', mood: 'Crisp and expansive', moodJa: '澄んで広がりのある', surfaceId: 'tinted', accentId: 'ocean' },
+  { id: 'aurora', name: 'Aurora', nameJa: 'オーロラ', mood: 'Deep and vivid', moodJa: '深くて鮮やかな', surfaceId: 'tinted', accentId: 'emerald' },
+  { id: 'ember', name: 'Ember', nameJa: 'エンバー', mood: 'Bold and energetic', moodJa: '力強くエネルギッシュ', surfaceId: 'tinted', accentId: 'ember' },
+  { id: 'sandstone', name: 'Sandstone', nameJa: 'サンドストーン', mood: 'Warm and grounded', moodJa: '温かく落ち着いた', surfaceId: 'rich', accentId: 'amber' },
+  { id: 'rosewood', name: 'Rosewood', nameJa: 'ローズウッド', mood: 'Rich and refined', moodJa: '豊かで洗練された', surfaceId: 'tinted', accentId: 'rose' },
+  { id: 'twilight', name: 'Twilight', nameJa: 'トワイライト', mood: 'Warm glow, cool edge', moodJa: '温かい光と冷たい輝き', surfaceId: 'rich', accentId: 'violet' },
 ]
 
 // --- Constants ---
@@ -221,7 +219,7 @@ export function generateAccentTokens(
 
 export function generateSecondaryAccent(primaryHex: string): string {
   const { h, s, l } = hexToHsl(primaryHex)
-  return hslToHex((h + 60) % 360, s * 0.65, l)
+  return hslToHex(h, s * 0.65, Math.min(l + 12, 85))
 }
 
 // --- Surface Tint Helpers ---
@@ -529,7 +527,7 @@ export function loadThemeConfig(): ThemeConfig {
 
       // Migrate old paletteId to surfaceId + accentId
       if (config.paletteId === 'linen') {
-        config.surfaceId = 'cream'
+        config.surfaceId = 'tinted'
         config.accentId = 'ember'
         delete config.paletteId
         saveThemeConfig(config)
@@ -542,6 +540,18 @@ export function loadThemeConfig(): ThemeConfig {
         // Unknown palette — clear it
         config.surfaceId = 'default'
         delete config.paletteId
+        saveThemeConfig(config)
+      }
+
+      // Migrate removed surface presets
+      const surfaceMigrations: Record<string, string> = {
+        cream: 'rich',
+        mono: 'subtle',
+        warm: 'tinted',
+        cool: 'tinted',
+      }
+      if (config.surfaceId && surfaceMigrations[config.surfaceId]) {
+        config.surfaceId = surfaceMigrations[config.surfaceId]
         saveThemeConfig(config)
       }
 
@@ -671,9 +681,12 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
 
   if (hasSurface) {
     // --- Surface mode: generate surface tokens algorithmically ---
+    // Surface hue = accent hue (same color family)
+    const surfaceHue = hexToHsl(getAccentColor(config)).h
+
     const surfaceTokens = darkMode
-      ? generateDarkSurface(surface.hue, surface.tintStrength)
-      : generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
+      ? generateDarkSurface(surfaceHue, surface.tintStrength)
+      : generateLightSurface(surfaceHue, surface.tintStrength, surface.lightnessBase)
 
     // Apply all surface overrides
     Object.entries(surfaceTokens).forEach(([k, v]) => {

@@ -221,6 +221,52 @@ describe('SURFACE_PRESETS', () => {
       expect(preset.nameJa).toBeTruthy()
     })
   })
+
+  it('default has zero tintStrength', () => {
+    const def = SURFACE_PRESETS.find(p => p.id === 'default')!
+    expect(def.tintStrength).toBe(0)
+  })
+
+  it('has unique ids', () => {
+    const ids = SURFACE_PRESETS.map(p => p.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('tintStrength increases across presets (default < subtle < tinted < rich)', () => {
+    const order = ['default', 'subtle', 'tinted', 'rich']
+    for (let i = 0; i < order.length - 1; i++) {
+      const current = SURFACE_PRESETS.find(p => p.id === order[i])!
+      const next = SURFACE_PRESETS.find(p => p.id === order[i + 1])!
+      expect(current.tintStrength).toBeLessThan(next.tintStrength)
+    }
+  })
+})
+
+describe('surface hue from accent', () => {
+  it('surface uses accent hue directly (same color family)', () => {
+    const skyAccent = ACCENT_PRESETS.find(p => p.id === 'sky')!
+    const accentHue = hexToHsl(skyAccent.color).h
+    // Surface hue = accent hue, no offset
+    const tokens = generateDarkSurface(accentHue, 0.6)
+    expect(tokens['--bg-primary']).toBeTruthy()
+  })
+
+  it('different accents produce different surface colors for same tintStrength', () => {
+    const skyHue = hexToHsl(ACCENT_PRESETS.find(p => p.id === 'sky')!.color).h
+    const emberHue = hexToHsl(ACCENT_PRESETS.find(p => p.id === 'ember')!.color).h
+
+    const skyTokens = generateDarkSurface(skyHue, 0.6)
+    const emberTokens = generateDarkSurface(emberHue, 0.6)
+
+    expect(skyTokens['--bg-primary']).not.toBe(emberTokens['--bg-primary'])
+  })
+
+  it('default surface (tintStrength 0) produces same result regardless of hue', () => {
+    const def = SURFACE_PRESETS.find(p => p.id === 'default')!
+    const tokens1 = generateDarkSurface(0, def.tintStrength)
+    const tokens2 = generateDarkSurface(180, def.tintStrength)
+    expect(tokens1['--bg-primary']).toBe(tokens2['--bg-primary'])
+  })
 })
 
 describe('THEME_PAIRINGS', () => {
@@ -280,7 +326,7 @@ describe('detectPairing', () => {
   })
 
   it('returns null for non-matching combo', () => {
-    const config: ThemeConfig = { accentId: 'sky', surfaceId: 'warm', primaryStyle: 'mono' }
+    const config: ThemeConfig = { accentId: 'sky', surfaceId: 'rich', primaryStyle: 'mono' }
     expect(detectPairing(config)).toBeNull()
   })
 })
@@ -300,14 +346,14 @@ describe('loadThemeConfig / saveThemeConfig', () => {
     const config: ThemeConfig = {
       accentId: 'ember',
       primaryStyle: 'accent',
-      surfaceId: 'warm',
+      surfaceId: 'tinted',
       pairingId: 'ember',
     }
     saveThemeConfig(config)
     const loaded = loadThemeConfig()
     expect(loaded.accentId).toBe('ember')
     expect(loaded.primaryStyle).toBe('accent')
-    expect(loaded.surfaceId).toBe('warm')
+    expect(loaded.surfaceId).toBe('tinted')
     expect(loaded.pairingId).toBe('ember')
   })
 })
@@ -340,7 +386,7 @@ describe('applyAccentTheme', () => {
   })
 
   it('sets surface tokens in non-default surface mode', () => {
-    const config: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'warm' }
+    const config: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'tinted' }
     applyAccentTheme(config, true)
 
     expect(root.style.getPropertyValue('--bg-primary')).toBeTruthy()
@@ -351,8 +397,8 @@ describe('applyAccentTheme', () => {
   })
 
   it('cleans up surface tokens when switching from surface to default', () => {
-    // Step 1: Apply warm surface
-    const surfaceConfig: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'warm' }
+    // Step 1: Apply tinted surface
+    const surfaceConfig: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'tinted' }
     applyAccentTheme(surfaceConfig, true)
     expect(root.style.getPropertyValue('--bg-primary')).toBeTruthy()
 
@@ -377,7 +423,7 @@ describe('applyAccentTheme', () => {
     expect(accentValue).toBeTruthy()
 
     // Step 2: Switch to surface with different accent
-    const surfaceConfig: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'cool' }
+    const surfaceConfig: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'rich' }
     applyAccentTheme(surfaceConfig, true)
 
     // Accent should be updated (sky, not ember)
@@ -387,20 +433,20 @@ describe('applyAccentTheme', () => {
   })
 
   it('handles surface→default→surface transitions cleanly', () => {
-    // Step 1: warm surface + ember
-    applyAccentTheme({ accentId: 'ember', primaryStyle: 'mono', surfaceId: 'warm' }, true)
-    const warmBg = root.style.getPropertyValue('--bg-primary')
-    expect(warmBg).toBeTruthy()
+    // Step 1: tinted surface + ember
+    applyAccentTheme({ accentId: 'ember', primaryStyle: 'mono', surfaceId: 'tinted' }, true)
+    const tintedBg = root.style.getPropertyValue('--bg-primary')
+    expect(tintedBg).toBeTruthy()
 
     // Step 2: default surface
     applyAccentTheme({ accentId: 'sky', primaryStyle: 'mono', surfaceId: null }, true)
     expect(root.style.getPropertyValue('--bg-primary')).toBe('')
 
-    // Step 3: cool surface + ocean
-    applyAccentTheme({ accentId: 'ocean', primaryStyle: 'mono', surfaceId: 'cool' }, true)
-    const coolBg = root.style.getPropertyValue('--bg-primary')
-    expect(coolBg).toBeTruthy()
-    expect(coolBg).not.toBe(warmBg)
+    // Step 3: rich surface + ocean
+    applyAccentTheme({ accentId: 'ocean', primaryStyle: 'mono', surfaceId: 'rich' }, true)
+    const richBg = root.style.getPropertyValue('--bg-primary')
+    expect(richBg).toBeTruthy()
+    expect(richBg).not.toBe(tintedBg)
   })
 
   it('applies button overrides for accent primaryStyle', () => {
@@ -426,7 +472,7 @@ describe('applyAccentTheme', () => {
 
   it('cleans up button overrides when switching accent→mono across surface change', () => {
     // Surface mode + accent style
-    applyAccentTheme({ accentId: 'sky', primaryStyle: 'accent', surfaceId: 'warm' }, true)
+    applyAccentTheme({ accentId: 'sky', primaryStyle: 'accent', surfaceId: 'tinted' }, true)
     expect(root.style.getPropertyValue('--selected-text')).toBe('#ffffff')
 
     // Default mode + mono style
@@ -438,7 +484,7 @@ describe('applyAccentTheme', () => {
   })
 
   it('dark and light mode produce different surface tokens', () => {
-    const config: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'warm' }
+    const config: ThemeConfig = { accentId: 'sky', primaryStyle: 'mono', surfaceId: 'tinted' }
 
     applyAccentTheme(config, true)
     const darkBg = root.style.getPropertyValue('--bg-primary')

@@ -10,6 +10,7 @@ import {
   saveThemeConfig,
   applyAccentTheme,
   getAccentColor,
+  hexToHsl,
   isValidHex,
   contrastRatio,
   ensureContrast,
@@ -117,9 +118,10 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
       bg = '#ffffff'; bgSec = '#f4f4f4'; bgCrd = '#fafafa'; text = '#1a1a1a'; textMut = '#999999'
     }
   } else {
+    const surfaceHue = hexToHsl(accentColor).h
     const tokens = isDark
-      ? generateDarkSurface(surface.hue, surface.tintStrength)
-      : generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
+      ? generateDarkSurface(surfaceHue, surface.tintStrength)
+      : generateLightSurface(surfaceHue, surface.tintStrength, surface.lightnessBase)
     bg = tokens['--bg-primary']
     bgSec = tokens['--bg-secondary']
     bgCrd = tokens['--bg-card']
@@ -755,6 +757,7 @@ function CustomizePanel({
                 isActive={activeSurfaceId === preset.id}
                 isDark={isDark}
                 locale={locale}
+                accentColor={accentColor}
                 onClick={() => onSelectSurface(preset.id)}
               />
             ))}
@@ -878,12 +881,14 @@ function SurfaceChip({
   isActive,
   isDark,
   locale,
+  accentColor,
   onClick,
 }: {
   preset: typeof SURFACE_PRESETS[number]
   isActive: boolean
   isDark: boolean
   locale: 'en' | 'ja'
+  accentColor: string
   onClick: () => void
 }) {
   const [hovered, setHovered] = useState(false)
@@ -894,16 +899,17 @@ function SurfaceChip({
         ? ['#111111', '#0a0a0a', '#161616', '#1a1a1a']
         : ['#f4f4f4', '#ffffff', '#fafafa', '#fdfdfd']
     }
+    const surfaceHue = hexToHsl(accentColor).h
     const tokens = isDark
-      ? generateDarkSurface(preset.hue, preset.tintStrength)
-      : generateLightSurface(preset.hue, preset.tintStrength, preset.lightnessBase)
+      ? generateDarkSurface(surfaceHue, preset.tintStrength)
+      : generateLightSurface(surfaceHue, preset.tintStrength, preset.lightnessBase)
     return [
       tokens['--bg-secondary'] ?? '#111111',
       tokens['--bg-primary'] ?? '#0a0a0a',
       tokens['--bg-card'] ?? '#161616',
       tokens['--bg-elevated'] ?? '#1a1a1a',
     ]
-  }, [preset, isDark])
+  }, [preset, isDark, accentColor])
 
   return (
     <button

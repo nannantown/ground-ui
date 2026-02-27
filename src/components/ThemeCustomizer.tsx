@@ -10,6 +10,7 @@ import {
   saveThemeConfig,
   applyAccentTheme,
   getAccentColor,
+  hexToHsl,
   isValidHex,
   contrastRatio,
   ensureContrast,
@@ -38,10 +39,9 @@ export interface ThemeCustomizerLabels {
   activeTab: string
   linkText: string
   surfaceDefault: string
-  surfaceWarm: string
-  surfaceCream: string
-  surfaceCool: string
-  surfaceMono: string
+  surfaceSubtle: string
+  surfaceTinted: string
+  surfaceRich: string
 }
 
 const DEFAULT_LABELS: ThemeCustomizerLabels = {
@@ -64,10 +64,9 @@ const DEFAULT_LABELS: ThemeCustomizerLabels = {
   activeTab: 'Active Tab',
   linkText: 'Link text',
   surfaceDefault: 'Default',
-  surfaceWarm: 'Warm',
-  surfaceCream: 'Cream',
-  surfaceCool: 'Cool',
-  surfaceMono: 'Mono',
+  surfaceSubtle: 'Subtle',
+  surfaceTinted: 'Tinted',
+  surfaceRich: 'Rich',
 }
 
 interface ThemeCustomizerProps {
@@ -108,9 +107,10 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
     if (surfaceId === 'default') return isDark ? '#0a0a0a' : '#ffffff'
     const surface = SURFACE_PRESETS.find(p => p.id === surfaceId)
     if (!surface) return isDark ? '#0a0a0a' : '#ffffff'
+    const surfaceHue = hexToHsl(getAccentColor(config)).h
     const tokens = isDark
-      ? generateDarkSurface(surface.hue, surface.tintStrength)
-      : generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
+      ? generateDarkSurface(surfaceHue, surface.tintStrength)
+      : generateLightSurface(surfaceHue, surface.tintStrength, surface.lightnessBase)
     return tokens['--bg-primary'] ?? (isDark ? '#0a0a0a' : '#ffffff')
   }, [config, isDark])
 
@@ -129,9 +129,10 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
           bg = '#ffffff'; bgSec = '#f4f4f4'; bgCrd = '#fafafa'; text = '#1a1a1a'; textMut = '#999999'
         }
       } else {
+        const surfaceHue = hexToHsl(accent.color).h
         const tokens = isDark
-          ? generateDarkSurface(surface.hue, surface.tintStrength)
-          : generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
+          ? generateDarkSurface(surfaceHue, surface.tintStrength)
+          : generateLightSurface(surfaceHue, surface.tintStrength, surface.lightnessBase)
         bg = tokens['--bg-primary']
         bgSec = tokens['--bg-secondary']
         bgCrd = tokens['--bg-card']
@@ -388,6 +389,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                     isDark={isDark}
                     language={language}
                     ds={ds}
+                    accentColor={accentColor}
                     onClick={() => selectSurface(preset.id)}
                   />
                 ))}
@@ -694,13 +696,15 @@ function SurfaceCard({
   isDark,
   language,
   ds,
+  accentColor,
   onClick,
 }: {
   preset: SurfacePreset
   isActive: boolean
   isDark: boolean
   language: string
-  ds: { surfaceDefault: string; surfaceWarm: string; surfaceCream: string; surfaceCool: string; surfaceMono: string }
+  ds: { surfaceDefault: string; surfaceSubtle: string; surfaceTinted: string; surfaceRich: string }
+  accentColor: string
   onClick: () => void
 }) {
   const [hovered, setHovered] = useState(false)
@@ -713,24 +717,24 @@ function SurfaceCard({
       }
       return ['#f4f4f4', '#ffffff', '#fafafa', '#fdfdfd']
     }
+    const surfaceHue = hexToHsl(accentColor).h
     const tokens = isDark
-      ? generateDarkSurface(preset.hue, preset.tintStrength)
-      : generateLightSurface(preset.hue, preset.tintStrength, preset.lightnessBase)
+      ? generateDarkSurface(surfaceHue, preset.tintStrength)
+      : generateLightSurface(surfaceHue, preset.tintStrength, preset.lightnessBase)
     return [
       tokens['--bg-secondary'] ?? '#111111',
       tokens['--bg-primary'] ?? '#0a0a0a',
       tokens['--bg-card'] ?? '#161616',
       tokens['--bg-elevated'] ?? '#1a1a1a',
     ]
-  }, [preset, isDark])
+  }, [preset, isDark, accentColor])
 
   // Surface name from translations
   const nameMap: Record<string, string> = {
     default: ds.surfaceDefault,
-    warm: ds.surfaceWarm,
-    cream: ds.surfaceCream,
-    cool: ds.surfaceCool,
-    mono: ds.surfaceMono,
+    subtle: ds.surfaceSubtle,
+    tinted: ds.surfaceTinted,
+    rich: ds.surfaceRich,
   }
   const displayName = nameMap[preset.id] ?? (language === 'ja' ? preset.nameJa : preset.name)
 
