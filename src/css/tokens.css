@@ -96,6 +96,8 @@
 }
 
 :root {
+  color-scheme: dark;
+
   /* ==========================================
      1. PRIMITIVE TOKENS
      Raw values. Never use these directly in
@@ -508,6 +510,8 @@
    ============================================ */
 
 :root[data-theme="light"] {
+  color-scheme: light;
+
   /* --- Primitive Overrides ---
      Override white-alpha to black-alpha for automatic cascade.
      All semantic tokens referencing --p-white-* (borders, surfaces,
