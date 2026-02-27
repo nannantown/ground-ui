@@ -45,6 +45,7 @@ export interface ThemePairing {
 // --- Presets ---
 
 export const ACCENT_PRESETS: AccentPreset[] = [
+  { id: 'neutral', name: 'Neutral', nameJa: 'ニュートラル', color: '#888888' },
   { id: 'sky',     name: 'Sky',     nameJa: '空',   color: '#0EA5E9' },
   { id: 'ocean',   name: 'Ocean',   nameJa: '海',   color: '#3B82F6' },
   { id: 'indigo',  name: 'Indigo',  nameJa: '藍',   color: '#6366F1' },
@@ -66,6 +67,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
 ]
 
 export const THEME_PAIRINGS: ThemePairing[] = [
+  { id: 'default', name: 'Default', nameJa: 'デフォルト', mood: 'Pure and neutral', moodJa: '純粋でニュートラル', surfaceId: 'default', accentId: 'neutral' },
   { id: 'midnight', name: 'Midnight', nameJa: 'ミッドナイト', mood: 'Clean and focused', moodJa: 'クリーンで集中できる', surfaceId: 'default', accentId: 'sky' },
   { id: 'monochrome', name: 'Monochrome', nameJa: 'モノクローム', mood: 'Minimal and precise', moodJa: 'ミニマルで精密', surfaceId: 'mono', accentId: 'indigo' },
   { id: 'arctic', name: 'Arctic', nameJa: 'アークティック', mood: 'Crisp and expansive', moodJa: '澄んで広がりのある', surfaceId: 'cool', accentId: 'ocean' },
@@ -83,7 +85,7 @@ const WCAG_AA_NORMAL = 4.5
 const WCAG_AA_LARGE = 3.0
 
 const DEFAULT_CONFIG: ThemeConfig = {
-  accentId: 'sky',
+  accentId: 'neutral',
   primaryStyle: 'mono',
 }
 

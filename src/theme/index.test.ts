@@ -292,7 +292,7 @@ describe('loadThemeConfig / saveThemeConfig', () => {
 
   it('returns default config when nothing saved', () => {
     const config = loadThemeConfig()
-    expect(config.accentId).toBe('sky')
+    expect(config.accentId).toBe('neutral')
     expect(config.primaryStyle).toBe('mono')
   })
 
