@@ -45,7 +45,7 @@ export interface ThemePairing {
 // --- Presets ---
 
 export const ACCENT_PRESETS: AccentPreset[] = [
-  { id: 'neutral', name: 'Neutral', nameJa: 'ニュートラル', color: '#888888' },
+  { id: 'neutral', name: 'Neutral', nameJa: 'ニュートラル', color: '#999999' },
   { id: 'sky',     name: 'Sky',     nameJa: '空',   color: '#0EA5E9' },
   { id: 'ocean',   name: 'Ocean',   nameJa: '海',   color: '#3B82F6' },
   { id: 'indigo',  name: 'Indigo',  nameJa: '藍',   color: '#6366F1' },
