@@ -82,6 +82,12 @@ const THEME_STORAGE_KEY = 'centra-accent-theme'
 const WCAG_AA_NORMAL = 4.5
 const WCAG_AA_LARGE = 3.0
 
+// Text saturation factor: limits tint visibility in text colors.
+// Max 12% prevents secondary/disabled text from appearing "colored".
+// Background uses tint*55 for visible surface tint, but text must stay
+// readable — high saturation at medium lightness looks muddy/dark.
+const TEXT_TINT_SAT = 12
+
 const DEFAULT_CONFIG: ThemeConfig = {
   accentId: 'neutral',
   primaryStyle: 'mono',
@@ -297,11 +303,14 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
   const { r: bgPrimR, g: bgPrimG, b: bgPrimB } = hexToRgb(bgPrimary)
 
   const textPrimary = hslToHex(hue, tint * 12, Math.max(18 - tint * 7, 11))
+  // Text hierarchy: same TEXT_TINT_SAT as dark mode for consistency;
+  // lightness inverted (low L = dark text on light bg)
+  const textSat = tint * TEXT_TINT_SAT
   const textSecondary = ensureContrast(
-    hslToHex(hue, tint * 8, 40 - tint * 4), bgPrimary, WCAG_AA_NORMAL
+    hslToHex(hue, textSat, 35), bgPrimary, WCAG_AA_NORMAL
   )
   const textDisabled = ensureContrast(
-    hslToHex(hue, tint * 10, 54 - tint * 6), bgPrimary, WCAG_AA_LARGE
+    hslToHex(hue, textSat * 1.3, 52), bgPrimary, WCAG_AA_LARGE
   )
 
   const { r: tpR, g: tpG, b: tpB } = hexToRgb(textPrimary)
@@ -407,11 +416,14 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
 
   const { r: bgR, g: bgG, b: bgB } = hexToRgb(bgPrimary)
 
+  // Text hierarchy: low saturation (TEXT_TINT_SAT) keeps text neutral;
+  // lightness defines the visual hierarchy (primary ~97 > secondary 75 > disabled 48)
+  const textSat = tint * TEXT_TINT_SAT
   const textSecondary = ensureContrast(
-    hslToHex(hue, darkSat * 1.5, 62), bgPrimary, WCAG_AA_NORMAL
+    hslToHex(hue, textSat, 75), bgPrimary, WCAG_AA_NORMAL
   )
   const textDisabled = ensureContrast(
-    hslToHex(hue, darkSat * 1.0, 33), bgPrimary, WCAG_AA_LARGE
+    hslToHex(hue, textSat * 1.3, 48), bgPrimary, WCAG_AA_LARGE
   )
 
   // Surface-hue-tinted primary colors (Apple-style off-white/off-black)
