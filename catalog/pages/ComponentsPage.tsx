@@ -877,8 +877,11 @@ function SurfacesSection() {
       <Group label="Surface Presets" labelJa="サーフェスプリセット">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
           {SURFACE_PRESETS.map((preset) => {
-            const light = generateLightSurface(preset.hue, preset.tintStrength, preset.lightnessBase)
-            const dark = generateDarkSurface(preset.hue, preset.tintStrength)
+            // Surface hue is derived from accent color; use sky as representative
+            const representativeAccent = ACCENT_PRESETS.find(a => a.id === 'sky')
+            const surfaceHue = representativeAccent ? hexToHsl(representativeAccent.color).h : 0
+            const light = generateLightSurface(surfaceHue, preset.tintStrength, preset.lightnessBase)
+            const dark = generateDarkSurface(surfaceHue, preset.tintStrength)
 
             const lightBgs = [
               { label: 'secondary', hex: light['--bg-secondary'] },
@@ -921,7 +924,7 @@ function SurfacesSection() {
                   {locale === 'en' && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{preset.nameJa}</span>}
                 </div>
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)', marginBottom: 'var(--space-lg)' }}>
-                  Hue: {preset.hue} &middot; Tint: {preset.tintStrength} &middot; Lightness base: {preset.lightnessBase}
+                  Tint: {preset.tintStrength} &middot; Lightness base: {preset.lightnessBase}
                 </div>
 
                 <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
@@ -1014,51 +1017,52 @@ function SurfacesSection() {
               </tr>
             </thead>
             <tbody>
-              {SURFACE_PRESETS.map((surface) => {
-                const dark = generateDarkSurface(surface.hue, surface.tintStrength)
-                const light = generateLightSurface(surface.hue, surface.tintStrength, surface.lightnessBase)
-                return (
+              {SURFACE_PRESETS.map((surface) => (
                   <tr key={surface.id}>
                     <td style={{ fontSize: 'var(--text-sm)', fontWeight: 500, padding: 'var(--space-sm) var(--space-md) var(--space-sm) 0', color: 'var(--text-secondary)' }}>
                       {locale === 'ja' ? surface.nameJa : surface.name}
                     </td>
-                    {matrixAccents.map((accent) => (
-                      <td key={accent.id} style={{ padding: 'var(--space-xs) var(--space-sm)', textAlign: 'center' }}>
-                        <div style={{ display: 'flex', gap: 'var(--space-xs)', justifyContent: 'center' }}>
-                          <div
-                            style={{
-                              width: 36,
-                              height: 28,
-                              borderRadius: 'var(--radius-sm)',
-                              background: dark['--bg-primary'],
-                              border: 'var(--border-width-thin) solid rgba(255,255,255,0.08)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <div style={{ width: 10, height: 10, borderRadius: '50%', background: accent.color }} />
+                    {matrixAccents.map((accent) => {
+                      const accentHue = hexToHsl(accent.color).h
+                      const dark = generateDarkSurface(accentHue, surface.tintStrength)
+                      const light = generateLightSurface(accentHue, surface.tintStrength, surface.lightnessBase)
+                      return (
+                        <td key={accent.id} style={{ padding: 'var(--space-xs) var(--space-sm)', textAlign: 'center' }}>
+                          <div style={{ display: 'flex', gap: 'var(--space-xs)', justifyContent: 'center' }}>
+                            <div
+                              style={{
+                                width: 36,
+                                height: 28,
+                                borderRadius: 'var(--radius-sm)',
+                                background: dark['--bg-primary'],
+                                border: 'var(--border-width-thin) solid rgba(255,255,255,0.08)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <div style={{ width: 10, height: 10, borderRadius: '50%', background: accent.color }} />
+                            </div>
+                            <div
+                              style={{
+                                width: 36,
+                                height: 28,
+                                borderRadius: 'var(--radius-sm)',
+                                background: light['--bg-primary'],
+                                border: 'var(--border-width-thin) solid rgba(0,0,0,0.08)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <div style={{ width: 10, height: 10, borderRadius: '50%', background: accent.color }} />
+                            </div>
                           </div>
-                          <div
-                            style={{
-                              width: 36,
-                              height: 28,
-                              borderRadius: 'var(--radius-sm)',
-                              background: light['--bg-primary'],
-                              border: 'var(--border-width-thin) solid rgba(0,0,0,0.08)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <div style={{ width: 10, height: 10, borderRadius: '50%', background: accent.color }} />
-                          </div>
-                        </div>
-                      </td>
-                    ))}
+                        </td>
+                      )
+                    })}
                   </tr>
-                )
-              })}
+              ))}
             </tbody>
           </table>
         </div>
