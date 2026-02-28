@@ -399,12 +399,14 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
 }
 
 export function generateDarkSurface(hue: number, tint: number): Record<string, string> {
-  const darkSat = tint * 22
+  // Dark mode needs higher saturation + slight lightness boost for visible tint
+  const darkSat = tint * 55
+  const lBoost = tint * 3
 
-  const bgPrimary = hslToHex(hue, darkSat, 4)
-  const bgSecondary = hslToHex(hue, darkSat, 7)
-  const bgCard = hslToHex(hue, darkSat, 9)
-  const bgElevated = hslToHex(hue, darkSat, 11)
+  const bgPrimary = hslToHex(hue, darkSat, 4 + lBoost)
+  const bgSecondary = hslToHex(hue, darkSat, 7 + lBoost)
+  const bgCard = hslToHex(hue, darkSat, 9 + lBoost)
+  const bgElevated = hslToHex(hue, darkSat, 11 + lBoost)
 
   const { r: bgR, g: bgG, b: bgB } = hexToRgb(bgPrimary)
 
