@@ -86,6 +86,7 @@
 .ds-main {
   flex: 1;
   min-width: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
 }
@@ -312,10 +313,84 @@
   margin: var(--space-4xl) 0;
 }
 
+/* --- Surface preset: mode compare --- */
+.ds-mode-label {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ds-bg-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.ds-bg-swatch {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+.ds-bg-swatch-rect {
+  height: 40px;
+  border-radius: var(--radius-md);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  margin-bottom: var(--space-xs);
+}
+.ds-bg-swatch-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-bg-swatch-hex {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-text-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.ds-text-sample {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.ds-text-sample-dot {
+  width: var(--space-lg);
+  height: var(--space-lg);
+  border-radius: var(--radius-sm);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.ds-text-sample > div {
+  min-width: 0;
+}
+.ds-text-sample > div > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .ds-sidebar { display: none; }
   .ds-content { padding: var(--space-xl) var(--space-lg) var(--space-4xl); }
   .ds-swatch-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
   .ds-swatch-color { height: var(--space-3xl); }
+}
+
+@media (max-width: 480px) {
+  .ds-content { padding: var(--space-lg) var(--space-md) var(--space-3xl); }
+  .ds-section-title { font-size: var(--text-lg); }
+  .ds-section-desc { font-size: var(--text-base); }
+  .ds-stage { gap: var(--space-xs); }
 }

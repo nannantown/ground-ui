@@ -339,7 +339,7 @@ export function ThemePage() {
             {/* Preset grid: builtin → custom presets → "+" button */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
               gap: 'var(--space-md)',
             }}>
               {/* Built-in presets */}

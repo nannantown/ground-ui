@@ -29,6 +29,7 @@ export function App() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
       <nav style={{
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
         gap: 'var(--space-sm)',
         padding: 'var(--space-md) var(--space-xl)',

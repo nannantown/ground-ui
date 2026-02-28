@@ -726,7 +726,7 @@ function OverviewSection() {
       <SectionHeader title="Overview" titleJa="概要" desc="Core principles and token architecture for GroundUI." descJa="GroundUIの設計原則とトークンアーキテクチャ。" />
 
       <Group label="Principles" labelJa="設計原則">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-md)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-md)' }}>
           {[
             { title: t.principleMinimal, desc: t.principleMinimalDesc },
             { title: t.principleDark, desc: t.principleDarkDesc },
@@ -829,7 +829,7 @@ function ColorsSection() {
       </Group>
 
       <Group label="Semantic Extended" labelJa="セマンティック（拡張）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 'var(--space-md)' }}>
           {['success', 'warning', 'error', 'info'].map((name) => (
             <div
               key={name}
@@ -860,6 +860,42 @@ function ColorsSection() {
         </div>
       </Group>
     </>
+  )
+}
+
+function BgSwatchRow({ items, darkBorder }: { items: { label: string; hex: string }[]; darkBorder?: boolean }) {
+  return (
+    <div className="ds-bg-swatches">
+      {items.map((bg) => (
+        <div key={bg.label} className="ds-bg-swatch">
+          <div
+            className="ds-bg-swatch-rect"
+            style={{ background: bg.hex, ...(darkBorder ? { borderColor: 'rgba(255,255,255,0.1)' } : {}) }}
+          />
+          <div className="ds-bg-swatch-label">{bg.label}</div>
+          <div className="ds-bg-swatch-hex">{bg.hex}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function TextSampleRow({ items, darkBorder }: { items: { label: string; hex: string }[]; darkBorder?: boolean }) {
+  return (
+    <div className="ds-text-samples">
+      {items.map((tx) => (
+        <div key={tx.label} className="ds-text-sample">
+          <div
+            className="ds-text-sample-dot"
+            style={{ background: tx.hex, ...(darkBorder ? { borderColor: 'rgba(255,255,255,0.1)' } : {}) }}
+          />
+          <div>
+            <div className="ds-bg-swatch-label">{tx.label}</div>
+            <div className="ds-bg-swatch-hex">{tx.hex}</div>
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -927,60 +963,24 @@ function SurfacesSection() {
                 <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
                   {t.bgHierarchy}
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)', marginBottom: 'var(--space-lg)' }}>
+                <Grid columns={1} responsive={{ lg: 2 }} gap="md" style={{ marginBottom: 'var(--space-lg)' }}>
                   <div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.light}</div>
-                    <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
-                      {lightBgs.map((bg) => (
-                        <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
-                          <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', marginBottom: 'var(--space-xs)' }} />
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
-                        </div>
-                      ))}
-                    </div>
+                    <div className="ds-mode-label">{t.light}</div>
+                    <BgSwatchRow items={lightBgs} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{t.dark}</div>
-                    <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
-                      {darkBgs.map((bg) => (
-                        <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
-                          <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', marginBottom: 'var(--space-xs)' }} />
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{bg.label}</div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
-                        </div>
-                      ))}
-                    </div>
+                    <div className="ds-mode-label">{t.dark}</div>
+                    <BgSwatchRow items={darkBgs} darkBorder />
                   </div>
-                </div>
+                </Grid>
 
                 <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
                   {t.textHierarchy}
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
-                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-                    {lightTexts.map((tx) => (
-                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
-                        <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', flexShrink: 0 }} />
-                        <div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-                    {darkTexts.map((tx) => (
-                      <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
-                        <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', flexShrink: 0 }} />
-                        <div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{tx.label}</div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <Grid columns={1} responsive={{ lg: 2 }} gap="md">
+                  <TextSampleRow items={lightTexts} />
+                  <TextSampleRow items={darkTexts} darkBorder />
+                </Grid>
               </div>
             )
           })}
@@ -1476,7 +1476,7 @@ function DatePickerDemo() {
   const { t } = useT()
 
   return (
-    <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+    <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
       <FormField label={t.datePickerDate} htmlFor="dp-date">
         <DatePicker value={date} onChange={setDate} mode="date" />
       </FormField>
@@ -1506,7 +1506,7 @@ function InputsSection() {
       <SectionHeader title="Inputs" titleJa="入力" desc="Form controls: text, textarea, select, toggle, and composed form fields." descJa="フォームコントロール: テキスト、テキストエリア、セレクト、トグル、フォームフィールド。" />
 
       <Group label="Text Input" labelJa="テキスト入力">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <Input placeholder={t.defaultInput} />
           <Input placeholder={t.errorState} error />
           <Input placeholder={t.disabled} disabled />
@@ -1515,14 +1515,14 @@ function InputsSection() {
       </Group>
 
       <Group label="Textarea" labelJa="テキストエリア">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <Textarea placeholder={t.defaultTextarea} />
           <Textarea placeholder={t.autosizeTry} autosize />
         </div>
       </Group>
 
       <Group label="Select" labelJa="セレクト">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <Select
             placeholder={t.chooseOption}
             options={[
@@ -1560,7 +1560,7 @@ function InputsSection() {
       </Group>
 
       <Group label="Form Field" labelJa="フォームフィールド">
-        <div className="ds-stage-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <FormField label={t.email} htmlFor="email-demo" required>
             <Input id="email-demo" type="email" placeholder="you@example.com" />
           </FormField>
@@ -1608,7 +1608,7 @@ function DataDisplaySection() {
       </Group>
 
       <Group label="Stat Card" labelJa="統計カード">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-md)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <StatCard label={t.totalItems} value="1,234" />
           <StatCard label={t.growth} value="+12%" trend={{ value: "+12%", direction: "up" }} />
           <StatCard label={t.errors} value="3" trend={{ value: "-2", direction: "down" }} />
@@ -2105,7 +2105,7 @@ function LayoutSection() {
 
       {/* Stack */}
       <Group label="Stack (Vertical / Horizontal)" labelJa="Stack（垂直・水平）">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)' }}>
           <div>
             <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直 (gap=md)' : 'Vertical (gap=md)'}
@@ -2213,7 +2213,7 @@ function LayoutSection() {
 
       {/* AspectRatio */}
       <Group label="AspectRatio" labelJa="AspectRatio（アスペクト比）">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'var(--space-md)' }}>
           {(['1:1', '16:9', '4:3', '3:2'] as const).map(ratio => (
             <div key={ratio}>
               <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-mono)' }}>{ratio}</div>
@@ -2229,7 +2229,7 @@ function LayoutSection() {
 
       {/* ScrollArea */}
       <Group label="ScrollArea" labelJa="ScrollArea（スクロール領域）">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)' }}>
           <div>
             <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直スクロール' : 'Vertical Scroll'}
