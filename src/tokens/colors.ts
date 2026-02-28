@@ -52,9 +52,9 @@ export const primitiveColors = {
 
   // Brand Colors
   green: {
-    400: '#68BF92',
-    500: '#43A575',
-    600: '#358960',
+    400: '#6ABEA5',
+    500: '#43A386',
+    600: '#35886F',
   },
 
   emerald: {
@@ -62,21 +62,21 @@ export const primitiveColors = {
   },
 
   amber: {
-    400: '#DEBB6B',
-    500: '#C89438',
-    600: '#A87B28',
+    400: '#DDC16E',
+    500: '#C7A338',
+    600: '#A98928',
   },
 
   red: {
-    400: '#E09494',
-    500: '#D16A6A',
-    600: '#B05050',
+    400: '#DF969D',
+    500: '#D06C76',
+    600: '#B04F59',
   },
 
   blue: {
-    400: '#85ADD6',
-    500: '#5B8EC4',
-    600: '#4572A2',
+    400: '#879ED4',
+    500: '#5C7BC1',
+    600: '#4560A1',
   },
 
   sky: {
@@ -130,36 +130,36 @@ export const semanticColors = {
     DEFAULT: primitiveColors.green[500],
     hover: primitiveColors.green[600],
     light: primitiveColors.green[400],
-    bg: 'rgba(67, 165, 117, 0.10)',
-    bgStrong: 'rgba(67, 165, 117, 0.20)',
-    border: 'rgba(67, 165, 117, 0.30)',
+    bg: 'rgba(67, 163, 134, 0.10)',
+    bgStrong: 'rgba(67, 163, 134, 0.20)',
+    border: 'rgba(67, 163, 134, 0.30)',
   },
 
   warning: {
     DEFAULT: primitiveColors.amber[500],
     hover: primitiveColors.amber[600],
     light: primitiveColors.amber[400],
-    bg: 'rgba(200, 148, 56, 0.10)',
-    bgStrong: 'rgba(200, 148, 56, 0.20)',
-    border: 'rgba(200, 148, 56, 0.30)',
+    bg: 'rgba(199, 163, 56, 0.10)',
+    bgStrong: 'rgba(199, 163, 56, 0.20)',
+    border: 'rgba(199, 163, 56, 0.30)',
   },
 
   error: {
     DEFAULT: primitiveColors.red[500],
     hover: primitiveColors.red[600],
     light: primitiveColors.red[400],
-    bg: 'rgba(209, 106, 106, 0.10)',
-    bgStrong: 'rgba(209, 106, 106, 0.20)',
-    border: 'rgba(209, 106, 106, 0.30)',
+    bg: 'rgba(208, 108, 118, 0.10)',
+    bgStrong: 'rgba(208, 108, 118, 0.20)',
+    border: 'rgba(208, 108, 118, 0.30)',
   },
 
   info: {
     DEFAULT: primitiveColors.blue[500],
     hover: primitiveColors.blue[600],
     light: primitiveColors.blue[400],
-    bg: 'rgba(91, 142, 196, 0.10)',
-    bgStrong: 'rgba(91, 142, 196, 0.20)',
-    border: 'rgba(91, 142, 196, 0.30)',
+    bg: 'rgba(92, 123, 193, 0.10)',
+    bgStrong: 'rgba(92, 123, 193, 0.20)',
+    border: 'rgba(92, 123, 193, 0.30)',
   },
 
   accent: {

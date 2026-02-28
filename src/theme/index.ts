@@ -398,14 +398,14 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
     '--btn-primary-active': hslToHex(tpH, tpS, Math.min(tpL + 25, 55)),
 
     // Semantic bg
-    '--success-bg': 'rgba(67, 165, 117, 0.08)',
-    '--success-bg-strong': 'rgba(67, 165, 117, 0.15)',
-    '--warning-bg': 'rgba(200, 148, 56, 0.08)',
-    '--warning-bg-strong': 'rgba(200, 148, 56, 0.15)',
-    '--error-bg': 'rgba(209, 106, 106, 0.08)',
-    '--error-bg-strong': 'rgba(209, 106, 106, 0.15)',
-    '--info-bg': 'rgba(91, 142, 196, 0.08)',
-    '--info-bg-strong': 'rgba(91, 142, 196, 0.15)',
+    '--success-bg': 'rgba(67, 163, 134, 0.08)',
+    '--success-bg-strong': 'rgba(67, 163, 134, 0.15)',
+    '--warning-bg': 'rgba(199, 163, 56, 0.08)',
+    '--warning-bg-strong': 'rgba(199, 163, 56, 0.15)',
+    '--error-bg': 'rgba(208, 108, 118, 0.08)',
+    '--error-bg-strong': 'rgba(208, 108, 118, 0.15)',
+    '--info-bg': 'rgba(92, 123, 193, 0.08)',
+    '--info-bg-strong': 'rgba(92, 123, 193, 0.15)',
   }
 }
 
@@ -510,14 +510,14 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     '--btn-primary-active': btnPrimaryActive,
 
     // Semantic bg
-    '--success-bg': 'rgba(67, 165, 117, 0.08)',
-    '--success-bg-strong': 'rgba(67, 165, 117, 0.15)',
-    '--warning-bg': 'rgba(200, 148, 56, 0.08)',
-    '--warning-bg-strong': 'rgba(200, 148, 56, 0.15)',
-    '--error-bg': 'rgba(209, 106, 106, 0.08)',
-    '--error-bg-strong': 'rgba(209, 106, 106, 0.15)',
-    '--info-bg': 'rgba(91, 142, 196, 0.08)',
-    '--info-bg-strong': 'rgba(91, 142, 196, 0.15)',
+    '--success-bg': 'rgba(67, 163, 134, 0.08)',
+    '--success-bg-strong': 'rgba(67, 163, 134, 0.15)',
+    '--warning-bg': 'rgba(199, 163, 56, 0.08)',
+    '--warning-bg-strong': 'rgba(199, 163, 56, 0.15)',
+    '--error-bg': 'rgba(208, 108, 118, 0.08)',
+    '--error-bg-strong': 'rgba(208, 108, 118, 0.15)',
+    '--info-bg': 'rgba(92, 123, 193, 0.08)',
+    '--info-bg-strong': 'rgba(92, 123, 193, 0.15)',
   }
 }
 
