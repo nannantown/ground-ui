@@ -52,9 +52,9 @@ export const primitiveColors = {
 
   // Brand Colors
   green: {
-    400: '#4ade80',
-    500: '#22c55e',
-    600: '#16a34a',
+    400: '#68BF92',
+    500: '#43A575',
+    600: '#358960',
   },
 
   emerald: {
@@ -62,21 +62,21 @@ export const primitiveColors = {
   },
 
   amber: {
-    400: '#fbbf24',
-    500: '#f59e0b',
-    600: '#d97706',
+    400: '#DEBB6B',
+    500: '#C89438',
+    600: '#A87B28',
   },
 
   red: {
-    400: '#f87171',
-    500: '#ef4444',
-    600: '#dc2626',
+    400: '#E09494',
+    500: '#D16A6A',
+    600: '#B05050',
   },
 
   blue: {
-    400: '#60a5fa',
-    500: '#3b82f6',
-    600: '#2563eb',
+    400: '#85ADD6',
+    500: '#5B8EC4',
+    600: '#4572A2',
   },
 
   sky: {
@@ -130,36 +130,36 @@ export const semanticColors = {
     DEFAULT: primitiveColors.green[500],
     hover: primitiveColors.green[600],
     light: primitiveColors.green[400],
-    bg: 'rgba(34, 197, 94, 0.10)',
-    bgStrong: 'rgba(34, 197, 94, 0.20)',
-    border: 'rgba(34, 197, 94, 0.30)',
+    bg: 'rgba(67, 165, 117, 0.10)',
+    bgStrong: 'rgba(67, 165, 117, 0.20)',
+    border: 'rgba(67, 165, 117, 0.30)',
   },
 
   warning: {
     DEFAULT: primitiveColors.amber[500],
     hover: primitiveColors.amber[600],
     light: primitiveColors.amber[400],
-    bg: 'rgba(245, 158, 11, 0.10)',
-    bgStrong: 'rgba(245, 158, 11, 0.20)',
-    border: 'rgba(245, 158, 11, 0.30)',
+    bg: 'rgba(200, 148, 56, 0.10)',
+    bgStrong: 'rgba(200, 148, 56, 0.20)',
+    border: 'rgba(200, 148, 56, 0.30)',
   },
 
   error: {
     DEFAULT: primitiveColors.red[500],
     hover: primitiveColors.red[600],
     light: primitiveColors.red[400],
-    bg: 'rgba(239, 68, 68, 0.10)',
-    bgStrong: 'rgba(239, 68, 68, 0.20)',
-    border: 'rgba(239, 68, 68, 0.30)',
+    bg: 'rgba(209, 106, 106, 0.10)',
+    bgStrong: 'rgba(209, 106, 106, 0.20)',
+    border: 'rgba(209, 106, 106, 0.30)',
   },
 
   info: {
     DEFAULT: primitiveColors.blue[500],
     hover: primitiveColors.blue[600],
     light: primitiveColors.blue[400],
-    bg: 'rgba(59, 130, 246, 0.10)',
-    bgStrong: 'rgba(59, 130, 246, 0.20)',
-    border: 'rgba(59, 130, 246, 0.30)',
+    bg: 'rgba(91, 142, 196, 0.10)',
+    bgStrong: 'rgba(91, 142, 196, 0.20)',
+    border: 'rgba(91, 142, 196, 0.30)',
   },
 
   accent: {
