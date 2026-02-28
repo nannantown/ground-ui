@@ -82,10 +82,14 @@ const THEME_STORAGE_KEY = 'centra-accent-theme'
 const WCAG_AA_NORMAL = 4.5
 const WCAG_AA_LARGE = 3.0
 
-// Text saturation factor: limits tint visibility in text colors.
+// Surface saturation: low enough that accent colors remain visually
+// distinct against the background (Material Design 3 "neutral" approach).
+// Previous value (55) made tinted surfaces compete with the accent hue.
+const SURFACE_SAT_DARK = 20
+const SURFACE_SAT_LIGHT = 18
+
+// Text saturation factor: even lower than surface to keep text neutral.
 // Max 12% prevents secondary/disabled text from appearing "colored".
-// Background uses tint*55 for visible surface tint, but text must stay
-// readable — high saturation at medium lightness looks muddy/dark.
 const TEXT_TINT_SAT = 12
 
 const DEFAULT_CONFIG: ThemeConfig = {
@@ -294,10 +298,11 @@ function tintedSelectedHover(hue: number, tint: number): string {
 // --- Surface Token Generation ---
 
 export function generateLightSurface(hue: number, tint: number, lBase: number): Record<string, string> {
-  const bgPrimary = hslToHex(hue, tint * 40, lBase)
-  const bgSecondary = hslToHex(hue, tint * 30, lBase - 4)
-  const bgCard = hslToHex(hue, tint * 45, Math.min(lBase + 5, 99))
-  const bgElevated = hslToHex(hue, tint * 15, Math.min(lBase + 7, 100))
+  const lightSat = tint * SURFACE_SAT_LIGHT
+  const bgPrimary = hslToHex(hue, lightSat, lBase)
+  const bgSecondary = hslToHex(hue, lightSat * 0.8, lBase - 4)
+  const bgCard = hslToHex(hue, lightSat * 1.1, Math.min(lBase + 5, 99))
+  const bgElevated = hslToHex(hue, lightSat * 0.4, Math.min(lBase + 7, 100))
 
   const { r: bgCardR, g: bgCardG, b: bgCardB } = hexToRgb(bgCard)
   const { r: bgPrimR, g: bgPrimG, b: bgPrimB } = hexToRgb(bgPrimary)
@@ -405,8 +410,7 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
 }
 
 export function generateDarkSurface(hue: number, tint: number): Record<string, string> {
-  // Dark mode needs higher saturation + slight lightness boost for visible tint
-  const darkSat = tint * 55
+  const darkSat = tint * SURFACE_SAT_DARK
   const lBoost = tint * 3
 
   const bgPrimary = hslToHex(hue, darkSat, 4 + lBoost)
