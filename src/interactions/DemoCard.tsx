@@ -63,7 +63,7 @@ export function DemoCard({
             background: 'var(--bg-surface)',
             fontSize: 11,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
             flexShrink: 0,
           }}
@@ -121,7 +121,7 @@ export function DemoCard({
             style={{
               fontSize: 11,
               fontFamily: 'var(--font-mono)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
             }}
           >
             A: {output.valueA.toFixed(2)}
@@ -142,7 +142,7 @@ export function DemoCard({
             style={{
               fontSize: 11,
               fontFamily: 'var(--font-mono)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
             }}
           >
             B: {output.valueB.toFixed(2)}

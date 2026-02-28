@@ -287,7 +287,7 @@ function HarmonyWheelDemo({ onChange }: DemoProps) {
         B
       </text>
       {/* Offset label */}
-      <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="central" fontSize={11} fill="var(--text-muted)" style={{ pointerEvents: 'none' }}>
+      <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="central" fontSize={11} fill="var(--text-secondary)" style={{ pointerEvents: 'none' }}>
         +{OFFSET}°
       </text>
     </svg>
@@ -870,7 +870,7 @@ function MapNavDemo({ onChange }: DemoProps) {
           right: 8,
           fontSize: 10,
           fontFamily: 'var(--font-mono)',
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           background: 'var(--bg-secondary)',
           padding: '2px 6px',
           borderRadius: 4,

@@ -109,7 +109,7 @@ export const BottomNav = forwardRef<HTMLElement, BottomNavProps>(
             padding: '6px 0',
             position: 'relative',
             transition: 'all 0.15s ease',
-            color: isActive ? 'var(--accent)' : 'var(--text-muted)',
+            color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
             fontFamily: 'inherit',
             outline: 'none',
             WebkitTapHighlightColor: 'transparent',
@@ -153,7 +153,7 @@ export const BottomNav = forwardRef<HTMLElement, BottomNavProps>(
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.color = 'var(--text-muted)'
+                  e.currentTarget.style.color = 'var(--text-secondary)'
                 }
               }}
               onFocus={(e) => {

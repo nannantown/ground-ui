@@ -70,7 +70,6 @@ class GroundTokens {
   final Color semanticBgElevated = const Color(0xFF1A1A1A);
   final Color semanticTextPrimary = const Color(0xFFEDEDED);
   final Color semanticTextSecondary = const Color(0xFFA0A0A0);
-  final Color semanticTextMuted = const Color(0xFF949494);
   final Color semanticTextDisabled = const Color(0xFF666666);
   final Color semanticTextInverse = const Color(0xFF000000);
   final Color semanticBorderSubtle = const Color(0x1FFFFFFF);

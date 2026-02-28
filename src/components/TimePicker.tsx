@@ -529,7 +529,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               padding: '0 10px',
               background: 'none',
               border: 'none',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               cursor: disabled ? 'not-allowed' : 'pointer',
               transition: 'color 0.15s ease',
             }}
@@ -537,7 +537,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               if (!disabled) e.currentTarget.style.color = 'var(--text-primary)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--text-muted)'
+              e.currentTarget.style.color = 'var(--text-secondary)'
             }}
             aria-label="Open time picker"
           >
@@ -584,7 +584,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                       textAlign: 'center',
                       fontSize: 'var(--text-xs)',
                       fontWeight: 600,
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-secondary)',
                       padding: '4px 0 8px',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
@@ -621,7 +621,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                       textAlign: 'center',
                       fontSize: 'var(--text-xs)',
                       fontWeight: 600,
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-secondary)',
                       padding: '4px 0 8px',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
@@ -658,7 +658,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                           textAlign: 'center',
                           fontSize: 'var(--text-xs)',
                           fontWeight: 600,
-                          color: 'var(--text-muted)',
+                          color: 'var(--text-secondary)',
                           padding: '4px 0 8px',
                           letterSpacing: '0.05em',
                         }}

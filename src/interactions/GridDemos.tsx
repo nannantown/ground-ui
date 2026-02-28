@@ -336,7 +336,7 @@ function NodeConnectionDemo({ onChange }: DemoProps) {
               color:
                 connection?.left === i
                   ? '#fff'
-                  : 'var(--text-muted)',
+                  : 'var(--text-secondary)',
               cursor: 'grab',
               transition: 'background 0.15s ease, border-color 0.15s ease',
             }}
@@ -385,7 +385,7 @@ function NodeConnectionDemo({ onChange }: DemoProps) {
               color:
                 connection?.right === i
                   ? '#fff'
-                  : 'var(--text-muted)',
+                  : 'var(--text-secondary)',
               transition: 'background 0.15s ease, border-color 0.15s ease',
             }}
           >

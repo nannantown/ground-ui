@@ -179,7 +179,7 @@ const markLabelStyle: CSSProperties = {
   top: 14,
   transform: 'translateX(-50%)',
   fontSize: 'var(--text-xs)',
-  color: 'var(--text-muted)',
+  color: 'var(--text-secondary)',
   whiteSpace: 'nowrap',
   pointerEvents: 'none',
 }

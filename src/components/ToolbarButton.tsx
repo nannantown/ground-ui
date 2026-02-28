@@ -29,7 +29,7 @@ export function ToolbarButton({
         borderRadius: 'var(--radius-md)',
         background: 'transparent',
         border: '1px solid var(--border-subtle)',
-        color: 'var(--text-muted)',
+        color: 'var(--text-secondary)',
         cursor: 'pointer',
         transition: 'all 150ms ease',
         fontSize: 11,
@@ -44,7 +44,7 @@ export function ToolbarButton({
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = 'transparent'
-        e.currentTarget.style.color = 'var(--text-muted)'
+        e.currentTarget.style.color = 'var(--text-secondary)'
         e.currentTarget.style.borderColor = 'var(--border-subtle)'
       }}
     >

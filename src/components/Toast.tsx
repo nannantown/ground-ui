@@ -143,7 +143,7 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string)
         style={{
           background: 'none',
           border: 'none',
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           cursor: 'pointer',
           padding: '2px',
           flexShrink: 0,

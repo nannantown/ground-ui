@@ -304,7 +304,8 @@ Use these in CSS or inline `style={{ color: 'var(--text-primary)' }}`.
 `--bg-primary` `--bg-secondary` `--bg-card` `--bg-elevated` `--bg-overlay` `--bg-scrim` `--bg-translucent` `--bg-surface` `--bg-surface-hover` `--bg-surface-active`
 
 #### Text
-`--text-primary` `--text-secondary` `--text-muted` `--text-disabled` `--text-inverse`
+`--text-primary` `--text-secondary` `--text-disabled` `--text-inverse`
+> `--text-muted` is a deprecated alias for `--text-secondary`. Use `--text-secondary` directly.
 
 #### Borders
 `--border-subtle` `--border-default` `--border-strong`

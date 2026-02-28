@@ -300,9 +300,6 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
   const textSecondary = ensureContrast(
     hslToHex(hue, tint * 8, 40 - tint * 4), bgPrimary, WCAG_AA_NORMAL
   )
-  const textMuted = ensureContrast(
-    hslToHex(hue, tint * 8, 43 - tint * 5), bgPrimary, WCAG_AA_NORMAL
-  )
   const textDisabled = ensureContrast(
     hslToHex(hue, tint * 10, 54 - tint * 6), bgPrimary, WCAG_AA_LARGE
   )
@@ -333,7 +330,7 @@ export function generateLightSurface(hue: number, tint: number, lBase: number): 
     // Text hierarchy
     '--text-primary': textPrimary,
     '--text-secondary': textSecondary,
-    '--text-muted': textMuted,
+    '--text-muted': textSecondary,
     '--text-disabled': textDisabled,
     '--text-inverse': textInverse,
 
@@ -413,9 +410,6 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
   const textSecondary = ensureContrast(
     hslToHex(hue, darkSat * 1.5, 62), bgPrimary, WCAG_AA_NORMAL
   )
-  const textMuted = ensureContrast(
-    hslToHex(hue, darkSat * 1.2, 48), bgPrimary, WCAG_AA_NORMAL
-  )
   const textDisabled = ensureContrast(
     hslToHex(hue, darkSat * 1.0, 33), bgPrimary, WCAG_AA_LARGE
   )
@@ -446,7 +440,7 @@ export function generateDarkSurface(hue: number, tint: number): Record<string, s
     // Text
     '--text-primary': textPrimary,
     '--text-secondary': textSecondary,
-    '--text-muted': textMuted,
+    '--text-muted': textSecondary,
     '--text-disabled': textDisabled,
     '--text-inverse': textInverse,
 
@@ -704,7 +698,6 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
     // Auto-correct text colors for WCAG compliance
     const textContrastPairs: Array<{ key: string; min: number }> = [
       { key: '--text-secondary', min: WCAG_AA_NORMAL },
-      { key: '--text-muted', min: WCAG_AA_NORMAL },
       { key: '--text-disabled', min: WCAG_AA_LARGE },
     ]
     for (const { key, min } of textContrastPairs) {

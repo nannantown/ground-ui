@@ -91,7 +91,7 @@ export function Sidebar({
                         <span
                           style={{
                             fontSize: 'var(--text-xs)',
-                            color: 'var(--text-muted)',
+                            color: 'var(--text-secondary)',
                             fontWeight: 500,
                           }}
                         >

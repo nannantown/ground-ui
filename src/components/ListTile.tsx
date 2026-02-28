@@ -187,7 +187,7 @@ export const ListTile = forwardRef<HTMLDivElement, ListTileProps>(
             <div
               style={{
                 fontSize: 'var(--text-xs)',
-                color: 'var(--text-muted)',
+                color: 'var(--text-secondary)',
                 lineHeight: 1.5,
                 marginTop: 4,
                 display: '-webkit-box',
@@ -209,7 +209,7 @@ export const ListTile = forwardRef<HTMLDivElement, ListTileProps>(
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
             }}
           >
             {trailing}

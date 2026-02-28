@@ -366,7 +366,7 @@ function MorphingBlobDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 9,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontWeight: 600,
           }}
         >
@@ -394,7 +394,7 @@ function MorphingBlobDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 9,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontWeight: 600,
           }}
         >

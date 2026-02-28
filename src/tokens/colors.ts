@@ -108,7 +108,6 @@ export const semanticColors = {
   text: {
     primary: primitiveColors.gray[150],
     secondary: primitiveColors.gray[400],
-    muted: primitiveColors.gray[450],
     disabled: primitiveColors.gray[700],
     inverse: '#000000',
   },

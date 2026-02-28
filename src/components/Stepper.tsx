@@ -99,7 +99,7 @@ function circleStyles(status: StepStatus, compact: boolean): CSSProperties {
       return {
         ...base,
         background: 'transparent',
-        color: 'var(--text-muted)',
+        color: 'var(--text-secondary)',
         border: '2px solid var(--border-default)',
       }
   }
@@ -129,7 +129,7 @@ function labelStyle(status: StepStatus): CSSProperties {
   return {
     fontSize: 'var(--text-sm)',
     fontWeight: status === 'active' ? 600 : 500,
-    color: status === 'upcoming' ? 'var(--text-muted)' : 'var(--text-primary)',
+    color: status === 'upcoming' ? 'var(--text-secondary)' : 'var(--text-primary)',
     lineHeight: 1.3,
     transition: 'color 0.15s ease',
   }
@@ -138,7 +138,7 @@ function labelStyle(status: StepStatus): CSSProperties {
 function descriptionStyle(): CSSProperties {
   return {
     fontSize: 'var(--text-xs)',
-    color: 'var(--text-muted)',
+    color: 'var(--text-secondary)',
     lineHeight: 1.4,
     marginTop: 2,
   }

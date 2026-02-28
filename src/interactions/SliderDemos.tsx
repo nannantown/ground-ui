@@ -71,7 +71,7 @@ function DualFaderDemo({ onChange }: DemoProps) {
           style={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
           }}
         >
@@ -291,7 +291,7 @@ function DualHandleDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 10,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
           }}
         >
@@ -300,7 +300,7 @@ function DualHandleDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 10,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
           }}
         >
@@ -525,7 +525,7 @@ function SemanticSliderDemo({ onChange }: DemoProps) {
           style={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             textTransform: 'uppercase',
             letterSpacing: 1,
           }}
@@ -540,7 +540,7 @@ function SemanticSliderDemo({ onChange }: DemoProps) {
           style={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             writingMode: 'vertical-lr',
             textTransform: 'uppercase',
             letterSpacing: 1,
@@ -631,7 +631,7 @@ function SemanticSliderDemo({ onChange }: DemoProps) {
           style={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             writingMode: 'vertical-lr',
             textTransform: 'uppercase',
             letterSpacing: 1,
@@ -651,7 +651,7 @@ function SemanticSliderDemo({ onChange }: DemoProps) {
           style={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             textTransform: 'uppercase',
             letterSpacing: 1,
           }}
@@ -884,7 +884,7 @@ function ParallelCoordinatesDemo({ onChange }: DemoProps) {
           x={padding}
           y={14}
           textAnchor="middle"
-          fill="var(--text-muted)"
+          fill="var(--text-secondary)"
           fontSize={10}
           fontWeight={600}
           fontFamily="var(--font-mono)"
@@ -895,7 +895,7 @@ function ParallelCoordinatesDemo({ onChange }: DemoProps) {
           x={padding + axisSpacing}
           y={14}
           textAnchor="middle"
-          fill="var(--text-muted)"
+          fill="var(--text-secondary)"
           fontSize={10}
           fontWeight={600}
           fontFamily="var(--font-mono)"

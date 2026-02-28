@@ -84,8 +84,8 @@ function defaultCompare(a: unknown, b: unknown): number {
 // ---------------------------------------------------------------------------
 
 function SortIndicator({ direction }: { direction: SortDirection }) {
-  const upColor = direction === 'asc' ? 'var(--text-primary)' : 'var(--text-muted)'
-  const downColor = direction === 'desc' ? 'var(--text-primary)' : 'var(--text-muted)'
+  const upColor = direction === 'asc' ? 'var(--text-primary)' : 'var(--text-secondary)'
+  const downColor = direction === 'desc' ? 'var(--text-primary)' : 'var(--text-secondary)'
 
   return (
     <svg
@@ -285,7 +285,7 @@ function DataTableInner<T extends Record<string, unknown>>(
                 style={{
                   padding: '40px 16px',
                   textAlign: 'center',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                   fontSize: 'var(--text-sm)',
                 }}
               >

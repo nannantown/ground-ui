@@ -762,7 +762,7 @@ function OverviewSection() {
             >
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, marginBottom: 'var(--space-2xs)' }}>{item.layer}</div>
-                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.5 }}>{item.desc}</div>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{item.desc}</div>
               </div>
               <code className="ds-code-tag">
                 {item.example}
@@ -796,7 +796,6 @@ function ColorsSection() {
           {[
             { name: 'Primary', cssVar: '--text-primary' },
             { name: 'Secondary', cssVar: '--text-secondary' },
-            { name: 'Muted', cssVar: '--text-muted' },
             { name: 'Disabled', cssVar: '--text-disabled' },
           ].map((c) => (
             <InlineColorSwatch key={c.name} name={c.name} cssVar={c.cssVar} />
@@ -852,7 +851,7 @@ function ColorsSection() {
                 }}
               >
                 <span style={{ fontWeight: 600, color: `var(--${name})`, textTransform: 'capitalize' }}>{name}</span>
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                   bg / border / glow
                 </span>
               </div>
@@ -899,13 +898,11 @@ function SurfacesSection() {
             const lightTexts = [
               { label: 'Primary', hex: light['--text-primary'] },
               { label: 'Secondary', hex: light['--text-secondary'] },
-              { label: 'Muted', hex: light['--text-muted'] },
               { label: 'Disabled', hex: light['--text-disabled'] },
             ]
             const darkTexts = [
               { label: 'Primary', hex: dark['--text-primary'] },
               { label: 'Secondary', hex: dark['--text-secondary'] },
-              { label: 'Muted', hex: dark['--text-muted'] },
               { label: 'Disabled', hex: dark['--text-disabled'] },
             ]
 
@@ -921,13 +918,13 @@ function SurfacesSection() {
               >
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-md)', marginBottom: 'var(--space-xs)' }}>
                   <span style={{ fontSize: 'var(--text-md)', fontWeight: 600 }}>{locale === 'ja' ? preset.nameJa : preset.name}</span>
-                  {locale === 'en' && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{preset.nameJa}</span>}
+                  {locale === 'en' && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>{preset.nameJa}</span>}
                 </div>
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)', marginBottom: 'var(--space-lg)' }}>
                   Tint: {preset.tintStrength} &middot; Lightness base: {preset.lightnessBase}
                 </div>
 
-                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
                   {t.bgHierarchy}
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)', marginBottom: 'var(--space-lg)' }}>
@@ -937,7 +934,7 @@ function SurfacesSection() {
                       {lightBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
                           <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', marginBottom: 'var(--space-xs)' }} />
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{bg.label}</div>
                           <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
@@ -949,7 +946,7 @@ function SurfacesSection() {
                       {darkBgs.map((bg) => (
                         <div key={bg.label} style={{ flex: 1, textAlign: 'center' }}>
                           <div style={{ height: 40, borderRadius: 'var(--radius-md)', background: bg.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', marginBottom: 'var(--space-xs)' }} />
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{bg.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{bg.label}</div>
                           <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{bg.hex}</div>
                         </div>
                       ))}
@@ -957,7 +954,7 @@ function SurfacesSection() {
                   </div>
                 </div>
 
-                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
                   {t.textHierarchy}
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
@@ -966,7 +963,7 @@ function SurfacesSection() {
                       <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
                         <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid var(--border-subtle)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{tx.label}</div>
                           <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
@@ -977,7 +974,7 @@ function SurfacesSection() {
                       <div key={tx.label} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
                         <div style={{ width: 'var(--space-lg)', height: 'var(--space-lg)', borderRadius: 'var(--radius-sm)', background: tx.hex, border: 'var(--border-width-thin) solid rgba(255,255,255,0.1)', flexShrink: 0 }} />
                         <div>
-                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{tx.label}</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{tx.label}</div>
                           <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-disabled)', fontFamily: 'var(--font-mono)' }}>{tx.hex}</div>
                         </div>
                       </div>
@@ -991,7 +988,7 @@ function SurfacesSection() {
       </Group>
 
       <Group label="Surface x Accent Matrix" labelJa="サーフェス x アクセント マトリクス">
-        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
           {t.surfaceAccentMatrixDesc}
         </p>
         <div
@@ -1006,11 +1003,11 @@ function SurfacesSection() {
           <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
               <tr>
-                <th style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'left', padding: '0 var(--space-md) var(--space-md) 0', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <th style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-secondary)', textAlign: 'left', padding: '0 var(--space-md) var(--space-md) 0', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {t.surface}
                 </th>
                 {matrixAccents.map((a) => (
-                  <th key={a.id} style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'center', padding: '0 var(--space-sm) var(--space-md)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  <th key={a.id} style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-secondary)', textAlign: 'center', padding: '0 var(--space-sm) var(--space-md)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     {locale === 'ja' ? a.nameJa : a.name}
                   </th>
                 ))}
@@ -1069,7 +1066,7 @@ function SurfacesSection() {
       </Group>
 
       <Group label="Secondary Accent Generation" labelJa="セカンダリアクセント生成">
-        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: '0 0 var(--space-lg)', lineHeight: 1.5 }}>
           {t.secondaryAccentGenDesc}
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
@@ -1092,7 +1089,7 @@ function SurfacesSection() {
                 <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ height: 'var(--space-2xl)', borderRadius: 'var(--radius-sm)', background: accent.color, marginBottom: 'var(--space-xs)' }} />
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{t.primary}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{t.primary}</div>
                     <div style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{accent.color}</div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-disabled)', fontSize: 'var(--text-md)' }}>
@@ -1100,7 +1097,7 @@ function SurfacesSection() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ height: 'var(--space-2xl)', borderRadius: 'var(--radius-sm)', background: secondary, marginBottom: 'var(--space-xs)' }} />
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{t.secondary}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{t.secondary}</div>
                     <div style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-disabled)' }}>{secondary}</div>
                   </div>
                 </div>
@@ -1150,7 +1147,7 @@ function TypographySection() {
                   flexShrink: 0,
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                 }}
               >
                 {item.token}
@@ -1198,7 +1195,7 @@ function TypographySection() {
                   flexShrink: 0,
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                 }}
               >
                 {item.token}
@@ -1243,7 +1240,7 @@ function TypographySection() {
             }}
           >
             <span style={{ fontSize: 'var(--text-md)' }}>Noto Sans JP / System</span>
-            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-family</code>
+            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>--font-family</code>
           </div>
           <div
             style={{
@@ -1257,7 +1254,7 @@ function TypographySection() {
             }}
           >
             <span style={{ fontSize: 'var(--text-md)', fontFamily: 'var(--font-mono)' }}>SF Mono / Fira Code</span>
-            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>--font-mono</code>
+            <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>--font-mono</code>
           </div>
         </div>
       </Group>
@@ -1303,7 +1300,7 @@ function SpacingSection() {
                   flexShrink: 0,
                   fontSize: 'var(--text-sm)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                 }}
               >
                 {s.token}
@@ -1317,7 +1314,7 @@ function SpacingSection() {
                   flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                 {s.value}
               </span>
             </div>
@@ -1351,7 +1348,7 @@ function SpacingSection() {
                   flexShrink: 0,
                   fontSize: 'var(--text-sm)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                 }}
               >
                 {c.token}
@@ -1368,7 +1365,7 @@ function SpacingSection() {
                   opacity: 0.6,
                 }}
               />
-              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', flexShrink: 0 }}>
+              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', flexShrink: 0 }}>
                 {c.value}
               </span>
             </div>
@@ -1399,7 +1396,7 @@ function SpacingSection() {
                 }}
               />
               <div style={{ fontSize: 'var(--text-sm)', fontWeight: 500 }}>{r.token}</div>
-              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{r.value}</div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>{r.value}</div>
             </div>
           ))}
         </div>
@@ -1553,7 +1550,7 @@ function InputsSection() {
           </div>
           <div className="ds-row">
             <Toggle checked={false} onChange={() => {}} disabled label={t.disabled} />
-            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{t.disabled}</span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>{t.disabled}</span>
           </div>
         </Stage>
       </Group>
@@ -2072,7 +2069,7 @@ function NavigationSection() {
       <Group label={t.pagination} labelJa="ページネーション">
         <Stage col>
           <Pagination total={100} current={page} onChange={setPage} />
-          <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
+          <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>
             {locale === 'ja' ? `現在のページ: ${page}` : `Current page: ${page}`}
           </p>
         </Stage>
@@ -2110,7 +2107,7 @@ function LayoutSection() {
       <Group label="Stack (Vertical / Horizontal)" labelJa="Stack（垂直・水平）">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直 (gap=md)' : 'Vertical (gap=md)'}
             </div>
             <Stack gap="md">
@@ -2120,7 +2117,7 @@ function LayoutSection() {
             </Stack>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '水平 (gap=sm)' : 'Horizontal (gap=sm)'}
             </div>
             <Stack direction="horizontal" gap="sm">
@@ -2137,7 +2134,7 @@ function LayoutSection() {
       <Group label="Grid (Fixed / Auto-fill / Responsive)" labelJa="Grid（固定・自動・レスポンシブ）">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '3カラム固定' : '3 Columns Fixed'}
             </div>
             <Grid columns={3} gap="sm">
@@ -2145,7 +2142,7 @@ function LayoutSection() {
             </Grid>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? 'Auto-fill (最小120px)' : 'Auto-fill (min 120px)'}
             </div>
             <Grid autoFill="120px" gap="sm">
@@ -2195,7 +2192,7 @@ function LayoutSection() {
                 <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-sm)' }}>
                   {ja ? 'プライマリ' : 'Primary'}
                 </div>
-                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
                   {ja ? 'ドラッグでリサイズ' : 'Drag divider to resize'}
                 </div>
               </div>
@@ -2205,7 +2202,7 @@ function LayoutSection() {
                 <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-sm)' }}>
                   {ja ? 'セカンダリ' : 'Secondary'}
                 </div>
-                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
                   {ja ? '残りのスペースを使用' : 'Takes remaining space'}
                 </div>
               </div>
@@ -2219,7 +2216,7 @@ function LayoutSection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)' }}>
           {(['1:1', '16:9', '4:3', '3:2'] as const).map(ratio => (
             <div key={ratio}>
-              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-mono)' }}>{ratio}</div>
+              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-mono)' }}>{ratio}</div>
               <AspectRatio ratio={ratio}>
                 <div style={{ width: '100%', height: '100%', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--text-sm)', color: 'var(--accent-light)' }}>
                   {ratio}
@@ -2234,7 +2231,7 @@ function LayoutSection() {
       <Group label="ScrollArea" labelJa="ScrollArea（スクロール領域）">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '垂直スクロール' : 'Vertical Scroll'}
             </div>
             <ScrollArea maxHeight="160px" style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)' }}>
@@ -2246,7 +2243,7 @@ function LayoutSection() {
             </ScrollArea>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
               {ja ? '水平スクロール' : 'Horizontal Scroll'}
             </div>
             <ScrollArea direction="horizontal" style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)' }}>
@@ -2269,7 +2266,7 @@ function LayoutSection() {
           <Spacer />
           <LayoutBox label={ja ? '右' : 'Right'} />
         </div>
-        <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginTop: 'var(--space-sm)' }}>
+        <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginTop: 'var(--space-sm)' }}>
           {ja ? 'Spacer は flex: 1 で要素を両端に押しやります' : 'Spacer uses flex: 1 to push items to opposite ends'}
         </div>
       </Group>
@@ -2297,7 +2294,7 @@ function LayoutSection() {
           ].map(item => (
             <div key={item.name} style={{ padding: 'var(--space-sm) var(--space-md)', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
               <code style={{ fontSize: 'var(--text-sm)', color: 'var(--accent-light)', fontFamily: 'var(--font-mono)' }}>{item.name}</code>
-              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{item.desc}</span>
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{item.desc}</span>
             </div>
           ))}
         </div>
@@ -2324,7 +2321,7 @@ const demoStage: React.CSSProperties = {
 }
 
 const demoLabel: React.CSSProperties = {
-  fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)',
+  fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)',
   marginBottom: 'var(--space-sm)',
 }
 
@@ -2374,7 +2371,7 @@ function UtilitiesSection() {
           </UtilVisual>
           <UtilVisual label="inline-flex" labelJa="inline-flex" code=".inline-flex">
             <span style={{ ...demoBox, display: 'inline-flex' }}>inline</span>
-            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginLeft: 6 }}>{locale === 'ja' ? '← テキストと同じ行に' : '← sits inline with text'}</span>
+            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', marginLeft: 6 }}>{locale === 'ja' ? '← テキストと同じ行に' : '← sits inline with text'}</span>
           </UtilVisual>
         </div>
       </Group>
@@ -2447,7 +2444,7 @@ function UtilitiesSection() {
           <UtilVisual label="sticky" labelJa="sticky" code=".sticky .top-0">
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <div style={{ ...demoBox, background: 'var(--info-bg)', borderColor: 'var(--info-border)', color: 'var(--info-light)' }}>sticky</div>
-              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>{locale === 'ja' ? 'スクロール時に固定' : 'Sticks on scroll'}</span>
             </div>
           </UtilVisual>
           <UtilVisual label="inset-0" labelJa="inset-0" code=".inset-0">
@@ -2471,7 +2468,7 @@ function UtilitiesSection() {
             { cls: '.w-1/4', w: '25%' },
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
-              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 56, flexShrink: 0 }}>{item.cls}</code>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 56, flexShrink: 0 }}>{item.cls}</code>
               <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 'var(--space-xs)' }}>
                 <span style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
               </div>
@@ -2492,7 +2489,7 @@ function UtilitiesSection() {
           ].map(item => (
             <UtilVisual key={item.cls} label={item.val} labelJa={item.val} code={item.cls}>
               <div style={{ background: 'var(--warning-bg)', borderRadius: 'var(--radius-sm)', padding: parseInt(item.val) }}>
-                <div style={{ background: 'var(--bg-card)', borderRadius: 'var(--radius-xs)', height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                <div style={{ background: 'var(--bg-card)', borderRadius: 'var(--radius-xs)', height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
                   content
                 </div>
               </div>
@@ -2566,7 +2563,7 @@ function UtilitiesSection() {
             { cls: '.text-2xl', size: 'var(--text-2xl)', label: 'text-2xl' },
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-md)' }}>
-              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 64, flexShrink: 0 }}>{item.label}</code>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 64, flexShrink: 0 }}>{item.label}</code>
               <span style={{ fontSize: item.size, color: 'var(--text-primary)' }}>
                 {locale === 'ja' ? 'テキストサンプル' : 'The quick brown fox'}
               </span>
@@ -2584,7 +2581,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <span style={{ fontSize: 'var(--text-lg)', fontWeight: item.weight, color: 'var(--text-primary)' }}>Aa</span>
-                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
@@ -2595,15 +2592,15 @@ function UtilitiesSection() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginTop: 'var(--space-sm)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
                 <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>UPPERCASE</span>
-                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.uppercase</code>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.uppercase</code>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
                 <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: 100 }}>Very long text that truncates</span>
-                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.truncate</code>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.truncate</code>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xs)' }}>
                 <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', textDecoration: 'line-through' }}>line-through</span>
-                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.line-through</code>
+                <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.line-through</code>
               </div>
             </div>
           </div>
@@ -2660,9 +2657,9 @@ function UtilitiesSection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-md)' }}>
           <UtilVisual label="Border styles" labelJa="ボーダースタイル" code=".border .border-t">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) solid var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border</div>
-              <div style={{ padding: 'var(--space-sm)', borderTop: 'var(--border-width-thin) solid var(--border-default)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-t</div>
-              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) dashed var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>.border-dashed</div>
+              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) solid var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.border</div>
+              <div style={{ padding: 'var(--space-sm)', borderTop: 'var(--border-width-thin) solid var(--border-default)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.border-t</div>
+              <div style={{ padding: 'var(--space-sm)', border: 'var(--border-width-thin) dashed var(--border-default)', borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>.border-dashed</div>
             </div>
           </UtilVisual>
           <UtilVisual label="Border radius" labelJa="角丸" code=".rounded-*">
@@ -2676,7 +2673,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.cls} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <div style={{ width: 40, height: 40, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: item.r }} />
-                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.cls}</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.cls}</code>
                 </div>
               ))}
             </div>
@@ -2684,7 +2681,7 @@ function UtilitiesSection() {
           <UtilVisual label="Border colors" labelJa="ボーダーカラー" code=".border-white/*">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
               {[10, 20, 30].map(a => (
-                <div key={a} style={{ padding: 'var(--space-xs)', border: `var(--border-width-thin) solid var(--p-white-${a})`, borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                <div key={a} style={{ padding: 'var(--space-xs)', border: `var(--border-width-thin) solid var(--p-white-${a})`, borderRadius: 'var(--radius-sm)', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
                   .border-white/{a}
                 </div>
               ))}
@@ -2701,7 +2698,7 @@ function UtilitiesSection() {
               {[100, 75, 50, 25].map(o => (
                 <div key={o} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <div style={{ ...demoBox, opacity: o / 100 }}>Aa</div>
-                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{o}%</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{o}%</code>
                 </div>
               ))}
             </div>
@@ -2715,7 +2712,7 @@ function UtilitiesSection() {
               ].map(item => (
                 <div key={item.dur} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
                   <div style={{ ...demoBox, transition: `all var(--transition-${item.dur})` }}>{item.label}</div>
-                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>{item.dur}</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>{item.dur}</code>
                 </div>
               ))}
             </div>
@@ -2723,7 +2720,7 @@ function UtilitiesSection() {
           <UtilVisual label="Animations" labelJa="アニメーション" code=".animate-*">
             <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
               <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
-              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>pulse</code>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>pulse</code>
             </div>
           </UtilVisual>
         </div>
@@ -2810,7 +2807,7 @@ function UtilitiesSection() {
                 { label: 'lg (1024px+)', code: 'lg:grid-cols-4', cols: 4, color: 'var(--warning-bg)' },
               ].map(item => (
                 <div key={item.code} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
-                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', width: 100, flexShrink: 0 }}>{item.code}</code>
+                  <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 100, flexShrink: 0 }}>{item.code}</code>
                   <div style={{ flex: 1, display: 'grid', gridTemplateColumns: `repeat(${item.cols}, 1fr)`, gap: 4 }}>
                     {Array.from({ length: item.cols }, (_, i) => (
                       <div key={i} style={{ height: 20, background: item.color, borderRadius: 'var(--radius-xs)', border: 'var(--border-width-thin) solid var(--border-subtle)' }} />
@@ -2860,7 +2857,7 @@ function CSSComponentsSection() {
                 <code style={{ fontSize: 'var(--text-sm)', fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--text-primary)' }}>
                   {item.cls}
                 </code>
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                   {item.desc}
                 </span>
               </div>

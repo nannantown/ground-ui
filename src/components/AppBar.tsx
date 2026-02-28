@@ -111,7 +111,7 @@ export const AppBar = forwardRef<HTMLElement, AppBarProps>(
 
     const subtitleStyle: CSSProperties = {
       fontSize: 'var(--text-xs)',
-      color: 'var(--text-muted)',
+      color: 'var(--text-secondary)',
       lineHeight: 1.3,
       overflow: 'hidden',
       textOverflow: 'ellipsis',

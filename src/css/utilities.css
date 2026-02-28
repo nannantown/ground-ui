@@ -701,7 +701,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   padding: var(--space-md) var(--space-lg);
 }
 
@@ -726,7 +726,7 @@
   padding: 8px 16px;
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   background: transparent;
   border: none;
   border-radius: var(--radius-md);

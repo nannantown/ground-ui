@@ -43,7 +43,7 @@ export function FormField({
         </p>
       )}
       {hint && !error && (
-        <p style={{ color: 'var(--text-muted)', fontSize: 'var(--text-sm)', margin: 0 }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', margin: 0 }}>
           {hint}
         </p>
       )}

@@ -95,7 +95,7 @@ export function Checkbox({
         <span
           style={{
             fontSize: 'var(--text-sm)',
-            color: disabled ? 'var(--text-muted)' : 'var(--text-primary)',
+            color: disabled ? 'var(--text-secondary)' : 'var(--text-primary)',
             lineHeight: 1,
           }}
         >

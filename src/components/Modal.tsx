@@ -102,7 +102,7 @@ export function Modal({
                 alignItems: 'center',
                 justifyContent: 'center',
                 transition: 'color 0.15s ease, background-color 0.15s ease',
-                color: 'var(--text-muted)',
+                color: 'var(--text-secondary)',
                 background: 'transparent',
                 border: 'none',
                 cursor: 'pointer',

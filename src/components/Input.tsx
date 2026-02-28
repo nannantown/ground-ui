@@ -39,7 +39,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               display: 'flex',
               alignItems: 'center',
               flexShrink: 0,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               paddingLeft: '12px',
             }}
           >
@@ -68,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               display: 'flex',
               alignItems: 'center',
               flexShrink: 0,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               paddingRight: '12px',
             }}
           >

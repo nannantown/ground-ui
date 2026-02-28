@@ -150,7 +150,7 @@ function TinderSwipeDemo({ onChange }: DemoProps) {
             style={{
               fontSize: 11,
               fontFamily: 'var(--font-mono)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               pointerEvents: 'none',
             }}
           >
@@ -167,7 +167,7 @@ function TinderSwipeDemo({ onChange }: DemoProps) {
           top: '50%',
           transform: 'translateY(-50%)',
           fontSize: 16,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: dragX < -20 ? Math.min(1, Math.abs(dragX) / THRESHOLD) : 0.15,
           pointerEvents: 'none',
           transition: 'opacity 0.1s',
@@ -182,7 +182,7 @@ function TinderSwipeDemo({ onChange }: DemoProps) {
           top: '50%',
           transform: 'translateY(-50%)',
           fontSize: 16,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: dragX > 20 ? Math.min(1, dragX / THRESHOLD) : 0.15,
           pointerEvents: 'none',
           transition: 'opacity 0.1s',
@@ -262,7 +262,7 @@ function CardSwipe2DDemo({ onChange }: DemoProps) {
           top: '50%',
           transform: 'translateY(-50%)',
           fontSize: 14,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: arrowOpacity(10, pos.x < 0 ? pos.x : 0),
           pointerEvents: 'none',
         }}
@@ -276,7 +276,7 @@ function CardSwipe2DDemo({ onChange }: DemoProps) {
           top: '50%',
           transform: 'translateY(-50%)',
           fontSize: 14,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: arrowOpacity(10, pos.x > 0 ? pos.x : 0),
           pointerEvents: 'none',
         }}
@@ -290,7 +290,7 @@ function CardSwipe2DDemo({ onChange }: DemoProps) {
           left: '50%',
           transform: 'translateX(-50%)',
           fontSize: 14,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: arrowOpacity(10, pos.y < 0 ? pos.y : 0),
           pointerEvents: 'none',
         }}
@@ -304,7 +304,7 @@ function CardSwipe2DDemo({ onChange }: DemoProps) {
           left: '50%',
           transform: 'translateX(-50%)',
           fontSize: 14,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: arrowOpacity(10, pos.y > 0 ? pos.y : 0),
           pointerEvents: 'none',
         }}
@@ -448,7 +448,7 @@ function SyncCarouselDemo({ onChange }: DemoProps) {
             style={{
               fontSize: 8,
               fontFamily: 'var(--font-mono)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               opacity: 0.6,
             }}
           >
@@ -478,7 +478,7 @@ function SyncCarouselDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 9,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             opacity: 0.5,
             marginBottom: 2,
             display: 'block',
@@ -497,7 +497,7 @@ function SyncCarouselDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 9,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             opacity: 0.5,
             marginBottom: 2,
             display: 'block',
@@ -540,7 +540,7 @@ function SyncCarouselDemo({ onChange }: DemoProps) {
                 style={{
                   fontSize: 8,
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                   opacity: 0.6,
                 }}
               >
@@ -637,7 +637,7 @@ function SplitScreenDemo({ onChange }: DemoProps) {
           <span
             style={{
               fontSize: 9,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               opacity: 0.5,
               pointerEvents: 'none',
             }}
@@ -721,7 +721,7 @@ function SplitScreenDemo({ onChange }: DemoProps) {
           <span
             style={{
               fontSize: 9,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               opacity: 0.5,
               pointerEvents: 'none',
             }}

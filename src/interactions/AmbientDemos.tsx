@@ -326,7 +326,7 @@ function CameraColorDemo({ onChange }: DemoProps) {
           <div
             style={{
               fontSize: 11,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               textAlign: 'center',
             }}
           >
@@ -677,7 +677,7 @@ function AudioInputDemo({ onChange }: DemoProps) {
           <div
             style={{
               fontSize: 11,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               textAlign: 'center',
             }}
           >

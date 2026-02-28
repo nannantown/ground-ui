@@ -164,6 +164,11 @@ describe('generateDarkSurface', () => {
     })
   })
 
+  it('--text-muted is an alias of --text-secondary', () => {
+    const tokens = generateDarkSurface(30, 0.5)
+    expect(tokens['--text-muted']).toBe(tokens['--text-secondary'])
+  })
+
   it('produces dark backgrounds (low luminance)', () => {
     const tokens = generateDarkSurface(30, 0.5)
     const { r, g, b } = hexToRgb(tokens['--bg-primary'])
@@ -190,6 +195,11 @@ describe('generateLightSurface', () => {
     const { r, g, b } = hexToRgb(tokens['--bg-primary'])
     // Light surface should have high RGB values
     expect(r + g + b).toBeGreaterThan(600)
+  })
+
+  it('--text-muted is an alias of --text-secondary', () => {
+    const tokens = generateLightSurface(30, 0.5, 92)
+    expect(tokens['--text-muted']).toBe(tokens['--text-secondary'])
   })
 })
 

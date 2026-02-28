@@ -61,7 +61,6 @@ export const semantic = {
   'bg.elevated': '#1a1a1a',
   'text.primary': '#ededed',
   'text.secondary': '#a0a0a0',
-  'text.muted': '#949494',
   'text.disabled': '#666666',
   'text.inverse': '#000000',
   'border.subtle': 'rgba(255, 255, 255, 0.12)',

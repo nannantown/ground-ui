@@ -210,7 +210,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
               borderRadius: 'var(--radius-full)',
               background: 'transparent',
               border: '1px solid var(--border-subtle)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               cursor: disabled ? 'not-allowed' : 'pointer',
               opacity: disabled ? 0.4 : 1,
               transition: 'all 0.2s ease',
@@ -225,7 +225,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent'
               e.currentTarget.style.borderColor = 'var(--border-subtle)'
-              e.currentTarget.style.color = 'var(--text-muted)'
+              e.currentTarget.style.color = 'var(--text-secondary)'
             }}
             aria-label="Open search"
           >
@@ -281,7 +281,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
             display: 'flex',
             alignItems: 'center',
             flexShrink: 0,
-            color: focused ? 'var(--accent)' : 'var(--text-muted)',
+            color: focused ? 'var(--accent)' : 'var(--text-secondary)',
             paddingLeft: config.padding,
             transition: 'color 0.15s ease',
           }}
@@ -321,7 +321,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
               display: 'flex',
               alignItems: 'center',
               flexShrink: 0,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               paddingRight: config.padding,
             }}
           >
@@ -343,7 +343,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
               borderRadius: '50%',
               background: 'transparent',
               border: 'none',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               cursor: 'pointer',
               transition: 'all 0.15s ease',
             }}
@@ -353,7 +353,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = 'var(--text-muted)'
+              e.currentTarget.style.color = 'var(--text-secondary)'
             }}
           >
             <ClearIcon size={config.iconSize - 2} />

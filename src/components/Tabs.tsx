@@ -38,7 +38,7 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
                 fontWeight: 500,
                 transition: 'color 0.15s ease',
                 position: 'relative',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                 background: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
@@ -60,7 +60,7 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
                       paddingRight: 6,
                       borderRadius: 9999,
                       background: isActive ? 'var(--p-white-12)' : 'var(--p-white-6)',
-                      color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                      color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                     }}
                   >
                     {tab.count}

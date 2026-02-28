@@ -503,7 +503,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
               alignItems: 'center',
               flexShrink: 0,
               paddingRight: 10,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               transition: 'transform 0.15s ease',
               transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
             }}
@@ -541,7 +541,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                     justifyContent: 'center',
                     gap: 8,
                     padding: '16px 12px',
-                    color: 'var(--text-muted)',
+                    color: 'var(--text-secondary)',
                     fontSize: 'var(--text-sm)',
                   }}
                 >
@@ -552,7 +552,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                 <div
                   style={{
                     padding: '16px 12px',
-                    color: 'var(--text-muted)',
+                    color: 'var(--text-secondary)',
                     fontSize: 'var(--text-sm)',
                     textAlign: 'center',
                   }}
@@ -574,7 +574,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                               padding: '8px 12px 4px',
                               fontSize: 'var(--text-xs)',
                               fontWeight: 600,
-                              color: 'var(--text-muted)',
+                              color: 'var(--text-secondary)',
                               textTransform: 'uppercase',
                               letterSpacing: '0.05em',
                             }}
@@ -658,7 +658,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                                   <div
                                     style={{
                                       fontSize: 'var(--text-xs)',
-                                      color: 'var(--text-muted)',
+                                      color: 'var(--text-secondary)',
                                       marginTop: 2,
                                       whiteSpace: 'nowrap',
                                       overflow: 'hidden',

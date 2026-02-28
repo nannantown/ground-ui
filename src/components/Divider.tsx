@@ -38,7 +38,7 @@ export function Divider({ direction = 'horizontal', label, className }: DividerP
             fontWeight: 500,
             textTransform: 'uppercase',
             letterSpacing: '0.5px',
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             flexShrink: 0,
           }}
         >

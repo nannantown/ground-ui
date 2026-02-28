@@ -16,7 +16,7 @@ export function StatCard({ label, value, trend, icon, className = '' }: StatCard
   const trendColor = {
     up: 'var(--success)',
     down: 'var(--error)',
-    neutral: 'var(--text-muted)',
+    neutral: 'var(--text-secondary)',
   }
 
   const trendIcon = {
@@ -66,7 +66,7 @@ export function StatCard({ label, value, trend, icon, className = '' }: StatCard
               justifyContent: 'center',
               flexShrink: 0,
               background: 'var(--bg-surface)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
             }}
           >
             {icon}

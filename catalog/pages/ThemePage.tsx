@@ -316,7 +316,7 @@ export function ThemePage() {
               <span style={{
                 fontSize: 'var(--text-xs)',
                 fontWeight: 500,
-                color: config.primaryStyle === 'mono' ? 'var(--text-primary)' : 'var(--text-muted)',
+                color: config.primaryStyle === 'mono' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 transition: 'color 0.15s ease',
               }}>
                 {t.mono}
@@ -329,7 +329,7 @@ export function ThemePage() {
               <span style={{
                 fontSize: 'var(--text-xs)',
                 fontWeight: 500,
-                color: config.primaryStyle === 'accent' ? 'var(--text-primary)' : 'var(--text-muted)',
+                color: config.primaryStyle === 'accent' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 transition: 'color 0.15s ease',
               }}>
                 {t.accent}
@@ -490,7 +490,7 @@ function AddPresetCard({
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke={isOpen ? 'var(--text-primary)' : hovered ? 'var(--text-secondary)' : 'var(--text-muted)'}
+          stroke={isOpen ? 'var(--text-primary)' : hovered ? 'var(--text-secondary)' : 'var(--text-secondary)'}
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -513,14 +513,14 @@ function AddPresetCard({
         }}>
           {t.newPreset}
           {isOpen && (
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="18 15 12 9 6 15" />
             </svg>
           )}
         </div>
         <div style={{
           fontSize: 'var(--text-xs)',
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           lineHeight: 1.4,
         }}>
           {canAdd ? t.newPresetMood : t.maxReached}
@@ -619,7 +619,7 @@ function PresetCard({
         {/* Name */}
         <div>
           <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-2xs)' }}>{name}</div>
-          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', lineHeight: 1.4 }}>{mood}</div>
+          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', lineHeight: 1.4 }}>{mood}</div>
         </div>
       </button>
 
@@ -647,7 +647,7 @@ function PresetCard({
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.8' }}
           aria-label="Delete preset"
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
@@ -816,7 +816,7 @@ function CustomizePanel({
                   aria-label="Open color picker"
                 >
                   {!(config.accentId === 'custom' && config.customColor) && (
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 5v14m-7-7h14" />
                     </svg>
                   )}
@@ -839,7 +839,7 @@ function CustomizePanel({
               </div>
               <span style={{
                 fontSize: 'var(--text-xs)',
-                color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-muted)',
+                color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 fontWeight: config.accentId === 'custom' ? 500 : 400,
                 whiteSpace: 'nowrap',
               }}>
@@ -1010,7 +1010,7 @@ function AccentButton({
       }} />
       <span style={{
         fontSize: 'var(--text-xs)',
-        color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
         fontWeight: isActive ? 500 : 400,
         whiteSpace: 'nowrap',
       }}>
@@ -1102,7 +1102,7 @@ function DetailsSection({
                   border: 'var(--border-width-thin) solid var(--border-subtle)',
                   flexShrink: 0,
                 }} />
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
                   {s.label} {s.pct}%
                 </span>
               </div>
@@ -1141,7 +1141,7 @@ function ContrastRow({ label, color, ratio }: { label: string; color: string; ra
         flexShrink: 0,
       }} />
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-        <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontWeight: 500, minWidth: 100 }}>
+        <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontWeight: 500, minWidth: 100 }}>
           {label}
         </span>
         <span style={{

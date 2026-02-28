@@ -11,7 +11,7 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
   return (
     <div className="empty-state">
       {icon && (
-        <div style={{ color: 'var(--text-muted)' }}>
+        <div style={{ color: 'var(--text-secondary)' }}>
           {icon}
         </div>
       )}
@@ -32,7 +32,7 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
           <p
             style={{
               fontSize: 12,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               margin: 0,
             }}
           >

@@ -66,7 +66,7 @@ Slate:   --p-slate-500: #64748b    --p-slate-600: #475569
 |-------|-----------|---------|
 | `--text-primary` | #ffffff | Primary text |
 | `--text-secondary` | #a0a0a0 (gray-400) | Secondary text |
-| `--text-muted` | #888888 (gray-500) | Muted/label text |
+| `--text-muted` | alias of `--text-secondary` | Deprecated alias |
 | `--text-disabled` | #666666 (gray-600) | Disabled text |
 | `--text-inverse` | #000000 | Text on light backgrounds |
 
@@ -160,7 +160,7 @@ Slate:   --p-slate-500: #64748b    --p-slate-600: #475569
 --input-bg: var(--bg-secondary)           --input-border: var(--border-default)
 --input-border-hover: var(--border-strong) --input-border-focus: var(--text-secondary)
 --input-radius: var(--radius-md)          --input-text: var(--text-primary)
---input-placeholder: var(--text-muted)
+--input-placeholder: var(--text-secondary)
 ```
 
 ### Card
@@ -172,7 +172,7 @@ Slate:   --p-slate-500: #64748b    --p-slate-600: #475569
 ### Stat Card
 ```
 --stat-bg: var(--bg-surface)     --stat-border: var(--border-default)
---stat-label: var(--text-muted)  --stat-value: var(--text-primary)
+--stat-label: var(--text-secondary)  --stat-value: var(--text-primary)
 ```
 
 ### Button Primary
@@ -193,7 +193,7 @@ Slate:   --p-slate-500: #64748b    --p-slate-600: #475569
 | `.btn` | — (base) | — | none | `.btn-sm`, `.btn-lg`, `.btn-icon` |
 | `.btn-primary` | selected-bg (#fff) | selected-text (#000) | none | |
 | `.btn-secondary` | transparent | text-secondary | border-default | |
-| `.btn-ghost` | transparent | text-muted | none | |
+| `.btn-ghost` | transparent | text-secondary | none | |
 | `.btn-danger` | error | #fff | none | |
 
 ### Cards
@@ -267,8 +267,8 @@ All interactive elements MUST define these 5 states:
 ### Ghost Button (.btn-ghost)
 | State | Background | Color |
 |-------|-----------|-------|
-| Default | transparent | text-muted |
-| Hover | hover-bg | text-secondary |
+| Default | transparent | text-secondary |
+| Hover | hover-bg | text-primary |
 | Active | active-bg | — |
 | Disabled | transparent | opacity: 0.4 |
 
@@ -300,7 +300,7 @@ All interactive elements MUST define these 5 states:
 | State | Background | Knob |
 |-------|-----------|------|
 | Default (off) | border-strong | text-primary |
-| Hover (off) | text-muted | — |
+| Hover (off) | text-secondary | — |
 | Active (on) | success | translateX(16px) |
 | Active+Hover | success-hover | — |
 | Disabled | opacity: 0.4 | cursor: not-allowed |

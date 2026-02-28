@@ -371,7 +371,7 @@ function ComparisonVoteDemo({ onChange }: DemoProps) {
       <span
         style={{
           fontSize: 9,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           textTransform: 'uppercase',
           letterSpacing: 0.5,
         }}
@@ -399,7 +399,7 @@ function ComparisonVoteDemo({ onChange }: DemoProps) {
             display: 'flex',
             alignItems: 'center',
             fontSize: 10,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontWeight: 600,
           }}
         >
@@ -439,7 +439,7 @@ function ComparisonVoteDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 10,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
             minWidth: 30,
           }}
@@ -554,7 +554,7 @@ function ChordSelectorDemo({ onChange }: DemoProps) {
                 background: isSelected
                   ? 'var(--accent-bg-strong, rgba(255,255,255,0.15))'
                   : 'var(--bg-surface)',
-                color: isSelected ? '#fff' : 'var(--text-muted)',
+                color: isSelected ? '#fff' : 'var(--text-secondary)',
                 fontSize: 9,
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -572,7 +572,7 @@ function ChordSelectorDemo({ onChange }: DemoProps) {
                 if (!isSelected) {
                   e.currentTarget.style.borderColor = 'var(--border-subtle)'
                   e.currentTarget.style.background = 'var(--bg-surface)'
-                  e.currentTarget.style.color = 'var(--text-muted)'
+                  e.currentTarget.style.color = 'var(--text-secondary)'
                 }
               }}
             >

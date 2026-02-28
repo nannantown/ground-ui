@@ -57,7 +57,7 @@ export function App() {
               fontSize: 'var(--text-sm)',
               fontWeight: 500,
               background: page === id ? 'var(--selected-bg)' : 'transparent',
-              color: page === id ? 'var(--selected-text)' : 'var(--text-muted)',
+              color: page === id ? 'var(--selected-text)' : 'var(--text-secondary)',
               transition: 'all 0.15s ease',
               fontFamily: 'inherit',
             }}
@@ -90,9 +90,9 @@ export function App() {
           }}
           title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
         >
-          <span style={{ color: locale === 'en' ? 'var(--text-primary)' : 'var(--text-muted)' }}>EN</span>
+          <span style={{ color: locale === 'en' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>EN</span>
           <span style={{ color: 'var(--text-disabled)', fontSize: 'var(--text-xs)' }}>/</span>
-          <span style={{ color: locale === 'ja' ? 'var(--text-primary)' : 'var(--text-muted)' }}>JA</span>
+          <span style={{ color: locale === 'ja' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>JA</span>
         </button>
 
         {/* Theme toggle (dark/light) */}

@@ -159,7 +159,7 @@ function PinchDemo({ onChange }: DemoProps) {
           top: 6,
           right: 8,
           fontSize: 9,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: 0.6,
           pointerEvents: 'none',
         }}
@@ -279,7 +279,7 @@ function Zone({
           textAlign: 'center',
           fontSize: 10,
           fontFamily: 'var(--font-mono)',
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           pointerEvents: 'none',
         }}
       >
@@ -508,7 +508,7 @@ function PressurePositionDemo({ onChange }: DemoProps) {
           bottom: 6,
           right: 8,
           fontSize: 9,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: 0.6,
           pointerEvents: 'none',
         }}
@@ -615,7 +615,7 @@ function GyroscopeDemo({ onChange }: DemoProps) {
         <span
           style={{
             fontSize: 9,
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             opacity: 0.5,
           }}
         >
@@ -725,7 +725,7 @@ function PathDrawDemo({ onChange }: DemoProps) {
           bottom: 6,
           right: 8,
           fontSize: 9,
-          color: 'var(--text-muted)',
+          color: 'var(--text-secondary)',
           opacity: 0.5,
           pointerEvents: 'none',
         }}

@@ -119,7 +119,7 @@ const variantLetterSpacing: Record<TypographyVariant, string | undefined> = {
 const colorMap: Record<TypographyColor, string> = {
   primary: 'var(--text-primary)',
   secondary: 'var(--text-secondary)',
-  muted: 'var(--text-muted)',
+  muted: 'var(--text-secondary)',
   accent: 'var(--accent)',
   error: 'var(--error)',
   success: 'var(--success)',

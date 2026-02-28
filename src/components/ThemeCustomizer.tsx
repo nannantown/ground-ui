@@ -137,7 +137,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
         bgSec = tokens['--bg-secondary']
         bgCrd = tokens['--bg-card']
         text = tokens['--text-primary'] ?? (isDark ? '#ffffff' : '#1a1a1a')
-        textMut = tokens['--text-muted'] ?? (isDark ? '#666666' : '#999999')
+        textMut = tokens['--text-secondary'] ?? (isDark ? '#666666' : '#999999')
       }
 
       const accentSec = generateSecondaryAccent(accent.color)
@@ -218,7 +218,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
           <SectionLabel style={{ marginBottom: 0 }}>{ds.presets}</SectionLabel>
           {isCustomized && (
             <span
-              style={{ fontSize: 10, padding: '2px 6px', borderRadius: 'var(--radius-full)', color: 'var(--text-muted)', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}
+              style={{ fontSize: 10, padding: '2px 6px', borderRadius: 'var(--radius-full)', color: 'var(--text-secondary)', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}
             >
               {ds.customized}
             </span>
@@ -303,7 +303,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                   {language === 'ja' ? pairing.nameJa : pairing.name}
                 </span>
                 {/* Mood */}
-                <span style={{ fontSize: 10, lineHeight: 1.3, color: 'var(--text-muted)' }}>
+                <span style={{ fontSize: 10, lineHeight: 1.3, color: 'var(--text-secondary)' }}>
                   {language === 'ja' ? pairing.moodJa : pairing.mood}
                 </span>
               </button>
@@ -334,11 +334,11 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
             fontFamily: 'inherit',
             borderTop: '1px solid var(--border-subtle)',
             cursor: 'pointer',
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             transition: 'color 150ms ease',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
         >
           <svg
             width="12"
@@ -435,7 +435,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                       }} />
                       <span style={{
                         fontSize: 10,
-                        color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                         fontWeight: isActive ? 500 : 400,
                         whiteSpace: 'nowrap',
                       }}>
@@ -480,7 +480,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                       aria-label={ds.openColorPicker}
                     >
                       {!(config.accentId === 'custom' && config.customColor) && (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M12 5v14m-7-7h14" />
                         </svg>
                       )}
@@ -503,7 +503,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                   </div>
                   <span style={{
                     fontSize: 10,
-                    color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-muted)',
+                    color: config.accentId === 'custom' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     fontWeight: config.accentId === 'custom' ? 500 : 400,
                     whiteSpace: 'nowrap',
                   }}>
@@ -534,11 +534,11 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
             fontFamily: 'inherit',
             borderTop: '1px solid var(--border-subtle)',
             cursor: 'pointer',
-            color: 'var(--text-muted)',
+            color: 'var(--text-secondary)',
             transition: 'color 150ms ease',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
         >
           <svg
             width="12"
@@ -590,7 +590,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                color: 'var(--text-muted)',
+                color: 'var(--text-secondary)',
               }}>
                 {ds.wcagContrast}
               </div>
@@ -677,7 +677,7 @@ function SectionLabel({ children, style }: { children: React.ReactNode; style?: 
       fontWeight: 600,
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
-      color: 'var(--text-muted)',
+      color: 'var(--text-secondary)',
       marginBottom: 12,
       ...style,
     }}>
@@ -868,7 +868,7 @@ function ColorDistribution() {
               border: '1px solid var(--border-subtle)',
               flexShrink: 0,
             }} />
-            <span style={{ fontSize: 10, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: 10, color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
               {s.label} {s.pct}%
             </span>
           </div>
@@ -921,11 +921,11 @@ function MobilePreview() {
         alignItems: 'center',
         gap: 6,
       }}>
-        <span style={{ fontSize: 9, color: 'var(--text-muted)' }}>&#x2190;</span>
+        <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>&#x2190;</span>
         <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-primary)', flex: 1, textAlign: 'center' }}>
           Dashboard
         </span>
-        <span style={{ fontSize: 9, color: 'var(--text-muted)' }}>&#x2022;&#x2022;&#x2022;</span>
+        <span style={{ fontSize: 9, color: 'var(--text-secondary)' }}>&#x2022;&#x2022;&#x2022;</span>
       </div>
 
       {/* Content */}
@@ -937,7 +937,7 @@ function MobilePreview() {
           borderRadius: 8,
           padding: '8px 10px',
         }}>
-          <div style={{ fontSize: 7, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: 7, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Total Items
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)', margin: '2px 0 4px' }}>
@@ -1120,7 +1120,7 @@ function WebPreview() {
             <div key={i} style={{
               padding: '4px 10px',
               fontSize: 7,
-              color: i === 0 ? 'var(--accent)' : i === 1 ? 'var(--accent-secondary)' : 'var(--text-muted)',
+              color: i === 0 ? 'var(--accent)' : i === 1 ? 'var(--accent-secondary)' : 'var(--text-secondary)',
               fontWeight: i <= 1 ? 600 : 400,
               background: i === 0 ? 'var(--accent-bg)' : i === 1 ? 'var(--accent-secondary-bg)' : 'transparent',
               borderRight: i === 0 ? '2px solid var(--accent)' : i === 1 ? '2px solid var(--accent-secondary)' : '2px solid transparent',
@@ -1137,7 +1137,7 @@ function WebPreview() {
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
               Welcome back
             </div>
-            <div style={{ fontSize: 7, color: 'var(--text-muted)', marginTop: 1 }}>
+            <div style={{ fontSize: 7, color: 'var(--text-secondary)', marginTop: 1 }}>
               Here&apos;s your overview
             </div>
           </div>
@@ -1156,7 +1156,7 @@ function WebPreview() {
                 border: '1px solid var(--card-border, var(--border-subtle))',
                 borderRadius: 6,
               }}>
-                <div style={{ fontSize: 6, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: 6, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {stat.label}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 3, marginTop: 1 }}>
@@ -1263,7 +1263,7 @@ function ContrastRow({ label, color, ratio }: { label?: string; color: string; r
           {label && (
             <span style={{
               fontSize: 11,
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               fontWeight: 500,
               minWidth: 60,
             }}>
