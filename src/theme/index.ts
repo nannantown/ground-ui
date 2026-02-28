@@ -217,9 +217,12 @@ export function generateAccentTokens(
 
 // --- Secondary Accent Generation ---
 
+const SECONDARY_HUE_SHIFT = 30 // ~8% of 360° — analogous harmony
+
 export function generateSecondaryAccent(primaryHex: string): string {
   const { h, s, l } = hexToHsl(primaryHex)
-  return hslToHex(h, s * 0.65, Math.min(l + 12, 85))
+  const secondaryHue = (h + SECONDARY_HUE_SHIFT) % 360
+  return hslToHex(secondaryHue, s * 0.65, Math.min(l + 12, 85))
 }
 
 // --- Surface Tint Helpers ---
