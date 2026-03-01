@@ -561,14 +561,13 @@ function useT() {
   return { t: T[locale], locale }
 }
 
-export function ComponentsPage() {
+export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: boolean; onDrawerClose: () => void }) {
   const [active, setActive] = useState('overview')
-  const [drawerOpen, setDrawerOpen] = useState(false)
   const { locale } = useLocale()
 
   const handleNav = (id: string) => {
     setActive(id)
-    setDrawerOpen(false)
+    onDrawerClose()
     document.querySelector('.ds-main')?.scrollTo({ top: 0 })
   }
 
@@ -599,13 +598,13 @@ export function ComponentsPage() {
       {/* Mobile drawer */}
       {drawerOpen && (
         <>
-          <div className="drawer-backdrop" onClick={() => setDrawerOpen(false)} />
+          <div className="drawer-backdrop" onClick={onDrawerClose} />
           <nav className="drawer drawer-left" style={{ '--drawer-width': '220px' } as React.CSSProperties}>
             <div className="drawer-header">
               <span style={{ fontWeight: 600, fontSize: 'var(--text-md)' }}>GroundUI</span>
               <button
                 className="ds-menu-btn"
-                onClick={() => setDrawerOpen(false)}
+                onClick={onDrawerClose}
                 aria-label="Close menu"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -622,21 +621,6 @@ export function ComponentsPage() {
 
       {/* Main */}
       <main className="ds-main">
-        {/* Mobile header */}
-        <div className="ds-mobile-header">
-          <button
-            className="ds-menu-btn"
-            onClick={() => setDrawerOpen(true)}
-            aria-label="Open menu"
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M3 5h12M3 9h12M3 13h12" />
-            </svg>
-          </button>
-          <span style={{ fontWeight: 500, fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>
-            {NAV_LABELS[active]?.[locale] ?? active}
-          </span>
-        </div>
         <div className="ds-content">
           {active === 'overview' && <OverviewSection />}
           {active === 'colors' && <ColorsSection />}

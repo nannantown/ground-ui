@@ -74,26 +74,22 @@ for (const bp of BREAKPOINTS) {
       })
     }
 
-    // Mobile navigation: at <=768px sidebar is hidden, mobile header must be visible
+    // Mobile navigation: at <=768px sidebar is hidden, hamburger in navbar is visible
     if (bp.width <= 768) {
-      test('mobile header with hamburger is visible', async ({ page }) => {
+      test('navbar hamburger is visible and sidebar is hidden', async ({ page }) => {
         await page.goto('/')
         await page.waitForSelector('.ds-main')
 
-        const sidebar = page.locator('.ds-sidebar')
-        const mobileHeader = page.locator('.ds-mobile-header')
-
-        await expect(sidebar).not.toBeVisible()
-        await expect(mobileHeader).toBeVisible()
-        await expect(mobileHeader.locator('.ds-menu-btn')).toBeVisible()
+        await expect(page.locator('.ds-sidebar')).not.toBeVisible()
+        await expect(page.locator('.ds-navbar .ds-hamburger')).toBeVisible()
       })
 
       test('hamburger opens drawer and nav item closes it', async ({ page }) => {
         await page.goto('/')
         await page.waitForSelector('.ds-main')
 
-        // Open drawer via hamburger
-        await page.locator('.ds-mobile-header .ds-menu-btn').click()
+        // Open drawer via navbar hamburger
+        await page.locator('.ds-navbar .ds-hamburger').click()
         await expect(page.locator('.drawer-backdrop')).toBeVisible()
         await expect(page.locator('.drawer.drawer-left')).toBeVisible()
 
@@ -107,14 +103,14 @@ for (const bp of BREAKPOINTS) {
       })
     }
 
-    // Desktop: sidebar must be visible, mobile header must be hidden
+    // Desktop: sidebar must be visible, hamburger must be hidden
     if (bp.width > 768) {
-      test('sidebar is visible', async ({ page }) => {
+      test('sidebar is visible and hamburger is hidden', async ({ page }) => {
         await page.goto('/')
         await page.waitForSelector('.ds-main')
 
         await expect(page.locator('.ds-sidebar')).toBeVisible()
-        await expect(page.locator('.ds-mobile-header')).not.toBeVisible()
+        await expect(page.locator('.ds-navbar .ds-hamburger')).not.toBeVisible()
       })
     }
   })

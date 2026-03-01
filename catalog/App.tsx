@@ -15,6 +15,7 @@ const TAB_LABELS: Record<Page, { en: string; ja: string }> = {
 
 export function App() {
   const [page, setPage] = useState<Page>('components')
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { resolvedTheme } = useTheme()
   const { locale, toggle: toggleLocale } = useLocale()
 
@@ -25,83 +26,64 @@ export function App() {
     applyAccentTheme(config, resolvedTheme === 'dark')
   }, [resolvedTheme, page])
 
+  const handlePageChange = (id: Page) => {
+    setPage(id)
+    setDrawerOpen(false)
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
-      <nav style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        gap: 'var(--space-sm)',
-        padding: 'var(--space-md) var(--space-xl)',
-        borderBottom: 'var(--border-width-thin) solid var(--border-subtle)',
-        background: 'var(--bg-primary)',
-        zIndex: 'var(--z-sticky)',
-        flexShrink: 0,
-      }}>
-        <span style={{
-          fontSize: 'var(--text-md)',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          marginRight: 'var(--space-sm)',
-          letterSpacing: '-0.02em',
-        }}>GroundUI</span>
+      <nav className="ds-navbar">
+        <div className="ds-navbar-start">
+          {page === 'components' && (
+            <button
+              className="ds-menu-btn ds-hamburger"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Open menu"
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M3 5h12M3 9h12M3 13h12" />
+              </svg>
+            </button>
+          )}
+        </div>
 
-        {(['components', 'theme'] as const).map(id => (
+        <span className="ds-navbar-brand">GroundUI</span>
+
+        <div className="ds-navbar-utils">
           <button
-            key={id}
-            onClick={() => setPage(id)}
-            style={{
-              padding: 'var(--space-xs) var(--space-lg)',
-              borderRadius: 'var(--radius-full)',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: 'var(--text-sm)',
-              fontWeight: 500,
-              background: page === id ? 'var(--selected-bg)' : 'transparent',
-              color: page === id ? 'var(--selected-text)' : 'var(--text-secondary)',
-              transition: 'all 0.15s ease',
-              fontFamily: 'inherit',
-            }}
+            className="ds-lang-toggle"
+            onClick={toggleLocale}
+            title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
           >
-            {TAB_LABELS[id][locale]}
+            <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
+            <span className="lang-divider">/</span>
+            <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
           </button>
-        ))}
+          <ThemeToggle />
+        </div>
 
-        {/* Spacer */}
-        <div style={{ flex: 1 }} />
-
-        {/* Language toggle — shows current locale, click to switch */}
-        <button
-          onClick={toggleLocale}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-xs)',
-            padding: 'var(--space-xs) var(--space-sm)',
-            borderRadius: 'var(--radius-sm)',
-            border: 'var(--border-width-thin) solid var(--border-subtle)',
-            background: 'none',
-            cursor: 'pointer',
-            fontSize: 'var(--text-xs)',
-            fontWeight: 600,
-            color: 'var(--text-secondary)',
-            transition: 'all 0.15s ease',
-            letterSpacing: '0.02em',
-            fontFamily: 'inherit',
-          }}
-          title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
-        >
-          <span style={{ color: locale === 'en' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>EN</span>
-          <span style={{ color: 'var(--text-disabled)', fontSize: 'var(--text-xs)' }}>/</span>
-          <span style={{ color: locale === 'ja' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>JA</span>
-        </button>
-
-        {/* Theme toggle (dark/light) */}
-        <ThemeToggle />
+        <div className="ds-navbar-tabs">
+          {(['components', 'theme'] as const).map(id => (
+            <button
+              key={id}
+              className="ds-nav-tab"
+              data-active={page === id}
+              onClick={() => handlePageChange(id)}
+            >
+              {TAB_LABELS[id][locale]}
+            </button>
+          ))}
+        </div>
       </nav>
 
       <div style={{ flex: 1, overflow: 'auto' }}>
-        {page === 'components' && <ComponentsPage />}
+        {page === 'components' && (
+          <ComponentsPage
+            drawerOpen={drawerOpen}
+            onDrawerClose={() => setDrawerOpen(false)}
+          />
+        )}
         {page === 'theme' && <ThemePage />}
       </div>
     </div>
