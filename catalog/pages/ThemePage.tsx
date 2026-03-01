@@ -135,7 +135,7 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
 export function ThemePage() {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
-  const { locale } = useLocale()
+  const { locale, toggle: toggleLocale } = useLocale()
   const t = T[locale]
 
   // --- Theme state ---
@@ -302,6 +302,17 @@ export function ThemePage() {
       {/* Main */}
       <main className="ds-main" ref={mainRef} style={{ marginLeft: 0 }}>
         <div className="ds-content">
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 'var(--space-md)' }}>
+            <button
+              className="ds-lang-toggle"
+              onClick={toggleLocale}
+              title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
+            >
+              <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
+              <span className="lang-divider">/</span>
+              <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
+            </button>
+          </div>
           <section id="theme-theme">
             <h2 className="ds-section-title">{t.themeTitle}</h2>
             <p className="ds-section-desc">{t.themeDesc}</p>

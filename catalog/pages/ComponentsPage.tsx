@@ -563,7 +563,7 @@ function useT() {
 
 export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: boolean; onDrawerClose: () => void }) {
   const [active, setActive] = useState('overview')
-  const { locale } = useLocale()
+  const { locale, toggle: toggleLocale } = useLocale()
 
   const handleNav = (id: string) => {
     setActive(id)
@@ -593,6 +593,17 @@ export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: bool
       {/* Sidebar (desktop) */}
       <nav className="ds-sidebar">
         {renderNavItems(handleNav)}
+        <div className="ds-sidebar-footer">
+          <button
+            className="ds-lang-toggle"
+            onClick={toggleLocale}
+            title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
+          >
+            <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
+            <span className="lang-divider">/</span>
+            <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -614,6 +625,17 @@ export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: bool
             </div>
             <div className="drawer-body" style={{ padding: 'var(--space-lg) 0' }}>
               {renderNavItems(handleNav)}
+              <div className="ds-sidebar-footer">
+                <button
+                  className="ds-lang-toggle"
+                  onClick={toggleLocale}
+                  title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
+                >
+                  <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
+                  <span className="lang-divider">/</span>
+                  <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
+                </button>
+              </div>
             </div>
           </nav>
         </>

@@ -17,7 +17,7 @@ export function App() {
   const [page, setPage] = useState<Page>('components')
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { resolvedTheme } = useTheme()
-  const { locale, toggle: toggleLocale } = useLocale()
+  const { locale } = useLocale()
 
   // Apply saved theme on mount and when dark/light mode changes.
   // Also re-apply when navigating back from Theme page (config may have changed).
@@ -64,15 +64,6 @@ export function App() {
         </div>
 
         <div className="ds-navbar-utils">
-          <button
-            className="ds-lang-toggle"
-            onClick={toggleLocale}
-            title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
-          >
-            <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
-            <span className="lang-divider">/</span>
-            <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
-          </button>
           <ThemeToggle />
         </div>
       </nav>

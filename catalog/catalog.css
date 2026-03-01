@@ -71,6 +71,16 @@
   color: var(--text-primary);
   font-weight: 500;
 }
+.ds-sidebar-footer {
+  margin-top: auto;
+  padding: var(--space-lg) var(--space-xl);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+}
+.drawer-body .ds-sidebar-footer {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg) var(--space-xl) 0;
+}
+
 .ds-nav-item[data-active="true"]::before {
   content: '';
   position: absolute;
