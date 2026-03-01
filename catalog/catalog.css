@@ -397,8 +397,8 @@
 }
 
 /* --- Top Navbar --- */
-/* Desktop: single-row flex (brand | tabs | spacer | utils) */
-/* Mobile:  CSS Grid 3-col × 2-row (hamburger | brand | utils / tabs) */
+/* Desktop: brand | spacer | utils */
+/* Mobile:  hamburger | crystal | spacer | utils */
 .ds-navbar {
   display: flex;
   align-items: center;
@@ -425,7 +425,6 @@
   letter-spacing: -0.03em;
   line-height: 1;
   white-space: nowrap;
-  margin-right: var(--space-sm);
 }
 
 /* Crystal icon: hidden on desktop, shown on mobile */
@@ -433,13 +432,6 @@
   display: none;
 }
 
-.ds-navbar-tabs {
-  display: flex;
-  gap: var(--space-xs);
-}
-
-/* Desktop spacer pushes utils to the right */
-.ds-navbar-tabs { flex-shrink: 0; }
 .ds-navbar-utils {
   display: flex;
   align-items: center;
@@ -534,20 +526,12 @@
     display: block;
     flex-shrink: 0;
   }
-  .ds-navbar-tabs {
-    flex: 1;
-    justify-content: center;
-  }
   .ds-navbar-utils {
-    margin-left: 0;
+    margin-left: auto;
   }
   /* Borderless theme toggle on mobile */
   .ds-navbar-utils button {
     border-color: transparent !important;
-  }
-  .ds-nav-tab {
-    padding: 4px 12px;
-    font-size: var(--text-xs);
   }
 }
 

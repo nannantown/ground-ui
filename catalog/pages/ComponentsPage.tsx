@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import { useLocale } from '../locale'
+import { ThemeContent } from './ThemePage'
 import { Button } from '../../src/components/Button'
 import { Input } from '../../src/components/Input'
 import { Textarea } from '../../src/components/Textarea'
@@ -67,6 +68,11 @@ const NAV_CATEGORIES = [
     label: { en: 'Components', ja: 'コンポーネント' },
     items: ['buttons', 'inputs', 'data', 'feedback', 'overlays', 'navigation', 'layout'],
   },
+  {
+    id: 'customize',
+    label: { en: 'Customize', ja: 'カスタマイズ' },
+    items: ['theme'],
+  },
 ] as const
 
 const NAV_LABELS: Record<string, { en: string; ja: string }> = {
@@ -84,6 +90,7 @@ const NAV_LABELS: Record<string, { en: string; ja: string }> = {
   layout: { en: 'Layout', ja: 'レイアウト' },
   utilities: { en: 'Utilities', ja: 'ユーティリティ' },
   cssComponents: { en: 'CSS Classes', ja: 'CSSクラス' },
+  theme: { en: 'Theme', ja: 'テーマ' },
 }
 
 /* ============================================
@@ -658,6 +665,7 @@ export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: bool
           {active === 'layout' && <LayoutSection />}
           {active === 'utilities' && <UtilitiesSection />}
           {active === 'cssComponents' && <CSSComponentsSection />}
+          {active === 'theme' && <ThemeContent />}
         </div>
       </main>
     </div>
