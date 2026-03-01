@@ -600,7 +600,7 @@ export function ComponentsPage() {
       {drawerOpen && (
         <>
           <div className="drawer-backdrop" onClick={() => setDrawerOpen(false)} />
-          <nav className="drawer drawer-left" style={{ '--drawer-width': '280px' } as React.CSSProperties}>
+          <nav className="drawer drawer-left" style={{ '--drawer-width': '220px' } as React.CSSProperties}>
             <div className="drawer-header">
               <span style={{ fontWeight: 600, fontSize: 'var(--text-md)' }}>GroundUI</span>
               <button
