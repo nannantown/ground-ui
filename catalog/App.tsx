@@ -50,19 +50,6 @@ export function App() {
 
         <span className="ds-navbar-brand">GroundUI</span>
 
-        <div className="ds-navbar-utils">
-          <button
-            className="ds-lang-toggle"
-            onClick={toggleLocale}
-            title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
-          >
-            <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
-            <span className="lang-divider">/</span>
-            <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
-          </button>
-          <ThemeToggle />
-        </div>
-
         <div className="ds-navbar-tabs">
           {(['components', 'theme'] as const).map(id => (
             <button
@@ -74,6 +61,19 @@ export function App() {
               {TAB_LABELS[id][locale]}
             </button>
           ))}
+        </div>
+
+        <div className="ds-navbar-utils">
+          <button
+            className="ds-lang-toggle"
+            onClick={toggleLocale}
+            title={locale === 'en' ? 'Switch to Japanese' : '英語に切り替え'}
+          >
+            <span className={locale === 'en' ? 'lang-active' : undefined}>EN</span>
+            <span className="lang-divider">/</span>
+            <span className={locale === 'ja' ? 'lang-active' : undefined}>JA</span>
+          </button>
+          <ThemeToggle />
         </div>
       </nav>
 
