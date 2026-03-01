@@ -296,6 +296,12 @@
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
+@media (max-width: 480px) {
+  .ds-code-tag {
+    white-space: normal;
+    word-break: break-all;
+  }
+}
 
 /* --- Meta label (small uppercase) --- */
 .ds-meta {
@@ -378,6 +384,47 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* --- Mobile header (menu button + current section) --- */
+.ds-mobile-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ds-mobile-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: var(--border-width-thin) solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    background: var(--bg-primary);
+    z-index: var(--z-sticky);
+  }
+}
+
+.ds-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--duration-fast) ease;
+}
+.ds-menu-btn:hover {
+  background: var(--hover-bg);
+}
+.ds-menu-btn:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
 }
 
 /* --- Responsive --- */

@@ -563,34 +563,80 @@ function useT() {
 
 export function ComponentsPage() {
   const [active, setActive] = useState('overview')
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { locale } = useLocale()
+
+  const handleNav = (id: string) => {
+    setActive(id)
+    setDrawerOpen(false)
+    document.querySelector('.ds-main')?.scrollTo({ top: 0 })
+  }
+
+  const renderNavItems = (onClick: (id: string) => void) =>
+    NAV_CATEGORIES.map(cat => (
+      <div key={cat.id} className="ds-nav-group">
+        <div className="ds-nav-category">{cat.label[locale]}</div>
+        {cat.items.map(id => (
+          <button
+            key={id}
+            className="ds-nav-item"
+            data-active={active === id}
+            onClick={() => onClick(id)}
+          >
+            {NAV_LABELS[id]?.[locale] ?? id}
+          </button>
+        ))}
+      </div>
+    ))
 
   return (
     <div className="ds-root">
-      {/* Sidebar */}
+      {/* Sidebar (desktop) */}
       <nav className="ds-sidebar">
-        {NAV_CATEGORIES.map(cat => (
-          <div key={cat.id} className="ds-nav-group">
-            <div className="ds-nav-category">{cat.label[locale]}</div>
-            {cat.items.map(id => (
-              <button
-                key={id}
-                className="ds-nav-item"
-                data-active={active === id}
-                onClick={() => {
-                  setActive(id)
-                  document.querySelector('.ds-main')?.scrollTo({ top: 0 })
-                }}
-              >
-                {NAV_LABELS[id]?.[locale] ?? id}
-              </button>
-            ))}
-          </div>
-        ))}
+        {renderNavItems(handleNav)}
       </nav>
+
+      {/* Mobile drawer */}
+      {drawerOpen && (
+        <>
+          <div className="drawer-backdrop" onClick={() => setDrawerOpen(false)} />
+          <nav className="drawer drawer-left" style={{ '--drawer-width': '280px' } as React.CSSProperties}>
+            <div className="drawer-header">
+              <span style={{ fontWeight: 600, fontSize: 'var(--text-md)' }}>GroundUI</span>
+              <button
+                className="ds-menu-btn"
+                onClick={() => setDrawerOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <path d="M4 4l8 8M12 4l-8 8" />
+                </svg>
+              </button>
+            </div>
+            <div className="drawer-body" style={{ padding: 0 }}>
+              {renderNavItems(handleNav)}
+            </div>
+          </nav>
+        </>
+      )}
 
       {/* Main */}
       <main className="ds-main">
+        {/* Mobile header */}
+        <div className="ds-mobile-header">
+          <button
+            className="ds-menu-btn"
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <path d="M3 5h12M3 9h12M3 13h12" />
+            </svg>
+          </button>
+          <span style={{ fontWeight: 500, fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>
+            {NAV_LABELS[active]?.[locale] ?? active}
+          </span>
+        </div>
         <div className="ds-content">
           {active === 'overview' && <OverviewSection />}
           {active === 'colors' && <ColorsSection />}
@@ -1143,7 +1189,7 @@ function TypographySection() {
             >
               <code
                 style={{
-                  width: 100,
+                  width: 'clamp(70px, 20vw, 100px)',
                   flexShrink: 0,
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
@@ -1160,6 +1206,9 @@ function TypographySection() {
                   textTransform: item.transform,
                   color: item.token === '--text-sm' || item.token === '--text-xs' ? 'var(--text-secondary)' : undefined,
                   lineHeight: 1.1,
+                  minWidth: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
               >
                 {item.text}
@@ -1191,11 +1240,13 @@ function TypographySection() {
             >
               <code
                 style={{
-                  width: 220,
+                  width: 'clamp(120px, 40vw, 220px)',
                   flexShrink: 0,
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--text-secondary)',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
               >
                 {item.token}
@@ -1217,6 +1268,10 @@ function TypographySection() {
                   fontWeight: 500,
                   letterSpacing: item.value,
                   textTransform: 'uppercase',
+                  minWidth: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 GROUND UI
@@ -2469,8 +2524,10 @@ function UtilitiesSection() {
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 56, flexShrink: 0 }}>{item.cls}</code>
-              <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 'var(--space-xs)' }}>
-                <span style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ width: item.w, height: 24, background: 'var(--accent-bg)', border: 'var(--border-width-thin) solid var(--accent-border)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 'var(--space-xs)' }}>
+                  <span style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-light)' }}>{item.w}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -2563,8 +2620,8 @@ function UtilitiesSection() {
             { cls: '.text-2xl', size: 'var(--text-2xl)', label: 'text-2xl' },
           ].map(item => (
             <div key={item.cls} style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-md)' }}>
-              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 64, flexShrink: 0 }}>{item.label}</code>
-              <span style={{ fontSize: item.size, color: 'var(--text-primary)' }}>
+              <code style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', width: 'clamp(50px, 15vw, 64px)', flexShrink: 0 }}>{item.label}</code>
+              <span style={{ fontSize: item.size, color: 'var(--text-primary)', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {locale === 'ja' ? 'テキストサンプル' : 'The quick brown fox'}
               </span>
             </div>
@@ -2663,7 +2720,7 @@ function UtilitiesSection() {
             </div>
           </UtilVisual>
           <UtilVisual label="Border radius" labelJa="角丸" code=".rounded-*">
-            <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
               {[
                 { cls: 'none', r: 0 },
                 { cls: 'sm', r: 4 },
@@ -2853,11 +2910,11 @@ function CSSComponentsSection() {
                 padding: 'var(--space-lg)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-sm)', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
                 <code style={{ fontSize: 'var(--text-sm)', fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--text-primary)' }}>
                   {item.cls}
                 </code>
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', wordBreak: 'break-all' as const }}>
                   {item.desc}
                 </span>
               </div>
@@ -2915,7 +2972,7 @@ function CSSComponentsSection() {
 
       <Group label={t.navTabCss} labelJa="ナビタブ">
         <Stage>
-          <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
             {navTabLabels.map((label, i) => (
               <button
                 key={label}

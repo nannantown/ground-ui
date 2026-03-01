@@ -4,3 +4,8 @@ dist/
 *.tsbuildinfo
 .DS_Store
 .npmrc
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
