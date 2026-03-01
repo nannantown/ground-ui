@@ -613,7 +613,7 @@ export function ComponentsPage() {
                 </svg>
               </button>
             </div>
-            <div className="drawer-body" style={{ padding: 0 }}>
+            <div className="drawer-body" style={{ padding: 'var(--space-lg) 0' }}>
               {renderNavItems(handleNav)}
             </div>
           </nav>
