@@ -407,8 +407,6 @@ export function ThemeContent() {
               secondaryRatio={secondaryRatio}
             />
           </section>
-        </div>
-      </main>
 
       {/* Delete confirmation dialog */}
       <ConfirmDialog
@@ -421,7 +419,7 @@ export function ThemeContent() {
         cancelLabel={t.cancel}
         variant="danger"
       />
-    </div>
+    </>
   )
 }
 
