@@ -52,10 +52,18 @@ export function App() {
 
         {/* Crystal icon — visible only on mobile, replaces brand text */}
         <svg className="ds-navbar-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="GroundUI">
-          <path d="M16 2 L7 13 L16 17 Z" fill="var(--accent)" />
-          <path d="M16 2 L25 13 L16 17 Z" fill="var(--accent-light)" />
-          <path d="M7 13 L16 17 L16 30 Z" fill="var(--accent)" opacity="0.55" />
-          <path d="M25 13 L16 17 L16 30 Z" fill="var(--accent-light)" opacity="0.55" />
+          {/* Crown */}
+          <path d="M16 1 L7 10 L16 12 Z" fill="var(--accent)" />
+          <path d="M16 1 L25 10 L16 12 Z" fill="var(--accent-light)" />
+          {/* Upper body */}
+          <path d="M7 10 L5 17 L16 19 L16 12 Z" fill="var(--accent)" opacity="0.7" />
+          <path d="M25 10 L27 17 L16 19 L16 12 Z" fill="var(--accent-light)" opacity="0.7" />
+          {/* Lower body */}
+          <path d="M5 17 L9 23 L16 19 Z" fill="var(--accent)" opacity="0.5" />
+          <path d="M27 17 L23 23 L16 19 Z" fill="var(--accent-light)" opacity="0.5" />
+          {/* Pavilion */}
+          <path d="M9 23 L16 31 L16 19 Z" fill="var(--accent)" opacity="0.35" />
+          <path d="M23 23 L16 31 L16 19 Z" fill="var(--accent-light)" opacity="0.35" />
         </svg>
 
         <div className="ds-navbar-tabs">
