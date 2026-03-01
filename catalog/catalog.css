@@ -507,44 +507,37 @@
 }
 
 @media (max-width: 768px) {
+  /* Single-row: [☰] --- [tabs centered] --- [🌙] */
   .ds-navbar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto auto;
-    align-items: center;
-    row-gap: var(--space-xs);
-    gap: 0;
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
   }
   .ds-navbar-start {
     display: flex;
     align-items: center;
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
   }
   .ds-hamburger {
     display: flex;
+    border-color: transparent;
+  }
+  .ds-hamburger:hover {
+    border-color: transparent;
   }
   .ds-navbar-brand {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    margin-right: 0;
-  }
-  .ds-navbar-utils {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: end;
-    margin-left: 0;
+    display: none;
   }
   .ds-navbar-tabs {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-self: center;
+    flex: 1;
+    justify-content: center;
+  }
+  .ds-navbar-utils {
+    margin-left: 0;
+  }
+  /* Borderless theme toggle on mobile */
+  .ds-navbar-utils button {
+    border-color: transparent !important;
   }
   .ds-nav-tab {
-    padding: 4px 10px;
+    padding: 4px 12px;
     font-size: var(--text-xs);
   }
 }
