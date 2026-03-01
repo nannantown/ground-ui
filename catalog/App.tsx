@@ -54,8 +54,8 @@ export function App() {
         <svg className="ds-navbar-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="GroundUI">
           <path d="M16 2 L7 13 L16 17 Z" fill="var(--accent)" />
           <path d="M16 2 L25 13 L16 17 Z" fill="var(--accent-light)" />
-          <path d="M7 13 L16 17 L13 30 Z" fill="var(--accent)" opacity="0.55" />
-          <path d="M25 13 L16 17 L19 30 Z" fill="var(--accent-light)" opacity="0.55" />
+          <path d="M7 13 L16 17 L16 30 Z" fill="var(--accent)" opacity="0.55" />
+          <path d="M25 13 L16 17 L16 30 Z" fill="var(--accent-light)" opacity="0.55" />
         </svg>
 
         <div className="ds-navbar-tabs">
