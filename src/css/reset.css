@@ -54,6 +54,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
+/* --- Lists --- */
+ol, ul {
+  list-style: none;
+  padding: 0;
+}
+
 /* --- Selection --- */
 ::selection {
   background-color: var(--p-white-20);
