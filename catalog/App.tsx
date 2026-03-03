@@ -28,19 +28,18 @@ export function App() {
           </button>
         </div>
 
-        <span className="ds-navbar-brand">GroundUI</span>
-
-        {/* Crystal icon — visible only on mobile, replaces brand text */}
+        {/* Crystal icon */}
         <svg className="ds-navbar-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="GroundUI">
-          <path d="M16 1 L7 10 L16 12 Z" fill="var(--accent)" />
-          <path d="M16 1 L25 10 L16 12 Z" fill="var(--accent-light)" />
-          <path d="M7 10 L5 17 L16 19 L16 12 Z" fill="var(--accent)" opacity="0.7" />
-          <path d="M25 10 L27 17 L16 19 L16 12 Z" fill="var(--accent-light)" opacity="0.7" />
-          <path d="M5 17 L9 23 L16 19 Z" fill="var(--accent)" opacity="0.5" />
-          <path d="M27 17 L23 23 L16 19 Z" fill="var(--accent-light)" opacity="0.5" />
-          <path d="M9 23 L16 31 L16 19 Z" fill="var(--accent)" opacity="0.35" />
-          <path d="M23 23 L16 31 L16 19 Z" fill="var(--accent-light)" opacity="0.35" />
+          <path d="M14 2 L27 9 L14 15 Z" fill="var(--accent)" opacity="0.4" />
+          <path d="M27 9 L28 22 L14 15 Z" fill="var(--accent)" opacity="0.25" />
+          <path d="M28 22 L16 30 L14 15 Z" fill="var(--accent)" opacity="0.15" />
+          <path d="M16 30 L3 20 L14 15 Z" fill="var(--accent)" opacity="0.2" />
+          <path d="M3 20 L8 10 L14 15 Z" fill="var(--accent)" opacity="0.8" />
+          <path d="M14 2 L8 10 L14 15 Z" fill="var(--accent-light)" opacity="0.4" />
+          <path d="M14 2 L3 20 L8 10 Z" fill="var(--accent-light)" opacity="0.65" />
         </svg>
+
+        <span className="ds-navbar-brand">GroundUI</span>
 
         <div className="ds-navbar-utils">
           <ThemeToggle />

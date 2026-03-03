@@ -419,7 +419,7 @@
 }
 
 .ds-navbar-brand {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.03em;
@@ -427,9 +427,10 @@
   white-space: nowrap;
 }
 
-/* Crystal icon: hidden on desktop, shown on mobile */
+/* Crystal icon: always visible, centered on mobile */
 .ds-navbar-icon {
-  display: none;
+  display: block;
+  flex-shrink: 0;
 }
 
 .ds-navbar-utils {
@@ -525,9 +526,11 @@
   .ds-navbar-icon {
     display: block;
     flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
   .ds-navbar-utils {
-    margin-left: auto;
+    margin-left: 0;
   }
   /* Borderless theme toggle on mobile */
   .ds-navbar-utils button {

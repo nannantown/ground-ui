@@ -59,6 +59,11 @@ import {
 
 const NAV_CATEGORIES = [
   {
+    id: 'customize',
+    label: { en: 'Customize', ja: 'カスタマイズ' },
+    items: ['theme'],
+  },
+  {
     id: 'tokens',
     label: { en: 'Tokens & Classes', ja: 'トークン & クラス' },
     items: ['overview', 'colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents'],
@@ -67,11 +72,6 @@ const NAV_CATEGORIES = [
     id: 'components',
     label: { en: 'Components', ja: 'コンポーネント' },
     items: ['buttons', 'inputs', 'data', 'feedback', 'overlays', 'navigation', 'layout'],
-  },
-  {
-    id: 'customize',
-    label: { en: 'Customize', ja: 'カスタマイズ' },
-    items: ['theme'],
   },
 ] as const
 
