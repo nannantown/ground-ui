@@ -309,6 +309,7 @@
 
 /* --- Glow Auto-Application --- */
 
+/* Cards — white glow */
 :root[data-effect-glow="1"] .card,
 :root[data-effect-glow="1"] .card-elevated,
 :root[data-effect-glow="1"] .card-interactive,
@@ -316,20 +317,52 @@
   box-shadow: var(--glow-white-sm);
 }
 
-:root[data-effect-glow="1"] .btn-primary {
-  box-shadow: var(--glow-accent-sm);
-}
-
 :root[data-effect-glow="1"] .card-interactive:hover {
   box-shadow: var(--glow-white-md);
+}
+
+/* Primary button — accent glow */
+:root[data-effect-glow="1"] .btn-primary {
+  box-shadow: var(--glow-accent-sm);
 }
 
 :root[data-effect-glow="1"] .btn-primary:hover:not(:disabled) {
   box-shadow: var(--glow-accent-md);
 }
 
+/* Secondary / Ghost / Danger buttons — white glow */
+:root[data-effect-glow="1"] .btn-secondary,
+:root[data-effect-glow="1"] .btn-ghost,
+:root[data-effect-glow="1"] .btn-danger {
+  box-shadow: var(--glow-white-sm);
+}
+
+:root[data-effect-glow="1"] .btn-secondary:hover:not(:disabled),
+:root[data-effect-glow="1"] .btn-ghost:hover:not(:disabled),
+:root[data-effect-glow="1"] .btn-danger:hover:not(:disabled) {
+  box-shadow: var(--glow-white-md);
+}
+
+/* Active pill — accent glow */
+:root[data-effect-glow="1"] .pill-filter-active {
+  box-shadow: var(--glow-accent-sm);
+}
+
+/* Floating UI — white glow */
+:root[data-effect-glow="1"] .popover,
+:root[data-effect-glow="1"] .tooltip-content,
+:root[data-effect-glow="1"] .select-dropdown {
+  box-shadow: var(--glow-white-sm);
+}
+
+/* Alert — white glow */
+:root[data-effect-glow="1"] .alert {
+  box-shadow: var(--glow-white-sm);
+}
+
 /* --- Glass Auto-Application --- */
 
+/* Cards — standard glass */
 :root[data-effect-glass="1"] .card,
 :root[data-effect-glass="1"] .card-elevated,
 :root[data-effect-glass="1"] .card-interactive,
@@ -341,14 +374,41 @@
   border-color: var(--p-white-6);
 }
 
+/* Modal — strong glass */
 :root[data-effect-glass="1"] .modal-content {
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
 }
 
+/* Badge — subtle glass */
 :root[data-effect-glass="1"] .badge {
   backdrop-filter: blur(8px) saturate(1.3);
   -webkit-backdrop-filter: blur(8px) saturate(1.3);
+}
+
+/* Floating UI — strong glass */
+:root[data-effect-glass="1"] .popover,
+:root[data-effect-glass="1"] .tooltip-content,
+:root[data-effect-glass="1"] .select-dropdown {
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  background: var(--p-white-4);
+  box-shadow: inset 0 0.5px 0 var(--p-white-6);
+  border-color: var(--p-white-6);
+}
+
+/* Drawer — strong glass */
+:root[data-effect-glass="1"] .drawer {
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+/* Alert — subtle glass */
+:root[data-effect-glass="1"] .alert {
+  backdrop-filter: blur(8px) saturate(1.3);
+  -webkit-backdrop-filter: blur(8px) saturate(1.3);
+  background: var(--p-white-4);
+  border-color: var(--p-white-6);
 }
 
 /* Glass — light mode overrides (--p-white-* flips to black-alpha) */
@@ -361,16 +421,66 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+:root[data-theme="light"][data-effect-glass="1"] .popover,
+:root[data-theme="light"][data-effect-glass="1"] .tooltip-content,
+:root[data-theme="light"][data-effect-glass="1"] .select-dropdown {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+:root[data-theme="light"][data-effect-glass="1"] .drawer {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+:root[data-theme="light"][data-effect-glass="1"] .alert {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 /* --- Gradient Auto-Application --- */
 
+/* Page-level ambient accent glow */
+:root[data-effect-gradient="1"] body {
+  background:
+    radial-gradient(ellipse at 20% 0%, var(--accent-bg) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, var(--accent-bg) 0%, transparent 50%),
+    var(--bg-primary);
+}
+
+/* Stat cards */
 :root[data-effect-gradient="1"] .card-stat {
   background:
     radial-gradient(ellipse at 80% 20%, var(--accent-bg) 0%, transparent 60%),
     var(--stat-bg);
 }
 
+/* Elevated / Interactive cards — accent hint top-right */
+:root[data-effect-gradient="1"] .card-elevated,
+:root[data-effect-gradient="1"] .card-interactive {
+  background:
+    radial-gradient(ellipse at 80% 20%, var(--accent-bg) 0%, transparent 60%),
+    var(--card-bg);
+}
+
+/* Large floating UI — modal, drawer */
+:root[data-effect-gradient="1"] .drawer,
+:root[data-effect-gradient="1"] .modal-content {
+  background:
+    radial-gradient(ellipse at 80% 20%, var(--accent-bg) 0%, transparent 60%),
+    var(--bg-secondary);
+}
+
+/* Alert */
+:root[data-effect-gradient="1"] .alert {
+  background:
+    radial-gradient(ellipse at 80% 20%, var(--accent-bg) 0%, transparent 60%),
+    var(--bg-secondary);
+}
+
 /* --- Grain Auto-Application --- */
 
+/* Cards */
 :root[data-effect-grain="1"] .card,
 :root[data-effect-grain="1"] .card-elevated,
 :root[data-effect-grain="1"] .card-interactive,
@@ -394,6 +504,61 @@
   background-size: 128px 128px;
 }
 
+/* Floating UI + Alert (not tooltip/select-dropdown — too small for grain) */
+:root[data-effect-grain="1"] .modal-content,
+:root[data-effect-grain="1"] .drawer,
+:root[data-effect-grain="1"] .popover,
+:root[data-effect-grain="1"] .alert {
+  position: relative;
+  isolation: isolate;
+}
+
+:root[data-effect-grain="1"] .modal-content::after,
+:root[data-effect-grain="1"] .drawer::after,
+:root[data-effect-grain="1"] .popover::after,
+:root[data-effect-grain="1"] .alert::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* --- Gradient-border Auto-Application --- */
+
+/* Card-interactive — reveal gradient border on hover */
+:root[data-effect-gradient-border="1"] .card-interactive {
+  position: relative;
+}
+
+:root[data-effect-gradient-border="1"] .card-interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary-light, var(--accent-light)), var(--accent-border));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+:root[data-effect-gradient-border="1"] .card-interactive:hover::before {
+  opacity: 1;
+}
+
 /* ============================================
    Reduced Motion
    ============================================ */
@@ -415,7 +580,12 @@
   :root[data-effect-glass="1"] .card-interactive,
   :root[data-effect-glass="1"] .card-stat,
   :root[data-effect-glass="1"] .modal-content,
-  :root[data-effect-glass="1"] .badge {
+  :root[data-effect-glass="1"] .badge,
+  :root[data-effect-glass="1"] .popover,
+  :root[data-effect-glass="1"] .tooltip-content,
+  :root[data-effect-glass="1"] .select-dropdown,
+  :root[data-effect-glass="1"] .drawer,
+  :root[data-effect-glass="1"] .alert {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }

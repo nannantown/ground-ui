@@ -2816,12 +2816,12 @@
 
 /* --- Skeleton Loading --- */
 @keyframes skeleton-pulse {
-  0%, 100% { opacity: 0.06; }
-  50% { opacity: 0.12; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .skeleton {
-  background: var(--p-white-6);
+  background: var(--p-white-8);
   border-radius: var(--radius-sm);
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
