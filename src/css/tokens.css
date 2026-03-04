@@ -124,6 +124,7 @@
   /* --- White Alpha Scale --- */
   --p-white-2: rgba(255, 255, 255, 0.02);
   --p-white-3: rgba(255, 255, 255, 0.03);
+  --p-white-4: rgba(255, 255, 255, 0.04);
   --p-white-5: rgba(255, 255, 255, 0.05);
   --p-white-6: rgba(255, 255, 255, 0.06);
   --p-white-8: rgba(255, 255, 255, 0.08);
@@ -134,7 +135,6 @@
   --p-white-25: rgba(255, 255, 255, 0.25);
   --p-white-30: rgba(255, 255, 255, 0.30);
   --p-white-35: rgba(255, 255, 255, 0.35);
-  --p-white-4: rgba(255, 255, 255, 0.04);
   --p-white-40: rgba(255, 255, 255, 0.40);
   --p-white-45: rgba(255, 255, 255, 0.45);
   --p-white-50: rgba(255, 255, 255, 0.50);
@@ -216,7 +216,6 @@
   /* --- Text --- */
   --text-primary: var(--p-gray-150);
   --text-secondary: var(--p-gray-400);
-  --text-muted: var(--text-secondary);  /* alias — use --text-secondary directly */
   --text-disabled: var(--p-gray-600);
   --text-inverse: #000000;
 
@@ -251,6 +250,7 @@
   --warning-bg: rgba(199, 163, 56, 0.10);
   --warning-bg-strong: rgba(199, 163, 56, 0.20);
   --warning-border: rgba(199, 163, 56, 0.30);
+  --warning-glow: 0 0 30px -8px var(--p-amber-500);
 
   --error: var(--p-red-500);
   --error-hover: var(--p-red-600);
@@ -266,6 +266,7 @@
   --info-bg: rgba(92, 123, 193, 0.10);
   --info-bg-strong: rgba(92, 123, 193, 0.20);
   --info-border: rgba(92, 123, 193, 0.30);
+  --info-glow: 0 0 30px -8px var(--p-blue-500);
 
   --accent: var(--p-sky-500);
   --accent-hover: var(--p-sky-600);
@@ -281,11 +282,6 @@
   --accent-secondary-bg: var(--accent-bg);
   --accent-secondary-bg-strong: var(--accent-bg-strong);
   --accent-secondary-border: var(--accent-border);
-
-  /* --- Palette: Tertiary accent (fallback = secondary) --- */
-  --accent-tertiary: var(--accent-secondary);
-  --accent-tertiary-bg: var(--accent-secondary-bg);
-  --accent-tertiary-border: var(--accent-secondary-border);
 
   /* --- Palette: Surface tint (fallback = transparent) --- */
   --surface-tint: transparent;
@@ -481,6 +477,7 @@
   /* --- Blur --- */
   --blur-sm: 4px;
   --blur-md: 8px;
+  --blur-base: 12px;
   --blur-lg: 16px;
   --blur-xl: 24px;
   --blur-2xl: 40px;
@@ -519,7 +516,8 @@
      hover/active states) automatically adapt to light mode. */
   --p-white-2: rgba(0, 0, 0, 0.02);
   --p-white-3: rgba(0, 0, 0, 0.03);
-  --p-white-5: rgba(0, 0, 0, 0.04);
+  --p-white-4: rgba(0, 0, 0, 0.04);
+  --p-white-5: rgba(0, 0, 0, 0.05);
   --p-white-6: rgba(0, 0, 0, 0.06);
   --p-white-8: rgba(0, 0, 0, 0.08);
   --p-white-10: rgba(0, 0, 0, 0.10);
@@ -529,7 +527,6 @@
   --p-white-25: rgba(0, 0, 0, 0.25);
   --p-white-30: rgba(0, 0, 0, 0.30);
   --p-white-35: rgba(0, 0, 0, 0.35);
-  --p-white-4: rgba(0, 0, 0, 0.04);
   --p-white-40: rgba(0, 0, 0, 0.40);
   --p-white-45: rgba(0, 0, 0, 0.45);
   --p-white-50: rgba(0, 0, 0, 0.50);
@@ -551,7 +548,6 @@
   /* --- Text --- */
   --text-primary: #0a0a0a;
   --text-secondary: #555555;
-  --text-muted: var(--text-secondary);  /* alias — use --text-secondary directly */
   --text-disabled: #949494;  /* 3.03:1 on white (AA Large) */
   --text-inverse: #ffffff;
 

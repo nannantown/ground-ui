@@ -35,6 +35,29 @@ import { RadioGroup, RadioGroupItem } from '../../src/components/RadioGroup'
 import { Tooltip } from '../../src/components/Tooltip'
 import { DatePicker } from '../../src/components/DatePicker'
 import { Timeline } from '../../src/components/Timeline'
+import { SearchBar } from '../../src/components/SearchBar'
+import { Autocomplete } from '../../src/components/Autocomplete'
+import type { AutocompleteOption } from '../../src/components/Autocomplete'
+import { TimePicker } from '../../src/components/TimePicker'
+import { Slider } from '../../src/components/Slider'
+import { Chip } from '../../src/components/Chip'
+import { DataTable } from '../../src/components/DataTable'
+import type { DataTableColumn } from '../../src/components/DataTable'
+import { ListTile } from '../../src/components/ListTile'
+import { Carousel } from '../../src/components/Carousel'
+import { VirtualList } from '../../src/components/VirtualList'
+import { Typography } from '../../src/components/Typography'
+import { AppBar } from '../../src/components/AppBar'
+import { BottomNav } from '../../src/components/BottomNav'
+import { NavigationRail } from '../../src/components/NavigationRail'
+import { Stepper } from '../../src/components/Stepper'
+import { CascadingMenu } from '../../src/components/CascadingMenu'
+import { BottomSheet, BottomSheetHeader, BottomSheetBody } from '../../src/components/BottomSheet'
+import { Drawer, DrawerHeader, DrawerBody } from '../../src/components/layout/Drawer'
+import { CrossFade } from '../../src/components/CrossFade'
+import { Dismissible } from '../../src/components/Dismissible'
+import { DragItem, DropZone } from '../../src/components/DragAndDrop'
+import { Form } from '../../src/components/Form'
 import { Stack } from '../../src/components/layout/Stack'
 import { Grid } from '../../src/components/layout/Grid'
 import { Container } from '../../src/components/layout/Container'
@@ -326,6 +349,49 @@ const T = {
     effectsGradientBorder: 'Gradient Border',
     effectsAurora: 'Aurora',
     effectsGrain: 'Grainy Surface',
+    // New Components
+    searchBar: 'Search Bar',
+    autocomplete: 'Autocomplete',
+    timePicker: 'Time Picker',
+    slider: 'Slider',
+    chip: 'Chip',
+    dataTable: 'Data Table',
+    listTile: 'List Tile',
+    carousel: 'Carousel',
+    virtualList: 'Virtual List',
+    typographyComp: 'Typography',
+    appBar: 'App Bar',
+    bottomNav: 'Bottom Nav',
+    navigationRail: 'Navigation Rail',
+    stepper: 'Stepper',
+    cascadingMenu: 'Cascading Menu',
+    bottomSheet: 'Bottom Sheet',
+    drawer: 'Drawer',
+    crossFade: 'CrossFade',
+    dismissible: 'Dismissible',
+    dragAndDrop: 'Drag & Drop',
+    form: 'Form',
+    searchPlaceholder: 'Search...',
+    openBottomSheet: 'Open Bottom Sheet',
+    openDrawer: 'Open Drawer',
+    sheetContent: 'This is the bottom sheet content.',
+    drawerContent: 'This is the drawer content.',
+    step1: 'Account',
+    step2: 'Profile',
+    step3: 'Review',
+    step4: 'Complete',
+    name: 'Name',
+    enterName: 'Enter your name',
+    nameRequired: 'Name is required',
+    submitForm: 'Submit',
+    resetForm: 'Reset',
+    volume: 'Volume',
+    brightness: 'Brightness',
+    priceRange: 'Price Range',
+    swipeToDelete: 'Swipe right to delete',
+    dropped: 'Dropped!',
+    dragMe: 'Drag me',
+    dropHere: 'Drop here',
   },
   ja: {
     // Colors
@@ -548,6 +614,49 @@ const T = {
     effectsGradientBorder: 'グラデーションボーダー',
     effectsAurora: 'オーロラ',
     effectsGrain: 'グレインサーフェス',
+    // New Components
+    searchBar: '検索バー',
+    autocomplete: 'オートコンプリート',
+    timePicker: 'タイムピッカー',
+    slider: 'スライダー',
+    chip: 'チップ',
+    dataTable: 'データテーブル',
+    listTile: 'リストタイル',
+    carousel: 'カルーセル',
+    virtualList: 'バーチャルリスト',
+    typographyComp: 'タイポグラフィ',
+    appBar: 'アプリバー',
+    bottomNav: 'ボトムナビ',
+    navigationRail: 'ナビゲーションレール',
+    stepper: 'ステッパー',
+    cascadingMenu: 'カスケードメニュー',
+    bottomSheet: 'ボトムシート',
+    drawer: 'ドロワー',
+    crossFade: 'クロスフェード',
+    dismissible: 'ディスミシブル',
+    dragAndDrop: 'ドラッグ&ドロップ',
+    form: 'フォーム',
+    searchPlaceholder: '検索...',
+    openBottomSheet: 'ボトムシートを開く',
+    openDrawer: 'ドロワーを開く',
+    sheetContent: 'これはボトムシートのコンテンツです。',
+    drawerContent: 'これはドロワーのコンテンツです。',
+    step1: 'アカウント',
+    step2: 'プロフィール',
+    step3: '確認',
+    step4: '完了',
+    name: '名前',
+    enterName: '名前を入力',
+    nameRequired: '名前は必須です',
+    submitForm: '送信',
+    resetForm: 'リセット',
+    volume: '音量',
+    brightness: '明るさ',
+    priceRange: '価格帯',
+    swipeToDelete: '右にスワイプで削除',
+    dropped: 'ドロップ完了！',
+    dragMe: 'ドラッグ',
+    dropHere: 'ここにドロップ',
   },
 } as const
 
@@ -1603,7 +1712,177 @@ function InputsSection() {
           </FormField>
         </div>
       </Group>
+
+      <Group label={t.searchBar} labelJa="検索バー">
+        <SearchBarDemo />
+      </Group>
+
+      <Group label={t.autocomplete} labelJa="オートコンプリート">
+        <AutocompleteDemo />
+      </Group>
+
+      <Group label={t.timePicker} labelJa="タイムピッカー">
+        <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+          <TimePicker placeholder="24h" />
+          <TimePicker format="12h" placeholder="12h" />
+          <TimePicker minuteStep={15} placeholder="15min step" />
+          <TimePicker disabled placeholder="Disabled" />
+        </div>
+      </Group>
+
+      <Group label={t.slider} labelJa="スライダー">
+        <SliderDemo />
+      </Group>
+
+      <Group label={t.chip} labelJa="チップ">
+        <ChipDemo />
+      </Group>
+
+      <Group label={t.form} labelJa="フォーム">
+        <FormDemo />
+      </Group>
     </>
+  )
+}
+
+/* ── Input sub-demos ─────────────────────── */
+
+function SearchBarDemo() {
+  const [search, setSearch] = useState('')
+  const [expandSearch, setExpandSearch] = useState('')
+  const { t } = useT()
+  return (
+    <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+      <SearchBar value={search} onChange={setSearch} placeholder={t.searchPlaceholder} />
+      <SearchBar value="" onChange={() => {}} loading placeholder="Loading..." />
+      <SearchBar value={expandSearch} onChange={setExpandSearch} expandable placeholder={t.searchPlaceholder} />
+      <SearchBar value="" onChange={() => {}} disabled placeholder={t.disabled} />
+    </div>
+  )
+}
+
+function AutocompleteDemo() {
+  const [val, setVal] = useState('')
+  const { locale } = useLocale()
+  const options: AutocompleteOption[] = [
+    { value: 'react', label: 'React', description: 'A JavaScript library for building UIs' },
+    { value: 'vue', label: 'Vue', description: 'The Progressive JavaScript Framework' },
+    { value: 'svelte', label: 'Svelte', description: 'Cybernetically enhanced web apps' },
+    { value: 'angular', label: 'Angular', description: 'Platform for building apps', disabled: true },
+  ]
+  return (
+    <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+      <Autocomplete
+        value={val}
+        onChange={setVal}
+        options={options}
+        placeholder={locale === 'ja' ? 'フレームワークを検索...' : 'Search frameworks...'}
+      />
+      <Autocomplete
+        value=""
+        onChange={() => {}}
+        options={[]}
+        disabled
+        placeholder={locale === 'ja' ? '無効' : 'Disabled'}
+      />
+    </div>
+  )
+}
+
+function SliderDemo() {
+  const [vol, setVol] = useState(60)
+  const [bright, setBright] = useState(80)
+  const [range, setRange] = useState<[number, number]>([20, 80])
+  const { t } = useT()
+  return (
+    <div className="ds-stage-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+      <Slider value={vol} onChange={setVol} label={t.volume} showValue />
+      <Slider value={bright} onChange={setBright} label={t.brightness} showValue marks={[{ value: 0, label: '0' }, { value: 50, label: '50' }, { value: 100, label: '100' }]} />
+      <Slider range rangeValue={range} onRangeChange={setRange} label={t.priceRange} showValue />
+      <Slider value={50} onChange={() => {}} label={t.disabled} disabled />
+    </div>
+  )
+}
+
+function ChipDemo() {
+  const [selected, setSelected] = useState<Set<string>>(new Set(['react']))
+  const [chips, setChips] = useState(['Design', 'Code', 'Test'])
+  const toggle = (v: string) => setSelected(prev => {
+    const next = new Set(prev)
+    next.has(v) ? next.delete(v) : next.add(v)
+    return next
+  })
+  return (
+    <Stage col style={{ gap: 'var(--space-md)', alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
+        <Chip color="accent">Accent</Chip>
+        <Chip color="success">Success</Chip>
+        <Chip color="warning">Warning</Chip>
+        <Chip color="error">Error</Chip>
+        <Chip color="info">Info</Chip>
+        <Chip color="neutral">Neutral</Chip>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
+        {['react', 'vue', 'svelte'].map(v => (
+          <Chip key={v} color="accent" selected={selected.has(v)} onClick={() => toggle(v)}>{v}</Chip>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
+        {chips.map(c => (
+          <Chip key={c} color="neutral" deletable onDelete={() => setChips(prev => prev.filter(x => x !== c))}>{c}</Chip>
+        ))}
+      </div>
+    </Stage>
+  )
+}
+
+function FormDemo() {
+  const { t, locale } = useT()
+  return (
+    <div style={{ maxWidth: 400 }}>
+      <Form
+        initialValues={{ name: '', email: '' }}
+        validate={(vals) => {
+          const errs: Record<string, string> = {}
+          if (!vals.name) errs.name = t.nameRequired
+          if (!vals.email) errs.email = locale === 'ja' ? 'メールは必須です' : 'Email is required'
+          return errs
+        }}
+        onSubmit={async () => { await new Promise(r => setTimeout(r, 500)) }}
+      >
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, reset }) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+            <FormField label={t.name} htmlFor="form-name" error={touched.name ? errors.name : undefined}>
+              <Input
+                id="form-name"
+                name="name"
+                value={values.name}
+                onChange={(e) => handleChange(e)}
+                onBlur={(e) => handleBlur(e)}
+                placeholder={t.enterName}
+                error={!!touched.name && !!errors.name}
+              />
+            </FormField>
+            <FormField label={t.email} htmlFor="form-email" error={touched.email ? errors.email : undefined}>
+              <Input
+                id="form-email"
+                name="email"
+                type="email"
+                value={values.email}
+                onChange={(e) => handleChange(e)}
+                onBlur={(e) => handleBlur(e)}
+                placeholder="you@example.com"
+                error={!!touched.email && !!errors.email}
+              />
+            </FormField>
+            <Stage>
+              <Button onClick={handleSubmit} loading={isSubmitting}>{t.submitForm}</Button>
+              <Button variant="ghost" onClick={reset}>{t.resetForm}</Button>
+            </Stage>
+          </div>
+        )}
+      </Form>
+    </div>
   )
 }
 
@@ -1714,7 +1993,105 @@ function DataDisplaySection() {
           </div>
         </Stage>
       </Group>
+
+      <Group label="Data Table" labelJa="データテーブル">
+        <DataTableDemo />
+      </Group>
+
+      <Group label="List Tile" labelJa="リストタイル">
+        <ListTileDemo />
+      </Group>
+
+      <Group label="Typography" labelJa="タイポグラフィコンポーネント">
+        <Stage col style={{ alignItems: 'flex-start', gap: 'var(--space-sm)' }}>
+          <Typography variant="h4">Heading 4</Typography>
+          <Typography variant="body1">Body text with primary color and default weight.</Typography>
+          <Typography variant="body2" color="secondary">Secondary body text for descriptions.</Typography>
+          <Typography variant="caption" color="muted">Caption text for metadata.</Typography>
+          <Typography variant="overline" color="accent">OVERLINE TEXT</Typography>
+          <Typography variant="label" weight="semibold">Label text</Typography>
+        </Stage>
+      </Group>
+
+      <Group label="Carousel" labelJa="カルーセル">
+        <div style={{ maxWidth: 480 }}>
+          <Carousel showDots showArrows>
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} style={{ height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', fontSize: 'var(--text-lg)', color: 'var(--text-secondary)' }}>
+                Slide {i}
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </Group>
+
+      <Group label="Virtual List" labelJa="バーチャルリスト">
+        <div style={{ maxWidth: 400 }}>
+          <VirtualList
+            items={Array.from({ length: 200 }, (_, i) => `Item ${i + 1}`)}
+            itemHeight={36}
+            height={180}
+            renderItem={(item, index) => (
+              <div style={{ padding: '8px 12px', fontSize: 'var(--text-sm)', color: index % 2 === 0 ? 'var(--text-primary)' : 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+                {item}
+              </div>
+            )}
+          />
+        </div>
+      </Group>
     </>
+  )
+}
+
+/* ── Data Display sub-demos ──────────────── */
+
+function DataTableDemo() {
+  const { locale } = useLocale()
+  const columns: DataTableColumn<{ name: string; role: string; status: string }>[] = [
+    { key: 'name', label: locale === 'ja' ? '名前' : 'Name', sortable: true },
+    { key: 'role', label: locale === 'ja' ? '役割' : 'Role', sortable: true },
+    { key: 'status', label: locale === 'ja' ? 'ステータス' : 'Status', render: (v) => <Badge variant={v === 'Active' ? 'success' : 'neutral'}>{String(v)}</Badge> },
+  ]
+  const data = [
+    { name: 'Alice', role: 'Engineer', status: 'Active' },
+    { name: 'Bob', role: 'Designer', status: 'Active' },
+    { name: 'Carol', role: 'Manager', status: 'Inactive' },
+  ]
+  return <DataTable columns={columns} data={data} striped compact />
+}
+
+function ListTileDemo() {
+  const { locale } = useLocale()
+  const [selected, setSelected] = useState('inbox')
+  const userIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+  return (
+    <div style={{ maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <ListTile
+        leading={userIcon}
+        title={locale === 'ja' ? '受信トレイ' : 'Inbox'}
+        subtitle={locale === 'ja' ? '3件の未読' : '3 unread messages'}
+        trailing={<Badge variant="accent">3</Badge>}
+        selected={selected === 'inbox'}
+        onClick={() => setSelected('inbox')}
+        dense
+      />
+      <ListTile
+        leading={userIcon}
+        title={locale === 'ja' ? '送信済み' : 'Sent'}
+        subtitle={locale === 'ja' ? '最終: 2時間前' : 'Last: 2 hours ago'}
+        selected={selected === 'sent'}
+        onClick={() => setSelected('sent')}
+        dense
+      />
+      <ListTile
+        leading={userIcon}
+        title={locale === 'ja' ? 'アーカイブ' : 'Archive'}
+        selected={selected === 'archive'}
+        onClick={() => setSelected('archive')}
+        disabled
+        dense
+      />
+    </div>
   )
 }
 
@@ -1915,7 +2292,86 @@ function OverlaysSection() {
           </Button>
         </Stage>
       </Group>
+
+      <Group label="Bottom Sheet" labelJa="ボトムシート">
+        <BottomSheetDemo />
+      </Group>
+
+      <Group label="Drawer" labelJa="ドロワー">
+        <DrawerDemo />
+      </Group>
+
+      <Group label="CrossFade" labelJa="クロスフェード">
+        <CrossFadeDemo />
+      </Group>
     </>
+  )
+}
+
+/* ── Overlay sub-demos ───────────────────── */
+
+function BottomSheetDemo() {
+  const [open, setOpen] = useState(false)
+  const { t } = useT()
+  return (
+    <Stage>
+      <Button variant="secondary" onClick={() => setOpen(true)}>{t.openBottomSheet}</Button>
+      <BottomSheet open={open} onClose={() => setOpen(false)}>
+        <BottomSheetHeader>
+          <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 600, margin: 0 }}>Bottom Sheet</h3>
+        </BottomSheetHeader>
+        <BottomSheetBody>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
+            {t.sheetContent}
+          </p>
+        </BottomSheetBody>
+      </BottomSheet>
+    </Stage>
+  )
+}
+
+function DrawerDemo() {
+  const [open, setOpen] = useState(false)
+  const { t } = useT()
+  return (
+    <Stage>
+      <Button variant="secondary" onClick={() => setOpen(true)}>{t.openDrawer}</Button>
+      <Drawer open={open} onClose={() => setOpen(false)} side="right">
+        <DrawerHeader>
+          <span style={{ fontWeight: 600, fontSize: 'var(--text-md)' }}>Drawer</span>
+          <button className="ds-menu-btn" onClick={() => setOpen(false)} aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M4 4l8 8M12 4l-8 8" /></svg>
+          </button>
+        </DrawerHeader>
+        <DrawerBody>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
+            {t.drawerContent}
+          </p>
+        </DrawerBody>
+      </Drawer>
+    </Stage>
+  )
+}
+
+function CrossFadeDemo() {
+  const [show, setShow] = useState(false)
+  const { locale } = useLocale()
+  return (
+    <Stage col style={{ alignItems: 'flex-start', gap: 'var(--space-md)' }}>
+      <Button variant="secondary" size="sm" onClick={() => setShow(v => !v)}>
+        {locale === 'ja' ? '切り替え' : 'Toggle'}
+      </Button>
+      <div style={{ height: 48, display: 'flex', alignItems: 'center' }}>
+        <CrossFade show={show}>
+          <div style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>
+            {locale === 'ja' ? 'コンテンツ A' : 'Content A'}
+          </div>
+          <div style={{ fontSize: 'var(--text-base)', color: 'var(--accent)' }}>
+            {locale === 'ja' ? 'コンテンツ B' : 'Content B'}
+          </div>
+        </CrossFade>
+      </div>
+    </Stage>
   )
 }
 
@@ -2094,7 +2550,219 @@ function NavigationSection() {
           </p>
         </Stage>
       </Group>
+
+      <Group label="App Bar" labelJa="アプリバー">
+        <div style={{ border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+          <AppBar
+            title={locale === 'ja' ? 'ページタイトル' : 'Page Title'}
+            subtitle={locale === 'ja' ? 'サブタイトル' : 'Subtitle'}
+            leading={
+              <button style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', display: 'flex' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+            }
+            actions={[
+              <button key="search" style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', display: 'flex' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+              </button>,
+            ]}
+            elevated
+          />
+        </div>
+      </Group>
+
+      <Group label="Bottom Nav" labelJa="ボトムナビ">
+        <BottomNavDemo />
+      </Group>
+
+      <Group label="Navigation Rail" labelJa="ナビゲーションレール">
+        <NavigationRailDemo />
+      </Group>
+
+      <Group label="Stepper" labelJa="ステッパー">
+        <StepperDemo />
+      </Group>
+
+      <Group label="Cascading Menu" labelJa="カスケードメニュー">
+        <CascadingMenuDemo />
+      </Group>
+
+      <Group label="Dismissible" labelJa="ディスミシブル">
+        <DismissibleDemo />
+      </Group>
+
+      <Group label="Drag & Drop" labelJa="ドラッグ&ドロップ">
+        <DragDropDemo />
+      </Group>
     </>
+  )
+}
+
+/* ── Navigation sub-demos ────────────────── */
+
+function BottomNavDemo() {
+  const [active, setActive] = useState('home')
+  const { locale } = useLocale()
+  const homeIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /></svg>
+  const searchIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+  const profileIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+  return (
+    <div style={{ maxWidth: 400, border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+      <BottomNav
+        value={active}
+        onChange={setActive}
+        items={[
+          { value: 'home', label: locale === 'ja' ? 'ホーム' : 'Home', icon: homeIcon },
+          { value: 'search', label: locale === 'ja' ? '検索' : 'Search', icon: searchIcon, badge: 3 },
+          { value: 'profile', label: locale === 'ja' ? 'プロフィール' : 'Profile', icon: profileIcon },
+        ]}
+      />
+    </div>
+  )
+}
+
+function NavigationRailDemo() {
+  const [active, setActive] = useState('home')
+  const { locale } = useLocale()
+  const homeIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /></svg>
+  const msgIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
+  const settingsIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" /></svg>
+  return (
+    <div style={{ height: 300, border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+      <NavigationRail
+        value={active}
+        onChange={setActive}
+        items={[
+          { value: 'home', label: locale === 'ja' ? 'ホーム' : 'Home', icon: homeIcon },
+          { value: 'messages', label: locale === 'ja' ? 'メッセージ' : 'Messages', icon: msgIcon, badge: 5 },
+          { value: 'settings', label: locale === 'ja' ? '設定' : 'Settings', icon: settingsIcon },
+        ]}
+      />
+    </div>
+  )
+}
+
+function StepperDemo() {
+  const [step, setStep] = useState(1)
+  const { t } = useT()
+  return (
+    <Stage col style={{ gap: 'var(--space-md)' }}>
+      <Stepper
+        steps={[
+          { label: t.step1 },
+          { label: t.step2 },
+          { label: t.step3 },
+          { label: t.step4, optional: true },
+        ]}
+        activeStep={step}
+        onStepClick={setStep}
+      />
+      <Stage>
+        <Button size="sm" variant="secondary" onClick={() => setStep(s => Math.max(0, s - 1))} disabled={step === 0}>
+          Back
+        </Button>
+        <Button size="sm" onClick={() => setStep(s => Math.min(3, s + 1))} disabled={step === 3}>
+          Next
+        </Button>
+      </Stage>
+    </Stage>
+  )
+}
+
+function CascadingMenuDemo() {
+  const { toast } = useToast()
+  const { locale } = useLocale()
+  return (
+    <Stage>
+      <CascadingMenu
+        trigger={
+          <Button variant="secondary">
+            {locale === 'ja' ? 'メニューを開く' : 'Open Menu'}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 'var(--space-xs)' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </Button>
+        }
+        items={[
+          { label: locale === 'ja' ? '新規作成' : 'New', onClick: () => toast('Created', 'success') },
+          {
+            label: locale === 'ja' ? '編集' : 'Edit',
+            children: [
+              { label: locale === 'ja' ? 'コピー' : 'Copy', onClick: () => toast('Copied', 'info') },
+              { label: locale === 'ja' ? '貼り付け' : 'Paste', onClick: () => toast('Pasted', 'info') },
+            ],
+          },
+          { label: locale === 'ja' ? '削除' : 'Delete', onClick: () => toast('Deleted', 'error') },
+          { label: locale === 'ja' ? '無効' : 'Disabled', disabled: true },
+        ]}
+      />
+    </Stage>
+  )
+}
+
+function DismissibleDemo() {
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3'])
+  const { locale } = useLocale()
+  return (
+    <div style={{ maxWidth: 300, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      {items.length === 0 ? (
+        <div style={{ padding: 'var(--space-md)', textAlign: 'center', color: 'var(--text-secondary)', fontSize: 'var(--text-sm)' }}>
+          {locale === 'ja' ? '全て削除されました' : 'All items dismissed'}
+          <br />
+          <Button size="sm" variant="ghost" onClick={() => setItems(['Item 1', 'Item 2', 'Item 3'])} style={{ marginTop: 'var(--space-sm)' }}>
+            {locale === 'ja' ? 'リセット' : 'Reset'}
+          </Button>
+        </div>
+      ) : items.map(item => (
+        <Dismissible key={item} onDismiss={() => setItems(prev => prev.filter(i => i !== item))}>
+          <div style={{ padding: 'var(--space-sm) var(--space-md)', background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--text-primary)' }}>
+            {item} — {locale === 'ja' ? '右にスワイプ' : 'swipe right'}
+          </div>
+        </Dismissible>
+      ))}
+    </div>
+  )
+}
+
+function DragDropDemo() {
+  const [dropped, setDropped] = useState<string | null>(null)
+  const { t } = useT()
+  return (
+    <Stage style={{ gap: 'var(--space-xl)' }}>
+      <DragItem id="demo-item" data={{ name: 'Demo' }}>
+        {({ isDragging }) => (
+          <div style={{
+            padding: 'var(--space-sm) var(--space-lg)',
+            background: isDragging ? 'var(--accent-bg)' : 'var(--bg-secondary)',
+            border: `1px solid ${isDragging ? 'var(--accent)' : 'var(--border-subtle)'}`,
+            borderRadius: 'var(--radius-md)',
+            cursor: 'grab',
+            fontSize: 'var(--text-sm)',
+            color: 'var(--text-primary)',
+            opacity: isDragging ? 0.6 : 1,
+          }}>
+            {t.dragMe}
+          </div>
+        )}
+      </DragItem>
+      <DropZone onDrop={(payload) => setDropped(payload.id)}>
+        {({ isOver }) => (
+          <div style={{
+            padding: 'var(--space-md) var(--space-xl)',
+            background: isOver ? 'var(--accent-bg)' : 'transparent',
+            border: `2px dashed ${isOver ? 'var(--accent)' : 'var(--border-default)'}`,
+            borderRadius: 'var(--radius-md)',
+            fontSize: 'var(--text-sm)',
+            color: isOver ? 'var(--accent)' : 'var(--text-secondary)',
+            textAlign: 'center',
+            transition: 'all 0.15s ease',
+            minWidth: 120,
+          }}>
+            {dropped ? t.dropped : t.dropHere}
+          </div>
+        )}
+      </DropZone>
+    </Stage>
   )
 }
 

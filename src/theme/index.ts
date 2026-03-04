@@ -769,10 +769,6 @@ function getCurrentBgHex(isDark?: boolean): string {
 
 // --- CSS variable names used by old palettes (for cleanup) ---
 
-const SECONDARY_VARS = [
-  '--accent-secondary', '--accent-secondary-hover', '--accent-secondary-light',
-  '--accent-secondary-bg', '--accent-secondary-bg-strong', '--accent-secondary-border',
-]
 const TERTIARY_VARS = [
   '--accent-tertiary', '--accent-tertiary-bg', '--accent-tertiary-border',
 ]

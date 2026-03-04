@@ -89,16 +89,16 @@
    ============================================ */
 
 .glass {
-  backdrop-filter: blur(12px) saturate(1.4);
-  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(var(--blur-base)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-base)) saturate(1.4);
   background: var(--p-white-4);
   box-shadow: inset 0 0.5px 0 var(--p-white-6);
   border: var(--border-width-thin) solid var(--p-white-6);
 }
 
 .glass-strong {
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(var(--blur-xl)) saturate(1.6);
+  -webkit-backdrop-filter: blur(var(--blur-xl)) saturate(1.6);
   background: var(--p-white-8);
   box-shadow: inset 0 0.5px 0 var(--p-white-10);
   border: var(--border-width-thin) solid var(--p-white-8);
@@ -367,8 +367,8 @@
 :root[data-effect-glass="1"] .card-elevated,
 :root[data-effect-glass="1"] .card-interactive,
 :root[data-effect-glass="1"] .card-stat {
-  backdrop-filter: blur(12px) saturate(1.4);
-  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(var(--blur-base)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-base)) saturate(1.4);
   background: var(--p-white-4);
   box-shadow: inset 0 0.5px 0 var(--p-white-6);
   border-color: var(--p-white-6);
@@ -376,22 +376,22 @@
 
 /* Modal — strong glass */
 :root[data-effect-glass="1"] .modal-content {
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
 }
 
 /* Badge — subtle glass */
 :root[data-effect-glass="1"] .badge {
-  backdrop-filter: blur(8px) saturate(1.3);
-  -webkit-backdrop-filter: blur(8px) saturate(1.3);
+  backdrop-filter: blur(var(--blur-md)) saturate(1.3);
+  -webkit-backdrop-filter: blur(var(--blur-md)) saturate(1.3);
 }
 
 /* Floating UI — strong glass */
 :root[data-effect-glass="1"] .popover,
 :root[data-effect-glass="1"] .tooltip-content,
 :root[data-effect-glass="1"] .select-dropdown {
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
   background: var(--p-white-4);
   box-shadow: inset 0 0.5px 0 var(--p-white-6);
   border-color: var(--p-white-6);
@@ -399,14 +399,14 @@
 
 /* Drawer — strong glass */
 :root[data-effect-glass="1"] .drawer {
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
 }
 
 /* Alert — subtle glass */
 :root[data-effect-glass="1"] .alert {
-  backdrop-filter: blur(8px) saturate(1.3);
-  -webkit-backdrop-filter: blur(8px) saturate(1.3);
+  backdrop-filter: blur(var(--blur-md)) saturate(1.3);
+  -webkit-backdrop-filter: blur(var(--blur-md)) saturate(1.3);
   background: var(--p-white-4);
   border-color: var(--p-white-6);
 }

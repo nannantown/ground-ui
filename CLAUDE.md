@@ -38,29 +38,74 @@ ground-ui/
 ├── src/
 │   ├── css/
 │   │   └── tokens.css              # CSS tokens (3-layer) + component classes + @font-face
-│   ├── components/                  # React components (22 components)
+│   ├── components/                  # React components (55 components + 11 layout)
+│   │   ├── Accordion.tsx
+│   │   ├── Alert.tsx
+│   │   ├── AppBar.tsx
+│   │   ├── Autocomplete.tsx
 │   │   ├── Avatar.tsx
 │   │   ├── Badge.tsx
+│   │   ├── BottomNav.tsx
+│   │   ├── BottomSheet.tsx
+│   │   ├── Breadcrumb.tsx
 │   │   ├── Button.tsx
+│   │   ├── Carousel.tsx
+│   │   ├── CascadingMenu.tsx
+│   │   ├── Checkbox.tsx
+│   │   ├── Chip.tsx
 │   │   ├── ConfirmDialog.tsx
+│   │   ├── CrossFade.tsx
+│   │   ├── DataTable.tsx
+│   │   ├── DatePicker.tsx
+│   │   ├── Dismissible.tsx
 │   │   ├── Divider.tsx
+│   │   ├── DragAndDrop.tsx
 │   │   ├── DropdownMenu.tsx
 │   │   ├── EmptyState.tsx
+│   │   ├── Form.tsx
 │   │   ├── FormField.tsx
 │   │   ├── Input.tsx
+│   │   ├── ListTile.tsx
 │   │   ├── Modal.tsx
+│   │   ├── NavigationRail.tsx
+│   │   ├── Pagination.tsx
+│   │   ├── Popover.tsx
+│   │   ├── ProgressBar.tsx
 │   │   ├── ProgressRing.tsx
+│   │   ├── RadioGroup.tsx
+│   │   ├── SearchBar.tsx
+│   │   ├── SegmentedControl.tsx
 │   │   ├── Select.tsx
+│   │   ├── Sidebar.tsx
 │   │   ├── Skeleton.tsx
+│   │   ├── Slider.tsx
 │   │   ├── Spinner.tsx
 │   │   ├── StatCard.tsx
+│   │   ├── Stepper.tsx
 │   │   ├── Tabs.tsx
 │   │   ├── Textarea.tsx
 │   │   ├── ThemeCustomizer.tsx
 │   │   ├── ThemeToggle.tsx
+│   │   ├── TimePicker.tsx
+│   │   ├── Timeline.tsx
 │   │   ├── Toast.tsx
 │   │   ├── Toggle.tsx
-│   │   └── ToolbarButton.tsx
+│   │   ├── ToolbarButton.tsx
+│   │   ├── Tooltip.tsx
+│   │   ├── Typography.tsx
+│   │   ├── VirtualList.tsx
+│   │   └── layout/                  # Layout primitives (11 components)
+│   │       ├── AppShell.tsx
+│   │       ├── AspectRatio.tsx
+│   │       ├── Center.tsx
+│   │       ├── Container.tsx
+│   │       ├── Drawer.tsx
+│   │       ├── Grid.tsx
+│   │       ├── ScrollArea.tsx
+│   │       ├── Spacer.tsx
+│   │       ├── SplitView.tsx
+│   │       ├── Stack.tsx
+│   │       └── VisuallyHidden.tsx
 │   ├── tokens/                      # Token definitions
 │   │   ├── tokens.json              # ** Single Source of Truth for all tokens **
 │   │   ├── _generated.ts            # Auto-generated from tokens.json (do not edit)
@@ -177,17 +222,25 @@ All components follow a consistent pattern:
 ### Component Classes
 
 All component classes are defined in `tokens.css` alongside the tokens:
-`.btn`, `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-danger`, `.btn-sm`, `.btn-lg`, `.btn-icon`,
-`.card`, `.card-elevated`, `.card-interactive`, `.card-stat`,
-`.input`, `.input-error`, `.textarea`, `.select`,
-`.label`, `.label-md`,
-`.badge`, `.badge-success`, `.badge-warning`, `.badge-error`, `.badge-info`, `.badge-accent`, `.badge-neutral`,
-`.pill-filter`, `.pill-filter-active`,
-`.toggle-switch`,
-`.divider`, `.empty-state`,
-`.skeleton`, `.skeleton-text`, `.skeleton-title`, `.skeleton-card`,
-`.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`,
-`.stagger-1` ~ `.stagger-6`
+
+**Buttons**: `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-danger`, `.btn-sm`, `.btn-lg`, `.btn-icon`
+**Cards**: `.card`, `.card-elevated`, `.card-interactive`, `.card-stat`, `.card-header`, `.card-body`, `.card-footer`
+**Inputs**: `.input`, `.input-error`, `.textarea`, `.select`, `.select-dropdown`, `.checkbox`, `.radio`, `.slider`
+**Labels**: `.label`, `.label-md`
+**Badges**: `.badge`, `.badge-success`, `.badge-warning`, `.badge-error`, `.badge-info`, `.badge-accent`, `.badge-neutral`
+**Pills/Segments**: `.pill-filter`, `.pill-filter-active`, `.segmented-control`, `.segmented-control-item`, `.segmented-control-active`
+**Toggle**: `.toggle-switch`
+**Navigation**: `.sidebar`, `.sidebar-item`, `.sidebar-item-icon`, `.bottom-nav`, `.app-header`, `.breadcrumb`, `.pagination`, `.nav-tab`, `.nav-tab-active`
+**Tables**: `.table`, `.table-header`, `.table-row`, `.table-cell`
+**Overlays**: `.modal-content`, `.drawer`, `.popover`, `.tooltip-content`, `.bottom-sheet`
+**Feedback**: `.alert`, `.alert-info`, `.alert-success`, `.alert-warning`, `.alert-error`, `.progress`, `.progress-bar`, `.skeleton`, `.skeleton-text`, `.skeleton-title`, `.skeleton-card`, `.empty-state`
+**Accordion**: `.accordion`, `.accordion-item`, `.accordion-trigger`, `.accordion-content`
+**Timeline**: `.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-content`
+**Calendar**: `.calendar`, `.calendar-grid`, `.calendar-day`, `.datepicker`
+**Layout**: `.app-shell`, `.split-sidebar`, `.split-content`, `.container-*`, `.section-*`, `.scroll-area`, `.bento-grid`, `.masonry-*`
+**Typography**: `.code-block`, `.blockquote`
+**Divider**: `.divider`
+**Animations**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`, `.animate-spin`, `.stagger-1` ~ `.stagger-6`
 
 ## Design Principles
 

@@ -89,7 +89,7 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
   const ds = { ...DEFAULT_LABELS, ...labelOverrides }
 
   const [config, setConfig] = useState<ThemeConfig | null>(null)
-  const [customInput, setCustomInput] = useState('')
+  const [, setCustomInput] = useState('')
   const [detailsOpen, setDetailsOpen] = useState(false)
   const [customizeOpen, setCustomizeOpen] = useState(false)
   const colorInputRef = useRef<HTMLInputElement>(null)

@@ -17,6 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={cn('input', error && 'input-error', className)}
+          aria-invalid={error || undefined}
           {...props}
         />
       )
@@ -48,6 +49,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
+          aria-invalid={error || undefined}
           style={{
             flex: 1,
             background: 'transparent',

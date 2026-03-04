@@ -66,7 +66,6 @@ function AccordionContent({
     if (el && isOpen) {
       el.style.maxHeight = 'none'
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

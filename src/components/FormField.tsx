@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 
 interface FormFieldProps {
   /** Field label */
@@ -24,10 +24,15 @@ export function FormField({
   children,
   className,
 }: FormFieldProps) {
+  const autoId = useId()
+  const fieldId = htmlFor ?? autoId
+  const errorId = error ? `${fieldId}-error` : undefined
+  const hintId = hint && !error ? `${fieldId}-hint` : undefined
+
   return (
     <div className={className} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
       <label
-        htmlFor={htmlFor}
+        htmlFor={fieldId}
         className="label-md"
         style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}
       >
@@ -38,12 +43,12 @@ export function FormField({
       </label>
       {children}
       {error && (
-        <p style={{ color: 'var(--error)', fontSize: 'var(--text-sm)', margin: 0 }}>
+        <p id={errorId} role="alert" style={{ color: 'var(--error)', fontSize: 'var(--text-sm)', margin: 0 }}>
           {error}
         </p>
       )}
       {hint && !error && (
-        <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', margin: 0 }}>
+        <p id={hintId} style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', margin: 0 }}>
           {hint}
         </p>
       )}

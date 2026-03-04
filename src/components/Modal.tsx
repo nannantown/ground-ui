@@ -1,4 +1,4 @@
-import { useEffect, useCallback, type ReactNode } from 'react'
+import { useEffect, useCallback, useId, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { cn } from '../cn'
 
@@ -10,6 +10,10 @@ interface ModalProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   /** Show close button in top-right corner */
   showClose?: boolean
+  /** Accessible label for the dialog */
+  'aria-label'?: string
+  /** ID of the element that labels the dialog */
+  'aria-labelledby'?: string
 }
 
 const sizeMap: Record<string, number> = {
@@ -25,7 +29,11 @@ export function Modal({
   children,
   size = 'md',
   showClose = false,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
 }: ModalProps) {
+  const autoId = useId()
+  const labelId = ariaLabelledBy ?? `${autoId}-title`
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -78,6 +86,10 @@ export function Modal({
         }}
       >
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabel ? undefined : labelId}
           className={cn('modal-content', 'animate-scale-in')}
           style={{
             position: 'relative',

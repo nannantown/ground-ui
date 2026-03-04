@@ -1,5 +1,3 @@
-import { cn } from '../cn'
-
 type AvatarSize = 'sm' | 'md' | 'lg' | 'xl'
 
 interface AvatarProps {
