@@ -40,6 +40,7 @@ export interface ThemeConfig {
   pairingId?: string | null  // active preset pairing id
   paletteId?: string | null  // deprecated, kept for migration
   effects?: EffectsConfig    // per-category effect toggle (all enabled by default)
+  effectPresetId?: string | null  // selected effect preset id (null = custom)
 }
 
 export interface ThemePairing {
@@ -116,6 +117,75 @@ export const DEFAULT_EFFECTS: EffectsConfig = {
   gradientBorder: true,
   aurora: true,
   grain: true,
+}
+
+export interface EffectPreset {
+  id: string
+  name: string
+  nameJa: string
+  description: string
+  descriptionJa: string
+  effects: EffectsConfig
+}
+
+export const EFFECT_PRESETS: EffectPreset[] = [
+  {
+    id: 'none',
+    name: 'None',
+    nameJa: 'なし',
+    description: 'All effects disabled',
+    descriptionJa: '全エフェクト無効',
+    effects: { glow: false, gradient: false, glass: false, gradientText: false, gradientBorder: false, aurora: false, grain: false },
+  },
+  {
+    id: 'subtle',
+    name: 'Subtle',
+    nameJa: 'サトル',
+    description: 'Soft glow and grain texture',
+    descriptionJa: '控えめなグローとテクスチャ',
+    effects: { glow: true, gradient: false, glass: false, gradientText: false, gradientBorder: false, aurora: false, grain: true },
+  },
+  {
+    id: 'glass',
+    name: 'Glass',
+    nameJa: 'ガラス',
+    description: 'Frosted glass with glow',
+    descriptionJa: 'すりガラス + グロー',
+    effects: { glow: true, gradient: false, glass: true, gradientText: false, gradientBorder: false, aurora: false, grain: false },
+  },
+  {
+    id: 'vivid',
+    name: 'Vivid',
+    nameJa: 'ビビッド',
+    description: 'Rich gradients and glow',
+    descriptionJa: 'リッチなグラデーションとグロー',
+    effects: { glow: true, gradient: true, glass: false, gradientText: true, gradientBorder: true, aurora: false, grain: false },
+  },
+  {
+    id: 'immersive',
+    name: 'Immersive',
+    nameJa: 'イマーシブ',
+    description: 'Full atmosphere with aurora',
+    descriptionJa: 'オーロラ付きフル演出',
+    effects: { glow: true, gradient: true, glass: true, gradientText: true, gradientBorder: false, aurora: true, grain: false },
+  },
+  {
+    id: 'all',
+    name: 'Maximum',
+    nameJa: 'マキシマム',
+    description: 'All effects enabled',
+    descriptionJa: '全エフェクト有効',
+    effects: { glow: true, gradient: true, glass: true, gradientText: true, gradientBorder: true, aurora: true, grain: true },
+  },
+]
+
+export function detectEffectPreset(effects: EffectsConfig): string | null {
+  const match = EFFECT_PRESETS.find(p =>
+    (Object.keys(p.effects) as Array<keyof EffectsConfig>).every(k =>
+      p.effects[k] === effects[k]
+    )
+  )
+  return match?.id ?? null
 }
 
 export const EFFECT_CATEGORIES: Array<{
@@ -612,6 +682,11 @@ export function loadThemeConfig(): ThemeConfig {
 
       // Merge effects with defaults (handles new categories added after first save)
       config.effects = { ...DEFAULT_EFFECTS, ...config.effects }
+
+      // Auto-detect effect preset if not set
+      if (config.effectPresetId === undefined) {
+        config.effectPresetId = detectEffectPreset(config.effects)
+      }
 
       return config
     }

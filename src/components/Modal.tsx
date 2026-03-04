@@ -1,5 +1,6 @@
 import { useEffect, useCallback, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { cn } from '../cn'
 
 interface ModalProps {
   open: boolean
@@ -77,7 +78,7 @@ export function Modal({
         }}
       >
         <div
-          className="animate-scale-in"
+          className={cn('modal-content', 'animate-scale-in')}
           style={{
             position: 'relative',
             width: '100%',

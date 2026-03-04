@@ -5,6 +5,7 @@ import {
   SURFACE_PRESETS,
   THEME_PAIRINGS,
   EFFECT_CATEGORIES,
+  EFFECT_PRESETS,
   DEFAULT_EFFECTS,
   type ThemeConfig,
   type EffectsConfig,
@@ -20,6 +21,7 @@ import {
   generateSecondaryAccent,
   generateLightSurface,
   generateDarkSurface,
+  detectEffectPreset,
 } from '../theme'
 
 export interface ThemeCustomizerLabels {
@@ -46,6 +48,8 @@ export interface ThemeCustomizerLabels {
   surfaceTinted: string
   surfaceRich: string
   effects: string
+  effectPresets: string
+  effectCustomized: string
 }
 
 const DEFAULT_LABELS: ThemeCustomizerLabels = {
@@ -72,6 +76,8 @@ const DEFAULT_LABELS: ThemeCustomizerLabels = {
   surfaceTinted: 'Tinted',
   surfaceRich: 'Rich',
   effects: 'Effects',
+  effectPresets: 'Effect Presets',
+  effectCustomized: 'Customized',
 }
 
 interface ThemeCustomizerProps {
@@ -210,8 +216,17 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
     setConfig(prev => {
       if (!prev) return prev
       const current = { ...DEFAULT_EFFECTS, ...prev.effects }
-      return { ...prev, effects: { ...current, [key]: !current[key] } }
+      const updated = { ...current, [key]: !current[key] }
+      return { ...prev, effects: updated, effectPresetId: detectEffectPreset(updated) }
     })
+  }
+
+  function selectEffectPreset(preset: typeof EFFECT_PRESETS[number]) {
+    setConfig(prev => prev ? {
+      ...prev,
+      effects: { ...preset.effects },
+      effectPresetId: preset.id,
+    } : prev)
   }
 
   return (
@@ -676,42 +691,65 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
             {/* Effects */}
             <div>
               <SectionLabel>{ds.effects}</SectionLabel>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {/* Effect Presets */}
+              <div style={{ marginBottom: 12 }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  marginBottom: 6,
+                }}>
+                  <span style={{
+                    fontSize: 10,
+                    fontWeight: 600,
+                    color: 'var(--text-secondary)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}>
+                    {ds.effectPresets}
+                  </span>
+                  {config.effectPresetId === null && (
+                    <span style={{
+                      fontSize: 10,
+                      padding: '1px 6px',
+                      borderRadius: 'var(--radius-full)',
+                      color: 'var(--text-secondary)',
+                      background: 'var(--bg-surface)',
+                      border: '1px solid var(--border-subtle)',
+                    }}>
+                      {ds.effectCustomized}
+                    </span>
+                  )}
+                </div>
+                <div style={{
+                  display: 'flex',
+                  gap: 4,
+                  flexWrap: 'wrap',
+                }}>
+                  {EFFECT_PRESETS.map(preset => (
+                    <button
+                      key={preset.id}
+                      className={`pill-filter ${config.effectPresetId === preset.id ? 'pill-filter-active' : ''}`}
+                      onClick={() => selectEffectPreset(preset)}
+                    >
+                      {language === 'ja' ? preset.nameJa : preset.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                 {EFFECT_CATEGORIES.map(cat => {
                   const enabled = config.effects
                     ? config.effects[cat.key]
                     : DEFAULT_EFFECTS[cat.key]
                   return (
-                    <div
+                    <button
                       key={cat.key}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: 8,
-                      }}
+                      className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
+                      onClick={() => toggleEffect(cat.key)}
                     >
-                      <span style={{
-                        fontSize: 13,
-                        color: 'var(--text-secondary)',
-                      }}>
-                        {language === 'ja' ? cat.nameJa : cat.name}
-                      </span>
-                      <div style={{ display: 'flex', gap: 4 }}>
-                        <button
-                          className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
-                          onClick={() => toggleEffect(cat.key)}
-                        >
-                          ON
-                        </button>
-                        <button
-                          className={`pill-filter ${!enabled ? 'pill-filter-active' : ''}`}
-                          onClick={() => toggleEffect(cat.key)}
-                        >
-                          OFF
-                        </button>
-                      </div>
-                    </div>
+                      {language === 'ja' ? cat.nameJa : cat.name}
+                    </button>
                   )
                 })}
               </div>

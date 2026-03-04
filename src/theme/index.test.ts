@@ -16,10 +16,14 @@ import {
   saveThemeConfig,
   applyAccentTheme,
   detectPairing,
+  detectEffectPreset,
   ACCENT_PRESETS,
   SURFACE_PRESETS,
   THEME_PAIRINGS,
+  EFFECT_PRESETS,
+  DEFAULT_EFFECTS,
   type ThemeConfig,
+  type EffectsConfig,
 } from './index'
 
 // --- Color Utility Tests ---
@@ -297,6 +301,67 @@ describe('THEME_PAIRINGS', () => {
       expect(pairing.mood).toBeTruthy()
       expect(pairing.moodJa).toBeTruthy()
     })
+  })
+})
+
+// --- Effect Preset Tests ---
+
+describe('EFFECT_PRESETS', () => {
+  it('has unique ids', () => {
+    const ids = EFFECT_PRESETS.map(p => p.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('has valid EffectsConfig for each preset', () => {
+    const effectKeys: Array<keyof EffectsConfig> = [
+      'glow', 'gradient', 'glass', 'gradientText', 'gradientBorder', 'aurora', 'grain',
+    ]
+    EFFECT_PRESETS.forEach(preset => {
+      effectKeys.forEach(key => {
+        expect(typeof preset.effects[key]).toBe('boolean')
+      })
+    })
+  })
+
+  it('"none" preset has all effects false', () => {
+    const none = EFFECT_PRESETS.find(p => p.id === 'none')!
+    expect(none).toBeDefined()
+    Object.values(none.effects).forEach(v => expect(v).toBe(false))
+  })
+
+  it('"all" preset has all effects true', () => {
+    const all = EFFECT_PRESETS.find(p => p.id === 'all')!
+    expect(all).toBeDefined()
+    Object.values(all.effects).forEach(v => expect(v).toBe(true))
+  })
+
+  it('has bilingual names and descriptions', () => {
+    EFFECT_PRESETS.forEach(preset => {
+      expect(preset.name).toBeTruthy()
+      expect(preset.nameJa).toBeTruthy()
+      expect(preset.description).toBeTruthy()
+      expect(preset.descriptionJa).toBeTruthy()
+    })
+  })
+})
+
+describe('detectEffectPreset', () => {
+  it('detects known presets', () => {
+    EFFECT_PRESETS.forEach(preset => {
+      expect(detectEffectPreset(preset.effects)).toBe(preset.id)
+    })
+  })
+
+  it('returns null for custom combination', () => {
+    const custom: EffectsConfig = {
+      glow: true, gradient: false, glass: true,
+      gradientText: true, gradientBorder: false, aurora: false, grain: true,
+    }
+    expect(detectEffectPreset(custom)).toBeNull()
+  })
+
+  it('detects "all" preset matching DEFAULT_EFFECTS', () => {
+    expect(detectEffectPreset(DEFAULT_EFFECTS)).toBe('all')
   })
 })
 

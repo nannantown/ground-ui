@@ -5,6 +5,7 @@ import {
   SURFACE_PRESETS,
   THEME_PAIRINGS,
   EFFECT_CATEGORIES,
+  EFFECT_PRESETS,
   DEFAULT_EFFECTS,
   type ThemeConfig,
   type EffectsConfig,
@@ -23,6 +24,7 @@ import {
   loadCustomPresets,
   addCustomPreset,
   deleteCustomPreset,
+  detectEffectPreset,
 } from '../../src/theme'
 import { ConfirmDialog } from '../../src/components/ConfirmDialog'
 import { Toggle } from '../../src/components/Toggle'
@@ -71,6 +73,8 @@ const T = {
     secondLabel: '2nd',
     effects: 'Effects',
     effectsDesc: 'Toggle visual effect categories on or off.',
+    effectPresets: 'Effect Presets',
+    effectCustomized: 'Customized',
   },
   ja: {
     themeTitle: 'テーマ',
@@ -110,6 +114,8 @@ const T = {
     secondLabel: '2nd',
     effects: 'エフェクト',
     effectsDesc: 'エフェクトカテゴリの有効・無効を切り替えます。',
+    effectPresets: 'エフェクトプリセット',
+    effectCustomized: 'カスタマイズ済み',
   },
 } as const
 
@@ -141,53 +147,6 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
   }
   const accentSec = generateSecondaryAccent(accentColor)
   return { bg, bgSec, bgCrd, text, textMut, accent: accentColor, accentSec }
-}
-
-const EFFECT_PREVIEWS: Record<string, {
-  className: string
-  style?: React.CSSProperties
-  wrapperStyle?: React.CSSProperties
-  label?: string
-}> = {
-  glow: {
-    className: 'glow-accent-md',
-    style: { background: 'var(--bg-card)', borderRadius: 'var(--radius-md)' },
-  },
-  gradient: {
-    className: 'bg-mesh-accent',
-    style: { borderRadius: 'var(--radius-md)' },
-  },
-  glass: {
-    className: 'glass',
-    style: { borderRadius: 'var(--radius-md)' },
-    wrapperStyle: {
-      background: 'radial-gradient(ellipse at 50% 50%, var(--accent-bg-strong) 0%, var(--bg-primary) 100%)',
-      borderRadius: 'var(--radius-md)',
-      padding: '1px',
-    },
-  },
-  gradientText: {
-    className: 'text-gradient-accent',
-    label: 'Gradient Text',
-    style: {
-      fontSize: 'var(--text-lg)',
-      fontWeight: 700,
-      lineHeight: '48px',
-      textAlign: 'center' as const,
-    },
-  },
-  gradientBorder: {
-    className: 'border-gradient-animated',
-    style: { background: 'var(--bg-card)', borderRadius: 'var(--radius-md)' },
-  },
-  aurora: {
-    className: 'bg-aurora',
-    style: { borderRadius: 'var(--radius-md)' },
-  },
-  grain: {
-    className: 'surface-grain',
-    style: { background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)' },
-  },
 }
 
 export function ThemeContent() {
@@ -356,8 +315,17 @@ export function ThemeContent() {
     setConfig(prev => {
       if (!prev) return prev
       const current = { ...DEFAULT_EFFECTS, ...prev.effects }
-      return { ...prev, effects: { ...current, [key]: !current[key] } }
+      const updated = { ...current, [key]: !current[key] }
+      return { ...prev, effects: updated, effectPresetId: detectEffectPreset(updated) }
     })
+  }
+
+  function selectEffectPreset(preset: typeof EFFECT_PRESETS[number]) {
+    setConfig(prev => prev ? {
+      ...prev,
+      effects: { ...preset.effects },
+      effectPresetId: preset.id,
+    } : prev)
   }
 
   const canAddMore = customPresets.length < 20
@@ -466,67 +434,68 @@ export function ThemeContent() {
 
           {/* --- Effects --- */}
           <CollapsibleSection title={t.effects} desc={t.effectsDesc} defaultOpen={true}>
+            {/* Effect Presets */}
+            <div style={{ marginBottom: 'var(--space-lg)' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--space-sm)',
+                marginBottom: 'var(--space-sm)',
+              }}>
+                <span style={{
+                  fontSize: 'var(--text-xs)',
+                  fontWeight: 600,
+                  color: 'var(--text-secondary)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}>
+                  {t.effectPresets}
+                </span>
+                {config.effectPresetId === null && (
+                  <span style={{
+                    fontSize: 'var(--text-xs)',
+                    padding: '1px 6px',
+                    borderRadius: 'var(--radius-full)',
+                    color: 'var(--text-secondary)',
+                    background: 'var(--bg-surface)',
+                    border: '1px solid var(--border-subtle)',
+                  }}>
+                    {t.effectCustomized}
+                  </span>
+                )}
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: 'var(--space-xs)',
+                flexWrap: 'wrap',
+              }}>
+                {EFFECT_PRESETS.map(preset => (
+                  <button
+                    key={preset.id}
+                    className={`pill-filter ${config.effectPresetId === preset.id ? 'pill-filter-active' : ''}`}
+                    onClick={() => selectEffectPreset(preset)}
+                  >
+                    {locale === 'ja' ? preset.nameJa : preset.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div style={{
               display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-md)',
+              flexWrap: 'wrap',
+              gap: 'var(--space-xs)',
             }}>
               {EFFECT_CATEGORIES.map(cat => {
                 const enabled = resolvedEffects[cat.key]
-                const preview = EFFECT_PREVIEWS[cat.key]
                 return (
-                  <div
+                  <button
                     key={cat.key}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 'var(--space-sm)',
-                    }}
+                    className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
+                    onClick={() => toggleEffect(cat.key)}
                   >
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: 'var(--space-md)',
-                    }}>
-                      <span style={{
-                        fontSize: 'var(--text-sm)',
-                        color: 'var(--text-secondary)',
-                        fontWeight: 500,
-                      }}>
-                        {locale === 'ja' ? cat.nameJa : cat.name}
-                      </span>
-                      <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
-                        <button
-                          className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
-                          onClick={() => toggleEffect(cat.key)}
-                        >
-                          ON
-                        </button>
-                        <button
-                          className={`pill-filter ${!enabled ? 'pill-filter-active' : ''}`}
-                          onClick={() => toggleEffect(cat.key)}
-                        >
-                          OFF
-                        </button>
-                      </div>
-                    </div>
-                    {preview && (
-                      <div style={{ opacity: enabled ? 1 : 0.3, transition: 'opacity 0.2s ease' }}>
-                        {preview.wrapperStyle ? (
-                          <div style={preview.wrapperStyle}>
-                            <div className={preview.className} style={{ height: 48, ...preview.style }}>
-                              {preview.label ?? ''}
-                            </div>
-                          </div>
-                        ) : (
-                          <div className={preview.className} style={{ height: 48, ...preview.style }}>
-                            {preview.label ?? ''}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                    {locale === 'ja' ? cat.nameJa : cat.name}
+                  </button>
                 )
               })}
             </div>
