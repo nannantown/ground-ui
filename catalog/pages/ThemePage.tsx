@@ -555,7 +555,7 @@ export function ThemeContent() {
                     }}
                   >
                     {/* Preview */}
-                    <div style={{ position: 'relative', height: 40, overflow: 'hidden' }}>
+                    <div style={{ position: 'relative', height: 64, overflow: 'hidden' }}>
                       {preview?.wrapperStyle ? (
                         <div style={{ ...preview.wrapperStyle, height: '100%', borderRadius: 0 }}>
                           <div className={preview.className} style={{ height: '100%', borderRadius: 0, ...preview.style }}>
