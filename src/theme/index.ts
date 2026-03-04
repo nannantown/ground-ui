@@ -22,6 +22,16 @@ export interface SurfacePreset {
   lightnessBase: number // 85-100
 }
 
+export interface EffectsConfig {
+  glow: boolean
+  gradient: boolean
+  glass: boolean
+  gradientText: boolean
+  gradientBorder: boolean
+  aurora: boolean
+  grain: boolean
+}
+
 export interface ThemeConfig {
   accentId: string           // preset id or 'custom'
   customColor?: string       // hex color when accentId === 'custom'
@@ -29,6 +39,7 @@ export interface ThemeConfig {
   surfaceId?: string | null  // surface preset id (null = default)
   pairingId?: string | null  // active preset pairing id
   paletteId?: string | null  // deprecated, kept for migration
+  effects?: EffectsConfig    // per-category effect toggle (all enabled by default)
 }
 
 export interface ThemePairing {
@@ -96,6 +107,31 @@ const DEFAULT_CONFIG: ThemeConfig = {
   accentId: 'neutral',
   primaryStyle: 'mono',
 }
+
+export const DEFAULT_EFFECTS: EffectsConfig = {
+  glow: true,
+  gradient: true,
+  glass: true,
+  gradientText: true,
+  gradientBorder: true,
+  aurora: true,
+  grain: true,
+}
+
+export const EFFECT_CATEGORIES: Array<{
+  key: keyof EffectsConfig
+  name: string
+  nameJa: string
+  dataAttr: string
+}> = [
+  { key: 'glow',           name: 'Glow',            nameJa: 'グロー',             dataAttr: 'effectGlow' },
+  { key: 'gradient',       name: 'Gradient BG',     nameJa: 'グラデーション背景', dataAttr: 'effectGradient' },
+  { key: 'glass',          name: 'Glass',           nameJa: 'ガラス',             dataAttr: 'effectGlass' },
+  { key: 'gradientText',   name: 'Gradient Text',   nameJa: 'グラデーション文字', dataAttr: 'effectGradientText' },
+  { key: 'gradientBorder', name: 'Gradient Border', nameJa: 'グラデーション枠',   dataAttr: 'effectGradientBorder' },
+  { key: 'aurora',         name: 'Aurora',          nameJa: 'オーロラ',           dataAttr: 'effectAurora' },
+  { key: 'grain',          name: 'Grain',           nameJa: 'グレイン',           dataAttr: 'effectGrain' },
+]
 
 // --- Color Utilities ---
 
@@ -574,6 +610,9 @@ export function loadThemeConfig(): ThemeConfig {
         config.pairingId = detectPairing(config)
       }
 
+      // Merge effects with defaults (handles new categories added after first save)
+      config.effects = { ...DEFAULT_EFFECTS, ...config.effects }
+
       return config
     }
   } catch { /* ignore */ }
@@ -786,6 +825,27 @@ export function applyAccentTheme(config: ThemeConfig, isDark?: boolean): void {
   } else {
     // Neutral or mono style: remove button overrides to use CSS defaults
     BUTTON_OVERRIDE_KEYS.forEach(k => root.style.removeProperty(k))
+  }
+
+  // --- Effect Gate ---
+  const effects = { ...DEFAULT_EFFECTS, ...config.effects }
+  for (const cat of EFFECT_CATEGORIES) {
+    root.dataset[cat.dataAttr] = effects[cat.key] ? '1' : '0'
+  }
+
+  // Glow: override token values when disabled (CSS classes read these tokens)
+  const GLOW_VARS = [
+    '--glow-accent-sm', '--glow-accent-md', '--glow-accent-lg',
+    '--glow-white-sm', '--glow-white-md',
+  ]
+  if (!effects.glow) {
+    GLOW_VARS.forEach(v => {
+      root.style.setProperty(v, 'none')
+      overrideKeys.push(v)
+    })
+  } else {
+    // Remove JS overrides so CSS-defined values take effect
+    GLOW_VARS.forEach(v => root.style.removeProperty(v))
   }
 
   lastOverrideKeys = overrideKeys

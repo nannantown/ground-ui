@@ -4,7 +4,10 @@ import {
   ACCENT_PRESETS,
   SURFACE_PRESETS,
   THEME_PAIRINGS,
+  EFFECT_CATEGORIES,
+  DEFAULT_EFFECTS,
   type ThemeConfig,
+  type EffectsConfig,
   type SurfacePreset,
   loadThemeConfig,
   saveThemeConfig,
@@ -42,6 +45,7 @@ export interface ThemeCustomizerLabels {
   surfaceSubtle: string
   surfaceTinted: string
   surfaceRich: string
+  effects: string
 }
 
 const DEFAULT_LABELS: ThemeCustomizerLabels = {
@@ -67,6 +71,7 @@ const DEFAULT_LABELS: ThemeCustomizerLabels = {
   surfaceSubtle: 'Subtle',
   surfaceTinted: 'Tinted',
   surfaceRich: 'Rich',
+  effects: 'Effects',
 }
 
 interface ThemeCustomizerProps {
@@ -199,6 +204,14 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
 
   function setPrimaryStyle(style: 'mono' | 'accent') {
     setConfig(prev => prev ? { ...prev, primaryStyle: style } : prev)
+  }
+
+  function toggleEffect(key: keyof EffectsConfig) {
+    setConfig(prev => {
+      if (!prev) return prev
+      const current = { ...DEFAULT_EFFECTS, ...prev.effects }
+      return { ...prev, effects: { ...current, [key]: !current[key] } }
+    })
   }
 
   return (
@@ -657,6 +670,50 @@ export function ThemeCustomizer({ labels: labelOverrides, language = 'en' }: The
                 <span style={{ color: 'var(--accent-secondary)', fontSize: 13 }}>
                   Secondary
                 </span>
+              </div>
+            </div>
+
+            {/* Effects */}
+            <div>
+              <SectionLabel>{ds.effects}</SectionLabel>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {EFFECT_CATEGORIES.map(cat => {
+                  const enabled = config.effects
+                    ? config.effects[cat.key]
+                    : DEFAULT_EFFECTS[cat.key]
+                  return (
+                    <div
+                      key={cat.key}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 8,
+                      }}
+                    >
+                      <span style={{
+                        fontSize: 13,
+                        color: 'var(--text-secondary)',
+                      }}>
+                        {language === 'ja' ? cat.nameJa : cat.name}
+                      </span>
+                      <div style={{ display: 'flex', gap: 4 }}>
+                        <button
+                          className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
+                          onClick={() => toggleEffect(cat.key)}
+                        >
+                          ON
+                        </button>
+                        <button
+                          className={`pill-filter ${!enabled ? 'pill-filter-active' : ''}`}
+                          onClick={() => toggleEffect(cat.key)}
+                        >
+                          OFF
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>

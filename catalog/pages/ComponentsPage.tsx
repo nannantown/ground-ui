@@ -66,7 +66,7 @@ const NAV_CATEGORIES = [
   {
     id: 'tokens',
     label: { en: 'Tokens & Classes', ja: 'トークン & クラス' },
-    items: ['overview', 'colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents'],
+    items: ['overview', 'colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents', 'effects'],
   },
   {
     id: 'components',
@@ -91,6 +91,7 @@ const NAV_LABELS: Record<string, { en: string; ja: string }> = {
   utilities: { en: 'Utilities', ja: 'ユーティリティ' },
   cssComponents: { en: 'CSS Classes', ja: 'CSSクラス' },
   theme: { en: 'Theme', ja: 'テーマ' },
+  effects: { en: 'Effects', ja: 'エフェクト' },
 }
 
 /* ============================================
@@ -327,6 +328,15 @@ const T = {
     tableCss: 'Table',
     navTabCss: 'Nav Tab',
     segmentedControl: 'Segmented Control',
+    // Effects
+    effectsDesc: 'Gradient, glow, glass, aurora, and grain CSS utility classes. All theme-aware.',
+    effectsGlow: 'Glow',
+    effectsGradientBg: 'Gradient Backgrounds',
+    effectsGlass: 'Glass',
+    effectsGradientText: 'Gradient Text',
+    effectsGradientBorder: 'Gradient Border',
+    effectsAurora: 'Aurora',
+    effectsGrain: 'Grainy Surface',
   },
   ja: {
     // Overview
@@ -557,6 +567,15 @@ const T = {
     tableCss: 'テーブル',
     navTabCss: 'ナビタブ',
     segmentedControl: 'セグメントコントロール',
+    // Effects
+    effectsDesc: 'グラデーション、グロー、グラス、オーロラ、グレインのCSSユーティリティクラス。テーマ連動対応。',
+    effectsGlow: 'グロー',
+    effectsGradientBg: 'グラデーション背景',
+    effectsGlass: 'グラス',
+    effectsGradientText: 'グラデーションテキスト',
+    effectsGradientBorder: 'グラデーションボーダー',
+    effectsAurora: 'オーロラ',
+    effectsGrain: 'グレインサーフェス',
   },
 } as const
 
@@ -665,6 +684,7 @@ export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: bool
           {active === 'layout' && <LayoutSection />}
           {active === 'utilities' && <UtilitiesSection />}
           {active === 'cssComponents' && <CSSComponentsSection />}
+          {active === 'effects' && <EffectsSection />}
           {active === 'theme' && <ThemeContent />}
         </div>
       </main>
@@ -3003,6 +3023,223 @@ function CSSComponentsSection() {
         </Stage>
       </Group>
 
+    </>
+  )
+}
+
+/* ============================================
+   Effects Section
+   ============================================ */
+
+const effectBoxBase: React.CSSProperties = {
+  borderRadius: 'var(--radius-lg)',
+  padding: 'var(--space-xl)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 'var(--text-sm)',
+  fontFamily: 'var(--font-mono)',
+  color: 'var(--text-secondary)',
+  minHeight: 100,
+}
+
+function EffectsSection() {
+  const { t } = useT()
+
+  return (
+    <>
+      <SectionHeader
+        title="Effects"
+        titleJa="エフェクト"
+        desc={t.effectsDesc}
+        descJa="グラデーション、グロー、グラス、オーロラ、グレインのCSSユーティリティクラス。テーマ連動対応。"
+      />
+
+      {/* Glow */}
+      <Group label={t.effectsGlow} labelJa="グロー">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-lg)' }}>
+          {[
+            { cls: 'glow-accent-sm', label: '.glow-accent-sm' },
+            { cls: 'glow-accent-md', label: '.glow-accent-md' },
+            { cls: 'glow-accent-lg', label: '.glow-accent-lg' },
+            { cls: 'glow-white-sm', label: '.glow-white-sm' },
+            { cls: 'glow-white-md', label: '.glow-white-md' },
+          ].map((item) => (
+            <div
+              key={item.cls}
+              className={item.cls}
+              style={{
+                ...effectBoxBase,
+                background: 'var(--bg-card)',
+                border: 'var(--border-width-thin) solid var(--border-subtle)',
+              }}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+      </Group>
+
+      {/* Gradient BG */}
+      <Group label={t.effectsGradientBg} labelJa="グラデーション背景">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-md)' }}>
+          {[
+            { cls: 'bg-mesh-accent', label: '.bg-mesh-accent' },
+            { cls: 'bg-mesh-neutral', label: '.bg-mesh-neutral' },
+            { cls: 'bg-gradient-accent-b', label: '.bg-gradient-accent-b' },
+            { cls: 'bg-gradient-accent-br', label: '.bg-gradient-accent-br' },
+            { cls: 'bg-gradient-surface', label: '.bg-gradient-surface' },
+            { cls: 'bg-gradient-fade-up', label: '.bg-gradient-fade-up' },
+          ].map((item) => (
+            <div
+              key={item.cls}
+              className={item.cls}
+              style={{
+                ...effectBoxBase,
+                border: 'var(--border-width-thin) solid var(--border-subtle)',
+                minHeight: 140,
+              }}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+      </Group>
+
+      {/* Glass */}
+      <Group label={t.effectsGlass} labelJa="グラス">
+        <div
+          className="bg-mesh-accent"
+          style={{
+            borderRadius: 'var(--radius-lg)',
+            padding: 'var(--space-xl)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 'var(--space-lg)',
+            minHeight: 200,
+          }}
+        >
+          {[
+            { cls: 'glass', label: '.glass' },
+            { cls: 'glass-strong', label: '.glass-strong' },
+          ].map((item) => (
+            <div
+              key={item.cls}
+              className={item.cls}
+              style={{
+                ...effectBoxBase,
+                borderRadius: 'var(--radius-md)',
+              }}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+      </Group>
+
+      {/* Gradient Text */}
+      <Group label={t.effectsGradientText} labelJa="グラデーションテキスト">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+          <div>
+            <div
+              className="text-gradient-accent"
+              style={{
+                fontSize: 'var(--text-display)',
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Accent Gradient
+            </div>
+            <code style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', fontFamily: 'var(--font-mono)' }}>
+              .text-gradient-accent
+            </code>
+          </div>
+          <div>
+            <div
+              className="text-gradient-white"
+              style={{
+                fontSize: 'var(--text-display)',
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              White Gradient
+            </div>
+            <code style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', fontFamily: 'var(--font-mono)' }}>
+              .text-gradient-white
+            </code>
+          </div>
+        </div>
+      </Group>
+
+      {/* Gradient Border */}
+      <Group label={t.effectsGradientBorder} labelJa="グラデーションボーダー">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)' }}>
+          <div
+            className="border-gradient-accent"
+            style={{
+              ...effectBoxBase,
+              background: 'var(--bg-card)',
+            }}
+          >
+            .border-gradient-accent
+          </div>
+          <div
+            className="border-gradient-animated"
+            style={{
+              ...effectBoxBase,
+              background: 'var(--bg-card)',
+            }}
+          >
+            .border-gradient-animated
+          </div>
+        </div>
+      </Group>
+
+      {/* Aurora */}
+      <Group label={t.effectsAurora} labelJa="オーロラ">
+        <div
+          className="bg-aurora"
+          style={{
+            ...effectBoxBase,
+            minHeight: 200,
+            border: 'var(--border-width-thin) solid var(--border-subtle)',
+          }}
+        >
+          .bg-aurora
+        </div>
+      </Group>
+
+      {/* Grain */}
+      <Group label={t.effectsGrain} labelJa="グレインサーフェス">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)' }}>
+          <div
+            className="surface-grain"
+            style={{
+              ...effectBoxBase,
+              background: 'var(--bg-secondary)',
+              border: 'var(--border-width-thin) solid var(--border-subtle)',
+              minHeight: 140,
+            }}
+          >
+            .surface-grain
+          </div>
+          <div
+            className="surface-grain-strong"
+            style={{
+              ...effectBoxBase,
+              background: 'var(--bg-secondary)',
+              border: 'var(--border-width-thin) solid var(--border-subtle)',
+              minHeight: 140,
+            }}
+          >
+            .surface-grain-strong
+          </div>
+        </div>
+      </Group>
     </>
   )
 }

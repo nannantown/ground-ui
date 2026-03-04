@@ -4,7 +4,10 @@ import {
   ACCENT_PRESETS,
   SURFACE_PRESETS,
   THEME_PAIRINGS,
+  EFFECT_CATEGORIES,
+  DEFAULT_EFFECTS,
   type ThemeConfig,
+  type EffectsConfig,
   type CustomPreset,
   loadThemeConfig,
   saveThemeConfig,
@@ -32,7 +35,9 @@ import { useLocale } from '../locale'
 const T = {
   en: {
     themeTitle: 'Theme',
-    themeDesc: 'Pick a curated preset, select a saved custom, or create your own.',
+    themeDesc: 'Customize colors, effects, and inspect theme details.',
+    colorTitle: 'Color',
+    colorDesc: 'Pick a curated preset, select a saved custom, or create your own.',
     newPreset: 'New Preset',
     newPresetMood: 'Create your own',
     presetName: 'Preset Name',
@@ -64,10 +69,14 @@ const T = {
     accentLabel: 'Accent',
     border: 'Border',
     secondLabel: '2nd',
+    effects: 'Effects',
+    effectsDesc: 'Toggle visual effect categories on or off.',
   },
   ja: {
     themeTitle: 'テーマ',
-    themeDesc: 'プリセットを選ぶか、保存済みのカスタムを選ぶか、新しく作成できます。',
+    themeDesc: 'カラー、エフェクト、テーマの詳細をカスタマイズできます。',
+    colorTitle: 'カラー',
+    colorDesc: 'プリセットを選ぶか、保存済みのカスタムを選ぶか、新しく作成できます。',
     newPreset: '新規プリセット',
     newPresetMood: '自由にカスタマイズ',
     presetName: 'プリセット名',
@@ -99,6 +108,8 @@ const T = {
     accentLabel: 'アクセント',
     border: 'ボーダー',
     secondLabel: '2nd',
+    effects: 'エフェクト',
+    effectsDesc: 'エフェクトカテゴリの有効・無効を切り替えます。',
   },
 } as const
 
@@ -130,6 +141,53 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
   }
   const accentSec = generateSecondaryAccent(accentColor)
   return { bg, bgSec, bgCrd, text, textMut, accent: accentColor, accentSec }
+}
+
+const EFFECT_PREVIEWS: Record<string, {
+  className: string
+  style?: React.CSSProperties
+  wrapperStyle?: React.CSSProperties
+  label?: string
+}> = {
+  glow: {
+    className: 'glow-accent-md',
+    style: { background: 'var(--bg-card)', borderRadius: 'var(--radius-md)' },
+  },
+  gradient: {
+    className: 'bg-mesh-accent',
+    style: { borderRadius: 'var(--radius-md)' },
+  },
+  glass: {
+    className: 'glass',
+    style: { borderRadius: 'var(--radius-md)' },
+    wrapperStyle: {
+      background: 'radial-gradient(ellipse at 50% 50%, var(--accent-bg-strong) 0%, var(--bg-primary) 100%)',
+      borderRadius: 'var(--radius-md)',
+      padding: '1px',
+    },
+  },
+  gradientText: {
+    className: 'text-gradient-accent',
+    label: 'Gradient Text',
+    style: {
+      fontSize: 'var(--text-lg)',
+      fontWeight: 700,
+      lineHeight: '48px',
+      textAlign: 'center' as const,
+    },
+  },
+  gradientBorder: {
+    className: 'border-gradient-animated',
+    style: { background: 'var(--bg-card)', borderRadius: 'var(--radius-md)' },
+  },
+  aurora: {
+    className: 'bg-aurora',
+    style: { borderRadius: 'var(--radius-md)' },
+  },
+  grain: {
+    className: 'surface-grain',
+    style: { background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)' },
+  },
 }
 
 export function ThemeContent() {
@@ -294,14 +352,25 @@ export function ThemeContent() {
     setConfig(prev => prev ? { ...prev, primaryStyle: style } : prev)
   }
 
+  function toggleEffect(key: keyof EffectsConfig) {
+    setConfig(prev => {
+      if (!prev) return prev
+      const current = { ...DEFAULT_EFFECTS, ...prev.effects }
+      return { ...prev, effects: { ...current, [key]: !current[key] } }
+    })
+  }
+
   const canAddMore = customPresets.length < 20
+
+  const resolvedEffects = { ...DEFAULT_EFFECTS, ...config.effects }
 
   return (
     <>
-          <section id="theme-theme">
-            <h2 className="ds-section-title">{t.themeTitle}</h2>
-            <p className="ds-section-desc">{t.themeDesc}</p>
+          <h2 className="ds-section-title">{t.themeTitle}</h2>
+          <p className="ds-section-desc">{t.themeDesc}</p>
 
+          {/* --- Color --- */}
+          <CollapsibleSection title={t.colorTitle} desc={t.colorDesc} defaultOpen={true} first>
             {/* Primary Button Style — toggle */}
             <div style={{
               display: 'flex',
@@ -393,12 +462,78 @@ export function ThemeContent() {
               onSelectAccent={selectAccent}
               onSetCustomColor={setCustomColor}
             />
+          </CollapsibleSection>
 
-          </section>
+          {/* --- Effects --- */}
+          <CollapsibleSection title={t.effects} desc={t.effectsDesc} defaultOpen={true}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--space-md)',
+            }}>
+              {EFFECT_CATEGORIES.map(cat => {
+                const enabled = resolvedEffects[cat.key]
+                const preview = EFFECT_PREVIEWS[cat.key]
+                return (
+                  <div
+                    key={cat.key}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 'var(--space-sm)',
+                    }}
+                  >
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: 'var(--space-md)',
+                    }}>
+                      <span style={{
+                        fontSize: 'var(--text-sm)',
+                        color: 'var(--text-secondary)',
+                        fontWeight: 500,
+                      }}>
+                        {locale === 'ja' ? cat.nameJa : cat.name}
+                      </span>
+                      <div style={{ display: 'flex', gap: 'var(--space-xs)' }}>
+                        <button
+                          className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
+                          onClick={() => toggleEffect(cat.key)}
+                        >
+                          ON
+                        </button>
+                        <button
+                          className={`pill-filter ${!enabled ? 'pill-filter-active' : ''}`}
+                          onClick={() => toggleEffect(cat.key)}
+                        >
+                          OFF
+                        </button>
+                      </div>
+                    </div>
+                    {preview && (
+                      <div style={{ opacity: enabled ? 1 : 0.3, transition: 'opacity 0.2s ease' }}>
+                        {preview.wrapperStyle ? (
+                          <div style={preview.wrapperStyle}>
+                            <div className={preview.className} style={{ height: 48, ...preview.style }}>
+                              {preview.label ?? ''}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className={preview.className} style={{ height: 48, ...preview.style }}>
+                            {preview.label ?? ''}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </CollapsibleSection>
 
-          <div className="ds-section-divider" />
-
-          <section id="theme-details">
+          {/* --- Details --- */}
+          <CollapsibleSection title={t.detailsTitle} desc={t.detailsDesc} defaultOpen={false}>
             <DetailsSection
               t={t}
               adjustedPrimary={adjustedPrimary}
@@ -406,7 +541,7 @@ export function ThemeContent() {
               adjustedSecondary={adjustedSecondary}
               secondaryRatio={secondaryRatio}
             />
-          </section>
+          </CollapsibleSection>
 
       {/* Delete confirmation dialog */}
       <ConfirmDialog
@@ -1035,9 +1170,6 @@ function DetailsSection({
 
   return (
     <>
-      <h2 className="ds-section-title">{t.detailsTitle}</h2>
-      <p className="ds-section-desc">{t.detailsDesc}</p>
-
       <div className="ds-group">
         <h3 className="ds-group-label">{t.wcagContrast}</h3>
         <div style={{
@@ -1105,6 +1237,84 @@ function DetailsSection({
         </div>
       </div>
     </>
+  )
+}
+
+/* ============================================
+   Collapsible Section
+   ============================================ */
+
+function CollapsibleSection({
+  title,
+  desc,
+  defaultOpen = true,
+  first = false,
+  children,
+}: {
+  title: string
+  desc?: string
+  defaultOpen?: boolean
+  first?: boolean
+  children: React.ReactNode
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+
+  return (
+    <section style={{
+      borderTop: first ? 'none' : 'var(--border-width-thin) solid var(--border-subtle)',
+      paddingTop: first ? 0 : 'var(--space-2xl)',
+      paddingBottom: 'var(--space-2xl)',
+    }}>
+      <button
+        onClick={() => setOpen(prev => !prev)}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'var(--space-sm)',
+          width: '100%',
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          cursor: 'pointer',
+          textAlign: 'left',
+        }}
+      >
+        <span style={{
+          fontSize: 'var(--text-lg)',
+          fontWeight: 600,
+          color: 'var(--text-primary)',
+          letterSpacing: '-0.01em',
+        }}>
+          {title}
+        </span>
+        <span style={{
+          fontSize: 'var(--text-xs)',
+          color: 'var(--text-disabled)',
+          transition: 'transform 0.2s ease',
+          transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
+          flexShrink: 0,
+        }}>
+          &#9654;
+        </span>
+      </button>
+      {open && (
+        <>
+          {desc && (
+            <p style={{
+              fontSize: 'var(--text-sm)',
+              color: 'var(--text-secondary)',
+              margin: 'var(--space-xs) 0 0',
+              lineHeight: 'var(--leading-relaxed)',
+            }}>
+              {desc}
+            </p>
+          )}
+          <div style={{ marginTop: 'var(--space-lg)' }}>
+            {children}
+          </div>
+        </>
+      )}
+    </section>
   )
 }
 

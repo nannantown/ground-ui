@@ -28,15 +28,19 @@ export function App() {
           </button>
         </div>
 
-        {/* Crystal icon */}
+        {/* Crystal icon — isometric cube with crown facets */}
         <svg className="ds-navbar-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="GroundUI">
-          <path d="M14 2 L27 9 L14 15 Z" fill="var(--accent)" opacity="0.4" />
-          <path d="M27 9 L28 22 L14 15 Z" fill="var(--accent)" opacity="0.25" />
-          <path d="M28 22 L16 30 L14 15 Z" fill="var(--accent)" opacity="0.15" />
-          <path d="M16 30 L3 20 L14 15 Z" fill="var(--accent)" opacity="0.2" />
-          <path d="M3 20 L8 10 L14 15 Z" fill="var(--accent)" opacity="0.8" />
-          <path d="M14 2 L8 10 L14 15 Z" fill="var(--accent-light)" opacity="0.4" />
-          <path d="M14 2 L3 20 L8 10 Z" fill="var(--accent-light)" opacity="0.65" />
+          {/* Top face — 4 crown facets (split by diagonals T→C and UL→UR at P(16,10)) */}
+          <path d="M5 10 L16 3 L16 10 Z" fill="var(--accent)" opacity="0.5" />
+          <path d="M16 3 L27 10 L16 10 Z" fill="var(--accent)" opacity="0.4" />
+          <path d="M5 10 L16 10 L16 16 Z" fill="var(--accent)" opacity="0.6" />
+          <path d="M16 10 L27 10 L16 16 Z" fill="var(--accent)" opacity="0.5" />
+          {/* Left face — 2 facets (split by diagonal UL→B) */}
+          <path d="M5 10 L16 16 L16 30 Z" fill="var(--accent-light)" opacity="0.4" />
+          <path d="M5 10 L16 30 L5 23 Z" fill="var(--accent-light)" opacity="0.55" />
+          {/* Right face — 2 facets (split by diagonal UR→B) */}
+          <path d="M27 10 L16 16 L16 30 Z" fill="var(--accent)" opacity="0.7" />
+          <path d="M27 10 L16 30 L27 23 Z" fill="var(--accent)" opacity="0.9" />
         </svg>
 
         <span className="ds-navbar-brand">GroundUI</span>
