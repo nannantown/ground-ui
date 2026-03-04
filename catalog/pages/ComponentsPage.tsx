@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import { useLocale } from '../locale'
 import { ThemeContent } from './ThemePage'
+import { SystemOverviewPage } from './SystemOverviewPage'
 import { Button } from '../../src/components/Button'
 import { Input } from '../../src/components/Input'
 import { Textarea } from '../../src/components/Textarea'
@@ -59,6 +60,11 @@ import {
 
 const NAV_CATEGORIES = [
   {
+    id: 'system',
+    label: { en: 'System', ja: 'システム' },
+    items: ['systemOverview'],
+  },
+  {
     id: 'customize',
     label: { en: 'Customize', ja: 'カスタマイズ' },
     items: ['theme'],
@@ -66,7 +72,7 @@ const NAV_CATEGORIES = [
   {
     id: 'tokens',
     label: { en: 'Tokens & Classes', ja: 'トークン & クラス' },
-    items: ['overview', 'colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents', 'effects'],
+    items: ['colors', 'surfaces', 'typography', 'spacing', 'utilities', 'cssComponents', 'effects'],
   },
   {
     id: 'components',
@@ -76,7 +82,7 @@ const NAV_CATEGORIES = [
 ] as const
 
 const NAV_LABELS: Record<string, { en: string; ja: string }> = {
-  overview: { en: 'Overview', ja: '概要' },
+  systemOverview: { en: 'Architecture', ja: 'アーキテクチャ' },
   colors: { en: 'Colors', ja: 'カラー' },
   surfaces: { en: 'Surfaces', ja: 'サーフェス' },
   typography: { en: 'Typography', ja: 'タイポグラフィ' },
@@ -100,23 +106,6 @@ const NAV_LABELS: Record<string, { en: string; ja: string }> = {
 
 const T = {
   en: {
-    // Overview
-    principles: 'Principles',
-    tokenArch: 'Token Architecture',
-    principleMinimal: 'Minimal',
-    principleMinimalDesc: 'Remove unnecessary elements, focus on content.',
-    principleDark: 'Dark-first',
-    principleDarkDesc: 'Dark theme as default, light as complement.',
-    principleContrast: 'High Contrast',
-    principleContrastDesc: 'Important elements stand out clearly.',
-    principleRefined: 'Refined',
-    principleRefinedDesc: 'Subtle borders and shadows add depth.',
-    layerPrimitive: 'Primitive',
-    layerPrimitiveDesc: 'Raw values: colors, spacing, type sizes.',
-    layerSemantic: 'Semantic',
-    layerSemanticDesc: 'Contextual meaning: what the value represents.',
-    layerComponent: 'Component',
-    layerComponentDesc: 'Scoped to specific components.',
     // Colors
     backgrounds: 'Backgrounds',
     textLabel: 'Text',
@@ -339,23 +328,6 @@ const T = {
     effectsGrain: 'Grainy Surface',
   },
   ja: {
-    // Overview
-    principles: '設計原則',
-    tokenArch: 'トークンアーキテクチャ',
-    principleMinimal: 'ミニマル',
-    principleMinimalDesc: '不要な要素を排除し、コンテンツに集中する。',
-    principleDark: 'ダークファースト',
-    principleDarkDesc: 'ダークテーマをデフォルトに、ライトは補完。',
-    principleContrast: 'ハイコントラスト',
-    principleContrastDesc: '重要な要素が明確に際立つ。',
-    principleRefined: '洗練',
-    principleRefinedDesc: '繊細なボーダーとシャドウで奥行きを加える。',
-    layerPrimitive: 'プリミティブ',
-    layerPrimitiveDesc: '生の値: カラー、スペーシング、タイプサイズ。',
-    layerSemantic: 'セマンティック',
-    layerSemanticDesc: '文脈的な意味: 値が表すもの。',
-    layerComponent: 'コンポーネント',
-    layerComponentDesc: '特定のコンポーネントにスコープされた値。',
     // Colors
     backgrounds: '背景',
     textLabel: 'テキスト',
@@ -588,7 +560,7 @@ function useT() {
 }
 
 export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: boolean; onDrawerClose: () => void }) {
-  const [active, setActive] = useState('overview')
+  const [active, setActive] = useState('systemOverview')
   const { locale, toggle: toggleLocale } = useLocale()
 
   const handleNav = (id: string) => {
@@ -670,7 +642,7 @@ export function ComponentsPage({ drawerOpen, onDrawerClose }: { drawerOpen: bool
       {/* Main */}
       <main className="ds-main">
         <div className="ds-content">
-          {active === 'overview' && <OverviewSection />}
+          {active === 'systemOverview' && <SystemOverviewPage />}
           {active === 'colors' && <ColorsSection />}
           {active === 'surfaces' && <SurfacesSection />}
           {active === 'typography' && <TypographySection />}
@@ -798,62 +770,6 @@ function BorderSwatch({ name, cssVar }: { name: string; cssVar: string }) {
 /* ============================================
    Sections
    ============================================ */
-
-function OverviewSection() {
-  const { t } = useT()
-  return (
-    <>
-      <SectionHeader title="Overview" titleJa="概要" desc="Core principles and token architecture for GroundUI." descJa="GroundUIの設計原則とトークンアーキテクチャ。" />
-
-      <Group label="Principles" labelJa="設計原則">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-md)' }}>
-          {[
-            { title: t.principleMinimal, desc: t.principleMinimalDesc },
-            { title: t.principleDark, desc: t.principleDarkDesc },
-            { title: t.principleContrast, desc: t.principleContrastDesc },
-            { title: t.principleRefined, desc: t.principleRefinedDesc },
-          ].map((p) => (
-            <div
-              key={p.title}
-              className="ds-card"
-            >
-              <div className="ds-card-title">{p.title}</div>
-              <div className="ds-card-desc">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-      </Group>
-
-      <Group label="Token Architecture" labelJa="トークンアーキテクチャ">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-          {[
-            { layer: t.layerPrimitive, desc: t.layerPrimitiveDesc, example: '--p-gray-800: #1a1a1a' },
-            { layer: t.layerSemantic, desc: t.layerSemanticDesc, example: '--bg-elevated: var(--p-gray-800)' },
-            { layer: t.layerComponent, desc: t.layerComponentDesc, example: '--card-bg: var(--bg-card)' },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="ds-card"
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: 'var(--space-lg)',
-              }}
-            >
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, marginBottom: 'var(--space-2xs)' }}>{item.layer}</div>
-                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{item.desc}</div>
-              </div>
-              <code className="ds-code-tag">
-                {item.example}
-              </code>
-            </div>
-          ))}
-        </div>
-      </Group>
-    </>
-  )
-}
 
 function ColorsSection() {
   return (
