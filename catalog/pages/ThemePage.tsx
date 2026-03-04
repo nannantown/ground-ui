@@ -149,6 +149,53 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
   return { bg, bgSec, bgCrd, text, textMut, accent: accentColor, accentSec }
 }
 
+const EFFECT_PREVIEWS: Record<string, {
+  className: string
+  style?: React.CSSProperties
+  wrapperStyle?: React.CSSProperties
+  label?: string
+}> = {
+  glow: {
+    className: 'glow-accent-md',
+    style: { background: 'var(--bg-card)' },
+  },
+  gradient: {
+    className: 'bg-mesh-accent',
+    style: {},
+  },
+  glass: {
+    className: 'glass',
+    style: {},
+    wrapperStyle: {
+      background: 'radial-gradient(ellipse at 50% 50%, var(--accent-bg-strong) 0%, var(--bg-primary) 100%)',
+      padding: '1px',
+    },
+  },
+  gradientText: {
+    className: 'text-gradient-accent',
+    label: 'Aa',
+    style: {
+      fontSize: 'var(--text-lg)',
+      fontWeight: 700,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+  gradientBorder: {
+    className: 'border-gradient-animated',
+    style: { background: 'var(--bg-card)' },
+  },
+  aurora: {
+    className: 'bg-aurora',
+    style: {},
+  },
+  grain: {
+    className: 'surface-grain',
+    style: { background: 'var(--bg-secondary)' },
+  },
+}
+
 export function ThemeContent() {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
@@ -482,19 +529,57 @@ export function ThemeContent() {
             </div>
 
             <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 'var(--space-xs)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+              gap: 'var(--space-sm)',
             }}>
               {EFFECT_CATEGORIES.map(cat => {
                 const enabled = resolvedEffects[cat.key]
+                const preview = EFFECT_PREVIEWS[cat.key]
                 return (
                   <button
                     key={cat.key}
-                    className={`pill-filter ${enabled ? 'pill-filter-active' : ''}`}
                     onClick={() => toggleEffect(cat.key)}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 0,
+                      padding: 0,
+                      border: `1px solid ${enabled ? 'var(--selected-bg)' : 'var(--border-subtle)'}`,
+                      borderRadius: 'var(--radius-md)',
+                      background: 'transparent',
+                      cursor: 'pointer',
+                      overflow: 'hidden',
+                      transition: 'border-color 0.15s ease, opacity 0.15s ease',
+                      opacity: enabled ? 1 : 0.5,
+                    }}
                   >
-                    {locale === 'ja' ? cat.nameJa : cat.name}
+                    {/* Preview */}
+                    <div style={{ position: 'relative', height: 40, overflow: 'hidden' }}>
+                      {preview?.wrapperStyle ? (
+                        <div style={{ ...preview.wrapperStyle, height: '100%', borderRadius: 0 }}>
+                          <div className={preview.className} style={{ height: '100%', borderRadius: 0, ...preview.style }}>
+                            {preview.label ?? ''}
+                          </div>
+                        </div>
+                      ) : preview ? (
+                        <div className={preview.className} style={{ height: '100%', borderRadius: 0, ...preview.style }}>
+                          {preview.label ?? ''}
+                        </div>
+                      ) : null}
+                    </div>
+                    {/* Label */}
+                    <div style={{
+                      padding: '4px 8px',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 500,
+                      color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      textAlign: 'center',
+                      borderTop: '1px solid var(--border-subtle)',
+                      transition: 'color 0.15s ease',
+                    }}>
+                      {locale === 'ja' ? cat.nameJa : cat.name}
+                    </div>
                   </button>
                 )
               })}
