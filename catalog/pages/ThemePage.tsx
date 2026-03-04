@@ -221,8 +221,8 @@ function EffectPreviewContent({ effectKey }: { effectKey: string }) {
       return <div className="bg-aurora" style={{ height: '100%' }} />
     case 'grain':
       return (
-        <div className="surface-grain" style={{
-          height: '100%', background: 'var(--bg-secondary)',
+        <div className="surface-grain-strong" style={{
+          height: '100%', background: 'var(--bg-elevated)',
         }} />
       )
     default:
