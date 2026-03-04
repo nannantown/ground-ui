@@ -149,51 +149,85 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
   return { bg, bgSec, bgCrd, text, textMut, accent: accentColor, accentSec }
 }
 
-const EFFECT_PREVIEWS: Record<string, {
-  className: string
-  style?: React.CSSProperties
-  wrapperStyle?: React.CSSProperties
-  label?: string
-}> = {
-  glow: {
-    className: 'glow-accent-md',
-    style: { background: 'var(--bg-card)' },
+/** Effect groups for organized display */
+const EFFECT_GROUPS = [
+  {
+    labelEn: 'Surface',
+    labelJa: 'サーフェス',
+    keys: ['glow', 'gradient', 'glass', 'aurora', 'grain'] as Array<keyof import('../../src/theme').EffectsConfig>,
   },
-  gradient: {
-    className: 'bg-mesh-accent',
-    style: {},
+  {
+    labelEn: 'Typography',
+    labelJa: 'タイポグラフィ',
+    keys: ['gradientText'] as Array<keyof import('../../src/theme').EffectsConfig>,
   },
-  glass: {
-    className: 'glass',
-    style: {},
-    wrapperStyle: {
-      background: 'radial-gradient(ellipse at 50% 50%, var(--accent-bg-strong) 0%, var(--bg-primary) 100%)',
-      padding: '1px',
-    },
+  {
+    labelEn: 'Border',
+    labelJa: 'ボーダー',
+    keys: ['gradientBorder'] as Array<keyof import('../../src/theme').EffectsConfig>,
   },
-  gradientText: {
-    className: 'text-gradient-accent',
-    label: 'Aa',
-    style: {
-      fontSize: 'var(--text-lg)',
-      fontWeight: 700,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  },
-  gradientBorder: {
-    className: 'border-gradient-animated',
-    style: { background: 'var(--bg-card)' },
-  },
-  aurora: {
-    className: 'bg-aurora',
-    style: {},
-  },
-  grain: {
-    className: 'surface-grain',
-    style: { background: 'var(--bg-secondary)' },
-  },
+]
+
+/** Preview renderers — each returns the inner content for the preview area */
+function EffectPreviewContent({ effectKey }: { effectKey: string }) {
+  switch (effectKey) {
+    case 'glow':
+      return (
+        <div style={{ padding: 12, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="glow-accent-md" style={{
+            width: '70%', height: 32, borderRadius: 'var(--radius-sm)',
+            background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
+          }} />
+        </div>
+      )
+    case 'gradient':
+      return <div className="bg-mesh-accent" style={{ height: '100%' }} />
+    case 'glass':
+      return (
+        <div style={{
+          height: '100%',
+          background: 'radial-gradient(ellipse at 50% 50%, var(--accent-bg-strong) 0%, var(--bg-primary) 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12,
+        }}>
+          <div className="glass" style={{
+            width: '70%', height: 32, borderRadius: 'var(--radius-sm)',
+          }} />
+        </div>
+      )
+    case 'gradientText':
+      return (
+        <div style={{
+          height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: 'var(--bg-secondary)',
+        }}>
+          <span className="text-gradient-accent" style={{ fontSize: 'var(--text-lg)', fontWeight: 700 }}>
+            Aa
+          </span>
+        </div>
+      )
+    case 'gradientBorder':
+      return (
+        <div style={{
+          height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 12,
+        }}>
+          <div className="border-gradient-animated" style={{
+            width: '70%', height: 32, borderRadius: 'var(--radius-sm)',
+            background: 'var(--bg-card)',
+          }} />
+        </div>
+      )
+    case 'aurora':
+      return <div className="bg-aurora" style={{ height: '100%' }} />
+    case 'grain':
+      return (
+        <div className="surface-grain" style={{
+          height: '100%', background: 'var(--bg-secondary)',
+        }} />
+      )
+    default:
+      return null
+  }
 }
 
 export function ThemeContent() {
@@ -528,59 +562,75 @@ export function ThemeContent() {
               </div>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-              gap: 'var(--space-sm)',
-            }}>
-              {EFFECT_CATEGORIES.map(cat => {
-                const enabled = resolvedEffects[cat.key]
-                const preview = EFFECT_PREVIEWS[cat.key]
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+              {EFFECT_GROUPS.map(group => {
+                const cats = group.keys.map(k => EFFECT_CATEGORIES.find(c => c.key === k)!).filter(Boolean)
                 return (
-                  <button
-                    key={cat.key}
-                    onClick={() => toggleEffect(cat.key)}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 0,
-                      padding: 0,
-                      border: `1px solid ${enabled ? 'var(--selected-bg)' : 'var(--border-subtle)'}`,
-                      borderRadius: 'var(--radius-md)',
-                      background: 'transparent',
-                      cursor: 'pointer',
-                      overflow: 'hidden',
-                      transition: 'border-color 0.15s ease, opacity 0.15s ease',
-                      opacity: enabled ? 1 : 0.5,
-                    }}
-                  >
-                    {/* Preview */}
-                    <div style={{ position: 'relative', height: 64, overflow: 'hidden' }}>
-                      {preview?.wrapperStyle ? (
-                        <div style={{ ...preview.wrapperStyle, height: '100%', borderRadius: 0 }}>
-                          <div className={preview.className} style={{ height: '100%', borderRadius: 0, ...preview.style }}>
-                            {preview.label ?? ''}
-                          </div>
-                        </div>
-                      ) : preview ? (
-                        <div className={preview.className} style={{ height: '100%', borderRadius: 0, ...preview.style }}>
-                          {preview.label ?? ''}
-                        </div>
-                      ) : null}
-                    </div>
-                    {/* Label */}
+                  <div key={group.labelEn}>
                     <div style={{
-                      padding: '4px 8px',
                       fontSize: 'var(--text-xs)',
-                      fontWeight: 500,
-                      color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
-                      textAlign: 'center',
-                      borderTop: '1px solid var(--border-subtle)',
-                      transition: 'color 0.15s ease',
+                      fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      marginBottom: 'var(--space-sm)',
                     }}>
-                      {locale === 'ja' ? cat.nameJa : cat.name}
+                      {locale === 'ja' ? group.labelJa : group.labelEn}
                     </div>
-                  </button>
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: `repeat(${Math.min(cats.length, 5)}, 1fr)`,
+                      gap: 'var(--space-sm)',
+                    }}>
+                      {cats.map(cat => {
+                        const enabled = resolvedEffects[cat.key]
+                        return (
+                          <button
+                            key={cat.key}
+                            onClick={() => toggleEffect(cat.key)}
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: 0,
+                              padding: 0,
+                              border: 'none',
+                              borderRadius: 'var(--radius-md)',
+                              background: 'transparent',
+                              cursor: 'pointer',
+                              overflow: 'hidden',
+                              transition: 'opacity 0.15s ease',
+                              opacity: enabled ? 1 : 0.4,
+                            }}
+                          >
+                            {/* Preview area */}
+                            <div style={{
+                              position: 'relative',
+                              height: 72,
+                              overflow: 'hidden',
+                              borderRadius: 'var(--radius-md)',
+                              border: '1px solid var(--border-subtle)',
+                            }}>
+                              <EffectPreviewContent effectKey={cat.key} />
+                            </div>
+                            {/* Label */}
+                            <div style={{
+                              padding: '6px 4px 0',
+                              fontSize: 'var(--text-xs)',
+                              fontWeight: 500,
+                              color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
+                              textAlign: 'center',
+                              transition: 'color 0.15s ease',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            }}>
+                              {locale === 'ja' ? cat.nameJa : cat.name}
+                            </div>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
                 )
               })}
             </div>
