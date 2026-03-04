@@ -149,25 +149,6 @@ function computePreview(surfaceId: string, accentColor: string, isDark: boolean)
   return { bg, bgSec, bgCrd, text, textMut, accent: accentColor, accentSec }
 }
 
-/** Effect groups for organized display */
-const EFFECT_GROUPS = [
-  {
-    labelEn: 'Surface',
-    labelJa: 'サーフェス',
-    keys: ['glow', 'gradient', 'glass', 'aurora', 'grain'] as Array<keyof import('../../src/theme').EffectsConfig>,
-  },
-  {
-    labelEn: 'Typography',
-    labelJa: 'タイポグラフィ',
-    keys: ['gradientText'] as Array<keyof import('../../src/theme').EffectsConfig>,
-  },
-  {
-    labelEn: 'Border',
-    labelJa: 'ボーダー',
-    keys: ['gradientBorder'] as Array<keyof import('../../src/theme').EffectsConfig>,
-  },
-]
-
 /** Preview renderers — each returns the inner content for the preview area */
 function EffectPreviewContent({ effectKey }: { effectKey: string }) {
   switch (effectKey) {
@@ -562,75 +543,51 @@ export function ThemeContent() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-              {EFFECT_GROUPS.map(group => {
-                const cats = group.keys.map(k => EFFECT_CATEGORIES.find(c => c.key === k)!).filter(Boolean)
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+              gap: 'var(--space-sm)',
+            }}>
+              {EFFECT_CATEGORIES.map(cat => {
+                const enabled = resolvedEffects[cat.key]
                 return (
-                  <div key={group.labelEn}>
+                  <button
+                    key={cat.key}
+                    onClick={() => toggleEffect(cat.key)}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 0,
+                      padding: 0,
+                      border: 'none',
+                      borderRadius: 'var(--radius-md)',
+                      background: 'transparent',
+                      cursor: 'pointer',
+                      overflow: 'hidden',
+                      transition: 'opacity 0.15s ease',
+                      opacity: enabled ? 1 : 0.4,
+                    }}
+                  >
                     <div style={{
+                      position: 'relative',
+                      height: 72,
+                      overflow: 'hidden',
+                      borderRadius: 'var(--radius-md)',
+                      border: '1px solid var(--border-subtle)',
+                    }}>
+                      <EffectPreviewContent effectKey={cat.key} />
+                    </div>
+                    <div style={{
+                      padding: '6px 4px 0',
                       fontSize: 'var(--text-xs)',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em',
-                      marginBottom: 'var(--space-sm)',
+                      fontWeight: 500,
+                      color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      textAlign: 'center',
+                      transition: 'color 0.15s ease',
                     }}>
-                      {locale === 'ja' ? group.labelJa : group.labelEn}
+                      {locale === 'ja' ? cat.nameJa : cat.name}
                     </div>
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: `repeat(${Math.min(cats.length, 5)}, 1fr)`,
-                      gap: 'var(--space-sm)',
-                    }}>
-                      {cats.map(cat => {
-                        const enabled = resolvedEffects[cat.key]
-                        return (
-                          <button
-                            key={cat.key}
-                            onClick={() => toggleEffect(cat.key)}
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'column',
-                              gap: 0,
-                              padding: 0,
-                              border: 'none',
-                              borderRadius: 'var(--radius-md)',
-                              background: 'transparent',
-                              cursor: 'pointer',
-                              overflow: 'hidden',
-                              transition: 'opacity 0.15s ease',
-                              opacity: enabled ? 1 : 0.4,
-                            }}
-                          >
-                            {/* Preview area */}
-                            <div style={{
-                              position: 'relative',
-                              height: 72,
-                              overflow: 'hidden',
-                              borderRadius: 'var(--radius-md)',
-                              border: '1px solid var(--border-subtle)',
-                            }}>
-                              <EffectPreviewContent effectKey={cat.key} />
-                            </div>
-                            {/* Label */}
-                            <div style={{
-                              padding: '6px 4px 0',
-                              fontSize: 'var(--text-xs)',
-                              fontWeight: 500,
-                              color: enabled ? 'var(--text-primary)' : 'var(--text-secondary)',
-                              textAlign: 'center',
-                              transition: 'color 0.15s ease',
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            }}>
-                              {locale === 'ja' ? cat.nameJa : cat.name}
-                            </div>
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </div>
+                  </button>
                 )
               })}
             </div>
