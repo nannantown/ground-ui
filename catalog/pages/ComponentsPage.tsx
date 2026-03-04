@@ -939,6 +939,21 @@ function ColorsSection() {
           ))}
         </div>
       </Group>
+
+      <Group label="Accent Colors" labelJa="アクセントカラー">
+        <div className="ds-swatch-grid">
+          <Swatch name="Accent" cssVar="--accent" />
+          <Swatch name="Accent Light" cssVar="--accent-light" />
+          <Swatch name="Accent BG" cssVar="--accent-bg" />
+          <Swatch name="Accent BG Strong" cssVar="--accent-bg-strong" />
+          <Swatch name="Accent Border" cssVar="--accent-border" />
+        </div>
+        <div className="ds-swatch-grid" style={{ marginTop: 'var(--space-md)' }}>
+          <Swatch name="Secondary" cssVar="--accent-secondary" />
+          <Swatch name="Secondary Light" cssVar="--accent-secondary-light" />
+          <Swatch name="Secondary BG" cssVar="--accent-secondary-bg" />
+        </div>
+      </Group>
     </>
   )
 }
