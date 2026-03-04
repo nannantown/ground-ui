@@ -242,6 +242,149 @@ All component classes are defined in `tokens.css` alongside the tokens:
 **Divider**: `.divider`
 **Animations**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`, `.animate-spin`, `.stagger-1` ~ `.stagger-6`
 
+### Spacing System
+
+GroundUI のスペーシングは **3つの意味カテゴリ** に分かれる。数値スケール (`--space-sm` 等) を直接使うのではなく、セマンティックトークンを優先して使うこと。
+
+#### 原則: 距離 = 関係性
+
+**近い = 関連が強い、遠い = 関連が弱い**。これがすべての基本。
+
+```
+[Label]          ← 4px (--stack-label)  → 同じフィールドの一部
+[Input]
+                 ← 16px (--stack-field)  → 別のフィールド
+[Label]
+[Input]
+                 ← 24px (--stack-group)  → 別のグループ
+[Section Title]
+                 ← 32px (--stack-section) → 別のセクション
+[New Section]
+```
+
+#### 1. Inset (内側の余白 = padding)
+
+コンテナの padding。要素が大きいほど padding も大きい。
+
+| トークン | 値 | 用途 |
+|---------|-----|------|
+| `--inset-badge` | 4px 8px | バッジ、タグ、チップ |
+| `--inset-button-sm` | 4px 12px | 小さいボタン、ピル |
+| `--inset-button` | 8px 16px | 標準ボタン |
+| `--inset-input` | 8px 12px | input, select, textarea |
+| `--inset-cell` | 8px 12px | テーブルセル、リストアイテム |
+| `--inset-card` | 16px | カード、ドロップダウン、ポップオーバー |
+| `--inset-panel` | 24px | モーダル、ドロワー、ダイアログ、サイドバー |
+| `--inset-section` | 24px (top/bottom) responsive (left/right) | ページセクション |
+
+**判断基準**: 「この要素はどのくらいの大きさか？」
+- 1行の小さい要素 → `--inset-badge` or `--inset-button-sm`
+- 入力・操作要素 → `--inset-input` or `--inset-button`
+- 複数要素を含むコンテナ → `--inset-card`
+- ページレベルのコンテナ → `--inset-panel` or `--inset-section`
+
+#### 2. Stack (縦方向の間隔 = 要素間の gap / margin)
+
+上下に並ぶ要素間のスペース。関係性の強さで選ぶ。
+
+| トークン | 値 | 用途 |
+|---------|-----|------|
+| `--stack-label` | 4px | ラベル→入力、タイトル→サブタイトル、アイコン→キャプション |
+| `--stack-related` | 8px | リストアイテム間、メニューアイテム間、段落内の行間的な隙間 |
+| `--stack-field` | 16px | フォームフィールド間、カード内の行間、サイドバーアイテム間 |
+| `--stack-group` | 24px | グループ間（フォーム内のセクション、カード内のブロック） |
+| `--stack-section` | 32px | セクション間（ページ内の大きな区切り） |
+| `--stack-page` | 48px | ページの主要エリア間（ヒーロー→コンテンツ、フッター前） |
+
+**判断基準**: 「この2つの要素はどのくらい関連しているか？」
+- 同じフィールドの一部（ラベルと入力） → `--stack-label`
+- 同じリストの兄弟 → `--stack-related`
+- 同じフォーム内の別フィールド → `--stack-field`
+- 同じページ内の別グループ → `--stack-group`
+- 独立したセクション → `--stack-section`
+- ページの大ブロック → `--stack-page`
+
+#### 3. Inline (横方向の間隔 = 要素間の gap)
+
+横に並ぶ要素間のスペース。
+
+| トークン | 値 | 用途 |
+|---------|-----|------|
+| `--inline-icon` | 8px | アイコン↔テキスト、アバター↔名前 |
+| `--inline-element` | 8px | ボタン↔ボタン、チップ↔チップ、バッジ↔バッジ |
+| `--inline-group` | 16px | アクショングループ間、ナビセクション間 |
+
+#### 4. Grid (グリッド/フレックスの gap)
+
+| トークン | 値 | 用途 |
+|---------|-----|------|
+| `--grid-tight` | 8px | チップ群、バッジ群、サムネイルグリッド |
+| `--grid-default` | 16px | カードグリッド、フォームの2カラム |
+| `--grid-loose` | 24px | ダッシュボードカード、フィーチャーセクション |
+
+#### よくあるパターン早見表
+
+```css
+/* カード */
+.my-card {
+  padding: var(--inset-card);           /* 内側余白 16px */
+}
+.my-card-title { margin-bottom: var(--stack-label); }    /* タイトル→説明 4px */
+.my-card-body  { margin-top: var(--stack-field); }       /* ヘッダー→ボディ 16px */
+.my-card-actions { margin-top: var(--stack-group); }     /* ボディ→アクション 24px */
+
+/* フォーム */
+.my-form {
+  display: flex; flex-direction: column;
+  gap: var(--stack-field);              /* フィールド間 16px */
+}
+.my-field-label { margin-bottom: var(--stack-label); }   /* ラベル→入力 4px */
+.my-form-section + .my-form-section {
+  margin-top: var(--stack-group);       /* セクション間 24px */
+}
+
+/* ボタングループ */
+.my-actions {
+  display: flex;
+  gap: var(--inline-element);           /* ボタン間 8px */
+}
+
+/* ページレイアウト */
+.my-page {
+  padding: var(--inset-section);
+}
+.my-page-section + .my-page-section {
+  margin-top: var(--stack-section);     /* セクション間 32px */
+}
+
+/* カードグリッド */
+.my-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--grid-default);            /* カード間 16px */
+}
+```
+
+#### NG パターン
+
+```css
+/* ❌ 数値ハードコード */
+padding: 12px 24px;
+margin-bottom: 20px;
+gap: 10px;
+
+/* ✅ セマンティックトークン */
+padding: var(--inset-card);
+margin-bottom: var(--stack-field);
+gap: var(--inline-element);
+
+/* ❌ スケールトークンを意味なく選ぶ */
+gap: var(--space-md);  /* なぜ md？ */
+
+/* ✅ 意味で選ぶ */
+gap: var(--stack-field);  /* フォームフィールド間だから */
+```
+
 ## Design Principles
 
 - **Minimal** — No unnecessary elements

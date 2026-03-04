@@ -290,7 +290,7 @@
   --neutral: var(--p-slate-500);
   --neutral-hover: var(--p-slate-600);
 
-  /* --- Spacing --- */
+  /* --- Spacing Scale --- */
   --space-page: clamp(24px, 5vw, 80px);
   --space-2xs: 2px;
   --space-xs: 4px;
@@ -305,6 +305,34 @@
   --space-6xl: 96px;
   --space-7xl: 112px;
   --space-8xl: 144px;
+
+  /* --- Semantic Spacing: Inset (padding inside containers) --- */
+  --inset-badge: var(--space-xs) var(--space-sm);        /* 4px 8px  — badge, tag, chip */
+  --inset-button: var(--space-sm) var(--space-lg);       /* 8px 16px — standard button */
+  --inset-button-sm: var(--space-xs) var(--space-md);    /* 4px 12px — compact button */
+  --inset-input: var(--space-sm) var(--space-md);        /* 8px 12px — input, select, textarea */
+  --inset-cell: var(--space-sm) var(--space-md);         /* 8px 12px — table cell, list item */
+  --inset-card: var(--space-lg);                         /* 16px     — card, dropdown, popover */
+  --inset-panel: var(--space-xl);                        /* 24px     — modal, drawer, dialog, sidebar */
+  --inset-section: var(--space-xl) var(--space-page);    /* 24px H   — page section (responsive horizontal) */
+
+  /* --- Semantic Spacing: Stack (vertical gap between stacked items) --- */
+  --stack-label: var(--space-xs);       /* 4px  — label → input, title → subtitle */
+  --stack-related: var(--space-sm);     /* 8px  — related items (list items, menu items, icon + text lines) */
+  --stack-field: var(--space-lg);       /* 16px — between form fields, between card rows */
+  --stack-group: var(--space-xl);       /* 24px — between groups within a section */
+  --stack-section: var(--space-2xl);    /* 32px — between distinct sections */
+  --stack-page: var(--space-3xl);       /* 48px — between major page areas / hero sections */
+
+  /* --- Semantic Spacing: Inline (horizontal gap between elements) --- */
+  --inline-icon: var(--space-sm);       /* 8px  — icon ↔ text, avatar ↔ name */
+  --inline-element: var(--space-sm);    /* 8px  — button ↔ button, chip ↔ chip */
+  --inline-group: var(--space-lg);      /* 16px — between action groups, nav sections */
+
+  /* --- Semantic Spacing: Grid (gap between grid/flex children) --- */
+  --grid-tight: var(--space-sm);        /* 8px  — compact grid (chips, badges, thumbnails) */
+  --grid-default: var(--space-lg);      /* 16px — standard grid (cards, form columns) */
+  --grid-loose: var(--space-xl);        /* 24px — spacious grid (dashboard cards, feature sections) */
   --container-xs: 400px;
   --container-sm: 600px;
   --container-md: 800px;
