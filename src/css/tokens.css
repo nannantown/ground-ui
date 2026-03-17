@@ -2458,12 +2458,21 @@
   transition: color var(--transition-fast);
 }
 
-.accordion-trigger:hover {
+.accordion-trigger:hover:not(:disabled) {
   color: var(--text-primary);
 }
 
-.accordion-trigger:hover .accordion-trigger-icon {
+.accordion-trigger:hover:not(:disabled) .accordion-trigger-icon {
   color: var(--text-secondary);
+}
+
+.accordion-trigger:active:not(:disabled) {
+  background: var(--active-bg);
+}
+
+.accordion-trigger:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
 }
 
 .accordion-trigger:focus-visible {

@@ -5,6 +5,7 @@ export interface AccordionItem {
   value: string
   title: string
   content: ReactNode
+  disabled?: boolean
 }
 
 interface AccordionProps {
@@ -155,6 +156,7 @@ export function Accordion({
               className="accordion-trigger"
               aria-expanded={isOpen}
               aria-controls={contentId}
+              disabled={item.disabled}
               onClick={() => toggle(item.value)}
             >
               {item.title}

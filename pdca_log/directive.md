@@ -1,22 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-17T16:00:00+09:00
+- updated_at: 2026-03-18T00:00:00+09:00
 - priority: high
 - status: done
-- cycle: 5
+- cycle: 6
 
 ## Task
-DropdownMenu の DropdownItem を CSS クラスシステムに移行し、全5状態を tokens.css で定義する。
+Accordion に disabled + active 状態を追加し、5状態ルール完全準拠にする。
 
 ## Why
-5状態ルール監査 Top 10 #5。DropdownItem が全てインラインスタイルで CSS クラスなし。
-active + focus-visible が欠落 (60%)。GroundUI パターン (CSS class + cn()) に反していた。
+5状態ルール監査 Top 10 #7。Accordion は hover + focus-visible はあるが disabled + active が欠落 (60%)。
+AccordionItem に disabled prop がないため、特定項目を無効化できなかった。
 
 ## How
-1. tokens.css に .dropdown-item / .dropdown-item-danger クラス追加 (5状態完備)
-2. DropdownItem を cn() + CSS クラスに移行、インラインスタイルと JS イベントハンドラ削除
+1. tokens.css: .accordion-trigger に :active:not(:disabled) + :disabled ルール追加
+2. tokens.css: :hover → :hover:not(:disabled) に修正
+3. Accordion.tsx: AccordionItem interface に disabled? 追加、button に disabled 属性渡し
 
 ## Acceptance Criteria
-- [x] .dropdown-item が tokens.css に 5 状態で定義されている
-- [x] DropdownItem が cn() + CSS クラスを使用している
-- [x] インラインスタイルの onMouseEnter/Leave が削除されている
+- [x] .accordion-trigger:active:not(:disabled) が定義されている
+- [x] .accordion-trigger:disabled が定義されている
+- [x] AccordionItem.disabled が型定義に含まれている
 - [x] ビルドが通ること

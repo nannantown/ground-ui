@@ -5,6 +5,31 @@
 
 ---
 
+## Cycle 6 — Accordion disabled + active state (2026-03-18)
+
+**Directive**: 監査 Top 10 #7 — Accordion disabled + active 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - `.accordion-trigger:active:not(:disabled)` 追加 (active-bg)
+  - `.accordion-trigger:disabled` 追加 (opacity + cursor)
+  - `.accordion-trigger:hover` → `:hover:not(:disabled)` に修正
+- `src/components/Accordion.tsx`:
+  - `AccordionItem` interface に `disabled?: boolean` 追加
+  - `<button>` に `disabled={item.disabled}` を渡すよう修正
+
+### Impact
+- Accordion 監査スコア: 60% → **100%** (全5状態完備)
+- `AccordionItem.disabled` が public API として型安全に公開
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 5 — DropdownMenu CSS class + 5-state fix (2026-03-17)
 
 **Directive**: 監査 Top 10 #5 — DropdownMenu CSS クラス化 + 全5状態追加
