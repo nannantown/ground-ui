@@ -10,6 +10,8 @@ export interface BottomNavItem {
   value: string
   /** Badge count or indicator */
   badge?: number | boolean
+  /** Disable this nav item */
+  disabled?: boolean
 }
 
 interface BottomNavProps {
@@ -105,13 +107,13 @@ export const BottomNav = forwardRef<HTMLElement, BottomNavProps>(
             height: '100%',
             background: 'none',
             border: 'none',
-            cursor: 'pointer',
+            cursor: item.disabled ? 'not-allowed' : 'pointer',
             padding: '6px 0',
             position: 'relative',
             transition: 'all 0.15s ease',
             color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
             fontFamily: 'inherit',
-            outline: 'none',
+            opacity: item.disabled ? 'var(--disabled-opacity)' as unknown as number : 1,
             WebkitTapHighlightColor: 'transparent',
           }
 
@@ -142,26 +144,21 @@ export const BottomNav = forwardRef<HTMLElement, BottomNavProps>(
             <button
               key={item.value}
               type="button"
+              className="bottom-nav-item"
               style={buttonStyle}
               onClick={() => onChange?.(item.value)}
+              disabled={item.disabled}
               aria-current={isActive ? 'page' : undefined}
               aria-label={hideLabels ? item.label : undefined}
               onMouseEnter={(e) => {
-                if (!isActive) {
+                if (!isActive && !item.disabled) {
                   e.currentTarget.style.color = 'var(--text-primary)'
                 }
               }}
               onMouseLeave={(e) => {
-                if (!isActive) {
+                if (!isActive && !item.disabled) {
                   e.currentTarget.style.color = 'var(--text-secondary)'
                 }
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.outline = '2px solid var(--accent)'
-                e.currentTarget.style.outlineOffset = '-2px'
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.outline = 'none'
               }}
             >
               <span style={iconWrapperStyle}>

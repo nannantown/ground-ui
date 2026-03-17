@@ -5,6 +5,31 @@
 
 ---
 
+## Cycle 13 — BottomNav disabled + focus-visible fix (2026-03-18)
+
+**Directive**: BottomNav に disabled 追加 + focus-visible 修正
+**Status**: DONE
+
+### Changes
+- `src/components/BottomNav.tsx`:
+  - `BottomNavItem.disabled?: boolean` 追加
+  - `disabled={item.disabled}` を button に渡す
+  - inline `outline: 'none'` 削除 → CSS `.bottom-nav-item:focus-visible` が有効に
+  - JS onFocus/onBlur ハンドラ削除 (CSS :focus-visible で代替)
+  - `className="bottom-nav-item"` 追加 → CSS :focus-visible ルール適用
+  - disabled 時の opacity + cursor をインラインで設定
+
+### Impact
+- BottomNav 監査スコア: 80% → **100%** (disabled + focus-visible 修正)
+- JS focus handlers → CSS :focus-visible で正しくキーボードのみフォーカス表示
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 12 — Tabs disabled + underline CSS class (2026-03-18)
 
 **Directive**: Tabs を 100% 5状態準拠にする (disabled 追加 + underline variant CSS クラス化)
