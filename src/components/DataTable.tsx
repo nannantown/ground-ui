@@ -225,12 +225,12 @@ function DataTableInner<T extends Record<string, unknown>>(
               return (
                 <th
                   key={col.key}
+                  className={isSortable ? 'table-header-sortable' : undefined}
                   style={{
                     ...thBaseStyle,
                     padding: cellPadding,
                     width: col.width,
                     textAlign: align,
-                    cursor: isSortable ? 'pointer' : 'default',
                     ...(stickyHeader
                       ? {
                           position: 'sticky',
@@ -239,7 +239,15 @@ function DataTableInner<T extends Record<string, unknown>>(
                         }
                       : {}),
                   }}
+                  tabIndex={isSortable ? 0 : undefined}
+                  role={isSortable ? 'button' : undefined}
                   onClick={isSortable ? () => handleSort(col.key) : undefined}
+                  onKeyDown={isSortable ? (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      handleSort(col.key)
+                    }
+                  } : undefined}
                   aria-sort={
                     isSorted && currentSort.direction === 'asc'
                       ? 'ascending'
@@ -247,16 +255,6 @@ function DataTableInner<T extends Record<string, unknown>>(
                         ? 'descending'
                         : 'none'
                   }
-                  onMouseEnter={(e) => {
-                    if (isSortable) {
-                      e.currentTarget.style.color = 'var(--text-primary)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (isSortable) {
-                      e.currentTarget.style.color = 'var(--text-secondary)'
-                    }
-                  }}
                 >
                   <span
                     style={{
@@ -301,9 +299,16 @@ function DataTableInner<T extends Record<string, unknown>>(
               return (
                 <tr
                   key={key}
+                  className={isClickable ? 'table-row-clickable' : undefined}
                   onClick={isClickable ? () => onRowClick!(row, rowIdx) : undefined}
+                  tabIndex={isClickable ? 0 : undefined}
+                  onKeyDown={isClickable ? (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      onRowClick!(row, rowIdx)
+                    }
+                  } : undefined}
                   style={{
-                    cursor: isClickable ? 'pointer' : 'default',
                     transition: 'background-color 0.15s ease',
                     background: isStriped ? 'var(--p-white-4, rgba(255,255,255,0.04))' : 'transparent',
                   }}

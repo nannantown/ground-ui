@@ -1,23 +1,26 @@
 # Current Directive
-- updated_at: 2026-03-18T01:00:00+09:00
+- updated_at: 2026-03-18T02:00:00+09:00
 - priority: high
 - status: done
-- cycle: 7
+- cycle: 8
 
 ## Task
-ToolbarButton を CSS クラスシステムに移行し、全5状態を tokens.css で定義する。
+DataTable の sortable headers と clickable rows にキーボードアクセシビリティ + focus-visible を追加する。
 
 ## Why
-5状態ルール監査 Top 10 #8。ToolbarButton が全てインラインスタイルで CSS クラスなし。
-disabled/active/focus-visible が欠落 (40%)。ThemeToggle もこのコンポーネントを wrap しているため波及効果大。
+5状態ルール監査 Top 10 #9。DataTable は hover/active はJS で実装済みだが focus-visible 欠落。
+sortable ヘッダーとクリック可能行がキーボードで操作不可だった。
 
 ## How
-1. tokens.css に .toolbar-button クラス追加 (5状態完備)
-2. ToolbarButton.tsx を cn() + CSS クラスに移行、インラインスタイルと JS イベントハンドラ削除
-3. disabled prop 追加
+1. tokens.css: .table-header-sortable (hover + focus-visible) + .table-row-clickable (focus-visible) 追加
+2. DataTable.tsx: sortable headers に CSS クラス + tabIndex + role="button" + onKeyDown 追加
+3. DataTable.tsx: clickable rows に CSS クラス + tabIndex + onKeyDown 追加
+4. sortable headers の JS hover を CSS :hover に移行
 
 ## Acceptance Criteria
-- [x] .toolbar-button が tokens.css に 5 状態で定義されている
-- [x] ToolbarButton が cn() + CSS クラスを使用している
-- [x] disabled prop が追加されている
+- [x] sortable ヘッダーが Tab でフォーカス可能
+- [x] sortable ヘッダーが Enter/Space で操作可能
+- [x] clickable 行が Tab でフォーカス可能
+- [x] clickable 行が Enter/Space で操作可能
+- [x] focus-visible スタイルが定義されている
 - [x] ビルドが通ること

@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 8 — DataTable keyboard accessibility + focus-visible (2026-03-18)
+
+**Directive**: 監査 Top 10 #9 — DataTable focus-visible + keyboard navigation 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - `.table-header-sortable` クラス追加 (hover + focus-visible)
+  - `.table-row-clickable` クラス追加 (focus-visible)
+- `src/components/DataTable.tsx`:
+  - sortable headers: CSS クラス + `tabIndex={0}` + `role="button"` + Enter/Space キーハンドラ追加
+  - sortable headers: JS onMouseEnter/Leave 削除 → CSS :hover で代替
+  - clickable rows: CSS クラス + `tabIndex={0}` + Enter/Space キーハンドラ追加
+  - clickable rows: inline `cursor` 削除 → CSS で処理
+
+### Impact
+- DataTable 監査スコア: 60% → **80%** (focus-visible + keyboard 追加。disabled は N/A)
+- sortable ヘッダーが Tab キーでフォーカス可能に
+- clickable 行が Tab + Enter/Space で操作可能に
+- **WCAG 2.1.1 (Keyboard) + 2.4.7 (Focus Visible) 準拠改善**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 7 — ToolbarButton CSS class + 5-state fix (2026-03-18)
 
 **Directive**: 監査 Top 10 #8 — ToolbarButton CSS クラス化 + 全5状態追加

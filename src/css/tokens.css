@@ -2682,6 +2682,31 @@
   color: var(--text-secondary);
 }
 
+/* --- DataTable --- */
+.table-header-sortable {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.table-header-sortable:hover {
+  color: var(--text-primary);
+}
+
+.table-header-sortable:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.table-row-clickable {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.table-row-clickable:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
 /* --- Dropdown Menu --- */
 .dropdown-item {
   width: 100%;
