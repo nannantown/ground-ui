@@ -1140,6 +1140,12 @@
   cursor: not-allowed;
 }
 
+.pill-filter:focus-visible,
+.pill-filter-active:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 /* --- Checkbox --- */
 .checkbox {
   position: relative;

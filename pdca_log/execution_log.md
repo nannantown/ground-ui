@@ -5,6 +5,27 @@
 
 ---
 
+## Cycle 3 — Pill-filter :focus-visible fix (2026-03-17)
+
+**Directive**: 監査 Top 10 #2 — Tabs (.pill-filter) :focus-visible 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.pill-filter:focus-visible` + `.pill-filter-active:focus-visible` ルール追加
+- `outline: 2px solid var(--focus-ring); outline-offset: 2px;` — 既存パターンと一貫
+
+### Impact
+- Tabs コンポーネント (pill variant) にキーボードフォーカスインジケータが表示されるように
+- SegmentedControl の pill スタイル使用時にも波及
+- **Tabs 監査スコア: 60% → 80%** (disabled はまだ未対応)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 2 — Button :focus-visible fix (2026-03-17)
 
 **Directive**: 監査 Top 10 #1 — Button :focus-visible 追加

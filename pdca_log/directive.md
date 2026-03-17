@@ -1,23 +1,21 @@
 # Current Directive
-- updated_at: 2026-03-17T13:00:00+09:00
+- updated_at: 2026-03-17T14:00:00+09:00
 - priority: high
 - status: done
-- cycle: 2
+- cycle: 3
 
 ## Task
-tokens.css の .btn クラスに :focus-visible ルールを追加し、全ボタンvariantでキーボードフォーカスが可視化されるようにする。
+tokens.css の .pill-filter / .pill-filter-active に :focus-visible ルールを追加し、Tabs コンポーネントでキーボードフォーカスが可視化されるようにする。
 
 ## Why
-5状態ルール監査 (five_state_audit.md) の Top 10 #1。
-.btn の `outline: none` が global `*:focus-visible` を上書きしており、WCAG 2.4.7 違反。
-Button は最も使用頻度の高いコンポーネントであり、10+コンポーネントに波及する。
+5状態ルール監査 Top 10 #2。Tabs は頻出ナビゲーションパターンだが :focus-visible が未定義。
+WCAG 2.4.7 準拠のため。
 
 ## How
-1. tokens.css の .btn-icon.btn-lg の後に .btn:focus-visible ルールを追加
-2. 既存パターン (checkbox, toggle-switch 等) と同じスタイル: outline: 2px solid var(--focus-ring); outline-offset: 2px;
-3. typecheck / lint / build 確認
+1. tokens.css の .pill-filter:disabled の後に .pill-filter:focus-visible + .pill-filter-active:focus-visible を追加
+2. 既存パターンと同じスタイル: outline: 2px solid var(--focus-ring); outline-offset: 2px;
 
 ## Acceptance Criteria
-- [x] .btn:focus-visible がtokens.cssに定義されている
+- [x] .pill-filter:focus-visible が tokens.css に定義されている
+- [x] .pill-filter-active:focus-visible も定義されている
 - [x] ビルドが通ること
-- [x] 既存パターンと一貫したスタイル
