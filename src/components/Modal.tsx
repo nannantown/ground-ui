@@ -103,26 +103,16 @@ export function Modal({
         >
           {showClose && (
             <button
+              className={cn('btn', 'btn-ghost', 'btn-icon', 'btn-sm')}
               onClick={onClose}
+              aria-label="Close"
               style={{
                 position: 'absolute',
                 top: 12,
                 right: 12,
-                width: 28,
-                height: 28,
-                borderRadius: 6,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'color 0.15s ease, background-color 0.15s ease',
-                color: 'var(--text-secondary)',
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 0,
               }}
             >
-              <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

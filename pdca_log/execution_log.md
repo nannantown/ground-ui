@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 10 — Modal close button 5-state fix (2026-03-18)
+
+**Directive**: Modal close ボタンを .btn CSS クラスに移行
+**Status**: DONE
+
+### Changes
+- `src/components/Modal.tsx`:
+  - close ボタンのインラインスタイルを `.btn .btn-ghost .btn-icon .btn-sm` CSS クラスに置換
+  - inline style は `position: absolute; top; right` のみ残存（レイアウト配置用）
+  - `aria-label="Close"` 追加
+
+### Impact
+- Modal 監査スコア: 30% → **80%** (close ボタンが全5状態完備。disabled は Modal 自体には不要)
+- a11y: aria-label 追加でスクリーンリーダー対応改善
+- バンドル微減: 329.00KB → 328.59KB
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 9 — Toast dismiss button 5-state fix (2026-03-18)
 
 **Directive**: 監査 Top 10 #10 — Toast dismiss ボタンを .btn CSS クラスに移行
