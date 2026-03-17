@@ -4,6 +4,7 @@ export interface TabItem {
   value: string
   label: string
   count?: number
+  disabled?: boolean
 }
 
 interface TabsProps {
@@ -28,21 +29,9 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
           return (
             <button
               key={tab.value}
+              className={cn('nav-tab', isActive && 'nav-tab-active')}
               onClick={() => onChange(tab.value)}
-              style={{
-                paddingLeft: 16,
-                paddingRight: 16,
-                paddingTop: 10,
-                paddingBottom: 10,
-                fontSize: 14,
-                fontWeight: 500,
-                transition: 'color 0.15s ease',
-                position: 'relative',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-              }}
+              disabled={tab.disabled}
             >
               <span
                 style={{
@@ -55,10 +44,10 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
                 {tab.count !== undefined && (
                   <span
                     style={{
-                      fontSize: 12,
+                      fontSize: 'var(--text-xs)',
                       paddingLeft: 6,
                       paddingRight: 6,
-                      borderRadius: 9999,
+                      borderRadius: 'var(--radius-full)',
                       background: isActive ? 'var(--p-white-12)' : 'var(--p-white-6)',
                       color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                     }}
@@ -101,6 +90,7 @@ export function Tabs({ items, value, onChange, variant = 'pill' }: TabsProps) {
           <button
             key={tab.value}
             onClick={() => onChange(tab.value)}
+            disabled={tab.disabled}
             className={cn('pill-filter', isActive && 'pill-filter-active')}
           >
             <span

@@ -5,6 +5,32 @@
 
 ---
 
+## Cycle 12 — Tabs disabled + underline CSS class (2026-03-18)
+
+**Directive**: Tabs を 100% 5状態準拠にする (disabled 追加 + underline variant CSS クラス化)
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.nav-tab` CSS クラス追加 (underline variant 用、5状態完備)
+  - `.nav-tab-active` for active state
+  - hover/active/disabled/focus-visible 全て定義
+- `src/components/Tabs.tsx`:
+  - `TabItem.disabled?: boolean` 追加
+  - pill variant: `disabled={tab.disabled}` を button に渡す (既存 CSS :disabled が適用)
+  - underline variant: インラインスタイル → `.nav-tab` + `.nav-tab-active` CSS クラスに全面移行
+
+### Impact
+- Tabs (pill) 監査スコア: 80% → **100%** (disabled 追加)
+- Tabs (underline) 監査スコア: N/A → **100%** (新規 CSS クラスで全5状態)
+- バンドル微減: 328.60KB → 328.27KB
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 11 — Stepper hover + focus-visible fix (2026-03-18)
 
 **Directive**: Stepper clickable steps に hover + active + focus-visible 追加

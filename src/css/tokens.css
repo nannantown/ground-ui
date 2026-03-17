@@ -1146,6 +1146,41 @@
   outline-offset: 2px;
 }
 
+/* --- Nav Tab (underline variant) --- */
+.nav-tab {
+  padding: var(--inset-cell);
+  font-size: var(--text-base);
+  font-weight: 500;
+  position: relative;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.nav-tab:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.nav-tab:active:not(:disabled) {
+  background: var(--active-bg);
+}
+
+.nav-tab-active {
+  color: var(--text-primary);
+}
+
+.nav-tab:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.nav-tab:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 /* --- Checkbox --- */
 .checkbox {
   position: relative;

@@ -1,22 +1,25 @@
 # Current Directive
-- updated_at: 2026-03-18T05:00:00+09:00
+- updated_at: 2026-03-18T06:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 11
+- cycle: 12
 
 ## Task
-Stepper の clickable steps に hover + active + focus-visible 視覚フィードバックを追加する。
+Tabs に disabled 状態を追加し、underline variant を CSS クラスシステムに移行する。
 
 ## Why
-監査スコア 60%。tabIndex + keyboard は実装済みだが hover 視覚フィードバックと focus-visible リングが欠落。
-水平・垂直両レイアウトに影響。
+Tabs は 80% (disabled 欠落)。underline variant が全インラインスタイルで GroundUI パターン違反。
+TabItem.disabled を追加し、両 variant で 100% 準拠にする。
 
 ## How
-1. tokens.css: .stepper-step-clickable クラス追加 (hover/active/focus-visible)
-2. Stepper.tsx: 水平の clickable step div + 垂直の clickable circle div に CSS クラス適用
+1. tokens.css: .nav-tab / .nav-tab-active CSS クラス追加 (5状態完備)
+2. TabItem interface に disabled? 追加
+3. underline variant を CSS クラスに移行
+4. pill variant に disabled 伝播
 
 ## Acceptance Criteria
-- [x] .stepper-step-clickable が tokens.css に定義されている
-- [x] 水平・垂直両方で適用されている
-- [x] inline cursor が CSS クラスに移行されている
+- [x] TabItem.disabled が型定義に含まれている
+- [x] .nav-tab が tokens.css に 5 状態で定義されている
+- [x] underline variant が CSS クラスを使用している
+- [x] pill variant で disabled が伝播されている
 - [x] ビルドが通ること
