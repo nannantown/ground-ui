@@ -2635,6 +2635,51 @@
   color: var(--text-secondary);
 }
 
+/* --- Dropdown Menu --- */
+.dropdown-item {
+  width: 100%;
+  padding: var(--inset-cell);
+  text-align: left;
+  font-size: var(--text-base);
+  display: flex;
+  align-items: center;
+  gap: var(--inline-icon);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.dropdown-item:hover:not(:disabled) {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.dropdown-item:active:not(:disabled) {
+  background: var(--active-bg);
+}
+
+.dropdown-item:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.dropdown-item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.dropdown-item-danger {
+  color: var(--error);
+}
+
+.dropdown-item-danger:hover:not(:disabled) {
+  background: var(--hover-bg);
+  color: var(--error);
+}
+
 /* --- Calendar / DatePicker --- */
 .calendar {
   background: var(--calendar-bg);

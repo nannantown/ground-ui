@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 5 — DropdownMenu CSS class + 5-state fix (2026-03-17)
+
+**Directive**: 監査 Top 10 #5 — DropdownMenu CSS クラス化 + 全5状態追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.dropdown-item` CSS クラス追加 (default/hover/active/disabled/focus-visible 全5状態)
+- `src/css/tokens.css`: `.dropdown-item-danger` variant 追加
+- `src/components/DropdownMenu.tsx`: DropdownItem をインラインスタイルから CSS クラス (`cn()`) に移行
+  - onMouseEnter/Leave ハンドラ削除 (CSS :hover で代替)
+  - JS による opacity/cursor 計算削除 (CSS :disabled で代替)
+
+### Impact
+- DropdownMenu 監査スコア: 60% → **100%** (全5状態 CSS で定義)
+- バンドルサイズ微減: 330.38KB → 329.66KB (インラインスタイル削除)
+- GroundUI パターン準拠 (CSS class system + cn() utility)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 4 — BottomNav & Breadcrumb :focus-visible fix (2026-03-17)
 
 **Directive**: 監査 Top 10 #3/#4 — BottomNav + Breadcrumb :focus-visible 追加

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { cn } from '../cn'
 
 interface DropdownMenuProps {
   trigger: ReactNode
@@ -85,33 +86,9 @@ interface DropdownItemProps {
 export function DropdownItem({ onClick, children, variant = 'default', disabled }: DropdownItemProps) {
   return (
     <button
+      className={cn('dropdown-item', variant === 'danger' && 'dropdown-item-danger')}
       onClick={onClick}
       disabled={disabled}
-      style={{
-        width: '100%',
-        paddingLeft: 12,
-        paddingRight: 12,
-        paddingTop: 8,
-        paddingBottom: 8,
-        textAlign: 'left',
-        fontSize: 14,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        transition: 'color 0.15s ease, background-color 0.15s ease',
-        color: variant === 'danger' ? 'var(--error)' : 'var(--text-secondary)',
-        opacity: disabled ? 'var(--disabled-opacity)' : 1,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        background: 'transparent',
-        border: 'none',
-        font: 'inherit',
-      }}
-      onMouseEnter={(e) => {
-        if (!disabled) e.currentTarget.style.background = 'var(--hover-bg)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'transparent'
-      }}
     >
       {children}
     </button>
