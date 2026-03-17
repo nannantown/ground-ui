@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, createContext, useContext, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { cn } from '../cn'
 
 /* ============================================
    Types
@@ -139,15 +140,9 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string)
       </svg>
       <span style={{ flex: 1 }}>{toast.message}</span>
       <button
+        className={cn('btn', 'btn-ghost', 'btn-icon', 'btn-sm')}
         onClick={() => onDismiss(toast.id)}
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'var(--text-secondary)',
-          cursor: 'pointer',
-          padding: '2px',
-          flexShrink: 0,
-        }}
+        aria-label="Dismiss"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M18 6L6 18M6 6l12 12" />

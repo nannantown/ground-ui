@@ -1,26 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-18T02:00:00+09:00
+- updated_at: 2026-03-18T03:00:00+09:00
 - priority: high
 - status: done
-- cycle: 8
+- cycle: 9
 
 ## Task
-DataTable の sortable headers と clickable rows にキーボードアクセシビリティ + focus-visible を追加する。
+Toast の dismiss ボタンを .btn CSS クラスシステムに移行し、全5状態を自動継承させる。
 
 ## Why
-5状態ルール監査 Top 10 #9。DataTable は hover/active はJS で実装済みだが focus-visible 欠落。
-sortable ヘッダーとクリック可能行がキーボードで操作不可だった。
+5状態ルール監査 Top 10 #10 (最後)。Toast dismiss ボタンが全インラインスタイルで5状態中1つしか対応なし (20%)。
+既存 .btn-ghost .btn-icon クラスを再利用すれば CSS 追加なしで全5状態が付与される。
 
 ## How
-1. tokens.css: .table-header-sortable (hover + focus-visible) + .table-row-clickable (focus-visible) 追加
-2. DataTable.tsx: sortable headers に CSS クラス + tabIndex + role="button" + onKeyDown 追加
-3. DataTable.tsx: clickable rows に CSS クラス + tabIndex + onKeyDown 追加
-4. sortable headers の JS hover を CSS :hover に移行
+1. Toast.tsx: dismiss button に className="btn btn-ghost btn-icon btn-sm" を適用
+2. インラインスタイル削除、aria-label 追加
 
 ## Acceptance Criteria
-- [x] sortable ヘッダーが Tab でフォーカス可能
-- [x] sortable ヘッダーが Enter/Space で操作可能
-- [x] clickable 行が Tab でフォーカス可能
-- [x] clickable 行が Enter/Space で操作可能
-- [x] focus-visible スタイルが定義されている
+- [x] dismiss ボタンが .btn CSS クラスを使用している
+- [x] 全5状態が CSS から継承されている
+- [x] aria-label が追加されている
 - [x] ビルドが通ること

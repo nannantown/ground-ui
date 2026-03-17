@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 9 — Toast dismiss button 5-state fix (2026-03-18)
+
+**Directive**: 監査 Top 10 #10 — Toast dismiss ボタンを .btn CSS クラスに移行
+**Status**: DONE
+
+### Changes
+- `src/components/Toast.tsx`:
+  - dismiss ボタンのインラインスタイルを `.btn .btn-ghost .btn-icon .btn-sm` CSS クラスに置換
+  - `cn()` import 追加
+  - `aria-label="Dismiss"` 追加 (a11y改善)
+  - JS hover ハンドラなし → CSS :hover/:active/:disabled/:focus-visible が全て .btn クラスから継承
+
+### Impact
+- Toast 監査スコア: 20% → **100%** (既存 .btn CSS クラス再利用で全5状態完備)
+- a11y: aria-label 追加でスクリーンリーダー対応改善
+- バンドル微減: インラインスタイル削除
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 8 — DataTable keyboard accessibility + focus-visible (2026-03-18)
 
 **Directive**: 監査 Top 10 #9 — DataTable focus-visible + keyboard navigation 追加
