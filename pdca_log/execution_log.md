@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 7 — ToolbarButton CSS class + 5-state fix (2026-03-18)
+
+**Directive**: 監査 Top 10 #8 — ToolbarButton CSS クラス化 + 全5状態追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.toolbar-button` CSS クラス追加 (5状態完備: default/hover/active/disabled/focus-visible)
+- `src/components/ToolbarButton.tsx`: インラインスタイルから CSS クラス (`cn()`) に全面移行
+  - onMouseEnter/Leave ハンドラ削除 (CSS :hover で代替)
+  - `disabled` prop 追加
+- ThemeToggle は ToolbarButton を wrap しているため自動的に改善
+
+### Impact
+- ToolbarButton 監査スコア: 40% → **100%**
+- ThemeToggle 監査スコア: 40% → **100%** (ToolbarButton 改善により)
+- バンドルサイズ: 329.70KB → 328.86KB (インラインスタイル削除)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 6 — Accordion disabled + active state (2026-03-18)
 
 **Directive**: 監査 Top 10 #7 — Accordion disabled + active 追加

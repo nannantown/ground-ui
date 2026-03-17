@@ -1,23 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-18T00:00:00+09:00
+- updated_at: 2026-03-18T01:00:00+09:00
 - priority: high
 - status: done
-- cycle: 6
+- cycle: 7
 
 ## Task
-Accordion に disabled + active 状態を追加し、5状態ルール完全準拠にする。
+ToolbarButton を CSS クラスシステムに移行し、全5状態を tokens.css で定義する。
 
 ## Why
-5状態ルール監査 Top 10 #7。Accordion は hover + focus-visible はあるが disabled + active が欠落 (60%)。
-AccordionItem に disabled prop がないため、特定項目を無効化できなかった。
+5状態ルール監査 Top 10 #8。ToolbarButton が全てインラインスタイルで CSS クラスなし。
+disabled/active/focus-visible が欠落 (40%)。ThemeToggle もこのコンポーネントを wrap しているため波及効果大。
 
 ## How
-1. tokens.css: .accordion-trigger に :active:not(:disabled) + :disabled ルール追加
-2. tokens.css: :hover → :hover:not(:disabled) に修正
-3. Accordion.tsx: AccordionItem interface に disabled? 追加、button に disabled 属性渡し
+1. tokens.css に .toolbar-button クラス追加 (5状態完備)
+2. ToolbarButton.tsx を cn() + CSS クラスに移行、インラインスタイルと JS イベントハンドラ削除
+3. disabled prop 追加
 
 ## Acceptance Criteria
-- [x] .accordion-trigger:active:not(:disabled) が定義されている
-- [x] .accordion-trigger:disabled が定義されている
-- [x] AccordionItem.disabled が型定義に含まれている
+- [x] .toolbar-button が tokens.css に 5 状態で定義されている
+- [x] ToolbarButton が cn() + CSS クラスを使用している
+- [x] disabled prop が追加されている
 - [x] ビルドが通ること
