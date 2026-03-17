@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 2 — Button :focus-visible fix (2026-03-17)
+
+**Directive**: 監査 Top 10 #1 — Button :focus-visible 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.btn:focus-visible` ルール追加 (`outline: 2px solid var(--focus-ring); outline-offset: 2px;`)
+- `.btn` base class の `outline: none` (line 702) が `*:focus-visible` global ルール (line 3091) を詳細度で上書きしていた問題を修正
+- `.btn:focus-visible` (詳細度 0,1,1) > `.btn` (0,1,0) > `*:focus-visible` (0,0,1) で正しく適用
+
+### Impact
+- Button (primary/secondary/ghost/danger) 全variant にキーボードフォーカスインジケータが表示されるように
+- Button を内部使用するコンポーネント (Alert close, Modal close, Carousel arrows, ConfirmDialog, etc.) にも波及
+- **WCAG 2.4.7 (Focus Visible) 準拠改善**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing, CSS変更と無関係)
+- `npm run build`: SUCCESS
+
+### Audit Score Update
+- Button: 80% → **100%** (5/5 states now covered)
+- Alert (close btn): 30% → **~50%** (inherits btn focus-visible)
+- Modal (close btn): 30% → **~40%** (inherits btn focus-visible)
+
+---
+
 ## Cycle 1 — 5-State Rule Full Audit (2026-03-17)
 
 **Directive**: 全66コンポーネントの5状態ルール監査
