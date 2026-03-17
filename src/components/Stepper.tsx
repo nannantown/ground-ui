@@ -214,12 +214,12 @@ function HorizontalStepper({
           >
             {/* Step content */}
             <div
+              className={clickable ? 'stepper-step-clickable' : undefined}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: compact ? 4 : 8,
-                cursor: clickable ? 'pointer' : 'default',
                 minWidth: compact ? 40 : 64,
               }}
               onClick={clickable ? () => onStepClick(index) : undefined}
@@ -315,7 +315,7 @@ function VerticalStepper({
               }}
             >
               <div
-                style={{ cursor: clickable ? 'pointer' : 'default' }}
+                className={clickable ? 'stepper-step-clickable' : undefined}
                 onClick={clickable ? () => onStepClick(index) : undefined}
                 onKeyDown={
                   clickable

@@ -5,6 +5,28 @@
 
 ---
 
+## Cycle 11 — Stepper hover + focus-visible fix (2026-03-18)
+
+**Directive**: Stepper clickable steps に hover + active + focus-visible 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.stepper-step-clickable` CSS クラス追加 (hover/active/focus-visible)
+- `src/components/Stepper.tsx`:
+  - 水平: clickable step div に `.stepper-step-clickable` クラス適用、inline cursor 削除
+  - 垂直: clickable circle div に `.stepper-step-clickable` クラス適用、inline cursor 削除
+
+### Impact
+- Stepper 監査スコア: 60% → **80%** (hover + active + focus-visible 追加。disabled は未対応)
+- 水平・垂直両方のレイアウトで hover フィードバック + フォーカスリング表示
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 10 — Modal close button 5-state fix (2026-03-18)
 
 **Directive**: Modal close ボタンを .btn CSS クラスに移行

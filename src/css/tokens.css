@@ -2465,6 +2465,26 @@
   outline-offset: 2px;
 }
 
+/* --- Stepper --- */
+.stepper-step-clickable {
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.stepper-step-clickable:hover {
+  background: var(--hover-bg);
+}
+
+.stepper-step-clickable:active {
+  background: var(--active-bg);
+}
+
+.stepper-step-clickable:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 /* --- Accordion --- */
 .accordion {
   display: flex;

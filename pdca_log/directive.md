@@ -1,23 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-18T04:00:00+09:00
-- priority: high
+- updated_at: 2026-03-18T05:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 10
+- cycle: 11
 
 ## Task
-Modal の close ボタンを .btn CSS クラスシステムに移行し、全5状態を自動継承させる。
+Stepper の clickable steps に hover + active + focus-visible 視覚フィードバックを追加する。
 
 ## Why
-Modal は監査で 30% と最低スコア。close ボタンが全インラインスタイルで hover/active/disabled/focus-visible なし。
-Toast (Cycle 9) と同じパターンで .btn クラス再利用が最も効率的。
+監査スコア 60%。tabIndex + keyboard は実装済みだが hover 視覚フィードバックと focus-visible リングが欠落。
+水平・垂直両レイアウトに影響。
 
 ## How
-1. Modal.tsx: close button に className="btn btn-ghost btn-icon btn-sm" を適用
-2. インラインスタイルは position:absolute のみ残し、他は削除
-3. aria-label="Close" 追加
+1. tokens.css: .stepper-step-clickable クラス追加 (hover/active/focus-visible)
+2. Stepper.tsx: 水平の clickable step div + 垂直の clickable circle div に CSS クラス適用
 
 ## Acceptance Criteria
-- [x] close ボタンが .btn CSS クラスを使用している
-- [x] 全5状態が CSS から継承されている
-- [x] aria-label が追加されている
+- [x] .stepper-step-clickable が tokens.css に定義されている
+- [x] 水平・垂直両方で適用されている
+- [x] inline cursor が CSS クラスに移行されている
 - [x] ビルドが通ること
