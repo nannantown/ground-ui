@@ -5,6 +5,28 @@
 
 ---
 
+## Cycle 4 — BottomNav & Breadcrumb :focus-visible fix (2026-03-17)
+
+**Directive**: 監査 Top 10 #3/#4 — BottomNav + Breadcrumb :focus-visible 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.bottom-nav-item:focus-visible` ルール追加
+- `src/css/tokens.css`: `.breadcrumb-item:focus-visible` ルール追加
+- 両方とも `outline: 2px solid var(--focus-ring); outline-offset: 2px;`
+
+### Impact
+- BottomNav 監査スコア: 70% → **80%** (disabled まだ未対応)
+- Breadcrumb 監査スコア: 60% → **80%** (disabled まだ未対応)
+- モバイルナビ + パンくずリストのキーボードアクセシビリティ改善
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 3 — Pill-filter :focus-visible fix (2026-03-17)
 
 **Directive**: 監査 Top 10 #2 — Tabs (.pill-filter) :focus-visible 追加

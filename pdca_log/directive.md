@@ -1,21 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-17T14:00:00+09:00
+- updated_at: 2026-03-17T15:00:00+09:00
 - priority: high
 - status: done
-- cycle: 3
+- cycle: 4
 
 ## Task
-tokens.css の .pill-filter / .pill-filter-active に :focus-visible ルールを追加し、Tabs コンポーネントでキーボードフォーカスが可視化されるようにする。
+tokens.css の .bottom-nav-item と .breadcrumb-item に :focus-visible ルールを追加する。
 
 ## Why
-5状態ルール監査 Top 10 #2。Tabs は頻出ナビゲーションパターンだが :focus-visible が未定義。
-WCAG 2.4.7 準拠のため。
+5状態ルール監査 Top 10 #3 (BottomNav 70%) と #4 (Breadcrumb 60%)。
+両方とも :focus-visible が欠落しており、WCAG 2.4.7 違反。
+CSS のみの修正で完結するため1サイクルでまとめて対応。
 
 ## How
-1. tokens.css の .pill-filter:disabled の後に .pill-filter:focus-visible + .pill-filter-active:focus-visible を追加
-2. 既存パターンと同じスタイル: outline: 2px solid var(--focus-ring); outline-offset: 2px;
+1. .bottom-nav-item:focus-visible 追加 (hover/active の後)
+2. .breadcrumb-item:focus-visible 追加 (.breadcrumb-separator の前)
 
 ## Acceptance Criteria
-- [x] .pill-filter:focus-visible が tokens.css に定義されている
-- [x] .pill-filter-active:focus-visible も定義されている
+- [x] .bottom-nav-item:focus-visible が tokens.css に定義されている
+- [x] .breadcrumb-item:focus-visible が tokens.css に定義されている
 - [x] ビルドが通ること

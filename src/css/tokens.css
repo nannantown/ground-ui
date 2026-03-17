@@ -2235,6 +2235,11 @@
   color: var(--text-primary);
 }
 
+.bottom-nav-item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 /* --- Horizontal Scroll (Carousel container) --- */
 .horizontal-scroll {
   display: flex;
@@ -2303,6 +2308,11 @@
 .breadcrumb-item-active {
   color: var(--text-primary);
   font-weight: 500;
+}
+
+.breadcrumb-item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .breadcrumb-separator {
