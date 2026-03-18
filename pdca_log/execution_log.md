@@ -5,6 +5,38 @@
 
 ---
 
+## Cycle 17 — Button unit tests (2026-03-18)
+
+**Directive**: MANAGER_BRAIN Q-04 — Unit Test 追加開始 (Button)
+**Status**: DONE
+
+### Changes
+- `src/components/Button.test.tsx` 新規作成: 22 テストケース
+  - Rendering: children, default classes
+  - Variants: primary/secondary/ghost/danger
+  - Sizes: sm/md/lg
+  - Icon mode: btn-icon class, children hidden
+  - Disabled: disabled prop, loading state
+  - Loading: spinner SVG, rightIcon hidden
+  - Icons: leftIcon, rightIcon rendering
+  - Events: onClick, disabled onClick prevention
+  - Ref forwarding: forwardRef to HTMLButtonElement
+  - Custom props: className merge, HTML attribute passthrough
+
+### Impact
+- テスト数: 74 → **96** (+22)
+- テストファイル: 2 → **3**
+- Button は最頻使用コンポーネント — テスト追加で変更の信頼性担保
+- MANAGER_BRAIN Q-04 着手
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **96 tests passed**
+
+---
+
 ## Cycle 16 — CLAUDE.md Component Classes sync with tokens.css (2026-03-18)
 
 **Directive**: review.md Priority #3 — tokens.css とドキュメントの整合性確認・修正

@@ -1,23 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-18T10:00:00+09:00
-- priority: medium
+- updated_at: 2026-03-18T11:00:00+09:00
+- priority: high
 - status: done
-- cycle: 16
+- cycle: 17
 
 ## Task
-CLAUDE.md の Component Classes セクションを tokens.css の実態と同期する。
+Button コンポーネントの unit test を追加する。
 
 ## Why
-review.md Priority #3「tokens.css のコンポーネントクラスと実装の整合性確認」。
-8クラスが tokens.css に存在しないのに CLAUDE.md に記載されており、
-逆に Cycle 2-14 で追加した多数のクラスが未記載だった。
+MANAGER_BRAIN Q-04 (Unit Test) が ⚠️ 2ファイルのみ。
+Button は最頻使用コンポーネントであり、Cycle 2 で :focus-visible 修正済み。
+テスト追加でリグレッション防止。
 
 ## How
-1. エージェントで tokens.css と CLAUDE.md の全クラスを照合
-2. 存在しないクラスを削除、新規/未記載クラスを追加
-3. カテゴリを再編成
+1. src/components/Button.test.tsx 新規作成
+2. 22 テストケース: rendering, variants, sizes, icon, disabled, loading, events, ref, props
+3. vitest + @testing-library/react 使用
 
 ## Acceptance Criteria
-- [x] CLAUDE.md に記載の全クラスが tokens.css に存在する
-- [x] Cycle 2-14 で追加したクラスが全て記載されている
-- [x] ビルドが通ること
+- [x] Button.test.tsx が作成されている
+- [x] 全 22 テストがパスする
+- [x] typecheck / lint / build が通ること
