@@ -1,22 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-18T17:00:00+09:00
+- updated_at: 2026-03-18T18:00:00+09:00
 - priority: high
 - status: done
-- cycle: 23
+- cycle: 24
 
 ## Task
-DropdownMenu コンポーネントの unit test を追加する。
+Breadcrumb コンポーネントの unit test を追加する。
 
 ## Why
-Q-04 Unit Test 追加継続。DropdownMenu は Cycle 5 で CSS クラス化した。
-DropdownItem (CSS classes, variants, disabled) + DropdownMenu (open/close, Escape) の動作を担保。
+Q-04 Unit Test 追加継続。Breadcrumb は Cycle 14 で disabled を追加した。
+link/span 切り替え、auto-active、disabled、separator の動作を担保。
 
 ## How
-1. src/components/DropdownMenu.test.tsx 新規作成
-2. 13 テストケース: DropdownItem (7), DropdownDivider (1), DropdownMenu (5)
+1. src/components/Breadcrumb.test.tsx 新規作成
+2. 17 テストケース: Breadcrumb (7) + BreadcrumbItem (10)
 3. vitest + @testing-library/react 使用
 
 ## Acceptance Criteria
-- [x] DropdownMenu.test.tsx が作成されている
-- [x] 全 13 テストがパスする
+- [x] Breadcrumb.test.tsx が作成されている
+- [x] 全 17 テストがパスする
 - [x] typecheck / lint / build が通ること

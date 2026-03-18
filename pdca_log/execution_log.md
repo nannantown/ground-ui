@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 24 — Breadcrumb unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Breadcrumb テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Breadcrumb.test.tsx` 新規作成: 17 テストケース
+  - Breadcrumb (7): nav + aria-label, CSS class, custom className, separator (default + custom), separator count, auto-active last item
+  - BreadcrumbItem (10): link rendering, CSS class, active (span + class + aria-current), disabled (span + class + aria-disabled), plain text, custom className
+
+### Impact
+- テスト数: 195 → **212** (+17)
+- テストファイル: 9 → **10**
+- Breadcrumb の disabled (Cycle 14)、auto-active、href→span フォールバックのリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **212 tests passed**
+
+---
+
 ## Cycle 23 — DropdownMenu unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — DropdownMenu テスト追加
