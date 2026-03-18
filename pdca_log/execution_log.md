@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 30 — ToolbarButton unit tests (2026-03-19)
+
+**Directive**: Q-04 継続 — ToolbarButton テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/ToolbarButton.test.tsx` 新規作成: 9 テストケース
+  - Rendering: button element, children, toolbar-button CSS class
+  - className: merge with custom
+  - onClick: handler call
+  - Disabled: disabled attribute, click prevention
+  - aria-label: prop passthrough
+  - style: inline style passthrough
+
+### Impact
+- テスト数: 263 → **272** (+9)
+- テストファイル: 13 → **14**
+- **12 コンポーネント テスト済み** — Cycle 7 の CSS クラス化リファクタリングを検証
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **272 tests passed**
+
+---
+
 ## Cycle 29 — Chip shape prop + tests + unstaged cleanup (2026-03-19)
 
 **Directive**: 未コミット Chip.shape 変更のテスト追加 + コミット

@@ -1,23 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-19T00:00:00+09:00
+- updated_at: 2026-03-19T01:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 29
+- cycle: 30
 
 ## Task
-未コミットの Chip shape prop 変更にテストを追加し、まとめてコミットする。
+ToolbarButton コンポーネントの unit test を追加する。
 
 ## Why
-git status に PDCA 開始前からの未コミット変更 (Chip.tsx shape prop, index.ts ChipShape export,
-package.json version bump) が残存。品質を担保するためテストを追加してからコミット。
+Q-04 Unit Test 追加継続。ToolbarButton は Cycle 7 で CSS クラス化 + disabled 追加した。
+リファクタリング結果が正しく動作することをテストで検証。
 
 ## How
-1. Chip.test.tsx 新規作成 (22 テストケース)
-2. shape prop (pill/square) を含む全機能をテスト
-3. 未コミット変更 + テストをまとめてコミット
+1. src/components/ToolbarButton.test.tsx 新規作成
+2. 9 テストケース: rendering, CSS class, onClick, disabled, aria-label, style
+3. vitest + @testing-library/react 使用
 
 ## Acceptance Criteria
-- [x] Chip.test.tsx が作成され全テストパス
-- [x] shape="square" で borderRadius: 0 になることが検証済み
-- [x] 未コミット変更が全てコミットされている
-- [x] ビルドが通ること
+- [x] ToolbarButton.test.tsx が作成されている
+- [x] 全 9 テストがパスする
+- [x] typecheck / lint / build が通ること
