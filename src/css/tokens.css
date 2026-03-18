@@ -2350,6 +2350,12 @@
   outline-offset: 2px;
 }
 
+.breadcrumb-item-disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .breadcrumb-separator {
   color: var(--text-disabled);
   font-size: var(--text-xs);

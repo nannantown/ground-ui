@@ -13,14 +13,21 @@ interface BreadcrumbItemProps {
   href?: string
   /** Marks this item as the current page. */
   active?: boolean
+  /** Disable this breadcrumb item */
+  disabled?: boolean
   children: ReactNode
   className?: string
 }
 
-export function BreadcrumbItem({ href, active, children, className }: BreadcrumbItemProps) {
-  const classes = cn('breadcrumb-item', active && 'breadcrumb-item-active', className)
+export function BreadcrumbItem({ href, active, disabled, children, className }: BreadcrumbItemProps) {
+  const classes = cn(
+    'breadcrumb-item',
+    active && 'breadcrumb-item-active',
+    disabled && 'breadcrumb-item-disabled',
+    className
+  )
 
-  if (href && !active) {
+  if (href && !active && !disabled) {
     return (
       <a href={href} className={classes}>
         {children}
@@ -31,6 +38,7 @@ export function BreadcrumbItem({ href, active, children, className }: Breadcrumb
   return (
     <span
       className={classes}
+      aria-disabled={disabled || undefined}
       {...(active ? { 'aria-current': 'page' as const } : undefined)}
     >
       {children}

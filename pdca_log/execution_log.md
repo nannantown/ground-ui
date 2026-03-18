@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 14 — Breadcrumb disabled state (2026-03-18)
+
+**Directive**: Breadcrumb に disabled 状態を追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.breadcrumb-item-disabled` クラス追加 (opacity + cursor + pointer-events)
+- `src/components/Breadcrumb.tsx`:
+  - `BreadcrumbItemProps.disabled?: boolean` 追加
+  - disabled 時は `<span>` で描画 (href があっても `<a>` にならない)
+  - `aria-disabled` 属性追加
+  - CSS クラス `.breadcrumb-item-disabled` 適用
+
+### Impact
+- Breadcrumb 監査スコア: 80% → **100%** (disabled 追加で全5状態完備)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 8 errors (pre-existing)
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 13 — BottomNav disabled + focus-visible fix (2026-03-18)
 
 **Directive**: BottomNav に disabled 追加 + focus-visible 修正
