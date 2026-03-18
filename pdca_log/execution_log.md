@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 23 — DropdownMenu unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — DropdownMenu テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/DropdownMenu.test.tsx` 新規作成: 13 テストケース
+  - DropdownItem (7): rendering, CSS classes, danger variant, onClick, disabled
+  - DropdownDivider (1): border rendering
+  - DropdownMenu (5): trigger rendering, initial closed, open on click, Escape close, toggle
+
+### Impact
+- テスト数: 182 → **195** (+13)
+- テストファイル: 8 → **9**
+- DropdownMenu の CSS クラス化 (Cycle 5)、disabled、open/close 動作のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **195 tests passed**
+
+---
+
 ## Cycle 22 — Input unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Input テスト追加
