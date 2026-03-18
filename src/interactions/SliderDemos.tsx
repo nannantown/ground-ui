@@ -322,8 +322,6 @@ function MorphScrubberDemo({ onChange }: DemoProps) {
   const hueB = 30
 
   const currentHue = hueA + (hueB - hueA) * position
-  const valueA = position
-  const valueB = 1 - position
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent) => {

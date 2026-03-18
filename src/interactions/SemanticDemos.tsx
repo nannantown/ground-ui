@@ -1,5 +1,5 @@
 
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { DemoCard, type DemoProps } from './DemoCard'
 
 // ─── #31 Mood Tags ─────────────────────────────────────────────

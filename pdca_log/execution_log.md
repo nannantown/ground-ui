@@ -5,6 +5,31 @@
 
 ---
 
+## Cycle 15 — Fix all pre-existing lint errors (2026-03-18)
+
+**Directive**: 全8 lint エラー + 1 warning を修正
+**Status**: DONE
+
+### Changes
+- `src/eslint/no-emoji.ts`: combining characters (`\u{200D}`, `\u{FE0F}`, `\u{20E3}`) を regex から除去 → `no-misleading-character-class` エラー2件 + unused disable warning 1件 修正
+- `src/interactions/AmbientDemos.tsx`: `let h = 0` → `let h: number` に変更 → `no-useless-assignment` エラー修正
+- `src/interactions/PhysicsDemos.tsx`: 未使用 `pivotY` 変数を削除
+- `src/interactions/SemanticDemos.tsx`: 未使用 `useEffect` import を削除
+- `src/interactions/SliderDemos.tsx`: 未使用 `valueA`, `valueB` ローカル変数を削除
+- `src/theme/index.test.ts`: 未使用 `vi` import を削除
+
+### Impact
+- **lint: 8 errors + 1 warning → 0 errors, 0 warnings**
+- 14 サイクル目にして初の完全クリーンビルド (typecheck + lint + build 全パス)
+- MANAGER_BRAIN Q-02 (ESLint) 完全準拠
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: **0 errors, 0 warnings**
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 14 — Breadcrumb disabled state (2026-03-18)
 
 **Directive**: Breadcrumb に disabled 状態を追加

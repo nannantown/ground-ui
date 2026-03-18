@@ -117,7 +117,6 @@ function PendulumDemo({ onChange }: DemoProps) {
       const rect = canvas.getBoundingClientRect()
       const x = e.clientX - rect.left
       const pivotX = 120
-      const pivotY = 20
 
       // Calculate angle from click position relative to pivot
       const angle = Math.atan2(x - pivotX, 100)
