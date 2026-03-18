@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 29 — Chip shape prop + tests + unstaged cleanup (2026-03-19)
+
+**Directive**: 未コミット Chip.shape 変更のテスト追加 + コミット
+**Status**: DONE
+
+### Changes
+- `src/components/Chip.test.tsx` 新規作成: 22 テストケース
+  - Rendering, variants, 6 colors, sizes, **shape (pill/square)**, selected, disabled, onClick, deletable, icon/avatar, className
+- 既存未コミット変更のコミット:
+  - `src/components/Chip.tsx`: `shape?: 'pill' | 'square'` prop 追加 (borderRadius 切替)
+  - `src/index.ts`: `ChipShape` type export 追加
+  - `package.json`: version 0.6.1 → 0.6.2
+
+### Impact
+- テスト数: 241 → **263** (+22)
+- テストファイル: 12 → **13**
+- 未コミット変更を検証付きでクリーンアップ
+- **11 コンポーネント テスト済み** (Button, Accordion, Tabs, Toggle, Checkbox, Input, DropdownMenu, Breadcrumb, Alert, Badge, Chip)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **263 tests passed**
+
+---
+
 ## Cycle 28 — A-02 Exit animations (2026-03-18)
 
 **Directive**: MANAGER_BRAIN A-02 — エグジットアニメーション追加

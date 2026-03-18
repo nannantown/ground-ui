@@ -8,6 +8,7 @@ import { cn } from '../cn'
 export type ChipVariant = 'filled' | 'outlined' | 'soft'
 export type ChipSize = 'sm' | 'md'
 export type ChipColor = 'accent' | 'success' | 'warning' | 'error' | 'info' | 'neutral'
+export type ChipShape = 'pill' | 'square'
 
 export interface ChipProps {
   /** Visual variant */
@@ -16,6 +17,8 @@ export interface ChipProps {
   size?: ChipSize
   /** Color theme */
   color?: ChipColor
+  /** Shape: pill (default) or square */
+  shape?: ChipShape
   /** Content */
   children: ReactNode
   /** Show delete button and handler */
@@ -232,6 +235,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
       variant = 'soft',
       size = 'md',
       color = 'neutral',
+      shape = 'pill',
       children,
       deletable = false,
       onDelete,
@@ -256,7 +260,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
       gap: s.gap,
       height: s.height,
       padding: avatar ? `0 ${size === 'sm' ? 8 : 12}px 0 ${size === 'sm' ? 2 : 4}px` : s.padding,
-      borderRadius: 'var(--radius-full)',
+      borderRadius: shape === 'square' ? 0 : 'var(--radius-full)',
       border: '1px solid',
       fontSize: s.fontSize,
       fontWeight: 500,

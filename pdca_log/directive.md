@@ -1,23 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-18T22:00:00+09:00
+- updated_at: 2026-03-19T00:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 28
+- cycle: 29
 
 ## Task
-エグジットアニメーション (fade-out, scale-out, slide-out-down, slide-out-up) を追加する。
+未コミットの Chip shape prop 変更にテストを追加し、まとめてコミットする。
 
 ## Why
-MANAGER_BRAIN A-02「エグジットアニメーション」が ⚠️ 一部のみ。
-fade-in/scale-in/slide-up/slide-down のエントランスに対応するエグジットが必要。
-overlay/modal/toast の退場時に使用。
+git status に PDCA 開始前からの未コミット変更 (Chip.tsx shape prop, index.ts ChipShape export,
+package.json version bump) が残存。品質を担保するためテストを追加してからコミット。
 
 ## How
-1. tokens.css: @keyframes scale-out, slide-out-down, slide-out-up 追加
-2. tokens.css: .animate-fade-out, .animate-scale-out, .animate-slide-out-down, .animate-slide-out-up クラス追加
-3. CLAUDE.md Animations セクション更新
+1. Chip.test.tsx 新規作成 (22 テストケース)
+2. shape prop (pill/square) を含む全機能をテスト
+3. 未コミット変更 + テストをまとめてコミット
 
 ## Acceptance Criteria
-- [x] 4 エグジットアニメーション keyframes + classes が定義されている
-- [x] CLAUDE.md が更新されている
+- [x] Chip.test.tsx が作成され全テストパス
+- [x] shape="square" で borderRadius: 0 になることが検証済み
+- [x] 未コミット変更が全てコミットされている
 - [x] ビルドが通ること
