@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 20 — Toggle unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Toggle テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Toggle.test.tsx` 新規作成: 15 テストケース
+  - Rendering: switch role, toggle-switch class, custom className
+  - Checked state: aria-checked, active class
+  - onChange: toggle true/false callback
+  - Disabled: disabled attribute, aria-disabled, click prevention
+  - Label: aria-label prop
+  - Button type: type="button" to prevent form submission
+
+### Impact
+- テスト数: 129 → **144** (+15)
+- テストファイル: 5 → **6**
+- Toggle の switch semantics, disabled, ARIA のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **144 tests passed**
+
+---
+
 ## Cycle 19 — Tabs unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Tabs テスト追加
