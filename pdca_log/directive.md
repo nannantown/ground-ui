@@ -1,23 +1,22 @@
 # Current Directive
 - updated_at: 2026-03-19T09:00:00+09:00
-- priority: high
+- priority: medium
 - status: done
-- cycle: 38
+- cycle: 39
 
 ## Task
-セマンティック motion トークン (enter/exit/emphasis) を追加し、アニメーションクラスを接続する。
+Select コンポーネントの unit test を追加する。
 
 ## Why
-MANAGER_BRAIN F-12「モーショントークン（enter/exit/emphasis）」が ⚠️ 部分的。
-duration/easing プリミティブはあるが、アニメーション用のセマンティック層がなかった。
-アニメーションクラスがハードコード値を使用していた。
+Q-04 継続。Select はカスタムドロップダウンで最も複雑なフォーム系コンポーネント。
+controlled/uncontrolled、keyboard nav、disabled option、hidden input をテストで担保。
 
 ## How
-1. tokens.css: --motion-enter/exit/emphasis-duration/ease トークン 6 種追加
-2. tokens.css: 8 アニメーションクラスのハードコード値を motion トークン参照に置換
+1. src/components/Select.test.tsx 新規作成
+2. 19 テストケース + scrollIntoView mock
+3. vitest + @testing-library/react 使用
 
 ## Acceptance Criteria
-- [x] 6 motion トークンが定義されている
-- [x] 8 アニメーションクラスが motion トークンを参照している
-- [x] Foundation Layer 12/12 = 100%
-- [x] ビルドが通ること
+- [x] Select.test.tsx が作成されている
+- [x] 全 19 テストがパスする
+- [x] typecheck / lint / build が通ること

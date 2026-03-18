@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 39 — Select unit tests (2026-03-19)
+
+**Directive**: Q-04 継続 — Select テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Select.test.tsx` 新規作成: 19 テストケース
+  - Rendering: combobox role, CSS class, placeholder, selected label
+  - Dropdown: open/close on click, option rendering
+  - Selection: onChange callback, close after selection, uncontrolled update
+  - Disabled: aria-disabled, prevents open
+  - Error: input-error class
+  - ARIA: aria-expanded, aria-haspopup="listbox"
+  - Keyboard: Enter to open, Escape to close
+  - Forms: hidden input with name/value
+
+### Impact
+- テスト数: 339 → **358** (+19)
+- テストファイル: 20 → **21**
+- **17 コンポーネント テスト済み** (Select は最も複雑なフォーム系)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **358 tests passed**
+
+---
+
 ## Cycle 38 — F-12 Semantic motion tokens (2026-03-19)
 
 **Directive**: MANAGER_BRAIN F-12 — モーショントークン体系化
