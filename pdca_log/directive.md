@@ -1,25 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-19T07:00:00+09:00
-- priority: medium
+- updated_at: 2026-03-19T08:00:00+09:00
+- priority: low
 - status: done
-- cycle: 36
+- cycle: 37
 
 ## Task
-Masonry (ピン留めグリッド) レイアウトコンポーネントを新規作成する。
+MANAGER_BRAIN.md のスコア表と Change Log を 36 サイクルの実績で更新する。
 
 ## Why
-MANAGER_BRAIN L-12「Masonry（ピン留めグリッド）」が ⚠️ CSSクラスのみ。
-.masonry-2/3/4 CSS は tokens.css に定義済みだが React コンポーネントがなかった。
-これで Layout Layer 全 13 コンポーネント完了 (100%)。
+MANAGER_BRAIN の Completion Score が Cycle 1 時点の 78% のままで、
+36 サイクル分の改善が反映されていなかった。正確な追跡がPDCA の前提条件。
 
 ## How
-1. Masonry.tsx: columns (2/3/4) + forwardRef
-2. layout/index.ts + index.ts: export 追加
-3. Masonry.test.tsx: 7 テストケース
+1. Completion Score テーブルに Start/Current 列追加
+2. 各 Layer の現在スコアを実態に合わせて更新
+3. Change Log に 4 エントリ追加
+4. Monthly Target に超過達成を記録
 
 ## Acceptance Criteria
-- [x] Masonry コンポーネントが作成されている
-- [x] 既存 .masonry-* CSS クラスを使用している
-- [x] 全テストがパスする
+- [x] スコアテーブルが最新
+- [x] Change Log が 36 サイクル分を反映
 - [x] ビルドが通ること
-- [x] Layout Layer 100% 達成

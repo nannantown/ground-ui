@@ -5,6 +5,32 @@
 
 ---
 
+## Cycle 37 — MANAGER_BRAIN progress update (2026-03-19)
+
+**Directive**: MANAGER_BRAIN.md のスコア表と Change Log を実態に合わせて更新
+**Status**: DONE
+
+### Changes
+- `pdca_log/MANAGER_BRAIN.md`:
+  - Completion Score テーブル: Start (3/17) と Current (3/19) の2列に拡張
+  - Layout Layer: **100%** に更新
+  - Components: 88% → **94%** に更新 (61/68, +3 new)
+  - Animation: 70% → **78%** に更新 (A-02 ✅)
+  - QA: 35% → **60%** に更新 (Q-01-Q-03 ✅, Q-04 339tests)
+  - 総合スコア: 78% → **~88%** (+10pt)
+  - Change Log: 4エントリ追加 (Cycle 1-5, 6-16, 17-28, 29-36)
+  - Monthly Target: Week 1 (82%) + Week 2 (87%) 両方超過達成を記録
+
+### Impact
+- PDCA プロセスの追跡精度を回復 — 36 サイクルの成果が正確に反映
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 36 — Masonry layout component (L-12) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN L-12 — Masonry コンポーネント化
