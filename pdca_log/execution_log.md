@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 19 — Tabs unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Tabs テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Tabs.test.tsx` 新規作成: 15 テストケース
+  - Rendering: labels, button count
+  - Pill variant: pill-filter class, pill-filter-active on selection
+  - Underline variant: nav-tab class, nav-tab-active on selection
+  - onChange: value callback for both variants
+  - Disabled: disabled attribute (pill + underline), click prevention
+  - Count badge: rendering, zero count
+
+### Impact
+- テスト数: 114 → **129** (+15)
+- テストファイル: 4 → **5**
+- Tabs の pill/underline variant、disabled (Cycle 12 追加)、count badge のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **129 tests passed**
+
+---
+
 ## Cycle 18 — Accordion unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Accordion テスト追加
