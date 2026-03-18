@@ -5,6 +5,32 @@
 
 ---
 
+## Cycle 25 — Alert unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Alert テスト追加 (9/10 コンポーネント)
+**Status**: DONE
+
+### Changes
+- `src/components/Alert.test.tsx` 新規作成: 16 テストケース
+  - Rendering: role="alert", children, CSS class, custom className
+  - Variants: info (default), success, warning, error
+  - Title: present/absent rendering
+  - Icon: SVG icon rendering
+  - Close button: show/hide, onClick, .btn CSS classes
+
+### Impact
+- テスト数: 212 → **228** (+16)
+- テストファイル: 10 → **11**
+- Alert の 4 variant、close ボタン (.btn クラス使用) のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **228 tests passed**
+
+---
+
 ## Cycle 24 — Breadcrumb unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Breadcrumb テスト追加
