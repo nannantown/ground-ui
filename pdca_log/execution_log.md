@@ -5,6 +5,31 @@
 
 ---
 
+## Cycle 26 — Badge unit tests + Q-04 10コンポーネント達成 (2026-03-18)
+
+**Directive**: Q-04 完了 — Badge テスト追加 (10/10 コンポーネント達成)
+**Status**: DONE
+
+### Changes
+- `src/components/Badge.test.tsx` 新規作成: 13 テストケース
+  - Rendering: children, badge class, span element
+  - Variants: 6 variants (success/warning/error/info/accent/neutral), default neutral
+  - Custom color: inline style, badge class maintained, variant class excluded
+
+### Impact
+- テスト数: 228 → **241** (+13)
+- テストファイル: 11 → **12**
+- **Q-04 Week 2 目標「主要コンポーネント10個」達成**
+- テスト対象コンポーネント: Button, Accordion, Tabs, Toggle, Checkbox, Input, DropdownMenu, Breadcrumb, Alert, Badge
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **241 tests passed**
+
+---
+
 ## Cycle 25 — Alert unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Alert テスト追加 (9/10 コンポーネント)
