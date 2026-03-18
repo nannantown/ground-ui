@@ -1,23 +1,25 @@
 # Current Directive
-- updated_at: 2026-03-19T06:00:00+09:00
+- updated_at: 2026-03-19T07:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 35
+- cycle: 36
 
 ## Task
-Sticky (スクロール追従) レイアウトコンポーネントを新規作成する。
+Masonry (ピン留めグリッド) レイアウトコンポーネントを新規作成する。
 
 ## Why
-MANAGER_BRAIN L-13「Sticky（スクロール追従）」が ❌ 未実装。
-CSS ヘルパー (.sticky-top 等) は tokens.css に存在するが React コンポーネントがなかった。
+MANAGER_BRAIN L-12「Masonry（ピン留めグリッド）」が ⚠️ CSSクラスのみ。
+.masonry-2/3/4 CSS は tokens.css に定義済みだが React コンポーネントがなかった。
+これで Layout Layer 全 13 コンポーネント完了 (100%)。
 
 ## How
-1. Sticky.tsx: position (top/top-header/bottom) + offset + forwardRef
+1. Masonry.tsx: columns (2/3/4) + forwardRef
 2. layout/index.ts + index.ts: export 追加
-3. Sticky.test.tsx: 9 テストケース
+3. Masonry.test.tsx: 7 テストケース
 
 ## Acceptance Criteria
-- [x] Sticky コンポーネントが作成されている
-- [x] 既存 .sticky-* CSS クラスを使用している
+- [x] Masonry コンポーネントが作成されている
+- [x] 既存 .masonry-* CSS クラスを使用している
 - [x] 全テストがパスする
 - [x] ビルドが通ること
+- [x] Layout Layer 100% 達成

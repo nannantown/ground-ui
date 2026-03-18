@@ -5,6 +5,32 @@
 
 ---
 
+## Cycle 36 — Masonry layout component (L-12) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN L-12 — Masonry コンポーネント化
+**Status**: DONE
+
+### Changes
+- `src/components/layout/Masonry.tsx`: Masonry コンポーネント新規作成
+  - columns: 2/3/4 (default 3)
+  - 既存 CSS クラス (.masonry-2/3/4) 使用 — レスポンシブ自動対応
+  - forwardRef + HTML attribute passthrough
+- `src/components/layout/index.ts` + `src/index.ts`: export 追加
+- `src/components/layout/Masonry.test.tsx`: 7 テストケース
+
+### Impact
+- **L-12 Masonry: ⚠️ CSSクラスのみ → ✅ コンポーネント化 Done**
+- **Layout Layer: 12/13 → 13/13 = 100%** (全レイアウトコンポーネント完了)
+- テスト数: 332 → **339** (+7)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **339 tests passed**
+
+---
+
 ## Cycle 35 — Sticky layout component (L-13) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN L-13 — Sticky (スクロール追従) コンポーネント新規作成
