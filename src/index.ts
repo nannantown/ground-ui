@@ -90,6 +90,7 @@ export { ScrollArea } from './components/layout'
 export { VisuallyHidden } from './components/layout'
 export { AppShell, AppShellHeader, AppShellSidebar } from './components/layout'
 export { SplitView } from './components/layout'
+export { Sticky } from './components/layout'
 export type {
   StackProps, StackDirection, StackGap, StackAlign, StackJustify,
   GridProps, GridGap, GridResponsive,

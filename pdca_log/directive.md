@@ -1,24 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-19T05:00:00+09:00
+- updated_at: 2026-03-19T06:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 34
+- cycle: 35
 
 ## Task
-Image (レスポンシブ画像) コンポーネントを新規作成する。
+Sticky (スクロール追従) レイアウトコンポーネントを新規作成する。
 
 ## Why
-MANAGER_BRAIN C-20「Image（レスポンシブ画像）」が ❌ 未実装。
-fit/radius/aspectRatio/fallback を持つ画像コンポーネントはデザインシステムの基本パーツ。
+MANAGER_BRAIN L-13「Sticky（スクロール追従）」が ❌ 未実装。
+CSS ヘルパー (.sticky-top 等) は tokens.css に存在するが React コンポーネントがなかった。
 
 ## How
-1. Image.tsx: fit, radius, aspectRatio, fallback props + forwardRef
-2. index.ts: export 追加
-3. Image.test.tsx: 14 テストケース
+1. Sticky.tsx: position (top/top-header/bottom) + offset + forwardRef
+2. layout/index.ts + index.ts: export 追加
+3. Sticky.test.tsx: 9 テストケース
 
 ## Acceptance Criteria
-- [x] Image コンポーネントが作成されている
-- [x] radius が GroundUI トークン (--radius-*) を使用している
-- [x] fallback が onError で表示される
+- [x] Sticky コンポーネントが作成されている
+- [x] 既存 .sticky-* CSS クラスを使用している
 - [x] 全テストがパスする
 - [x] ビルドが通ること

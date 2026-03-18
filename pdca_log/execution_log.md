@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 35 — Sticky layout component (L-13) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN L-13 — Sticky (スクロール追従) コンポーネント新規作成
+**Status**: DONE
+
+### Changes
+- `src/components/layout/Sticky.tsx`: Sticky コンポーネント新規作成
+  - position: top (default) / top-header / bottom
+  - offset: カスタム位置指定
+  - 既存 CSS クラス (.sticky-top, .sticky-top-header, .sticky-bottom) を使用
+  - forwardRef + HTML attribute passthrough
+- `src/components/layout/index.ts`: Sticky export 追加
+- `src/index.ts`: Sticky re-export 追加
+- `src/components/layout/Sticky.test.tsx`: 9 テストケース
+
+### Impact
+- **L-13 Sticky: ❌ 未実装 → ✅ Done**
+- Layout Layer: 11/13 → **12/13** (L-12 Masonry のみ残)
+- テスト数: 323 → **332** (+9)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **332 tests passed**
+
+---
+
 ## Cycle 34 — Image component (C-20) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN C-20 — Image (レスポンシブ画像) コンポーネント新規作成

@@ -24,3 +24,5 @@ export type { AppShellProps, AppShellHeaderProps, AppShellSidebarProps } from '.
 
 export { SplitView } from './SplitView'
 export type { SplitViewProps, SplitDirection } from './SplitView'
+
+export { Sticky } from './Sticky'
