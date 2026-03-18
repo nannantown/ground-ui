@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 27 — F-11 Breakpoints 2xl + 3xl 追加 (2026-03-18)
+
+**Directive**: MANAGER_BRAIN F-11 — ブレークポイント 4段階→6段階
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - `--bp-2xl: 1536px` + `--bp-3xl: 1792px` CSS custom property 追加
+  - `.hide-below-2xl` (max-width: 1535px) + `.hide-2xl-up` (min-width: 1536px) レスポンシブユーティリティ追加
+
+### Impact
+- **Layer 1 Foundation F-11: ⚠️ 4段階 → ✅ 6段階 (sm/md/lg/xl/2xl/3xl)**
+- Layer 1 Foundation: 98% → **100%** (F-12 モーショントークン除く)
+- 大画面 (1536px+, 1792px+) でのレスポンシブデザインが CSS custom properties で制御可能に
+- JS からも `getComputedStyle(root).getPropertyValue('--bp-2xl')` でアクセス可能
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 26 — Badge unit tests + Q-04 10コンポーネント達成 (2026-03-18)
 
 **Directive**: Q-04 完了 — Badge テスト追加 (10/10 コンポーネント達成)

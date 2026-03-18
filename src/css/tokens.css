@@ -356,6 +356,8 @@
   --bp-md: 768px;
   --bp-lg: 1024px;
   --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+  --bp-3xl: 1792px;
 
   /* --- Border Radius --- */
   --radius-none: 0px;
@@ -2209,6 +2211,12 @@
 }
 @media (min-width: 768px) {
   .hide-tablet-up { display: none !important; }
+}
+@media (max-width: 1535px) {
+  .hide-below-2xl { display: none !important; }
+}
+@media (min-width: 1536px) {
+  .hide-2xl-up { display: none !important; }
 }
 
 /* --- Sticky helpers --- */

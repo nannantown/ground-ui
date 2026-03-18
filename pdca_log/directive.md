@@ -1,23 +1,21 @@
 # Current Directive
-- updated_at: 2026-03-18T20:00:00+09:00
+- updated_at: 2026-03-18T21:00:00+09:00
 - priority: high
 - status: done
-- cycle: 26
+- cycle: 27
 
 ## Task
-Badge コンポーネントの unit test を追加し、Q-04 の Week 2 目標 (主要10コンポーネント) を達成する。
+ブレークポイントトークンに 2xl (1536px) と 3xl (1792px) を追加し、6段階にする。
 
 ## Why
-Q-04 Unit Test 追加の最終コンポーネント (10/10)。Badge は 6 variant + custom color を持つ
-表示系コンポーネント。variant 出し分け、custom color の inline style 動作を担保。
+MANAGER_BRAIN F-11「ブレークポイント（レスポンシブ）」が ⚠️ 4段階のまま。
+6段階 (sm/md/lg/xl/2xl/3xl) にすることで Foundation Layer を 100% に近づける。
 
 ## How
-1. src/components/Badge.test.tsx 新規作成
-2. 13 テストケース: rendering, 6 variants, custom color, span element
-3. vitest + @testing-library/react 使用
+1. tokens.css: --bp-2xl: 1536px; --bp-3xl: 1792px; 追加
+2. tokens.css: レスポンシブ hide ユーティリティ追加 (.hide-below-2xl, .hide-2xl-up)
 
 ## Acceptance Criteria
-- [x] Badge.test.tsx が作成されている
-- [x] 全 13 テストがパスする
-- [x] typecheck / lint / build が通ること
-- [x] Q-04 主要 10 コンポーネントテスト達成
+- [x] --bp-2xl, --bp-3xl が tokens.css に定義されている
+- [x] レスポンシブユーティリティが追加されている
+- [x] ビルドが通ること
