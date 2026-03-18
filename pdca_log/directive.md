@@ -1,22 +1,25 @@
 # Current Directive
-- updated_at: 2026-03-19T02:00:00+09:00
+- updated_at: 2026-03-19T03:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 31
+- cycle: 32
 
 ## Task
-Modal コンポーネントの unit test を追加する。
+KBD (キーボードショートカット表示) コンポーネントを新規作成する。
 
 ## Why
-Q-04 Unit Test 追加継続。Modal は Cycle 10 で close ボタンを .btn クラスに移行した。
-open/close 動作、Escape キー、close ボタン CSS クラス、ARIA をテストで検証。
+MANAGER_BRAIN C-22 「KBD（キーボードショートカット表示）」が ❌ 未実装。
+<kbd> 要素ベースの軽量コンポーネントで、ドキュメントや UI のキーボードヘルプに使用。
 
 ## How
-1. src/components/Modal.test.tsx 新規作成
-2. 14 テストケース: Modal (11) + ModalHeader/Body/Footer (3)
-3. vitest + @testing-library/react 使用
+1. tokens.css: .kbd, .kbd-sm, .kbd-group, .kbd-separator CSS クラス追加
+2. KBD.tsx: KBD + KBDGroup コンポーネント作成
+3. index.ts: export 追加
+4. KBD.test.tsx: 11 テストケース
+5. CLAUDE.md: KBD セクション追加
 
 ## Acceptance Criteria
-- [x] Modal.test.tsx が作成されている
-- [x] 全 14 テストがパスする
-- [x] typecheck / lint / build が通ること
+- [x] KBD + KBDGroup コンポーネントが作成されている
+- [x] CSS クラスが tokens.css に定義されている
+- [x] 全テストがパスする
+- [x] ビルドが通ること

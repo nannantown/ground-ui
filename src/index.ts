@@ -23,6 +23,7 @@ export { DropdownMenu, DropdownItem, DropdownDivider } from './components/Dropdo
 export { EmptyState } from './components/EmptyState'
 export { FormField } from './components/FormField'
 export { Input } from './components/Input'
+export { KBD, KBDGroup } from './components/KBD'
 export { ListTile } from './components/ListTile'
 export type { ListTileProps } from './components/ListTile'
 export { Modal, ModalHeader, ModalBody, ModalFooter } from './components/Modal'

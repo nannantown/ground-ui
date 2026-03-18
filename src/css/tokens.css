@@ -2476,6 +2476,46 @@
   color: var(--text-disabled);
 }
 
+/* --- KBD (Keyboard Shortcut) --- */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 22px;
+  padding: 0 var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.kbd-sm {
+  min-width: 16px;
+  height: 18px;
+  font-size: 10px;
+  border-radius: var(--radius-xs);
+}
+
+.kbd-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.kbd-separator {
+  color: var(--text-disabled);
+  font-size: var(--text-xs);
+  margin: 0 2px;
+}
+
 /* --- Toolbar Button --- */
 .toolbar-button {
   display: flex;

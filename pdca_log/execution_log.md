@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 32 — KBD component (new) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-22 — KBD コンポーネント新規作成
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: `.kbd`, `.kbd-sm`, `.kbd-group`, `.kbd-separator` CSS クラス追加
+- `src/components/KBD.tsx`: KBD + KBDGroup コンポーネント新規作成
+  - KBD: `<kbd>` 要素、size (sm/md)、className
+  - KBDGroup: keys 配列を separator で区切って表示
+- `src/index.ts`: KBD, KBDGroup export 追加
+- `src/components/KBD.test.tsx`: 11 テストケース
+- `CLAUDE.md`: KBD セクション追加
+
+### Impact
+- **C-22 KBD: ❌ 未実装 → ✅ Done**
+- テスト数: 286 → **297** (+11)
+- テストファイル: 15 → **16**
+- テスト済みコンポーネント: 13 → **14** (KBD)
+- キーボードショートカット表示が `<KBD>Ctrl</KBD>` や `<KBDGroup keys={['Ctrl','S']} />` で可能に
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **297 tests passed**
+
+---
+
 ## Cycle 31 — Modal unit tests (2026-03-19)
 
 **Directive**: Q-04 継続 — Modal テスト追加

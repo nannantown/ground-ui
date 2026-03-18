@@ -241,6 +241,7 @@ All component classes are defined in `tokens.css` alongside the tokens:
 **Calendar**: `.calendar`, `.calendar-grid`, `.calendar-cell`, `.calendar-cell-selected`, `.datepicker`
 **Layout**: `.app-shell`, `.split-view`, `.split-view-panel`, `.split-view-divider`, `.container-*`, `.section-*`, `.scroll-area`, `.bento-grid`, `.masonry-*`, `.stack`, `.cluster`, `.center`
 **Typography**: `.code-block`, `.blockquote`, `.prose`
+**KBD**: `.kbd`, `.kbd-sm`, `.kbd-group`, `.kbd-separator`
 **Forms**: `.form-group`, `.form-label`, `.form-help`, `.form-error`
 **Divider**: `.divider`
 **Utilities**: `.sr-only`, `.sticky-top`, `.horizontal-scroll`
