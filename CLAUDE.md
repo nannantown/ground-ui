@@ -225,21 +225,25 @@ All component classes are defined in `tokens.css` alongside the tokens:
 
 **Buttons**: `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-danger`, `.btn-sm`, `.btn-lg`, `.btn-icon`
 **Cards**: `.card`, `.card-elevated`, `.card-interactive`, `.card-stat`, `.card-header`, `.card-body`, `.card-footer`
-**Inputs**: `.input`, `.input-error`, `.textarea`, `.select`, `.select-dropdown`, `.checkbox`, `.radio`, `.slider`
+**Inputs**: `.input`, `.input-error`, `.textarea`, `.select`, `.select-dropdown`, `.select-option`, `.checkbox`, `.checkbox-checked`, `.radio`, `.radio-checked`
 **Labels**: `.label`, `.label-md`
 **Badges**: `.badge`, `.badge-success`, `.badge-warning`, `.badge-error`, `.badge-info`, `.badge-accent`, `.badge-neutral`
 **Pills/Segments**: `.pill-filter`, `.pill-filter-active`, `.segmented-control`, `.segmented-control-item`, `.segmented-control-active`
 **Toggle**: `.toggle-switch`
-**Navigation**: `.sidebar`, `.sidebar-item`, `.sidebar-item-icon`, `.bottom-nav`, `.app-header`, `.breadcrumb`, `.pagination`, `.nav-tab`, `.nav-tab-active`
-**Tables**: `.table`, `.table-header`, `.table-row`, `.table-cell`
-**Overlays**: `.modal-content`, `.drawer`, `.popover`, `.tooltip-content`, `.bottom-sheet`
+**Toolbar**: `.toolbar-button`
+**Navigation**: `.sidebar`, `.sidebar-item`, `.sidebar-item-active`, `.sidebar-item-icon`, `.bottom-nav`, `.bottom-nav-item`, `.app-header`, `.breadcrumb`, `.breadcrumb-item`, `.breadcrumb-item-disabled`, `.pagination`, `.pagination-item`, `.pagination-item-active`, `.nav-tab`, `.nav-tab-active`, `.stepper-step-clickable`
+**DataTable**: `.table-header-sortable`, `.table-row-clickable`
+**Dropdown**: `.dropdown-item`, `.dropdown-item-danger`
+**Overlays**: `.drawer`, `.drawer-header`, `.drawer-body`, `.drawer-footer`, `.popover`, `.popover-header`, `.popover-body`, `.tooltip`, `.tooltip-content`
 **Feedback**: `.alert`, `.alert-info`, `.alert-success`, `.alert-warning`, `.alert-error`, `.progress`, `.progress-bar`, `.skeleton`, `.skeleton-text`, `.skeleton-title`, `.skeleton-card`, `.empty-state`
-**Accordion**: `.accordion`, `.accordion-item`, `.accordion-trigger`, `.accordion-content`
-**Timeline**: `.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-content`
-**Calendar**: `.calendar`, `.calendar-grid`, `.calendar-day`, `.datepicker`
-**Layout**: `.app-shell`, `.split-sidebar`, `.split-content`, `.container-*`, `.section-*`, `.scroll-area`, `.bento-grid`, `.masonry-*`
-**Typography**: `.code-block`, `.blockquote`
+**Accordion**: `.accordion`, `.accordion-item`, `.accordion-trigger`, `.accordion-trigger-icon`, `.accordion-content`
+**Timeline**: `.timeline`, `.timeline-item`, `.timeline-item-clickable`, `.timeline-marker`, `.timeline-dot`, `.timeline-dot-completed`, `.timeline-dot-current`, `.timeline-dot-upcoming`, `.timeline-content`
+**Calendar**: `.calendar`, `.calendar-grid`, `.calendar-cell`, `.calendar-cell-selected`, `.datepicker`
+**Layout**: `.app-shell`, `.split-view`, `.split-view-panel`, `.split-view-divider`, `.container-*`, `.section-*`, `.scroll-area`, `.bento-grid`, `.masonry-*`, `.stack`, `.cluster`, `.center`
+**Typography**: `.code-block`, `.blockquote`, `.prose`
+**Forms**: `.form-group`, `.form-label`, `.form-help`, `.form-error`
 **Divider**: `.divider`
+**Utilities**: `.sr-only`, `.sticky-top`, `.horizontal-scroll`
 **Animations**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`, `.animate-spin`, `.stagger-1` ~ `.stagger-6`
 
 ### Spacing System

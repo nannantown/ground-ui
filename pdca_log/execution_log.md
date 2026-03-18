@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 16 — CLAUDE.md Component Classes sync with tokens.css (2026-03-18)
+
+**Directive**: review.md Priority #3 — tokens.css とドキュメントの整合性確認・修正
+**Status**: DONE
+
+### Changes
+- `CLAUDE.md` の Component Classes セクションを tokens.css の実態と同期:
+  - **削除 (tokens.css に未定義)**: `.table`, `.table-header`, `.table-row`, `.table-cell`, `.modal-content`, `.bottom-sheet`, `.slider`, `.calendar-day`
+  - **追加 (Cycle 2-14 で新規追加)**: `.toolbar-button`, `.dropdown-item`, `.dropdown-item-danger`, `.nav-tab`, `.nav-tab-active`, `.stepper-step-clickable`, `.table-header-sortable`, `.table-row-clickable`, `.breadcrumb-item-disabled`, `.bottom-nav-item`
+  - **追加 (既存だが未記載)**: `.sidebar-item-active`, `.breadcrumb-item`, `.pagination-item`, `.pagination-item-active`, `.timeline-item-clickable`, `.timeline-dot-*`, `.checkbox-checked`, `.radio-checked`, `.popover-header/body`, `.drawer-header/body/footer`, `.tooltip`, `.accordion-trigger-icon`, `.split-view-*`, `.form-group/label/help/error`, `.prose`, `.sr-only`, `.sticky-top`, `.stack`, `.cluster`, `.center`
+  - **カテゴリ再編**: Tables → DataTable、新規 Toolbar/Dropdown/Forms/Utilities カテゴリ追加
+
+### Impact
+- CLAUDE.md のクラス一覧が tokens.css と完全同期
+- 存在しないクラスへの参照が排除
+- review.md Priority #3 完了
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors, 0 warnings
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 15 — Fix all pre-existing lint errors (2026-03-18)
 
 **Directive**: 全8 lint エラー + 1 warning を修正

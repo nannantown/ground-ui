@@ -1,22 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-18T09:00:00+09:00
-- priority: high
+- updated_at: 2026-03-18T10:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 15
+- cycle: 16
 
 ## Task
-全既存 lint エラー (8 errors + 1 warning) を修正する。
+CLAUDE.md の Component Classes セクションを tokens.css の実態と同期する。
 
 ## Why
-MANAGER_BRAIN Q-02 (ESLint) に該当。14サイクル全てで lint エラーが残存していた。
-コード品質の基盤として、lint クリーンは必須条件。
+review.md Priority #3「tokens.css のコンポーネントクラスと実装の整合性確認」。
+8クラスが tokens.css に存在しないのに CLAUDE.md に記載されており、
+逆に Cycle 2-14 で追加した多数のクラスが未記載だった。
 
 ## How
-1. no-emoji.ts: combining characters を regex から除去
-2. interactions/: 未使用変数・import 削除
-3. index.test.ts: 未使用 vi import 削除
+1. エージェントで tokens.css と CLAUDE.md の全クラスを照合
+2. 存在しないクラスを削除、新規/未記載クラスを追加
+3. カテゴリを再編成
 
 ## Acceptance Criteria
-- [x] npm run lint が 0 errors, 0 warnings
-- [x] npm run typecheck が 0 errors
-- [x] npm run build が成功
+- [x] CLAUDE.md に記載の全クラスが tokens.css に存在する
+- [x] Cycle 2-14 で追加したクラスが全て記載されている
+- [x] ビルドが通ること
