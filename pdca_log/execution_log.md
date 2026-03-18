@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 21 — Checkbox unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Checkbox テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Checkbox.test.tsx` 新規作成: 18 テストケース
+  - Rendering: checkbox input, label, no-label
+  - Controlled mode: checked true/false, checkbox-checked class
+  - Uncontrolled mode: defaultChecked, toggle on click
+  - onChange: checked/unchecked callback values
+  - Disabled: disabled attribute, click prevention
+  - ARIA: aria-checked
+  - CSS: .checkbox class on visual element
+  - id: custom id, auto-generated id
+
+### Impact
+- テスト数: 144 → **162** (+18)
+- テストファイル: 6 → **7**
+- Checkbox の controlled/uncontrolled dual mode、disabled のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **162 tests passed**
+
+---
+
 ## Cycle 20 — Toggle unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Toggle テスト追加
