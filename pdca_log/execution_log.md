@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 34 — Image component (C-20) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-20 — Image (レスポンシブ画像) コンポーネント新規作成
+**Status**: DONE
+
+### Changes
+- `src/components/Image.tsx`: Image コンポーネント新規作成
+  - `fit` prop: cover/contain/fill/none (object-fit)
+  - `radius` prop: none/sm/md/lg/full (border-radius トークン使用)
+  - `aspectRatio` prop: CSS aspect-ratio
+  - `fallback` prop: エラー時の代替コンテンツ表示
+  - forwardRef 対応
+- `src/index.ts`: Image export 追加
+- `src/components/Image.test.tsx`: 14 テストケース
+
+### Impact
+- **C-20 Image: ❌ 未実装 → ✅ Done**
+- テスト数: 309 → **323** (+14)
+- テストファイル: 17 → **18**
+- テスト済みコンポーネント: 15 → **16** (Image)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **323 tests passed**
+
+---
+
 ## Cycle 33 — CodeBlock component (C-21) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN C-21 — CodeBlock コンポーネント化

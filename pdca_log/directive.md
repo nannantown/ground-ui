@@ -1,24 +1,24 @@
 # Current Directive
-- updated_at: 2026-03-19T04:00:00+09:00
+- updated_at: 2026-03-19T05:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 33
+- cycle: 34
 
 ## Task
-CodeBlock コンポーネントを新規作成する (既存 CSS クラスのコンポーネント化)。
+Image (レスポンシブ画像) コンポーネントを新規作成する。
 
 ## Why
-MANAGER_BRAIN C-21 「CodeBlock（シンタックスハイライト）」が ⚠️ CSSクラスのみ。
-.code-block CSS は tokens.css に定義済みだが React コンポーネントがなかった。
+MANAGER_BRAIN C-20「Image（レスポンシブ画像）」が ❌ 未実装。
+fit/radius/aspectRatio/fallback を持つ画像コンポーネントはデザインシステムの基本パーツ。
 
 ## How
-1. CodeBlock.tsx: language/title ヘッダー + copy ボタン + pre/code
+1. Image.tsx: fit, radius, aspectRatio, fallback props + forwardRef
 2. index.ts: export 追加
-3. CodeBlock.test.tsx: 12 テストケース
+3. Image.test.tsx: 14 テストケース
 
 ## Acceptance Criteria
-- [x] CodeBlock コンポーネントが作成されている
-- [x] 既存 .code-block CSS クラスを使用している
-- [x] copy ボタンが .btn クラスを使用している
+- [x] Image コンポーネントが作成されている
+- [x] radius が GroundUI トークン (--radius-*) を使用している
+- [x] fallback が onError で表示される
 - [x] 全テストがパスする
 - [x] ビルドが通ること
