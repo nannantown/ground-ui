@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 18 — Accordion unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Accordion テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Accordion.test.tsx` 新規作成: 18 テストケース
+  - Rendering: titles, CSS classes, custom className
+  - Single mode: open/close/toggle, only one at a time
+  - Multiple mode: multiple items open simultaneously
+  - defaultValue: string, array, single mode truncation
+  - Disabled: button disabled attribute, click prevention
+  - ARIA: aria-controls, aria-expanded, role="region"
+  - CSS state: data-state="open"/"closed"
+
+### Impact
+- テスト数: 96 → **114** (+18)
+- テストファイル: 3 → **4**
+- Accordion の single/multiple モード、disabled (Cycle 6 追加) のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **114 tests passed**
+
+---
+
 ## Cycle 17 — Button unit tests (2026-03-18)
 
 **Directive**: MANAGER_BRAIN Q-04 — Unit Test 追加開始 (Button)
