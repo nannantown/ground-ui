@@ -1,23 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-19T08:00:00+09:00
-- priority: low
+- updated_at: 2026-03-19T09:00:00+09:00
+- priority: high
 - status: done
-- cycle: 37
+- cycle: 38
 
 ## Task
-MANAGER_BRAIN.md のスコア表と Change Log を 36 サイクルの実績で更新する。
+セマンティック motion トークン (enter/exit/emphasis) を追加し、アニメーションクラスを接続する。
 
 ## Why
-MANAGER_BRAIN の Completion Score が Cycle 1 時点の 78% のままで、
-36 サイクル分の改善が反映されていなかった。正確な追跡がPDCA の前提条件。
+MANAGER_BRAIN F-12「モーショントークン（enter/exit/emphasis）」が ⚠️ 部分的。
+duration/easing プリミティブはあるが、アニメーション用のセマンティック層がなかった。
+アニメーションクラスがハードコード値を使用していた。
 
 ## How
-1. Completion Score テーブルに Start/Current 列追加
-2. 各 Layer の現在スコアを実態に合わせて更新
-3. Change Log に 4 エントリ追加
-4. Monthly Target に超過達成を記録
+1. tokens.css: --motion-enter/exit/emphasis-duration/ease トークン 6 種追加
+2. tokens.css: 8 アニメーションクラスのハードコード値を motion トークン参照に置換
 
 ## Acceptance Criteria
-- [x] スコアテーブルが最新
-- [x] Change Log が 36 サイクル分を反映
+- [x] 6 motion トークンが定義されている
+- [x] 8 アニメーションクラスが motion トークンを参照している
+- [x] Foundation Layer 12/12 = 100%
 - [x] ビルドが通ること

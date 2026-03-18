@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 38 — F-12 Semantic motion tokens (2026-03-19)
+
+**Directive**: MANAGER_BRAIN F-12 — モーショントークン体系化
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - セマンティック motion トークン 6 種追加:
+    - `--motion-enter-duration` / `--motion-enter-ease` (enter pattern)
+    - `--motion-exit-duration` / `--motion-exit-ease` (exit pattern)
+    - `--motion-emphasis-duration` / `--motion-emphasis-ease` (emphasis pattern)
+  - 8 アニメーションクラスをハードコード値から motion トークン参照に移行:
+    - `.animate-fade-in/scale-in/slide-up/slide-down` → `var(--motion-enter-*)`
+    - `.animate-fade-out/scale-out/slide-out-down/slide-out-up` → `var(--motion-exit-*)`
+
+### Impact
+- **F-12 モーショントークン: ⚠️ 部分的 → ✅ 体系化 Done**
+- **Foundation Layer: 11/12 → 12/12 = 100%**
+- motion トークンを上書きするだけで全アニメーションの速度・イージングを一括変更可能
+- テーマカスタマイズで `--motion-enter-duration: 500ms` とするだけで全エントランスが変化
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 37 — MANAGER_BRAIN progress update (2026-03-19)
 
 **Directive**: MANAGER_BRAIN.md のスコア表と Change Log を実態に合わせて更新

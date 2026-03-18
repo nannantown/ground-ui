@@ -410,6 +410,14 @@
   --transition-base: var(--duration-base) ease;
   --transition-slow: var(--duration-slow) ease;
 
+  /* --- Motion (semantic animation patterns) --- */
+  --motion-enter-duration: var(--duration-slow);
+  --motion-enter-ease: var(--ease-out);
+  --motion-exit-duration: var(--duration-fast);
+  --motion-exit-ease: var(--ease-in);
+  --motion-emphasis-duration: var(--duration-base);
+  --motion-emphasis-ease: var(--ease-spring);
+
   /* --- Z-Index Scale --- */
   --z-base: 0;
   --z-dropdown: 100;
@@ -3322,37 +3330,38 @@
   to { opacity: 0; transform: translateY(-8px); }
 }
 
+/* Enter animations — use --motion-enter-* tokens */
 .animate-fade-in {
-  animation: fade-in 0.3s ease-out forwards;
+  animation: fade-in var(--motion-enter-duration) var(--motion-enter-ease) forwards;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.2s ease-out forwards;
+  animation: scale-in var(--motion-enter-duration) var(--motion-enter-ease) forwards;
 }
 
 .animate-slide-up {
-  animation: slide-up 0.3s ease-out forwards;
+  animation: slide-up var(--motion-enter-duration) var(--motion-enter-ease) forwards;
 }
 
 .animate-slide-down {
-  animation: slide-down 0.2s ease-out forwards;
+  animation: slide-down var(--motion-enter-duration) var(--motion-enter-ease) forwards;
 }
 
-/* Exit animations */
+/* Exit animations — use --motion-exit-* tokens */
 .animate-fade-out {
-  animation: fade-out 0.2s ease-in forwards;
+  animation: fade-out var(--motion-exit-duration) var(--motion-exit-ease) forwards;
 }
 
 .animate-scale-out {
-  animation: scale-out 0.15s ease-in forwards;
+  animation: scale-out var(--motion-exit-duration) var(--motion-exit-ease) forwards;
 }
 
 .animate-slide-out-down {
-  animation: slide-out-down 0.2s ease-in forwards;
+  animation: slide-out-down var(--motion-exit-duration) var(--motion-exit-ease) forwards;
 }
 
 .animate-slide-out-up {
-  animation: slide-out-up 0.15s ease-in forwards;
+  animation: slide-out-up var(--motion-exit-duration) var(--motion-exit-ease) forwards;
 }
 
 /* Stagger delays */
