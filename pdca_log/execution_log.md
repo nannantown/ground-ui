@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 22 — Input unit tests (2026-03-18)
+
+**Directive**: Q-04 継続 — Input テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Input.test.tsx` 新規作成: 20 テストケース
+  - Rendering: textbox role, input class, custom className
+  - Value/onChange: value display, change handler
+  - Placeholder, Disabled
+  - Error: input-error class, aria-invalid
+  - Icons: leftIcon, rightIcon, div wrapper, plain input (no icons)
+  - Ref: forwarding with/without icons
+  - HTML attributes: type, name passthrough
+
+### Impact
+- テスト数: 162 → **182** (+20)
+- テストファイル: 7 → **8**
+- Input の icon wrapper 分岐 (with/without icons) のリグレッション防止
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **182 tests passed**
+
+---
+
 ## Cycle 21 — Checkbox unit tests (2026-03-18)
 
 **Directive**: Q-04 継続 — Checkbox テスト追加
