@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 31 — Modal unit tests (2026-03-19)
+
+**Directive**: Q-04 継続 — Modal テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Modal.test.tsx` 新規作成: 14 テストケース
+  - Modal (11): open/close rendering, children, ARIA (aria-modal, aria-label), Escape key, close button (show/hide/click/CSS classes), modal-content CSS class
+  - ModalHeader (1), ModalBody (1), ModalFooter (1): children rendering
+
+### Impact
+- テスト数: 272 → **286** (+14)
+- テストファイル: 14 → **15**
+- **13 コンポーネント テスト済み** — Cycle 10 の close ボタン .btn 移行を検証
+- Modal の close button が .btn .btn-ghost .btn-icon クラスを使用していることをテストで担保
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **286 tests passed**
+
+---
+
 ## Cycle 30 — ToolbarButton unit tests (2026-03-19)
 
 **Directive**: Q-04 継続 — ToolbarButton テスト追加

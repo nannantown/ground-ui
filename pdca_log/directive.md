@@ -1,22 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-19T01:00:00+09:00
+- updated_at: 2026-03-19T02:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 30
+- cycle: 31
 
 ## Task
-ToolbarButton コンポーネントの unit test を追加する。
+Modal コンポーネントの unit test を追加する。
 
 ## Why
-Q-04 Unit Test 追加継続。ToolbarButton は Cycle 7 で CSS クラス化 + disabled 追加した。
-リファクタリング結果が正しく動作することをテストで検証。
+Q-04 Unit Test 追加継続。Modal は Cycle 10 で close ボタンを .btn クラスに移行した。
+open/close 動作、Escape キー、close ボタン CSS クラス、ARIA をテストで検証。
 
 ## How
-1. src/components/ToolbarButton.test.tsx 新規作成
-2. 9 テストケース: rendering, CSS class, onClick, disabled, aria-label, style
+1. src/components/Modal.test.tsx 新規作成
+2. 14 テストケース: Modal (11) + ModalHeader/Body/Footer (3)
 3. vitest + @testing-library/react 使用
 
 ## Acceptance Criteria
-- [x] ToolbarButton.test.tsx が作成されている
-- [x] 全 9 テストがパスする
+- [x] Modal.test.tsx が作成されている
+- [x] 全 14 テストがパスする
 - [x] typecheck / lint / build が通ること
