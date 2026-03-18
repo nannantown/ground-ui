@@ -1,21 +1,23 @@
 # Current Directive
-- updated_at: 2026-03-18T21:00:00+09:00
-- priority: high
+- updated_at: 2026-03-18T22:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 27
+- cycle: 28
 
 ## Task
-ブレークポイントトークンに 2xl (1536px) と 3xl (1792px) を追加し、6段階にする。
+エグジットアニメーション (fade-out, scale-out, slide-out-down, slide-out-up) を追加する。
 
 ## Why
-MANAGER_BRAIN F-11「ブレークポイント（レスポンシブ）」が ⚠️ 4段階のまま。
-6段階 (sm/md/lg/xl/2xl/3xl) にすることで Foundation Layer を 100% に近づける。
+MANAGER_BRAIN A-02「エグジットアニメーション」が ⚠️ 一部のみ。
+fade-in/scale-in/slide-up/slide-down のエントランスに対応するエグジットが必要。
+overlay/modal/toast の退場時に使用。
 
 ## How
-1. tokens.css: --bp-2xl: 1536px; --bp-3xl: 1792px; 追加
-2. tokens.css: レスポンシブ hide ユーティリティ追加 (.hide-below-2xl, .hide-2xl-up)
+1. tokens.css: @keyframes scale-out, slide-out-down, slide-out-up 追加
+2. tokens.css: .animate-fade-out, .animate-scale-out, .animate-slide-out-down, .animate-slide-out-up クラス追加
+3. CLAUDE.md Animations セクション更新
 
 ## Acceptance Criteria
-- [x] --bp-2xl, --bp-3xl が tokens.css に定義されている
-- [x] レスポンシブユーティリティが追加されている
+- [x] 4 エグジットアニメーション keyframes + classes が定義されている
+- [x] CLAUDE.md が更新されている
 - [x] ビルドが通ること

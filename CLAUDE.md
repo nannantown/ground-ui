@@ -244,7 +244,9 @@ All component classes are defined in `tokens.css` alongside the tokens:
 **Forms**: `.form-group`, `.form-label`, `.form-help`, `.form-error`
 **Divider**: `.divider`
 **Utilities**: `.sr-only`, `.sticky-top`, `.horizontal-scroll`
-**Animations**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`, `.animate-spin`, `.stagger-1` ~ `.stagger-6`
+**Animations (enter)**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`
+**Animations (exit)**: `.animate-fade-out`, `.animate-scale-out`, `.animate-slide-out-down`, `.animate-slide-out-up`
+**Animations (utility)**: `.animate-spin`, `.stagger-1` ~ `.stagger-6`
 
 ### Spacing System
 

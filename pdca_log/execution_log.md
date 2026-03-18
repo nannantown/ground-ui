@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 28 — A-02 Exit animations (2026-03-18)
+
+**Directive**: MANAGER_BRAIN A-02 — エグジットアニメーション追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - `@keyframes scale-out` + `@keyframes slide-out-down` + `@keyframes slide-out-up` 追加
+  - `.animate-fade-out` + `.animate-scale-out` + `.animate-slide-out-down` + `.animate-slide-out-up` クラス追加
+  - エントランスの対になる 4 エグジット (fade-out, scale-out, slide-out-down, slide-out-up)
+- `CLAUDE.md`: Animations セクションを enter/exit/utility に再編
+
+### Impact
+- **Layer 4 Animation A-02: ⚠️ 一部のみ → ✅ 4 エグジットアニメーション**
+- overlay/modal/toast の退場時に CSS クラスベースのアニメーションが使用可能
+- prefers-reduced-motion 対応は既存の global ルールで自動適用
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 27 — F-11 Breakpoints 2xl + 3xl 追加 (2026-03-18)
 
 **Directive**: MANAGER_BRAIN F-11 — ブレークポイント 4段階→6段階
