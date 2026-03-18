@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 33 — CodeBlock component (C-21) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-21 — CodeBlock コンポーネント化
+**Status**: DONE
+
+### Changes
+- `src/components/CodeBlock.tsx`: CodeBlock コンポーネント新規作成
+  - language/title ラベル付きヘッダー
+  - Copy to clipboard ボタン (copied 状態フィードバック付き)
+  - copyable prop (default true)
+  - 既存 .code-block CSS クラスを使用
+- `src/index.ts`: CodeBlock export 追加
+- `src/components/CodeBlock.test.tsx`: 12 テストケース
+
+### Impact
+- **C-21 CodeBlock: ⚠️ CSSクラスのみ → ✅ コンポーネント化 Done**
+- テスト数: 297 → **309** (+12)
+- テストファイル: 16 → **17**
+- テスト済みコンポーネント: 14 → **15** (CodeBlock)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **309 tests passed**
+
+---
+
 ## Cycle 32 — KBD component (new) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN C-22 — KBD コンポーネント新規作成

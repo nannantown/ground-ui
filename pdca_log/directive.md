@@ -1,25 +1,24 @@
 # Current Directive
-- updated_at: 2026-03-19T03:00:00+09:00
+- updated_at: 2026-03-19T04:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 32
+- cycle: 33
 
 ## Task
-KBD (キーボードショートカット表示) コンポーネントを新規作成する。
+CodeBlock コンポーネントを新規作成する (既存 CSS クラスのコンポーネント化)。
 
 ## Why
-MANAGER_BRAIN C-22 「KBD（キーボードショートカット表示）」が ❌ 未実装。
-<kbd> 要素ベースの軽量コンポーネントで、ドキュメントや UI のキーボードヘルプに使用。
+MANAGER_BRAIN C-21 「CodeBlock（シンタックスハイライト）」が ⚠️ CSSクラスのみ。
+.code-block CSS は tokens.css に定義済みだが React コンポーネントがなかった。
 
 ## How
-1. tokens.css: .kbd, .kbd-sm, .kbd-group, .kbd-separator CSS クラス追加
-2. KBD.tsx: KBD + KBDGroup コンポーネント作成
-3. index.ts: export 追加
-4. KBD.test.tsx: 11 テストケース
-5. CLAUDE.md: KBD セクション追加
+1. CodeBlock.tsx: language/title ヘッダー + copy ボタン + pre/code
+2. index.ts: export 追加
+3. CodeBlock.test.tsx: 12 テストケース
 
 ## Acceptance Criteria
-- [x] KBD + KBDGroup コンポーネントが作成されている
-- [x] CSS クラスが tokens.css に定義されている
+- [x] CodeBlock コンポーネントが作成されている
+- [x] 既存 .code-block CSS クラスを使用している
+- [x] copy ボタンが .btn クラスを使用している
 - [x] 全テストがパスする
 - [x] ビルドが通ること
