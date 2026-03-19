@@ -1,12 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T12:00:00+09:00
+- updated_at: 2026-03-20T13:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 66
+- cycle: 67
 
 ## Task
-ListTile コンポーネントの unit test を追加する。
+SegmentedControl コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] ListTile.test.tsx — 11 テスト
+- [x] SegmentedControl.test.tsx — 10 テスト
 - [x] ビルドが通ること

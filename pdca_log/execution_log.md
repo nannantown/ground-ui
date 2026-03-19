@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 67 — SegmentedControl unit tests (2026-03-20)
+
+**Directive**: Q-04 — SegmentedControl テスト追加
+**Status**: DONE
+
+- `SegmentedControl.test.tsx`: 10 tests (radiogroup, active, aria-checked, onChange, disabled, aria-label)
+- テスト: 558 → **568** (+10), テスト済み: 35 → **36**, ファイル: 39 → **40**
+- typecheck: 0 / lint: 0 / test: **568 passed**
+
+---
+
 ## Cycle 66 — ListTile unit tests (2026-03-20)
 
 **Directive**: Q-04 — ListTile テスト追加
