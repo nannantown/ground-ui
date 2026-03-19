@@ -38,7 +38,7 @@ ground-ui/
 ├── src/
 │   ├── css/
 │   │   └── tokens.css              # CSS tokens (3-layer) + component classes + @font-face
-│   ├── components/                  # React components (55 components + 11 layout)
+│   ├── components/                  # React components (61 components + 13 layout)
 │   │   ├── Accordion.tsx
 │   │   ├── Alert.tsx
 │   │   ├── AppBar.tsx
@@ -49,10 +49,12 @@ ground-ui/
 │   │   ├── BottomSheet.tsx
 │   │   ├── Breadcrumb.tsx
 │   │   ├── Button.tsx
+│   │   ├── Calendar.tsx
 │   │   ├── Carousel.tsx
 │   │   ├── CascadingMenu.tsx
 │   │   ├── Checkbox.tsx
 │   │   ├── Chip.tsx
+│   │   ├── CodeBlock.tsx
 │   │   ├── ConfirmDialog.tsx
 │   │   ├── CrossFade.tsx
 │   │   ├── DataTable.tsx
@@ -62,9 +64,12 @@ ground-ui/
 │   │   ├── DragAndDrop.tsx
 │   │   ├── DropdownMenu.tsx
 │   │   ├── EmptyState.tsx
+│   │   ├── FileUpload.tsx
 │   │   ├── Form.tsx
 │   │   ├── FormField.tsx
+│   │   ├── Image.tsx
 │   │   ├── Input.tsx
+│   │   ├── KBD.tsx
 │   │   ├── ListTile.tsx
 │   │   ├── Modal.tsx
 │   │   ├── NavigationRail.tsx
@@ -92,9 +97,10 @@ ground-ui/
 │   │   ├── Toggle.tsx
 │   │   ├── ToolbarButton.tsx
 │   │   ├── Tooltip.tsx
+│   │   ├── Tree.tsx
 │   │   ├── Typography.tsx
 │   │   ├── VirtualList.tsx
-│   │   └── layout/                  # Layout primitives (11 components)
+│   │   └── layout/                  # Layout primitives (13 components)
 │   │       ├── AppShell.tsx
 │   │       ├── AspectRatio.tsx
 │   │       ├── Center.tsx
@@ -105,6 +111,8 @@ ground-ui/
 │   │       ├── Spacer.tsx
 │   │       ├── SplitView.tsx
 │   │       ├── Stack.tsx
+│   │       ├── Sticky.tsx
+│   │       ├── Masonry.tsx
 │   │       └── VisuallyHidden.tsx
 │   ├── tokens/                      # Token definitions
 │   │   ├── tokens.json              # ** Single Source of Truth for all tokens **
@@ -242,6 +250,9 @@ All component classes are defined in `tokens.css` alongside the tokens:
 **Layout**: `.app-shell`, `.split-view`, `.split-view-panel`, `.split-view-divider`, `.container-*`, `.section-*`, `.scroll-area`, `.bento-grid`, `.masonry-*`, `.stack`, `.cluster`, `.center`
 **Typography**: `.code-block`, `.blockquote`, `.prose`
 **KBD**: `.kbd`, `.kbd-sm`, `.kbd-group`, `.kbd-separator`
+**Tree**: `.tree`, `.tree-item`, `.tree-item-selected`, `.tree-item-icon`, `.tree-item-label`
+**FileUpload**: `.file-upload`, `.file-upload-active`, `.file-upload-disabled`, `.file-upload-label`, `.file-upload-hint`
+**Neomorphism**: `.neo`, `.neo-sm`, `.neo-lg`, `.neo-inset`
 **Forms**: `.form-group`, `.form-label`, `.form-help`, `.form-error`
 **Divider**: `.divider`
 **Utilities**: `.sr-only`, `.sticky-top`, `.horizontal-scroll`

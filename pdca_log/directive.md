@@ -1,20 +1,18 @@
 # Current Directive
-- updated_at: 2026-03-19T24:00:00+09:00
-- priority: medium
+- updated_at: 2026-03-20T01:00:00+09:00
+- priority: low
 - status: done
-- cycle: 54
+- cycle: 55
 
 ## Task
-Tree (ツリービュー) コンポーネントを新規作成する。
+CLAUDE.md を 9 新規コンポーネントで更新する。
 
 ## Why
-MANAGER_BRAIN C-47「Tree（ツリービュー）」が ❌ 未実装。
-ファイルブラウザ、メニュー階層、カテゴリツリーに使用。
+Cycle 32-54 で 9 新規コンポーネントを追加したが CLAUDE.md のディレクトリ構造と
+Component Classes が未反映。ドキュメントの正確性を維持。
 
 ## Acceptance Criteria
-- [x] Tree コンポーネントが作成されている
-- [x] CSS クラスが tokens.css に定義されている
-- [x] expand/collapse + selection が動作する
-- [x] ARIA tree pattern 実装
-- [x] 全テストがパスする
+- [x] Directory Structure に全新規ファイルが記載
+- [x] コンポーネント数が 61+13 に更新
+- [x] Component Classes に Tree, FileUpload, Neomorphism 追加
 - [x] ビルドが通ること
