@@ -5,6 +5,33 @@
 
 ---
 
+## Cycle 47 — RadioGroup unit tests (2026-03-19)
+
+**Directive**: Q-04 継続 — RadioGroup テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/RadioGroup.test.tsx` 新規作成: 12 テストケース
+  - Rendering: radiogroup role, radio inputs, labels
+  - Controlled: checked value, onChange callback
+  - Uncontrolled: defaultValue, toggle behavior
+  - Disabled: group-level, item-level
+  - Name: shared name, auto-generated
+  - CSS: .radio class, .radio-checked class
+
+### Impact
+- テスト数: 374 → **386** (+12)
+- テストファイル: 22 → **23**
+- **19 コンポーネント テスト済み**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **386 tests passed**
+
+---
+
 ## Cycle 46 — Q-08 Bundle size audit (2026-03-19)
 
 **Directive**: MANAGER_BRAIN Q-08 — パフォーマンス監査 (bundle size)

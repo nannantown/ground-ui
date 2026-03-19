@@ -1,23 +1,21 @@
 # Current Directive
-- updated_at: 2026-03-19T16:00:00+09:00
+- updated_at: 2026-03-19T17:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 46
+- cycle: 47
 
 ## Task
-バンドルサイズの監査を実施し、結果をレポートする。
+RadioGroup コンポーネントの unit test を追加する。
 
 ## Why
-MANAGER_BRAIN Q-08「パフォーマンス監査（bundle size）」が ❌ 未実施。
-tree-shaking 効果確認とサイズの妥当性を検証。
+Q-04 継続。RadioGroup は Context ベースの controlled/uncontrolled フォームコンポーネント。
+hidden input + visual radio の二重構造をテストで検証。
 
 ## How
-1. npm run build の出力サイズを収集
-2. gzip サイズを計測
-3. bundle_audit.md にレポート作成
+1. src/components/RadioGroup.test.tsx 新規作成
+2. 12 テストケース (container query で hidden input を取得)
 
 ## Acceptance Criteria
-- [x] 全エントリポイントのサイズが計測されている
-- [x] gzip サイズが算出されている
-- [x] tree-shaking 対応状況が確認されている
-- [x] PASS/FAIL 判定がある
+- [x] RadioGroup.test.tsx が作成されている
+- [x] 全 12 テストがパスする
+- [x] typecheck / lint / build が通ること
