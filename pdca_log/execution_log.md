@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 65 — Typography unit tests (2026-03-20)
+
+**Directive**: Q-04 — Typography テスト追加
+**Status**: DONE
+
+- `Typography.test.tsx`: 18 tests (variants→tags, polymorphic as, color, weight, align, truncate, overline, ref)
+- テスト: 529 → **547** (+18), テスト済み: 33 → **34**, ファイル: 37 → **38**
+- typecheck: 0 / lint: 0 / test: **547 passed**
+
+---
+
 ## Cycle 64 — Skeleton + EmptyState tests (2026-03-20)
 
 **Directive**: Q-04 — Skeleton + EmptyState テスト追加

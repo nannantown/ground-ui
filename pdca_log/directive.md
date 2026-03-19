@@ -1,13 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T10:00:00+09:00
+- updated_at: 2026-03-20T11:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 64
+- cycle: 65
 
 ## Task
-Skeleton + EmptyState のテストを追加する。
+Typography コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] Skeleton.test.tsx — 9 テスト
-- [x] EmptyState.test.tsx — 7 テスト
+- [x] Typography.test.tsx — 18 テスト (polymorphic, variants, color, weight, align, truncate)
 - [x] ビルドが通ること
