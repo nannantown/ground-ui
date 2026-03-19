@@ -1,14 +1,13 @@
 # Current Directive
-- updated_at: 2026-03-20T09:00:00+09:00
+- updated_at: 2026-03-20T10:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 63
+- cycle: 64
 
 ## Task
-Spinner + ProgressBar のテストを追加し、500 テスト突破する。
+Skeleton + EmptyState のテストを追加する。
 
 ## Acceptance Criteria
-- [x] Spinner.test.tsx — 5 テスト
-- [x] ProgressBar.test.tsx — 12 テスト (ARIA, clamp, sizes, variants, label)
-- [x] 500 テスト突破
+- [x] Skeleton.test.tsx — 9 テスト
+- [x] EmptyState.test.tsx — 7 テスト
 - [x] ビルドが通ること

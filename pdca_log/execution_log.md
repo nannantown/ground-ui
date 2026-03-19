@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 64 — Skeleton + EmptyState tests (2026-03-20)
+
+**Directive**: Q-04 — Skeleton + EmptyState テスト追加
+**Status**: DONE
+
+- `Skeleton.test.tsx`: 9 tests (variants, circle, size, count, last item 60%)
+- `EmptyState.test.tsx`: 7 tests (title, description, icon, action slot)
+- テスト: 513 → **529** (+16), テスト済み: 31 → **33**, ファイル: 35 → **37**
+- typecheck: 0 / lint: 0 / test: **529 passed**
+
+---
+
 ## Cycle 63 — Spinner + ProgressBar tests — 500+ milestone (2026-03-20)
 
 **Directive**: Q-04 — Spinner + ProgressBar テスト追加 → 500 テスト突破
