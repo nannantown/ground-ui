@@ -3373,6 +3373,50 @@
 .stagger-6 { animation-delay: 0.3s; }
 
 /* ============================================
+   Micro-interactions (press feedback)
+   ============================================ */
+
+/* Scale down on press — apply to buttons, cards, chips */
+.press-scale:active:not(:disabled) {
+  transform: scale(0.97);
+  transition-duration: 50ms;
+}
+
+/* Opacity dim on press */
+.press-dim:active:not(:disabled) {
+  opacity: 0.8;
+  transition-duration: 50ms;
+}
+
+/* Combined press feedback (scale + slight dim) */
+.press-feedback:active:not(:disabled) {
+  transform: scale(0.97);
+  opacity: 0.9;
+  transition-duration: 50ms;
+}
+
+/* Ripple — CSS-only centered ripple on :active */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--p-white-15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--motion-emphasis-duration) var(--motion-emphasis-ease);
+  pointer-events: none;
+}
+
+.ripple:active::after {
+  opacity: 1;
+  transition-duration: 50ms;
+}
+
+/* ============================================
    Focus
    ============================================ */
 

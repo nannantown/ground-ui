@@ -248,6 +248,7 @@ All component classes are defined in `tokens.css` alongside the tokens:
 **Animations (enter)**: `.animate-fade-in`, `.animate-scale-in`, `.animate-slide-up`, `.animate-slide-down`
 **Animations (exit)**: `.animate-fade-out`, `.animate-scale-out`, `.animate-slide-out-down`, `.animate-slide-out-up`
 **Animations (utility)**: `.animate-spin`, `.stagger-1` ~ `.stagger-6`
+**Micro-interactions**: `.press-scale`, `.press-dim`, `.press-feedback`, `.ripple`
 
 ### Spacing System
 

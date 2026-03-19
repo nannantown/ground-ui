@@ -5,6 +5,32 @@
 
 ---
 
+## Cycle 40 — A-03 Micro-interactions: press + ripple (2026-03-19)
+
+**Directive**: MANAGER_BRAIN A-03 — マイクロインタラクション press/ripple 追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: 4 マイクロインタラクション CSS クラス追加
+  - `.press-scale` — :active で scale(0.97) 縮小
+  - `.press-dim` — :active で opacity 0.8
+  - `.press-feedback` — scale + opacity 複合
+  - `.ripple` — CSS-only centered ripple (::after pseudo-element + radial-gradient)
+  - 全て `:not(:disabled)` ガード付き、transition-duration: 50ms で即時反応
+- `CLAUDE.md`: Micro-interactions セクション追加
+
+### Impact
+- **A-03 マイクロインタラクション: ⚠️ hover中心 → ✅ press + ripple 追加**
+- `.press-scale` をボタンやカードに追加するだけでタクタイルフィードバック付与
+- `.ripple` で Material Design 風のリップルエフェクト (CSS-only)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 39 — Select unit tests (2026-03-19)
 
 **Directive**: Q-04 継続 — Select テスト追加

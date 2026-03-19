@@ -1,22 +1,24 @@
 # Current Directive
-- updated_at: 2026-03-19T09:00:00+09:00
+- updated_at: 2026-03-19T10:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 39
+- cycle: 40
 
 ## Task
-Select コンポーネントの unit test を追加する。
+マイクロインタラクション CSS ユーティリティ (press-scale, press-dim, press-feedback, ripple) を追加する。
 
 ## Why
-Q-04 継続。Select はカスタムドロップダウンで最も複雑なフォーム系コンポーネント。
-controlled/uncontrolled、keyboard nav、disabled option、hidden input をテストで担保。
+MANAGER_BRAIN A-03「マイクロインタラクション」が ⚠️ hover中心。
+press/ripple のフィードバックユーティリティがなかった。
 
 ## How
-1. src/components/Select.test.tsx 新規作成
-2. 19 テストケース + scrollIntoView mock
-3. vitest + @testing-library/react 使用
+1. tokens.css: .press-scale, .press-dim, .press-feedback, .ripple クラス追加
+2. :active:not(:disabled) で適用、50ms の即時反応
+3. .ripple は ::after + radial-gradient で CSS-only 実装
+4. CLAUDE.md 更新
 
 ## Acceptance Criteria
-- [x] Select.test.tsx が作成されている
-- [x] 全 19 テストがパスする
-- [x] typecheck / lint / build が通ること
+- [x] 4 マイクロインタラクションクラスが定義されている
+- [x] prefers-reduced-motion 対応 (既存 global ルールで自動)
+- [x] CLAUDE.md が更新されている
+- [x] ビルドが通ること
