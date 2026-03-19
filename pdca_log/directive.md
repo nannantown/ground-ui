@@ -1,15 +1,14 @@
 # Current Directive
-- updated_at: 2026-03-21T03:00:00+09:00
+- updated_at: 2026-03-21T04:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 81
+- cycle: 82
 
 ## Task
-Drawer + CrossFade + Form テスト追加。58 コンポーネント (78%)。
+AspectRatio + Spacer テスト追加。60 コンポーネント (81%)。80% 突破。
 
 ## Acceptance Criteria
-- [x] Drawer.test.tsx — 5 テスト
-- [x] CrossFade.test.tsx — 4 テスト
-- [x] Form.test.tsx — 4 テスト
-- [x] 58 コンポーネント (78%)
+- [x] AspectRatio.test.tsx — 5 テスト
+- [x] Spacer.test.tsx — 5 テスト
+- [x] 60/74 テスト済み (81%)
 - [x] ビルドが通ること

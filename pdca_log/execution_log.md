@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 82 — AspectRatio + Spacer layout tests — 60 tested (81%) (2026-03-21)
+
+**Directive**: Q-04 — AspectRatio + Spacer テスト → 60 コンポーネント (81%)
+**Status**: DONE
+
+- `layout/AspectRatio.test.tsx`: 5 tests (children, preset classes, numeric, className)
+- `layout/Spacer.test.tsx`: 5 tests (flex, aria-hidden, vertical/horizontal size, className)
+- テスト: 713 → **723** (+10), テスト済み: 58 → **60** (81%), ファイル: 62 → **64**
+- typecheck: 0 / lint: 0 / test: **723 passed**
+
+---
+
 ## Cycle 81 — Drawer + CrossFade + Form tests (2026-03-21)
 
 **Directive**: Q-04 — Drawer + CrossFade + Form テスト → 58 コンポーネント (78%)
