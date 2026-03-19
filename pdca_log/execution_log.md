@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 69 — SearchBar + Slider tests — 50%+ coverage (2026-03-20)
+
+**Directive**: Q-04 — SearchBar + Slider テスト追加 → テスト済み 50% 突破
+**Status**: DONE
+
+- `SearchBar.test.tsx`: 7 tests (input, value, onChange, placeholder, onSubmit, disabled)
+- `Slider.test.tsx`: 7 tests (slider role, ARIA values, label, disabled, CSS class)
+- テスト: 579 → **593** (+14), テスト済み: 37 → **39** (53%), ファイル: 41 → **43**
+- typecheck: 0 / lint: 0 / test: **593 passed**
+
+---
+
 ## Cycle 68 — ConfirmDialog unit tests (2026-03-20)
 
 **Directive**: Q-04 — ConfirmDialog テスト追加

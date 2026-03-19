@@ -1,12 +1,14 @@
 # Current Directive
-- updated_at: 2026-03-20T14:00:00+09:00
+- updated_at: 2026-03-20T15:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 68
+- cycle: 69
 
 ## Task
-ConfirmDialog コンポーネントの unit test を追加する。
+SearchBar + Slider テストを追加し、テスト済み 50% を突破する。
 
 ## Acceptance Criteria
-- [x] ConfirmDialog.test.tsx — 11 テスト
+- [x] SearchBar.test.tsx — 7 テスト
+- [x] Slider.test.tsx — 7 テスト
+- [x] テスト済み 39/74 (53%) — 50% 突破
 - [x] ビルドが通ること
