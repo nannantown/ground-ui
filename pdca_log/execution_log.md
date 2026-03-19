@@ -5,6 +5,19 @@
 
 ---
 
+## Cycle 85 — DragAndDrop + TimePicker + DatePicker — 70 tested (95%) (2026-03-20)
+
+**Directive**: Q-04 — 3 コンポーネント → 95% カバレッジ
+**Status**: DONE
+
+- `DragAndDrop.test.tsx`: 5 tests (DragItem render, draggable, disabled; DropZone render)
+- `TimePicker.test.tsx`: 4 tests (input, value, disabled, placeholder)
+- `DatePicker.test.tsx`: 4 tests (input, formatted value, disabled, placeholder)
+- テスト: 750 → **763** (+13), テスト済み: 67 → **70** (95%), ファイル: 71 → **74**
+- typecheck: 0 / lint: 0 / test: **763 passed**
+
+---
+
 ## Cycle 84 — SplitView + AppShell + Dismissible + BottomSheet — 750 tests, 67 tested (91%) (2026-03-20)
 
 **Directive**: Q-04 — 4 コンポーネント一括テスト → 90%+ カバレッジ
