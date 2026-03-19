@@ -5,6 +5,30 @@
 
 ---
 
+## Cycle 41 — A-07 Spring physics tokens (2026-03-19)
+
+**Directive**: MANAGER_BRAIN A-07 — スプリング物理トークン化
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`: 3 スプリングイージングバリエーション追加
+  - `--ease-spring-gentle`: cubic-bezier(0.34, 1.56, 0.64, 1) — 穏やかなバウンス
+  - `--ease-spring-bouncy`: cubic-bezier(0.68, -0.55, 0.27, 1.55) — 強いバウンス
+  - `--ease-spring-snappy`: cubic-bezier(0.19, 1, 0.22, 1) — 素早くスナップ
+- 既存: `--ease-spring` (default) は変更なし
+
+### Impact
+- **A-07 スプリング物理: ⚠️ interactionsのみ → ✅ トークン化完了**
+- 4 段階のスプリングイージング (default/gentle/bouncy/snappy) が CSS custom property で使用可能
+- `transition: transform 300ms var(--ease-spring-bouncy)` のように指定可能
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 40 — A-03 Micro-interactions: press + ripple (2026-03-19)
 
 **Directive**: MANAGER_BRAIN A-03 — マイクロインタラクション press/ripple 追加

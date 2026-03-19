@@ -1,24 +1,20 @@
 # Current Directive
-- updated_at: 2026-03-19T10:00:00+09:00
+- updated_at: 2026-03-19T11:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 40
+- cycle: 41
 
 ## Task
-マイクロインタラクション CSS ユーティリティ (press-scale, press-dim, press-feedback, ripple) を追加する。
+スプリング物理イージングのバリエーションを CSS トークンとして追加する。
 
 ## Why
-MANAGER_BRAIN A-03「マイクロインタラクション」が ⚠️ hover中心。
-press/ripple のフィードバックユーティリティがなかった。
+MANAGER_BRAIN A-07「スプリング物理」が ⚠️ interactionsのみ。
+--ease-spring が 1 種類しかなく、バウンス感の調整がトークンレベルでできなかった。
 
 ## How
-1. tokens.css: .press-scale, .press-dim, .press-feedback, .ripple クラス追加
-2. :active:not(:disabled) で適用、50ms の即時反応
-3. .ripple は ::after + radial-gradient で CSS-only 実装
-4. CLAUDE.md 更新
+1. tokens.css: --ease-spring-gentle/bouncy/snappy の 3 バリエーション追加
+2. 既存 --ease-spring (default) は変更なし
 
 ## Acceptance Criteria
-- [x] 4 マイクロインタラクションクラスが定義されている
-- [x] prefers-reduced-motion 対応 (既存 global ルールで自動)
-- [x] CLAUDE.md が更新されている
+- [x] 3 スプリングバリエーションが定義されている
 - [x] ビルドが通ること
