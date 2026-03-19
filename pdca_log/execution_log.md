@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 66 — ListTile unit tests (2026-03-20)
+
+**Directive**: Q-04 — ListTile テスト追加
+**Status**: DONE
+
+- `ListTile.test.tsx`: 11 tests (title, subtitle, leading/trailing, onClick, keyboard, disabled, ref)
+- テスト: 547 → **558** (+11), テスト済み: 34 → **35**, ファイル: 38 → **39**
+- typecheck: 0 / lint: 0 / test: **558 passed**
+
+---
+
 ## Cycle 65 — Typography unit tests (2026-03-20)
 
 **Directive**: Q-04 — Typography テスト追加

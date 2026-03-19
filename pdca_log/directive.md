@@ -1,12 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T11:00:00+09:00
+- updated_at: 2026-03-20T12:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 65
+- cycle: 66
 
 ## Task
-Typography コンポーネントの unit test を追加する。
+ListTile コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] Typography.test.tsx — 18 テスト (polymorphic, variants, color, weight, align, truncate)
+- [x] ListTile.test.tsx — 11 テスト
 - [x] ビルドが通ること
