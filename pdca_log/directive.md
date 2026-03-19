@@ -1,17 +1,18 @@
 # Current Directive
-- updated_at: 2026-03-20T02:00:00+09:00
+- updated_at: 2026-03-20T03:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 56
+- cycle: 57
 
 ## Task
-Pagination コンポーネントの unit test を追加する。
+BottomNav コンポーネントの unit test を追加する。
 
 ## Why
-Q-04 継続。Pagination は Cycle 4 で :focus-visible を追加した。
-ページ切り替え、ellipsis、prev/next disabled をテスト。
+Q-04 継続。BottomNav は Cycle 13 で disabled + focus-visible を修正した。
+これで 25 コンポーネントテスト到達。
 
 ## Acceptance Criteria
-- [x] Pagination.test.tsx が作成されている
-- [x] 全 10 テストがパスする
+- [x] BottomNav.test.tsx が作成されている
+- [x] disabled (Cycle 13 追加) がテストされている
+- [x] 全 12 テストがパスする
 - [x] ビルドが通ること

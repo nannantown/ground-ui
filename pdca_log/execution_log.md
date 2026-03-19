@@ -5,6 +5,24 @@
 
 ---
 
+## Cycle 57 — BottomNav unit tests — 25 components tested (2026-03-20)
+
+**Directive**: Q-04 — BottomNav テスト追加 (25 コンポーネント到達)
+**Status**: DONE
+
+### Changes
+- `src/components/BottomNav.test.tsx` 新規作成: 12 テストケース
+  - nav + aria-label, buttons, labels, bottom-nav-item class
+  - aria-current="page", onChange, disabled (Cycle 13), hideLabels, badge, className
+
+### Impact
+- テスト: 442 → **454** (+12), テスト済み: 24 → **25**, テストファイル: 28 → **29**
+
+### Build Verification
+- typecheck: 0 / lint: 0 / build: SUCCESS / test: **454 passed**
+
+---
+
 ## Cycle 56 — Pagination unit tests (2026-03-19)
 
 **Directive**: Q-04 継続 — Pagination テスト追加
