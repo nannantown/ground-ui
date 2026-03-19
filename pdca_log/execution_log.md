@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 49 — Q-07 Accessibility audit + Button/Checkbox fixes (2026-03-19)
+
+**Directive**: MANAGER_BRAIN Q-07 — アクセシビリティ監査 (WCAG AA) + 即時修正
+**Status**: DONE
+
+### Changes
+- `pdca_log/a11y_audit.md` 新規作成: 10 コンポーネント × 5 基準の監査レポート
+- `src/components/Button.tsx`: `aria-busy={loading}` 追加 (WCAG 4.1.2)
+- `src/components/Checkbox.tsx`: visual span から重複 `aria-disabled` 削除 (aria-hidden との矛盾解消)
+- `src/components/Button.test.tsx`: aria-busy テスト 2 件追加
+
+### Audit Results
+- 11 issues found (5 critical, 4 important, 2 minor)
+- 6/10 components Grade A/A-
+- Select: 最優秀 (full combobox pattern)
+- Critical priorities: Tabs ARIA pattern, DropdownMenu menu pattern, Modal focus trap
+
+### Impact
+- **Q-07 アクセシビリティ監査: ⚠️ 色対比のみ → ✅ WCAG AA 監査完了 + 即時修正 2 件**
+- テスト数: 395 → **397** (+2)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **397 tests passed**
+
+---
+
 ## Cycle 48 — Divider unit tests + 20 component milestone (2026-03-19)
 
 **Directive**: Q-04 — Divider テスト追加 (20 コンポーネント到達)

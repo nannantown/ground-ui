@@ -69,6 +69,16 @@ describe('Button', () => {
     expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(true)
   })
 
+  it('sets aria-busy when loading', () => {
+    render(<Button loading>Save</Button>)
+    expect(screen.getByRole('button').getAttribute('aria-busy')).toBe('true')
+  })
+
+  it('does not set aria-busy when not loading', () => {
+    render(<Button>Save</Button>)
+    expect(screen.getByRole('button').getAttribute('aria-busy')).toBeNull()
+  })
+
   it('shows spinner SVG when loading', () => {
     render(<Button loading>Save</Button>)
     const btn = screen.getByRole('button')

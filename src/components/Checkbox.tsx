@@ -81,7 +81,6 @@ export function Checkbox({
           isChecked && 'checkbox-checked',
         )}
         aria-hidden="true"
-        aria-disabled={disabled || undefined}
       >
         <svg
           viewBox="0 0 24 24"
