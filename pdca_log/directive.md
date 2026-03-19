@@ -1,18 +1,18 @@
 # Current Directive
-- updated_at: 2026-03-20T03:00:00+09:00
+- updated_at: 2026-03-20T04:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 57
+- cycle: 58
 
 ## Task
-BottomNav コンポーネントの unit test を追加する。
+Toast コンポーネントの unit test を追加する。
 
 ## Why
-Q-04 継続。BottomNav は Cycle 13 で disabled + focus-visible を修正した。
-これで 25 コンポーネントテスト到達。
+Q-04 継続。Toast は Cycle 9 で dismiss ボタンを .btn に移行した。
+Provider/useToast hook、dismiss、variant をテストで検証。
 
 ## Acceptance Criteria
-- [x] BottomNav.test.tsx が作成されている
-- [x] disabled (Cycle 13 追加) がテストされている
-- [x] 全 12 テストがパスする
+- [x] Toast.test.tsx が作成されている
+- [x] dismiss ボタンの .btn クラスがテストされている
+- [x] 全 8 テストがパスする
 - [x] ビルドが通ること

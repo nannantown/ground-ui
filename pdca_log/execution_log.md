@@ -5,6 +5,23 @@
 
 ---
 
+## Cycle 58 — Toast unit tests (2026-03-20)
+
+**Directive**: Q-04 — Toast テスト追加
+**Status**: DONE
+
+### Changes
+- `src/components/Toast.test.tsx` 新規作成: 8 テストケース
+  - Provider, trigger via useToast, dismiss button (.btn Cycle 9), multiple toasts, context error
+
+### Impact
+- テスト: 454 → **462** (+8), テスト済み: 25 → **26**, テストファイル: 29 → **30**
+
+### Build Verification
+- typecheck: 0 / lint: 0 / build: SUCCESS / test: **462 passed**
+
+---
+
 ## Cycle 57 — BottomNav unit tests — 25 components tested (2026-03-20)
 
 **Directive**: Q-04 — BottomNav テスト追加 (25 コンポーネント到達)
