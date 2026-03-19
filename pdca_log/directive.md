@@ -1,14 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T16:00:00+09:00
+- updated_at: 2026-03-20T17:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 70
+- cycle: 71
 
 ## Task
-NavigationRail + StatCard テストを追加し、600 テスト突破する。
+Carousel コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] NavigationRail.test.tsx — 6 テスト
-- [x] StatCard.test.tsx — 6 テスト
-- [x] 600 テスト突破
+- [x] Carousel.test.tsx — 6 テスト
 - [x] ビルドが通ること

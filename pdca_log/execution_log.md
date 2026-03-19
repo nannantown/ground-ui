@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 71 — Carousel unit tests (2026-03-20)
+
+**Directive**: Q-04 — Carousel テスト追加
+**Status**: DONE
+
+- `Carousel.test.tsx`: 6 tests (slides, arrows, disabled prev, next click, className)
+- テスト: 605 → **611** (+6), テスト済み: 41 → **42** (57%), ファイル: 45 → **46**
+- typecheck: 0 / lint: 0 / test: **611 passed**
+
+---
+
 ## Cycle 70 — NavigationRail + StatCard tests — 600+ milestone (2026-03-20)
 
 **Directive**: Q-04 — NavigationRail + StatCard テスト → 600 突破
