@@ -5,6 +5,19 @@
 
 ---
 
+## Cycle 79 — Container + Center + VisuallyHidden — 700 tests (2026-03-20)
+
+**Directive**: Q-04 — 3 レイアウトテスト追加 → 700 テスト突破
+**Status**: DONE
+
+- `layout/Container.test.tsx`: 7 tests
+- `layout/Center.test.tsx`: 4 tests
+- `layout/VisuallyHidden.test.tsx`: 3 tests
+- テスト: 686 → **700** (+14) ★700突破★, テスト済み: 52 → **55** (74%), ファイル: 56 → **59**
+- typecheck: 0 / lint: 0 / test: **700 passed**
+
+---
+
 ## Cycle 78 — Stack + Grid layout tests (2026-03-20)
 
 **Directive**: Q-04 — Stack + Grid レイアウトテスト追加
