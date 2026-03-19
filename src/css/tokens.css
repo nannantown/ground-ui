@@ -3367,6 +3367,43 @@
   animation: slide-out-up var(--motion-exit-duration) var(--motion-exit-ease) forwards;
 }
 
+/* Page transition utilities */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes page-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-12px); }
+}
+
+@keyframes page-slide-left {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes page-slide-right {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.page-enter {
+  animation: page-enter var(--duration-slow) var(--ease-out) forwards;
+}
+
+.page-exit {
+  animation: page-exit var(--motion-exit-duration) var(--motion-exit-ease) forwards;
+}
+
+.page-slide-left {
+  animation: page-slide-left var(--duration-slow) var(--ease-out) forwards;
+}
+
+.page-slide-right {
+  animation: page-slide-right var(--duration-slow) var(--ease-out) forwards;
+}
+
 /* Stagger delays */
 .stagger-1 { animation-delay: 0.05s; }
 .stagger-2 { animation-delay: 0.1s; }

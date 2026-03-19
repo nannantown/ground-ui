@@ -1,20 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-19T11:00:00+09:00
+- updated_at: 2026-03-19T12:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 41
+- cycle: 42
 
 ## Task
-スプリング物理イージングのバリエーションを CSS トークンとして追加する。
+ページトランジション CSS アニメーションクラスを追加する。
 
 ## Why
-MANAGER_BRAIN A-07「スプリング物理」が ⚠️ interactionsのみ。
---ease-spring が 1 種類しかなく、バウンス感の調整がトークンレベルでできなかった。
+MANAGER_BRAIN A-04「ページトランジション」が ❌ 未実装。
+SPA のルート遷移時に使える enter/exit + 左右スライドのアニメーションが必要。
 
 ## How
-1. tokens.css: --ease-spring-gentle/bouncy/snappy の 3 バリエーション追加
-2. 既存 --ease-spring (default) は変更なし
+1. tokens.css: 4 keyframes (page-enter/exit/slide-left/slide-right)
+2. tokens.css: 4 CSS クラス (.page-enter/exit/slide-left/slide-right)
+3. motion トークン参照
 
 ## Acceptance Criteria
-- [x] 3 スプリングバリエーションが定義されている
+- [x] 4 ページトランジションクラスが定義されている
+- [x] motion トークンを使用している
 - [x] ビルドが通ること

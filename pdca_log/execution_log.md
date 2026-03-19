@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 42 — A-04 Page transition animations (2026-03-19)
+
+**Directive**: MANAGER_BRAIN A-04 — ページトランジション追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - 4 keyframes: `page-enter`, `page-exit`, `page-slide-left`, `page-slide-right`
+  - 4 CSS クラス: `.page-enter`, `.page-exit`, `.page-slide-left`, `.page-slide-right`
+  - motion トークン (`--duration-slow`, `--ease-out`, `--motion-exit-*`) 使用
+
+### Impact
+- **A-04 ページトランジション: ❌ 未実装 → ✅ Done**
+- SPA のルート遷移で `.page-enter` / `.page-exit` を付与するだけで遷移アニメーション
+- 左右スライドで戻る/進むの方向感を表現可能
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 41 — A-07 Spring physics tokens (2026-03-19)
 
 **Directive**: MANAGER_BRAIN A-07 — スプリング物理トークン化
