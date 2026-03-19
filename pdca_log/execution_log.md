@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 54 — Tree component (C-47) + CSS + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-47 — Tree (ツリービュー) 新規作成
+**Status**: DONE
+
+### Changes
+- `src/components/Tree.tsx`: Tree + TreeNode コンポーネント新規作成
+  - 再帰的ツリー描画、expand/collapse
+  - selectedId, onSelect, defaultExpanded
+  - ARIA: role="tree", role="treeitem", aria-expanded, aria-selected
+  - keyboard: Enter/Space
+- `src/css/tokens.css`: .tree, .tree-item, .tree-item-selected, .tree-item-icon, .tree-item-label CSS 追加
+- `src/index.ts`: Tree, TreeNode export
+- `src/components/Tree.test.tsx`: 11 テストケース
+
+### Impact
+- **C-47 Tree: ❌ 未実装 → ✅ Done**
+- コンポーネント総数: 73 → **74**
+- テスト数: 421 → **432** (+11)
+- テスト済みコンポーネント: 22 → **23**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **432 tests passed**
+
+---
+
 ## Cycle 53 — Calendar component (C-48) + tests (2026-03-19)
 
 **Directive**: MANAGER_BRAIN C-48 — Calendar (月表示) コンポーネント化

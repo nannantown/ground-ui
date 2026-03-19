@@ -2839,6 +2839,60 @@
   outline-offset: -2px;
 }
 
+/* --- Tree --- */
+.tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.tree ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.tree-item:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.tree-item-selected {
+  background: var(--accent-bg);
+  color: var(--text-primary);
+}
+
+.tree-item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.tree-item-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.tree-item-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* --- File Upload --- */
 .file-upload {
   display: flex;

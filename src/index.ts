@@ -62,6 +62,8 @@ export { SearchBar } from './components/SearchBar'
 export { Autocomplete } from './components/Autocomplete'
 export type { AutocompleteOption } from './components/Autocomplete'
 export { TimePicker } from './components/TimePicker'
+export { Tree } from './components/Tree'
+export type { TreeNode } from './components/Tree'
 
 // Surfaces & Overlays
 export { BottomSheet, BottomSheetHeader, BottomSheetBody } from './components/BottomSheet'
