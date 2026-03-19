@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 74 — DataTable unit tests (2026-03-20)
+
+**Directive**: Q-04 — DataTable テスト追加
+**Status**: DONE
+
+- `DataTable.test.tsx`: 11 tests (table, headers, rows, empty, sortable, row click, CSS classes)
+- テスト: 624 → **635** (+11), テスト済み: 44 → **45** (61%), ファイル: 48 → **49**
+- typecheck: 0 / lint: 0 / test: **635 passed**
+
+---
+
 ## Cycle 73 — Timeline + Popover tests (2026-03-20)
 
 **Directive**: Q-04 — Timeline + Popover テスト追加

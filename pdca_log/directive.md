@@ -1,14 +1,13 @@
 # Current Directive
-- updated_at: 2026-03-20T19:00:00+09:00
+- updated_at: 2026-03-20T20:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 73
+- cycle: 74
 
 ## Task
-Timeline + Popover テストを追加する。
+DataTable コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] Timeline.test.tsx — 7 テスト
-- [x] Popover.test.tsx — 6 テスト
-- [x] 44 コンポーネント テスト済み (59%)
+- [x] DataTable.test.tsx — 11 テスト (sort, row click, CSS classes)
+- [x] 45 コンポーネント テスト済み (61%)
 - [x] ビルドが通ること
