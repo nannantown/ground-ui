@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 73 — Timeline + Popover tests (2026-03-20)
+
+**Directive**: Q-04 — Timeline + Popover テスト追加
+**Status**: DONE
+
+- `Timeline.test.tsx`: 7 tests (class, titles, dates, desc, clickable, onClick)
+- `Popover.test.tsx`: 6 tests (trigger, open/close, onOpenChange, CSS class)
+- テスト: 611 → **624** (+13), テスト済み: 42 → **44** (59%), ファイル: 46 → **48**
+- typecheck: 0 / lint: 0 / test: **624 passed**
+
+---
+
 ## Cycle 72 — MANAGER_BRAIN update to 98% (2026-03-20)
 
 **Directive**: スコア更新 — QA 85%, 総合 98%

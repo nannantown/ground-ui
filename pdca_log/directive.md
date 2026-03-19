@@ -1,13 +1,14 @@
 # Current Directive
-- updated_at: 2026-03-20T18:00:00+09:00
-- priority: low
+- updated_at: 2026-03-20T19:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 72
+- cycle: 73
 
 ## Task
-MANAGER_BRAIN.md を 71 cycles の実績で更新。98% 記録。
+Timeline + Popover テストを追加する。
 
 ## Acceptance Criteria
-- [x] QA 85% 反映 (611 tests, 42 comp)
-- [x] 総合 98% 反映
+- [x] Timeline.test.tsx — 7 テスト
+- [x] Popover.test.tsx — 6 テスト
+- [x] 44 コンポーネント テスト済み (59%)
 - [x] ビルドが通ること
