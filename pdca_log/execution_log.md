@@ -5,6 +5,19 @@
 
 ---
 
+## Cycle 83 — ScrollArea + CascadingMenu + VirtualList tests — 63 tested (85%) (2026-03-21)
+
+**Directive**: Q-04 — ScrollArea + CascadingMenu + VirtualList テスト → 85%
+**Status**: DONE
+
+- `layout/ScrollArea.test.tsx`: 5 tests
+- `CascadingMenu.test.tsx`: 4 tests (with ResizeObserver mock fix)
+- `VirtualList.test.tsx`: 3 tests (with ResizeObserver class mock)
+- テスト: 723 → **735** (+12), テスト済み: 60 → **63** (85%), ファイル: 64 → **67**
+- typecheck: 0 / lint: 0 / test: **735 passed**
+
+---
+
 ## Cycle 82 — AspectRatio + Spacer layout tests — 60 tested (81%) (2026-03-21)
 
 **Directive**: Q-04 — AspectRatio + Spacer テスト → 60 コンポーネント (81%)
