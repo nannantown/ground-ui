@@ -1,23 +1,19 @@
 # Current Directive
-- updated_at: 2026-03-19T19:00:00+09:00
-- priority: high
+- updated_at: 2026-03-19T20:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 49
+- cycle: 50
 
 ## Task
-WCAG AA アクセシビリティ監査を実施し、クリティカルな問題を即時修正する。
+Stepper コンポーネントの unit test を追加する。
 
 ## Why
-MANAGER_BRAIN Q-07「アクセシビリティ監査」が ⚠️ 色対比のみ。
-ARIA/keyboard/labels/focus の体系的チェックが未実施だった。
-
-## How
-1. エージェントで 10 コンポーネントの ARIA/keyboard/labels/focus を監査
-2. a11y_audit.md にレポート保存
-3. クリティカル修正: Button aria-busy, Checkbox 重複 ARIA 削除
+Q-04 継続。Stepper は Cycle 11 で hover/focus-visible を追加した。
+clickable steps, variants, keyboard 操作をテストで検証。
+これで QA 層が 95% 到達ラインに。
 
 ## Acceptance Criteria
-- [x] 監査レポートが作成されている
-- [x] Button に aria-busy が追加されている
-- [x] Checkbox の重複 ARIA が削除されている
-- [x] テスト追加 + ビルドが通ること
+- [x] Stepper.test.tsx が作成されている
+- [x] 全 13 テストがパスする
+- [x] 21 コンポーネントテスト済み
+- [x] ビルドが通ること

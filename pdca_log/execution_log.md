@@ -5,6 +5,34 @@
 
 ---
 
+## Cycle 50 — Stepper unit tests + 95% target reached (2026-03-19)
+
+**Directive**: Q-04 継続 — Stepper テスト追加 → 95% 到達
+**Status**: DONE
+
+### Changes
+- `src/components/Stepper.test.tsx` 新規作成: 13 テストケース
+  - Rendering: nav, labels, stepper class, className
+  - Active step: aria-current="step"
+  - Clickable: onStepClick, stepper-step-clickable class, Enter key
+  - Variants: vertical, compact
+  - Optional badge
+
+### Impact
+- テスト数: 397 → **410** (+13)
+- テストファイル: 24 → **25**
+- **21 コンポーネント テスト済み**
+- QA Layer: ~75% → **~77%**
+- **推定総合スコア: ~95% — 目標到達**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **410 tests passed**
+
+---
+
 ## Cycle 49 — Q-07 Accessibility audit + Button/Checkbox fixes (2026-03-19)
 
 **Directive**: MANAGER_BRAIN Q-07 — アクセシビリティ監査 (WCAG AA) + 即時修正
