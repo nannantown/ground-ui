@@ -1,19 +1,18 @@
 # Current Directive
-- updated_at: 2026-03-19T20:00:00+09:00
-- priority: medium
+- updated_at: 2026-03-19T21:00:00+09:00
+- priority: low
 - status: done
-- cycle: 50
+- cycle: 51
 
 ## Task
-Stepper コンポーネントの unit test を追加する。
+MANAGER_BRAIN.md に 95% 達成マイルストーンを正式記録する。
 
 ## Why
-Q-04 継続。Stepper は Cycle 11 で hover/focus-visible を追加した。
-clickable steps, variants, keyboard 操作をテストで検証。
-これで QA 層が 95% 到達ラインに。
+Cycle 50 で 95% 目標に到達。1ヶ月目標を 2 日 (50 cycles) で達成。
+正式にスコアと Change Log を更新し、次の 100% 目標を設定。
 
 ## Acceptance Criteria
-- [x] Stepper.test.tsx が作成されている
-- [x] 全 13 テストがパスする
-- [x] 21 コンポーネントテスト済み
+- [x] スコアテーブルが 95% を反映
+- [x] Change Log が Cycle 45-50 を含む
+- [x] 次の目標 (100%) が設定されている
 - [x] ビルドが通ること
