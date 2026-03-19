@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 77 — Autocomplete + ProgressRing tests (2026-03-20)
+
+**Directive**: Q-04 — Autocomplete + ProgressRing テスト → 50 コンポーネント到達
+**Status**: DONE
+
+- `Autocomplete.test.tsx`: 7 tests (combobox, value, placeholder, onChange, disabled, error, className)
+- `ProgressRing.test.tsx`: 6 tests (SVG, circles, showLabel, size, className)
+- テスト: 657 → **670** (+13), テスト済み: 48 → **50** (68%), ファイル: 52 → **54**
+- typecheck: 0 / lint: 0 / test: **670 passed**
+
+---
+
 ## Cycle 76 — AppBar + FormField tests (2026-03-20)
 
 **Directive**: Q-04 — AppBar + FormField テスト追加 → 48 コンポーネント (65%)
