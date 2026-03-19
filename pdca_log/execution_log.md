@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 62 — Avatar unit tests (2026-03-20)
+
+**Directive**: Q-04 — Avatar テスト追加
+**Status**: DONE
+
+- `src/components/Avatar.test.tsx`: 12 tests (img/initials, sizes, fallback ?, className)
+- テスト: 484 → **496** (+12), テスト済み: 28 → **29**, ファイル: 32 → **33**
+- typecheck: 0 / lint: 0 / test: **496 passed**
+
+---
+
 ## Cycle 61 — Tooltip unit tests (2026-03-20)
 
 **Directive**: Q-04 — Tooltip テスト追加

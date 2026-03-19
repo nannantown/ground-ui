@@ -1,12 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T07:00:00+09:00
+- updated_at: 2026-03-20T08:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 61
+- cycle: 62
 
 ## Task
-Tooltip コンポーネントの unit test を追加する。
+Avatar コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] Tooltip.test.tsx — 9 テスト (hover, focus, Escape, delay, CSS)
+- [x] Avatar.test.tsx — 12 テスト (image, initials, sizes, fallback, className)
 - [x] ビルドが通ること
