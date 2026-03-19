@@ -1,22 +1,24 @@
 # Current Directive
-- updated_at: 2026-03-19T13:00:00+09:00
+- updated_at: 2026-03-19T14:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 43
+- cycle: 44
 
 ## Task
-リスト追加/削除のレイアウトアニメーションを CSS で追加する。
+FileUpload (ファイルアップロード) コンポーネントを新規作成する。
 
 ## Why
-MANAGER_BRAIN A-09「レイアウトアニメーション」が ❌ 未実装。Animation Layer 最後の 1 項目。
-リストアイテムの enter/exit で opacity + max-height + translateX の複合アニメーションを提供。
+MANAGER_BRAIN C-42「FileUpload」が ❌ 未実装。
+drag & drop + click to browse パターンはフォーム系の基本パーツ。
 
 ## How
-1. tokens.css: 2 keyframes (list-item-enter/exit)
-2. tokens.css: 2 CSS クラス (.list-item-enter/exit) + overflow:hidden
-3. motion トークン参照
+1. FileUpload.tsx: drag/drop + click + accept/multiple/maxSize/disabled
+2. tokens.css: .file-upload CSS クラス群追加
+3. index.ts: export
+4. FileUpload.test.tsx: 16 テストケース
 
 ## Acceptance Criteria
-- [x] list-item-enter/exit が定義されている
-- [x] Animation Layer 9/9 = 100%
+- [x] FileUpload コンポーネントが作成されている
+- [x] CSS クラスが tokens.css に定義されている
+- [x] 全テストがパスする
 - [x] ビルドが通ること

@@ -2827,6 +2827,55 @@
   outline-offset: -2px;
 }
 
+/* --- File Upload --- */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--inset-panel);
+  border: 2px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.file-upload:hover:not(.file-upload-disabled) {
+  border-color: var(--border-strong);
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.file-upload-active {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--text-primary);
+}
+
+.file-upload-disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.file-upload:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.file-upload-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.file-upload-hint {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+}
+
 /* --- Dropdown Menu --- */
 .dropdown-item {
   width: 100%;

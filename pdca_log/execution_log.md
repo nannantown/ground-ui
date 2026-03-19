@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 44 — FileUpload component (C-42) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-42 — FileUpload コンポーネント新規作成
+**Status**: DONE
+
+### Changes
+- `src/components/FileUpload.tsx`: FileUpload コンポーネント新規作成
+  - drag & drop + click to browse
+  - accept, multiple, maxSize, disabled props
+  - label / hint テキストカスタマイズ
+  - forwardRef + keyboard (Enter/Space)
+- `src/css/tokens.css`: .file-upload CSS クラス追加 (6 クラス: base/hover/active/disabled/focus-visible/label/hint)
+- `src/index.ts`: FileUpload export 追加
+- `src/components/FileUpload.test.tsx`: 16 テストケース
+
+### Impact
+- **C-42 FileUpload: ❌ 未実装 → ✅ Done**
+- テスト数: 358 → **374** (+16)
+- テストファイル: 21 → **22**
+- テスト済みコンポーネント: 17 → **18** (FileUpload)
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **374 tests passed**
+
+---
+
 ## Cycle 43 — A-09 Layout animations (list enter/exit) (2026-03-19)
 
 **Directive**: MANAGER_BRAIN A-09 — レイアウトアニメーション (リスト追加/削除)
