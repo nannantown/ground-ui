@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 52 — E-10 Neomorphism tokens + utilities (2026-03-19)
+
+**Directive**: MANAGER_BRAIN E-10 — ネオモーフィズム追加
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - Dark mode: `--neo-light`, `--neo-dark`, `--neo-shadow-sm/md/lg`, `--neo-shadow-inset` トークン追加
+  - Light mode: `--neo-light`, `--neo-dark` オーバーライド (soft shadow)
+  - `.neo`, `.neo-sm`, `.neo-lg`, `.neo-inset` ユーティリティクラス追加
+
+### Impact
+- **E-10 ネオモーフィズム: ❌ 未実装 → ✅ Done**
+- Visual Effects: 9/11 → **10/11** (E-11 パーティクル/パララックスのみ残)
+- ダーク/ライト両テーマで自動適応する CSS-only ネオモーフィズム
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 51 — MANAGER_BRAIN 95% milestone記録 (2026-03-19)
 
 **Directive**: MANAGER_BRAIN.md を 95% 達成で最終更新

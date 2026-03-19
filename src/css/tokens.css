@@ -515,6 +515,14 @@
   --shadow-2xl: none;
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 
+  /* --- Neomorphism --- */
+  --neo-light: rgba(255, 255, 255, 0.05);
+  --neo-dark: rgba(0, 0, 0, 0.4);
+  --neo-shadow-sm: 3px 3px 6px var(--neo-dark), -3px -3px 6px var(--neo-light);
+  --neo-shadow-md: 6px 6px 12px var(--neo-dark), -6px -6px 12px var(--neo-light);
+  --neo-shadow-lg: 10px 10px 20px var(--neo-dark), -10px -10px 20px var(--neo-light);
+  --neo-shadow-inset: inset 3px 3px 6px var(--neo-dark), inset -3px -3px 6px var(--neo-light);
+
   /* --- Blur --- */
   --blur-sm: 4px;
   --blur-md: 8px;
@@ -606,6 +614,10 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* --- Neomorphism (light mode) --- */
+  --neo-light: rgba(255, 255, 255, 0.7);
+  --neo-dark: rgba(0, 0, 0, 0.12);
 
   /* --- Semantic backgrounds (slightly lower opacity on white) --- */
   --success-bg: rgba(67, 163, 134, 0.08);
@@ -3540,6 +3552,30 @@
 .ripple:active::after {
   opacity: 1;
   transition-duration: 50ms;
+}
+
+/* ============================================
+   Neomorphism utilities
+   ============================================ */
+
+.neo {
+  box-shadow: var(--neo-shadow-md);
+  border: none;
+}
+
+.neo-sm {
+  box-shadow: var(--neo-shadow-sm);
+  border: none;
+}
+
+.neo-lg {
+  box-shadow: var(--neo-shadow-lg);
+  border: none;
+}
+
+.neo-inset {
+  box-shadow: var(--neo-shadow-inset);
+  border: none;
 }
 
 /* ============================================

@@ -1,18 +1,17 @@
 # Current Directive
-- updated_at: 2026-03-19T21:00:00+09:00
-- priority: low
+- updated_at: 2026-03-19T22:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 51
+- cycle: 52
 
 ## Task
-MANAGER_BRAIN.md に 95% 達成マイルストーンを正式記録する。
+ネオモーフィズム CSS トークンとユーティリティクラスを追加する。
 
 ## Why
-Cycle 50 で 95% 目標に到達。1ヶ月目標を 2 日 (50 cycles) で達成。
-正式にスコアと Change Log を更新し、次の 100% 目標を設定。
+MANAGER_BRAIN E-10「ネオモーフィズム」が ❌ 未実装。
+ダーク/ライト両テーマ対応の CSS-only ネオモーフィズム効果を提供。
 
 ## Acceptance Criteria
-- [x] スコアテーブルが 95% を反映
-- [x] Change Log が Cycle 45-50 を含む
-- [x] 次の目標 (100%) が設定されている
+- [x] --neo-* トークンが dark/light 両方で定義
+- [x] .neo, .neo-sm, .neo-lg, .neo-inset クラスが定義
 - [x] ビルドが通ること
