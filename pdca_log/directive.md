@@ -1,22 +1,22 @@
 # Current Directive
-- updated_at: 2026-03-19T12:00:00+09:00
+- updated_at: 2026-03-19T13:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 42
+- cycle: 43
 
 ## Task
-ページトランジション CSS アニメーションクラスを追加する。
+リスト追加/削除のレイアウトアニメーションを CSS で追加する。
 
 ## Why
-MANAGER_BRAIN A-04「ページトランジション」が ❌ 未実装。
-SPA のルート遷移時に使える enter/exit + 左右スライドのアニメーションが必要。
+MANAGER_BRAIN A-09「レイアウトアニメーション」が ❌ 未実装。Animation Layer 最後の 1 項目。
+リストアイテムの enter/exit で opacity + max-height + translateX の複合アニメーションを提供。
 
 ## How
-1. tokens.css: 4 keyframes (page-enter/exit/slide-left/slide-right)
-2. tokens.css: 4 CSS クラス (.page-enter/exit/slide-left/slide-right)
+1. tokens.css: 2 keyframes (list-item-enter/exit)
+2. tokens.css: 2 CSS クラス (.list-item-enter/exit) + overflow:hidden
 3. motion トークン参照
 
 ## Acceptance Criteria
-- [x] 4 ページトランジションクラスが定義されている
-- [x] motion トークンを使用している
+- [x] list-item-enter/exit が定義されている
+- [x] Animation Layer 9/9 = 100%
 - [x] ビルドが通ること

@@ -5,6 +5,29 @@
 
 ---
 
+## Cycle 43 — A-09 Layout animations (list enter/exit) (2026-03-19)
+
+**Directive**: MANAGER_BRAIN A-09 — レイアウトアニメーション (リスト追加/削除)
+**Status**: DONE
+
+### Changes
+- `src/css/tokens.css`:
+  - 2 keyframes: `list-item-enter` (opacity + max-height + translateX), `list-item-exit`
+  - 2 CSS クラス: `.list-item-enter`, `.list-item-exit`
+  - motion トークン参照、overflow: hidden で高さアニメーション対応
+
+### Impact
+- **A-09 レイアウトアニメーション: ❌ 未実装 → ✅ Done**
+- **Animation Layer: 8/9 → 9/9 = 100%**
+- リストアイテムに `.list-item-enter` 追加でスムーズな出現、`.list-item-exit` で退場
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+
+---
+
 ## Cycle 42 — A-04 Page transition animations (2026-03-19)
 
 **Directive**: MANAGER_BRAIN A-04 — ページトランジション追加
