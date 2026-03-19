@@ -1,14 +1,13 @@
 # Current Directive
-- updated_at: 2026-03-20T05:00:00+09:00
-- priority: low
+- updated_at: 2026-03-20T06:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 59
+- cycle: 60
 
 ## Task
-MANAGER_BRAIN.md を 58 cycles の実績で更新。97% 記録。
+Textarea コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] スコア 97% 反映
-- [x] Components 98%, VFX 96%, QA 80%
-- [x] Change Log 更新
+- [x] Textarea.test.tsx — 13 テスト
+- [x] error, autosize, ref がテストされている
 - [x] ビルドが通ること

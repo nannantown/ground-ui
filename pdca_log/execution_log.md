@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 60 — Textarea unit tests (2026-03-20)
+
+**Directive**: Q-04 — Textarea テスト追加
+**Status**: DONE
+
+- `src/components/Textarea.test.tsx`: 13 tests (rendering, value, onChange, error, autosize, ref, attrs)
+- テスト: 462 → **475** (+13), テスト済み: 26 → **27**, ファイル: 30 → **31**
+- typecheck: 0 / lint: 0 / build: SUCCESS / test: **475 passed**
+
+---
+
 ## Cycle 59 — MANAGER_BRAIN update to 97% (2026-03-20)
 
 **Directive**: スコアテーブル + Change Log を 58 cycles の実績で更新
