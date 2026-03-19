@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 78 — Stack + Grid layout tests (2026-03-20)
+
+**Directive**: Q-04 — Stack + Grid レイアウトテスト追加
+**Status**: DONE
+
+- `layout/Stack.test.tsx`: 8 tests (children, as tag, direction, gap, ref, className)
+- `layout/Grid.test.tsx`: 8 tests (children, as tag, display grid, columns, autoFill, ref, className)
+- テスト: 670 → **686** (+16), テスト済み: 50 → **52** (70%), ファイル: 54 → **56**
+- typecheck: 0 / lint: 0 / test: **686 passed**
+
+---
+
 ## Cycle 77 — Autocomplete + ProgressRing tests (2026-03-20)
 
 **Directive**: Q-04 — Autocomplete + ProgressRing テスト → 50 コンポーネント到達
