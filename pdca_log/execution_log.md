@@ -5,6 +5,19 @@
 
 ---
 
+## Cycle 81 — Drawer + CrossFade + Form tests (2026-03-21)
+
+**Directive**: Q-04 — Drawer + CrossFade + Form テスト → 58 コンポーネント (78%)
+**Status**: DONE
+
+- `layout/Drawer.test.tsx`: 5 tests (open/close, CSS class, Escape, className)
+- `CrossFade.test.tsx`: 4 tests (show first/second, container, className)
+- `Form.test.tsx`: 4 tests (render prop, initial values, onSubmit, form element)
+- テスト: 700 → **713** (+13), テスト済み: 55 → **58** (78%), ファイル: 59 → **62**
+- typecheck: 0 / lint: 0 / test: **713 passed**
+
+---
+
 ## Cycle 80 — MANAGER_BRAIN update to 99% (2026-03-21)
 
 **Directive**: スコア更新 — QA 90%, 総合 99%

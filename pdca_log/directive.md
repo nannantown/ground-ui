@@ -1,13 +1,15 @@
 # Current Directive
-- updated_at: 2026-03-21T02:00:00+09:00
-- priority: low
+- updated_at: 2026-03-21T03:00:00+09:00
+- priority: medium
 - status: done
-- cycle: 80
+- cycle: 81
 
 ## Task
-MANAGER_BRAIN.md を 79 cycles で更新。99% 記録。
+Drawer + CrossFade + Form テスト追加。58 コンポーネント (78%)。
 
 ## Acceptance Criteria
-- [x] QA 90% (700 tests, 55/74 comp)
-- [x] 総合 99%
+- [x] Drawer.test.tsx — 5 テスト
+- [x] CrossFade.test.tsx — 4 テスト
+- [x] Form.test.tsx — 4 テスト
+- [x] 58 コンポーネント (78%)
 - [x] ビルドが通ること
