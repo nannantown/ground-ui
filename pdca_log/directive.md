@@ -1,12 +1,14 @@
 # Current Directive
-- updated_at: 2026-03-20T08:00:00+09:00
+- updated_at: 2026-03-20T09:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 62
+- cycle: 63
 
 ## Task
-Avatar コンポーネントの unit test を追加する。
+Spinner + ProgressBar のテストを追加し、500 テスト突破する。
 
 ## Acceptance Criteria
-- [x] Avatar.test.tsx — 12 テスト (image, initials, sizes, fallback, className)
+- [x] Spinner.test.tsx — 5 テスト
+- [x] ProgressBar.test.tsx — 12 テスト (ARIA, clamp, sizes, variants, label)
+- [x] 500 テスト突破
 - [x] ビルドが通ること

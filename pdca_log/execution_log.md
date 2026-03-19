@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 63 — Spinner + ProgressBar tests — 500+ milestone (2026-03-20)
+
+**Directive**: Q-04 — Spinner + ProgressBar テスト追加 → 500 テスト突破
+**Status**: DONE
+
+- `Spinner.test.tsx`: 5 tests (SVG, animate-spin, size, className)
+- `ProgressBar.test.tsx`: 12 tests (progressbar role, ARIA, clamp, sizes, variants, label)
+- テスト: 496 → **513** (+17), テスト済み: 29 → **31**, ファイル: 33 → **35**
+- typecheck: 0 / lint: 0 / test: **513 passed** ★500突破★
+
+---
+
 ## Cycle 62 — Avatar unit tests (2026-03-20)
 
 **Directive**: Q-04 — Avatar テスト追加
