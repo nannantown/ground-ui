@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 61 — Tooltip unit tests (2026-03-20)
+
+**Directive**: Q-04 — Tooltip テスト追加
+**Status**: DONE
+
+- `src/components/Tooltip.test.tsx`: 9 tests (hover show/hide, focus, blur, Escape, delay, CSS class)
+- テスト: 475 → **484** (+9), テスト済み: 27 → **28**, ファイル: 31 → **32**
+- typecheck: 0 / lint: 0 / test: **484 passed**
+
+---
+
 ## Cycle 60 — Textarea unit tests (2026-03-20)
 
 **Directive**: Q-04 — Textarea テスト追加

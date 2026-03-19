@@ -1,13 +1,12 @@
 # Current Directive
-- updated_at: 2026-03-20T06:00:00+09:00
+- updated_at: 2026-03-20T07:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 60
+- cycle: 61
 
 ## Task
-Textarea コンポーネントの unit test を追加する。
+Tooltip コンポーネントの unit test を追加する。
 
 ## Acceptance Criteria
-- [x] Textarea.test.tsx — 13 テスト
-- [x] error, autosize, ref がテストされている
+- [x] Tooltip.test.tsx — 9 テスト (hover, focus, Escape, delay, CSS)
 - [x] ビルドが通ること
