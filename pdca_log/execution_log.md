@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 76 — AppBar + FormField tests (2026-03-20)
+
+**Directive**: Q-04 — AppBar + FormField テスト追加 → 48 コンポーネント (65%)
+**Status**: DONE
+
+- `AppBar.test.tsx`: 6 tests (header, title, subtitle, leading, actions, className)
+- `FormField.test.tsx`: 7 tests (label, children, error, hint, required, role=alert, className)
+- テスト: 644 → **657** (+13), テスト済み: 46 → **48** (65%), ファイル: 50 → **52**
+- typecheck: 0 / lint: 0 / test: **657 passed**
+
+---
+
 ## Cycle 75 — Sidebar tests — 50 test files milestone (2026-03-20)
 
 **Directive**: Q-04 — Sidebar テスト追加 → 50 テストファイル到達
