@@ -1,13 +1,14 @@
 # Current Directive
-- updated_at: 2026-03-20T20:00:00+09:00
+- updated_at: 2026-03-20T21:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 74
+- cycle: 75
 
 ## Task
-DataTable コンポーネントの unit test を追加する。
+Sidebar テストを追加。50 テストファイル到達。
 
 ## Acceptance Criteria
-- [x] DataTable.test.tsx — 11 テスト (sort, row click, CSS classes)
-- [x] 45 コンポーネント テスト済み (61%)
+- [x] Sidebar.test.tsx — 9 テスト
+- [x] 46 コンポーネント テスト済み (62%)
+- [x] 50 テストファイル到達
 - [x] ビルドが通ること

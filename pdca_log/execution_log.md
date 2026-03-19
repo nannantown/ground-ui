@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 75 — Sidebar tests — 50 test files milestone (2026-03-20)
+
+**Directive**: Q-04 — Sidebar テスト追加 → 50 テストファイル到達
+**Status**: DONE
+
+- `Sidebar.test.tsx`: 9 tests (nav, items, sections, active, onChange, header, user, className)
+- テスト: 635 → **644** (+9), テスト済み: 45 → **46** (62%), ファイル: 49 → **50** ★
+- typecheck: 0 / lint: 0 / test: **644 passed**
+
+---
+
 ## Cycle 74 — DataTable unit tests (2026-03-20)
 
 **Directive**: Q-04 — DataTable テスト追加
