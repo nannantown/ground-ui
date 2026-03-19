@@ -5,6 +5,21 @@
 
 ---
 
+## Cycle 84 — SplitView + AppShell + Dismissible + BottomSheet — 750 tests, 67 tested (91%) (2026-03-20)
+
+**Directive**: Q-04 — 4 コンポーネント一括テスト → 90%+ カバレッジ
+**Status**: DONE
+
+- `layout/SplitView.test.tsx`: 4 tests
+- `layout/AppShell.test.tsx`: 4 tests
+- `Dismissible.test.tsx`: 3 tests
+- `BottomSheet.test.tsx`: 4 tests
+- + CascadingMenu lint fix (unused vi)
+- テスト: 735 → **750** (+15) ★750★, テスト済み: 63 → **67** (91%), ファイル: 67 → **71**
+- typecheck: 0 / lint: 0 / test: **750 passed**
+
+---
+
 ## Cycle 83 — ScrollArea + CascadingMenu + VirtualList tests — 63 tested (85%) (2026-03-21)
 
 **Directive**: Q-04 — ScrollArea + CascadingMenu + VirtualList テスト → 85%
