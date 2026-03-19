@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 68 — ConfirmDialog unit tests (2026-03-20)
+
+**Directive**: Q-04 — ConfirmDialog テスト追加
+**Status**: DONE
+
+- `ConfirmDialog.test.tsx`: 11 tests (open/close, title, labels, danger/default, cancel/confirm, CSS classes)
+- テスト: 568 → **579** (+11), テスト済み: 36 → **37**, ファイル: 40 → **41**
+- typecheck: 0 / lint: 0 / test: **579 passed**
+
+---
+
 ## Cycle 67 — SegmentedControl unit tests (2026-03-20)
 
 **Directive**: Q-04 — SegmentedControl テスト追加
