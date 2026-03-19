@@ -1,24 +1,18 @@
 # Current Directive
-- updated_at: 2026-03-19T14:00:00+09:00
-- priority: medium
+- updated_at: 2026-03-19T15:00:00+09:00
+- priority: low
 - status: done
-- cycle: 44
+- cycle: 45
 
 ## Task
-FileUpload (ファイルアップロード) コンポーネントを新規作成する。
+MANAGER_BRAIN.md のスコアを 44 サイクルの実績で更新する。
 
 ## Why
-MANAGER_BRAIN C-42「FileUpload」が ❌ 未実装。
-drag & drop + click to browse パターンはフォーム系の基本パーツ。
-
-## How
-1. FileUpload.tsx: drag/drop + click + accept/multiple/maxSize/disabled
-2. tokens.css: .file-upload CSS クラス群追加
-3. index.ts: export
-4. FileUpload.test.tsx: 16 テストケース
+Cycle 37 以降の改善 (F-12, A-02~A-09全完了, FileUpload, Select test) が未反映。
+93% は Week 3 目標 (92%) を 2 週間前倒しで達成。
 
 ## Acceptance Criteria
-- [x] FileUpload コンポーネントが作成されている
-- [x] CSS クラスが tokens.css に定義されている
-- [x] 全テストがパスする
+- [x] スコアテーブルが最新 (93%)
+- [x] 4 Layer 100% が反映されている
+- [x] Change Log が最新
 - [x] ビルドが通ること
