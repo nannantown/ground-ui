@@ -5,6 +5,18 @@
 
 ---
 
+## Cycle 70 — NavigationRail + StatCard tests — 600+ milestone (2026-03-20)
+
+**Directive**: Q-04 — NavigationRail + StatCard テスト → 600 突破
+**Status**: DONE
+
+- `NavigationRail.test.tsx`: 6 tests (nav, labels, onChange, header/footer, className)
+- `StatCard.test.tsx`: 6 tests (label, value, card-stat class, trend, icon, className)
+- テスト: 593 → **605** (+12), テスト済み: 39 → **41** (55%), ファイル: 43 → **45**
+- typecheck: 0 / lint: 0 / test: **605 passed** ★600突破★
+
+---
+
 ## Cycle 69 — SearchBar + Slider tests — 50%+ coverage (2026-03-20)
 
 **Directive**: Q-04 — SearchBar + Slider テスト追加 → テスト済み 50% 突破
