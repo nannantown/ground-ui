@@ -1,17 +1,19 @@
 # Current Directive
-- updated_at: 2026-03-19T22:00:00+09:00
+- updated_at: 2026-03-19T23:00:00+09:00
 - priority: medium
 - status: done
-- cycle: 52
+- cycle: 53
 
 ## Task
-ネオモーフィズム CSS トークンとユーティリティクラスを追加する。
+Calendar (月表示) コンポーネントを新規作成する。
 
 ## Why
-MANAGER_BRAIN E-10「ネオモーフィズム」が ❌ 未実装。
-ダーク/ライト両テーマ対応の CSS-only ネオモーフィズム効果を提供。
+MANAGER_BRAIN C-48「Calendar（月/週表示）」が ⚠️ CSSクラスのみ。
+.calendar-* CSS は tokens.css に定義済みだが React コンポーネントがなかった。
 
 ## Acceptance Criteria
-- [x] --neo-* トークンが dark/light 両方で定義
-- [x] .neo, .neo-sm, .neo-lg, .neo-inset クラスが定義
+- [x] Calendar コンポーネントが作成されている
+- [x] 既存 .calendar-* CSS クラスを使用している
+- [x] min/max 制限が動作する
+- [x] 全テストがパスする
 - [x] ビルドが通ること

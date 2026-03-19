@@ -5,6 +5,35 @@
 
 ---
 
+## Cycle 53 — Calendar component (C-48) + tests (2026-03-19)
+
+**Directive**: MANAGER_BRAIN C-48 — Calendar (月表示) コンポーネント化
+**Status**: DONE
+
+### Changes
+- `src/components/Calendar.tsx`: Calendar コンポーネント新規作成
+  - 月表示、前月/次月ナビゲーション
+  - value/onChange controlled pattern
+  - min/max 日付制限
+  - 既存 .calendar-* CSS クラス使用
+  - aria-selected, aria-label, disabled 対応
+- `src/index.ts`: Calendar export 追加
+- `src/components/Calendar.test.tsx`: 11 テストケース
+
+### Impact
+- **C-48 Calendar: ⚠️ CSSクラスのみ → ✅ コンポーネント化 Done**
+- コンポーネント総数: 72 → **73**
+- テスト数: 410 → **421** (+11)
+- テスト済みコンポーネント: 21 → **22**
+
+### Build Verification
+- `npm run typecheck`: 0 errors
+- `npm run lint`: 0 errors
+- `npm run build`: SUCCESS
+- `npm run test`: **421 tests passed**
+
+---
+
 ## Cycle 52 — E-10 Neomorphism tokens + utilities (2026-03-19)
 
 **Directive**: MANAGER_BRAIN E-10 — ネオモーフィズム追加
