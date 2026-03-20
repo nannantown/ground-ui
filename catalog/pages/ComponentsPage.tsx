@@ -2608,15 +2608,18 @@ function BottomNavDemo() {
   const profileIcon = <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
   return (
     <div style={{ maxWidth: 400, border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-      <BottomNav
-        value={active}
-        onChange={setActive}
-        items={[
-          { value: 'home', label: locale === 'ja' ? 'ホーム' : 'Home', icon: homeIcon },
-          { value: 'search', label: locale === 'ja' ? '検索' : 'Search', icon: searchIcon, badge: 3 },
-          { value: 'profile', label: locale === 'ja' ? 'プロフィール' : 'Profile', icon: profileIcon },
-        ]}
-      />
+      <div style={{ position: 'relative', height: 56 }}>
+        <BottomNav
+          value={active}
+          onChange={setActive}
+          className="catalog-bottom-nav-demo"
+          items={[
+            { value: 'home', label: locale === 'ja' ? 'ホーム' : 'Home', icon: homeIcon },
+            { value: 'search', label: locale === 'ja' ? '検索' : 'Search', icon: searchIcon, badge: 3 },
+            { value: 'profile', label: locale === 'ja' ? 'プロフィール' : 'Profile', icon: profileIcon },
+          ]}
+        />
+      </div>
     </div>
   )
 }

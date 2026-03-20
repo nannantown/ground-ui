@@ -703,3 +703,11 @@
   .ds-pipeline { flex-direction: column; align-items: stretch; }
   .ds-token-map { flex-direction: column; align-items: flex-start; }
 }
+
+/* --- Catalog demo overrides --- */
+/* BottomNav uses position:fixed in production, but in the catalog demo
+   it should be contained within its preview container, not fixed to viewport */
+.catalog-bottom-nav-demo {
+  position: absolute;
+  display: flex;
+}
