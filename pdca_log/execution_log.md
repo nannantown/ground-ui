@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 88 — ThemeToggle tests with next-themes mock (2026-03-20)
+
+**Directive**: Q-04 — ThemeToggle テスト (next-themes mock)
+**Status**: DONE
+
+- `ThemeToggle.test.tsx`: 5 tests (button, aria-label, toolbar-button class, setTheme, className)
+- テスト: 771 → **776** (+5), テスト済み: 70 → **71** (96%), ファイル: 75 → **76**
+- typecheck: 0 / lint: 0 / test: **776 passed**
+
+---
+
 ## Cycle 87 — cn() utility tests (2026-03-20)
 
 **Directive**: cn() ユーティリティのテスト追加 — 全コンポーネントの基盤
