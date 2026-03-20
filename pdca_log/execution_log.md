@@ -5,6 +5,17 @@
 
 ---
 
+## Cycle 87 — cn() utility tests (2026-03-20)
+
+**Directive**: cn() ユーティリティのテスト追加 — 全コンポーネントの基盤
+**Status**: DONE
+
+- `src/cn.test.ts`: 8 tests (join, false/null/undefined/empty filter, conditional)
+- テスト: 763 → **771** (+8), ファイル: 74 → **75**
+- typecheck: 0 / lint: 0 / test: **771 passed**
+
+---
+
 ## Cycle 86 — MANAGER_BRAIN final update to 99.5% (2026-03-20)
 
 **Directive**: 最終スコア更新 — QA 95%, 総合 99.5%
