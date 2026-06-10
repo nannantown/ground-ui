@@ -1,0 +1,7 @@
+{
+  "id": "test-a-1",
+  "title": "User A のテストカード",
+  "done": false,
+  "createdAt": "2026-06-10T05:00:00.000Z",
+  "boardColumn": "todo"
+}
